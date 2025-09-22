@@ -276,7 +276,7 @@ OUTPUT = Text
 
 ---
 
-## 10. Level 5: Orchestration & Meta-Prompting
+## 10. Orchestration & Meta-Prompting
 
 Ailo is not limited to one-off prompts. It is designed to support **orchestration**: systems of prompts chained together to achieve larger goals. This is often called **Level 5 prompting**.  
 
