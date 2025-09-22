@@ -336,7 +336,7 @@ Ailo is not limited to one-off prompts. It is designed to support **orchestratio
 ---
 
 **In short:** Ailo is not just a prompt format. It is a **workflow language** for AI.  
-At Level 5, Ailo becomes the bridge between **human clarity** and **machine orchestration**, enabling both individuals and organizations to scale AI use safely and efficiently.  
+At Agent to Agent communication, Ailo becomes the bridge between **human clarity** and **machine orchestration**, enabling both individuals and organizations to scale AI use safely and efficiently.  
 
 ---
 
