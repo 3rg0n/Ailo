@@ -42,6 +42,114 @@ These techniques require tool execution or multi-turn orchestration. We built an
 | Multimodal CoT | Image input |
 | Graph Prompting | Complex graph structure |
 
+## Testing Methodology
+
+### How Each Technique Was Tested
+
+Every prompting technique was tested with the **same task** presented in different formats. This ensures fair comparison - the only variable is the prompting style.
+
+#### Single-Prompt Techniques
+
+| Technique | How It's Structured | Example |
+|-----------|---------------------|---------|
+| **Zero-shot** | Plain task description | "Calculate: 7 apples at $2 each with 20% discount" |
+| **Few-shot** | 1-2 examples + task | "Example: 3 items at $5 = $15. Now solve: 7 apples..." |
+| **Chain-of-Thought** | Task + reasoning scaffold | "Solve step by step: 1) Calculate total 2) Apply discount..." |
+| **Schema** | Structured fields | `ACT=Calculate OBJ=Price TAGS=[ShowWork]` |
+| **Meta** | Ask model to design approach | "First, decide how to solve this. Then execute." |
+| **Generate Knowledge** | Generate facts first | "Recall: Discount formula is... Now apply to: 7 apples..." |
+| **Directional Stimulus** | Task + hints | "Calculate price. HINTS: Total=$14, discount=20%" |
+| **Tree of Thoughts** | Multiple solution paths | "Try 3 approaches: A) Direct calc B) Unit price C) Ratio" |
+| **Self-Consistency** | Multiple methods + reconcile | "Solve 3 ways, compare answers, give final result" |
+
+#### Agentic Techniques (Multi-Turn / Tool-Use)
+
+| Technique | Implementation | Tools Available |
+|-----------|----------------|-----------------|
+| **ReAct** | Loop: Thought → Action → Observation → repeat until Final Answer | `calculator(expr)`, `search(query)`, `python(code)` |
+| **PAL** | Generate Python code → Execute → Return result | Safe Python sandbox with math library |
+| **Prompt Chaining** | Step 1: Plan → Step 2: Execute → Step 3: Synthesize | None (pure LLM orchestration) |
+| **Reflexion** | Generate answer → Critique → Retry if issues found | None (self-critique loop) |
+
+### Evaluation Criteria
+
+Each response is evaluated against **objective, automated criteria**:
+
+```
+CRITERIA TYPES:
+├── Format Compliance
+│   ├── has_bullets: Response contains bullet points
+│   ├── has_table: Response has markdown table
+│   ├── has_code: Response includes code block
+│   └── has_numbered_list: Response has numbered items
+│
+├── Constraint Adherence
+│   ├── is_concise: Under word limit
+│   ├── exactly_N: Exactly N items provided
+│   └── length_range: Within word count bounds
+│
+└── Content Accuracy
+    ├── correct_answer: Contains expected value (e.g., "11.20")
+    ├── contains_keywords: Has required terms
+    └── shows_work: Demonstrates reasoning steps
+```
+
+### Test Suite Composition
+
+**Single-Prompt Benchmark** (9 test cases):
+- Writing: Executive summary, persona adherence
+- Reasoning: Math problems, logic puzzles, percentages
+- Creative: Story ideas
+- Analysis: Framework comparison, pros/cons
+- Technical: Code explanation
+
+**Agentic Benchmark** (5 test cases):
+- Math: Apple discount ($11.20), percentage increase (25%), compound interest ($1150)
+- Knowledge: Cloud computing benefits
+- Code: Sum of squares (385)
+
+### Metrics Captured
+
+For each technique on each test:
+
+```python
+{
+    "pass_rate": "% of criteria passed",
+    "total_tokens": "input + output tokens",
+    "input_tokens": "prompt size",
+    "output_tokens": "response size",
+    "latency_ms": "wall-clock time",
+    "num_llm_calls": "API calls made",
+    "num_tool_calls": "tools executed (agentic only)"
+}
+```
+
+### Models Tested
+
+| Model | Provider | Tier | Cost (per 1K tokens) |
+|-------|----------|------|---------------------|
+| Nova Micro | Amazon | Budget | $0.00004 |
+| Nova Lite | Amazon | Budget | $0.00006 |
+| Mistral 7B | Mistral | Budget | $0.00015 |
+| Mistral Small | Mistral | Budget | $0.001 |
+| Claude Haiku 4.5 | Anthropic | Mid | $0.0008 |
+| Claude Sonnet 4.5 | Anthropic | Premium | $0.003 |
+| Mistral Large | Mistral | Premium | $0.004 |
+
+### Reproducibility
+
+All benchmarks can be reproduced:
+
+```bash
+# Single-prompt (9 styles)
+python multi_style_benchmark_v2.py --model nova-micro
+
+# Agentic (4 techniques with tools)
+python agentic_benchmark.py --model nova-micro
+
+# Results saved to results/ as JSON
+```
+
 ## Key Findings
 
 ### Finding 1: Few-shot is the Hidden Champion
