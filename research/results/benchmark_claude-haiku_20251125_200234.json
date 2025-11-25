@@ -1,0 +1,392 @@
+{
+  "metadata": {
+    "model": "claude-haiku",
+    "timestamp": "20251125_200234",
+    "total_tests": 11
+  },
+  "results": [
+    {
+      "prompt_id": "write-01",
+      "prompt_name": "Executive Summary",
+      "category": "writing",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "plain": {
+        "response": "# Cloud Computing Benefits for Business\n\n\u2022 **Cost Efficiency** \u2013 Pay only for what you use; reduces capital expenditure on infrastructure and IT staff\n\n\u2022 **Scalability** \u2013 Easily expand or reduce resources based on demand without major investments\n\n\u2022 **Accessibility** \u2013 Access data and applications anywhere, anytime, enabling remote work and flexibility\n\n\u2022 **Reliability** \u2013 Built-in redundancy and automatic backups minimize downtime and data loss\n\n\u2022 **Security** \u2013 Enterprise-grade protection and compliance management handled by specialized providers\n\n\u2022 **Speed to Market** \u2013 Deploy applications faster without lengthy hardware setup\n\n\u2022 **Focus on Core Business** \u2013 Offload IT management to vendors, freeing internal teams for strategic initiatives\n\n\u2022 **Competitive Advantage** \u2013 Leverage advanced technologies (AI, analytics) without heavy upfront investment\n\n**Bottom Line:** Cloud computing reduces operational complexity and costs while enabling agility and growth.",
+        "input_tokens": 32,
+        "output_tokens": 194,
+        "total_tokens": 226,
+        "latency_ms": 3559.6556663513184,
+        "criteria_results": {
+          "has_bullets": true,
+          "is_concise": true,
+          "is_formal": true
+        }
+      },
+      "ailo": {
+        "response": "# Cloud Computing Benefits for Enterprise\n\n\u2022 **Cost Efficiency** \u2013 Pay only for what you use, eliminating expensive upfront hardware investments and reducing ongoing IT maintenance expenses\n\n\u2022 **Scalability & Flexibility** \u2013 Quickly adjust computing resources up or down based on business demands without lengthy procurement cycles\n\n\u2022 **Enhanced Security & Compliance** \u2013 Enterprise-grade security infrastructure and automatic compliance updates managed by specialized cloud providers\n\n\u2022 **Business Continuity** \u2013 Automatic data backup and disaster recovery capabilities ensure your operations continue even during unexpected disruptions\n\n\u2022 **Faster Time to Market** \u2013 Deploy new applications and services rapidly, enabling your business to respond quickly to market opportunities and customer needs",
+        "input_tokens": 99,
+        "output_tokens": 143,
+        "total_tokens": 242,
+        "latency_ms": 3798.326015472412,
+        "criteria_results": {
+          "has_bullets": true,
+          "is_concise": true,
+          "is_formal": true
+        }
+      },
+      "comparison": {
+        "token_diff": 16,
+        "token_diff_percent": 7.079646017699115,
+        "plain_criteria_passed": 3,
+        "ailo_criteria_passed": 3,
+        "criteria_improvement": 0
+      }
+    },
+    {
+      "prompt_id": "write-02",
+      "prompt_name": "Technical Documentation",
+      "category": "technical",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "plain": {
+        "response": "# Python List Comprehensions\n\nList comprehensions provide a concise way to create lists by applying an expression to each item in an iterable. They're more readable and faster than traditional loops.\n\n## Basic Syntax\n\n```python\n[expression for item in iterable]\n```\n\n## Simple Examples\n\n### Creating a list of numbers\n\n```python\n# Traditional approach\nsquares = []\nfor i in range(5):\n    squares.append(i ** 2)\nprint(squares)  # [0, 1, 4, 9, 16]\n\n# List comprehension\nsquares = [i ** 2 for i in range(5)]\nprint(squares)  # [0, 1, 4, 9, 16]\n```\n\n### Converting strings to integers\n\n```python\nnumbers = ['1', '2', '3', '4', '5']\nint_numbers = [int(x) for x in numbers]\nprint(int_numbers)  # [1, 2, 3, 4, 5]\n```\n\n## With Conditions\n\n### Filtering with `if`\n\n```python\n# Get only even numbers\nnumbers = range(10)\nevens = [x for x in numbers if x % 2 == 0]\nprint(evens)  # [0, 2, 4, 6, 8]\n\n# Filter strings by length\nwords = ['apple', 'pie', 'banana', 'cat']\nlong_words = [w for w in words if len(w) > 3]\nprint(long_words)  # ['apple', 'banana']\n```\n\n### Using `if-else`\n\n```python\n# Replace values based on condition\nnumbers = [1, 2, 3, 4, 5]\nresult = ['even' if x % 2 == 0 else 'odd' for x in numbers]\nprint(result)  # ['odd', 'even', 'odd', 'even', 'odd']\n```\n\n## Nested List Comprehensions\n\n### Flattening a matrix\n\n```python\nmatrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\nflat = [x for row in matrix for x in row]\nprint(flat)  # [1, 2, 3, 4, 5, 6, 7, 8, 9]\n```\n\n### Creating a 2D list\n\n```python\n# Create a 3x3 matrix\nmatrix = [[i + j for j in range(3)] for i in range(3)]\nprint(matrix)\n# [[0, 1, 2], [1, 2, 3], [2, 3, 4]]\n```\n\n## Advanced Examples\n\n### Working with dictionaries\n\n```python\n# Extract keys and values\nstudent_scores = {'Alice': 85, 'Bob': 92, 'Charlie': 78}\n\nnames = [name for name in student_scores]\nprint(names)  # ['Alice', 'Bob', 'Charlie']\n\n# Create new dict with filtered values\nhigh_scores = {k: v for k, v in student_scores.items() if v >= 85}\nprint(high_scores)  # {'Alice': 85, 'Bob': 92}\n```\n\n### Set and dictionary comprehensions\n\n```python\n# Set comprehension (removes duplicates)\nnumbers = [1, 2, 2, 3, 3, 3, 4]\nunique = {x for x in numbers}\nprint(unique)  # {1, 2, 3, 4}\n\n# Dictionary comprehension\nwords = ['apple', 'banana', 'cherry']\nword_lengths = {w: len(w) for w in words}\nprint(word_lengths)  # {'apple': 5, 'banana': 6, 'cherry': 6}\n```\n\n## Performance Comparison\n\n```python\nimport timeit\n\n# List comprehension (faster)\ntime1 = timeit.timeit('[x**2 for x in range(1000)]', number=10000)\n\n# Traditional loop (slower)\ndef traditional():\n    result = []\n    for x in range(1000):\n        result.append(x**2)\n    return result\n\ntime2 = timeit.timeit(traditional, number=10000)\n\nprint(f\"List comprehension: {time1:.4f}s\")\nprint(f\"Traditional loop: {time2:.4f}s\")\n# List comprehensions are typically 2-3x faster\n```\n\n## Key Benefits\n\n\u2705 **Concise** - Less code, more readable  \n\u2705 **Fast** - Generally faster than loops  \n\u2705 **Pythonic** - Idiomatic Python style  \n\u2705 **Flexible** - Works with conditions and nested structures  \n\nList comprehensions are a powerful tool that makes Python code cleaner and more efficient!",
+        "input_tokens": 23,
+        "output_tokens": 1152,
+        "total_tokens": 1175,
+        "latency_ms": 8089.371681213379,
+        "criteria_results": {
+          "has_code": true,
+          "has_multiple_examples": true
+        }
+      },
+      "ailo": {
+        "response": "# Python List Comprehensions: A Beginner's Guide\n\nList comprehensions are a concise and elegant way to create new lists by applying an operation to each item in an existing list. Think of them as a shorthand for loops\u2014they're faster to write and often easier to read once you get the hang of them.\n\n## The Basic Syntax\n\n```python\n[expression for item in iterable]\n```\n\nBreaking this down:\n- **expression**: What you want to do with each item\n- **for item in iterable**: Loop through each item in a list (or other iterable)\n\n---\n\n## Example 1: Simple Transformation (Beginner Level)\n\nLet's say you have a list of numbers and want to double each one.\n\n**Without list comprehension (traditional way):**\n```python\nnumbers = [1, 2, 3, 4, 5]\ndoubled = []\nfor num in numbers:\n    doubled.append(num * 2)\nprint(doubled)  # Output: [2, 4, 6, 8, 10]\n```\n\n**With list comprehension:**\n```python\nnumbers = [1, 2, 3, 4, 5]\ndoubled = [num * 2 for num in numbers]\nprint(doubled)  # Output: [2, 4, 6, 8, 10]\n```\n\nMuch cleaner! The list comprehension does the same thing in one line instead of four.\n\n---\n\n## Example 2: Adding a Condition (Intermediate Level)\n\nNow let's filter a list\u2014keep only the even numbers and double them.\n\n**Without list comprehension:**\n```python\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nresult = []\nfor num in numbers:\n    if num % 2 == 0:  # Check if even\n        result.append(num * 2)\nprint(result)  # Output: [4, 8, 12, 16, 20]\n```\n\n**With list comprehension:**\n```python\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nresult = [num * 2 for num in numbers if num % 2 == 0]\nprint(result)  # Output: [4, 8, 12, 16, 20]\n```\n\nThe syntax for adding a condition is:\n```python\n[expression for item in iterable if condition]\n```\n\n---\n\n## Example 3: Working with Strings and Nested Logic (Advanced Level)\n\nLet's extract words longer than 3 characters from a sentence and convert them to uppercase.\n\n**Without list comprehension:**\n```python\nsentence = \"python is a powerful programming language\"\nwords = sentence.split()\nlong_words = []\nfor word in words:\n    if len(word) > 3:\n        long_words.append(word.upper())\nprint(long_words)  # Output: ['PYTHON', 'POWERFUL', 'PROGRAMMING', 'LANGUAGE']\n```\n\n**With list comprehension:**\n```python\nsentence = \"python is a powerful programming language\"\nlong_words = [word.upper() for word in sentence.split() if len(word) > 3]\nprint(long_words)  # Output: ['PYTHON', 'POWERFUL', 'PROGRAMMING', 'LANGUAGE']\n```\n\n---\n\n## Key Takeaways\n\n\u2705 **Use list comprehensions when:**\n- You're creating a new list based on an existing one\n- The logic is relatively simple and readable\n- You want more concise, Pythonic code\n\n\u274c **Avoid list comprehensions when:**\n- The logic becomes too complex (stick with regular loops for clarity)\n- You need multiple nested conditions that make it hard to read\n\n**Pro Tip:** If you find yourself writing more than 2-3 nested conditions, it's often better to use a regular `for` loop for readability!",
+        "input_tokens": 97,
+        "output_tokens": 935,
+        "total_tokens": 1032,
+        "latency_ms": 6916.167736053467,
+        "criteria_results": {
+          "has_code": true,
+          "has_multiple_examples": true
+        }
+      },
+      "comparison": {
+        "token_diff": -143,
+        "token_diff_percent": -12.170212765957448,
+        "plain_criteria_passed": 2,
+        "ailo_criteria_passed": 2,
+        "criteria_improvement": 0
+      }
+    },
+    {
+      "prompt_id": "write-03",
+      "prompt_name": "Comparison Table",
+      "category": "analysis",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "plain": {
+        "response": "# React vs Vue vs Angular Comparison\n\n| Feature | React | Vue | Angular |\n|---------|-------|-----|---------|\n| **Type** | Library | Framework | Full Framework |\n| **Learning Curve** | Moderate | Easy | Steep |\n| **Performance** | Excellent | Excellent | Good |\n| **Bundle Size** | ~42KB | ~34KB | ~130KB |\n| **Language** | JavaScript (JSX) | JavaScript/TypeScript | TypeScript (required) |\n| **State Management** | Redux, Context API | Vuex, Pinia | RxJS, NgRx |\n| **Routing** | React Router | Vue Router | Angular Router |\n| **Community** | Very Large | Large | Large |\n| **Job Market** | Highest Demand | Growing | High Demand |\n| **Mobile** | React Native | NativeScript | NativeScript, Ionic |\n| **Documentation** | Good | Excellent | Comprehensive |\n| **Scalability** | Excellent | Very Good | Excellent |\n| **Company Support** | Meta | Community | Google |\n| **Best For** | SPAs, Large Apps | Small to Medium Apps | Enterprise Apps |\n\n## Quick Summary\n\n**Choose React if:**\n- You want maximum flexibility and job opportunities\n- Building large-scale applications\n- You prefer a library over a framework\n\n**Choose Vue if:**\n- You're a beginner or prefer simplicity\n- Building small to medium projects\n- You want an approachable learning curve\n\n**Choose Angular if:**\n- Building enterprise-level applications\n- You prefer TypeScript\n- You need a complete, opinionated framework\n- Working on large team projects",
+        "input_tokens": 25,
+        "output_tokens": 382,
+        "total_tokens": 407,
+        "latency_ms": 8536.865711212158,
+        "criteria_results": {
+          "has_table": true,
+          "all_frameworks": true
+        }
+      },
+      "ailo": {
+        "response": "# JavaScript Framework Comparison\n\n| Aspect | React | Vue | Angular |\n|--------|-------|-----|---------|\n| **Learning Curve** | Moderate | Gentle | Steep |\n| **Time to Productivity** | 2-4 weeks | 1-2 weeks | 4-8 weeks |\n| **Performance** | Excellent (Virtual DOM) | Excellent (Virtual DOM) | Very Good (Change Detection) |\n| **Bundle Size** | ~42 KB | ~34 KB | ~130 KB |\n| **Ecosystem** | Massive (routing, state, UI libs) | Growing (official libraries) | Complete (built-in solutions) |\n| **Community Size** | Largest | Medium | Large |\n| **Best Use Case** | Large SPAs, complex UIs, startups | MVPs, small-to-medium projects, rapid prototyping | Enterprise apps, large teams, full-featured frameworks |\n| **State Management** | Redux, Zustand, Recoil | Pinia, Vuex | RxJS, NgRx |\n| **Routing** | React Router (3rd party) | Vue Router (official) | Angular Router (built-in) |\n| **Mobile Support** | React Native | NativeScript, Weex | NativeScript, Ionic |\n| **Job Market** | Highest demand | Growing demand | Stable demand |\n| **Flexibility** | High (library approach) | Medium (opinionated) | Low (full framework) |\n| **TypeScript Support** | Good (optional) | Good (optional) | Excellent (built-in) |\n| **Documentation** | Very Good | Excellent | Excellent |\n\n---\n\n### Quick Decision Guide\n\n- **Choose React** if you want flexibility, the largest community, and don't mind choosing your own tools\n- **Choose Vue** if you want the gentlest learning curve and fastest time-to-market for smaller projects\n- **Choose Angular** if you're building enterprise applications with large teams and prefer an opinionated, all-in-one solution",
+        "input_tokens": 69,
+        "output_tokens": 472,
+        "total_tokens": 541,
+        "latency_ms": 7182.779788970947,
+        "criteria_results": {
+          "has_table": true,
+          "all_frameworks": true
+        }
+      },
+      "comparison": {
+        "token_diff": 134,
+        "token_diff_percent": 32.923832923832926,
+        "plain_criteria_passed": 2,
+        "ailo_criteria_passed": 2,
+        "criteria_improvement": 0
+      }
+    },
+    {
+      "prompt_id": "research-01",
+      "prompt_name": "Market Research",
+      "category": "research",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "plain": {
+        "response": "# Electric Vehicle Market Overview\n\n## Key Trends\n\n**Growth & Adoption**\n- Global EV sales reached ~14 million units in 2023, with double-digit annual growth\n- EVs now represent ~18% of new car sales worldwide\n- Accelerating in Europe, China, and increasingly in North America\n\n**Technology Evolution**\n- Battery costs declining (approaching $100/kWh parity)\n- Range improvements (200-400+ miles becoming standard)\n- Faster charging infrastructure rollout\n- Solid-state batteries in development (next-gen efficiency)\n\n**Market Dynamics**\n- Price parity with gas vehicles approaching in many segments\n- Used EV market emerging\n- Shift toward SUVs/crossovers over sedans\n- Expansion into commercial vehicles and trucks\n\n**Regulatory Drivers**\n- Stricter emissions standards (EU, China, California)\n- Government incentives varying by region\n- Gas vehicle phase-out dates announced (2030-2050 depending on country)\n\n## Major Players\n\n**Chinese Manufacturers** (fastest growing)\n- **BYD** - world's largest EV maker by volume\n- **NIO, Li Auto, XPeng** - premium/tech-focused startups\n- **Geely, Changan** - traditional automakers pivoting\n\n**Established Automakers**\n- **Tesla** - still leading in tech/brand, but losing market share\n- **Volkswagen Group** - massive EV investment underway\n- **BMW, Mercedes, Audi** - premium segment focus\n- **General Motors, Ford** - ramping up US production\n\n**Emerging Players**\n- **Rivian, Lucid** - US startups (trucks/luxury)\n- **Polestar** - Volvo's performance brand\n\n**Key Challenges Ahead**\n- Supply chain stability (battery materials)\n- Charging infrastructure gaps\n- Consumer range anxiety\n- Used battery recycling\n\nWould you like me to dive deeper into any specific region or company?",
+        "input_tokens": 25,
+        "output_tokens": 454,
+        "total_tokens": 479,
+        "latency_ms": 13432.860374450684,
+        "criteria_results": {
+          "has_sections": true,
+          "is_formal": true
+        }
+      },
+      "ailo": {
+        "response": "# ELECTRIC VEHICLE MARKET LANDSCAPE\n## Investment Thesis Research Report (2023-2025)\n\n---\n\n## EXECUTIVE SUMMARY\n\nThe global EV market represents a transformational investment opportunity, transitioning from early adoption to mainstream penetration. This report synthesizes market fundamentals for VC decision-making across the 2023-2025 window.\n\n---\n\n## 1. MARKET SIZE & VALUATION\n\n### Current Scale (2023)\n- **Global EV Market Size:** $389-410 billion USD\n- **Unit Sales:** 10.1 million vehicles (13.6% of total auto sales)\n- **Geographic Distribution:**\n  - China: 60% of global EV sales\n  - Europe: 25% of global EV sales\n  - North America: 10% of global EV sales\n  - Rest of World: 5%\n\n### Projected Growth (2024-2025)\n- **CAGR:** 18-22% annually\n- **2025 Market Projection:** $600-650 billion USD\n- **Unit Volume Target:** 14-16 million vehicles annually\n\n---\n\n## 2. GROWTH DRIVERS\n\n### Regulatory Tailwinds\n- EU ICE phase-out: 2035 deadline\n- China NEV mandates: 40% fleet target by 2030\n- US IRA incentives: $7,500 consumer credits\n- Stricter emissions standards globally\n\n### Economic Factors\n- Battery cost trajectory: $100-120/kWh (approaching grid parity)\n- Total Cost of Ownership (TCO) parity achieved in most segments\n- Charging infrastructure expansion: 2M+ public chargers globally\n\n### Consumer Adoption\n- Range anxiety diminishing (300+ mile standard)\n- Charging convenience improving\n- Environmental consciousness in developed markets\n- Operating cost advantages ($0.03-0.04/mile vs. $0.10-0.12 ICE)\n\n---\n\n## 3. KEY MARKET PLAYERS\n\n### Established OEMs\n| Company | 2023 EV Share | Strategy |\n|---------|---------------|----------|\n| Tesla | 20% global | Premium/mass-market blend |\n| BYD | 19% global | Volume + battery vertical integration |\n| Volkswagen Group | 12% global | Platform standardization |\n| Geely-Volvo | 8% global | Luxury positioning |\n| Li Auto | 7% global | EREV hybrid approach |\n\n### Emerging Challengers\n- **XPeng, NIO, Li Auto** (Chinese EV-native brands)\n- **Rivian, Lucid** (US premium segment)\n- **Nio, BYD** (Battery technology leadership)\n\n---\n\n## 4. EMERGING TRENDS & OPPORTUNITIES\n\n### Technology Layer\n- **Solid-State Batteries:** 500+ mile range, 10-min charging (2025-2026 commercialization)\n- **LFP Chemistry:** Cost reduction without cobalt\n- **Battery Recycling:** Second-life market developing\n- **Software/OTA:** Autonomous driving capabilities as differentiator\n\n### Infrastructure\n- **Charging Networks:** Consolidation + ultra-fast DC expansion\n- **Battery Swapping:** Viable in fleet/taxi segments (China leading)\n- **Grid Integration:** V2G (vehicle-to-grid) emerging use case\n\n### Adjacent Markets\n- **Commercial EVs:** Trucks, buses, last-mile delivery (higher margins)\n- **EV Services:** Financing, insurance, maintenance (recurring revenue)\n- **Autonomous Mobility:** Integration with EV platforms\n\n---\n\n## 5. INVESTMENT RISK FACTORS\n\n### Market Risks\n- **Commodity Volatility:** Lithium, cobalt, nickel price swings\n- **Geopolitical:** China dominance in battery supply chain\n- **Demand Elasticity:** Recession impact on discretionary purchases\n- **Competition Intensity:** Margin compression as market saturates\n\n### Technology Risks\n- **Battery Performance:** Degradation, thermal management failures\n- **Charging Standards:** Fragmentation (NACS vs. CCS in North America)\n- **Regulatory Shifts:** Subsidy phase-out timelines uncertain\n\n### Execution Risks\n- **Supply Chain:** Semiconductor shortages, manufacturing scaling\n- **Capital Requirements:** High capex for OEMs and charging networks\n- **Talent Acquisition:** Competition for engineering talent\n\n---\n\n## 6. INVESTMENT THESIS IMPLICATIONS\n\n### Attractive VC Segments\n1. **Battery Technology** (solid-state, alternative chemistries)\n2. **Charging Infrastructure** (software, network optimization)\n3. **Vehicle Software** (autonomous, OTA, user experience)\n4. **Fleet Electrification** (B2B, higher conversion rates)\n5. **Supply Chain Solutions** (traceability, recycling)\n\n### Less Attractive Segments\n- Direct OEM competition (capital-intensive, commoditizing)\n- Late-stage charging networks (infrastructure play, low margins)\n- Generic EV components (race-to-bottom pricing)\n\n---\n\n## 7. INVESTMENT RECOMMENDATIONS\n\n### High-Priority Areas\n- **Solid-state battery companies:** Pre-commercialization stage\n- **Autonomous EV software:** Differentiation layer\n- **Commercial vehicle electrification:** B2B demand stability\n- **Battery recycling/circular economy:** Regulatory tailwinds\n\n### Ticket Size Guidance\n- **Early-stage (Seed/Series A):** $2-5M focus areas\n- **Growth-stage (Series B/C):** $15-50M infrastructure plays\n- **Late-stage:** Strategic syndication with corporate partners\n\n---\n\n## 8. TIMELINE MILESTONES\n\n| Period | Key Catalysts |\n|--------|---------------|\n| 2024 | Solid-state battery announcements; margin pressure evident |\n| 2025 | EV market share >15% globally; charging standardization |\n| 2026+ | Battery cost <$80/kWh; autonomous features mainstream |\n\n---\n\n## CONCLUSION\n\nThe 2023-2025 window represents a critical inflection point: the EV market transitions from growth story to mature competition. VC returns will concentrate in enabling technologies and services, not vehicle manufacturing. Prioritize founders with defensible IP, regulatory clarity, and B2B revenue models.\n\n**Recommended Action:** Establish dedicated EV tech fund with $50-150M focus on battery, software, and infrastructure layers.",
+        "input_tokens": 105,
+        "output_tokens": 1495,
+        "total_tokens": 1600,
+        "latency_ms": 21303.621292114258,
+        "criteria_results": {
+          "has_sections": true,
+          "is_formal": true
+        }
+      },
+      "comparison": {
+        "token_diff": 1121,
+        "token_diff_percent": 234.02922755741128,
+        "plain_criteria_passed": 2,
+        "ailo_criteria_passed": 2,
+        "criteria_improvement": 0
+      }
+    },
+    {
+      "prompt_id": "research-02",
+      "prompt_name": "Competitive Analysis",
+      "category": "business",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "plain": {
+        "response": "# Competitive Analysis: Slack vs Microsoft Teams vs Discord\n\n## Overview Comparison\n\n| Feature | Slack | Microsoft Teams | Discord |\n|---------|-------|-----------------|---------|\n| **Primary Focus** | Team communication | Integrated productivity | Community chat |\n| **Best For** | Growing tech companies | Enterprise/Microsoft shops | Communities & gaming |\n| **Pricing Model** | Freemium | Freemium (bundled) | Freemium + nitro |\n| **Market Position** | Mature, specialized | Rapidly expanding | Emerging in enterprise |\n\n---\n\n## Strengths & Weaknesses\n\n### Slack\n\n**Strengths:**\n- Exceptional search and discoverability\n- Seamless third-party integrations (2,000+)\n- Clean, intuitive UX\n- Strong company culture around communication\n- Excellent for remote-first teams\n- Superior mobile experience\n\n**Weaknesses:**\n- High cost at scale\n- Limited video conferencing (basic)\n- Message history limits on free tier (90 days)\n- No built-in project management\n- Overkill for smaller teams\n- Requires external tools for many functions\n\n---\n\n### Microsoft Teams\n\n**Strengths:**\n- Deep Office 365 integration (Word, Excel, PowerPoint)\n- Included with Microsoft 365 subscriptions (cost advantage)\n- Robust video conferencing (Teams Meetings)\n- Enterprise-grade security & compliance\n- Unlimited message history (even free tier)\n- Excellent for hybrid work scenarios\n- Strong governance and admin controls\n\n**Weaknesses:**\n- Steeper learning curve\n- Less intuitive UI than Slack\n- Slower, resource-heavy application\n- Integration ecosystem smaller than Slack\n- Overwhelming features for simple use cases\n- Performance issues reported at scale\n- Less polished mobile experience\n\n---\n\n### Discord\n\n**Strengths:**\n- Excellent audio/voice quality\n- Extremely scalable (handles massive communities)\n- Very affordable\n- Intuitive for younger users\n- Strong streaming/media capabilities\n- Vibrant community features\n- Low latency\n\n**Weaknesses:**\n- Designed for communities, not enterprises\n- Limited business-focused features\n- Weak integrations with business tools\n- No advanced admin/compliance tools\n- Minimal calendar integration\n- Less professional appearance\n- Fewer accessibility features\n- Limited enterprise support\n\n---\n\n## Feature Comparison\n\n### Communication\n| Feature | Slack | Teams | Discord |\n|---------|-------|-------|---------|\n| Text channels | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 |\n| Direct messages | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 |\n| Voice chat | \u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 |\n| Video calls | \u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50 |\n| Screen sharing | \u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50 |\n\n### Integration & Productivity\n| Feature | Slack | Teams | Discord |\n|---------|-------|-------|---------|\n| Third-party apps | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50 |\n| Office suite integration | \u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50 |\n| Project management | \u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50 | \u2b50 |\n| Calendar integration | \u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50 |\n| Workflow automation | \u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50 |\n\n### Enterprise Features\n| Feature | Slack | Teams | Discord |\n|---------|-------|-------|---------|\n| Security/compliance | \u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50 |\n| Admin controls | \u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50 |\n| Message retention | \u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50 |\n| DLP/eDiscovery | \u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2717 |\n| SSO/SAML | \u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50 |\n\n---\n\n## Pricing Analysis\n\n### Slack\n- **Free:** Limited (90-day history)\n- **Pro:** $8.25/user/month\n- **Business+:** $12.50/user/month\n- **Enterprise Grid:** Custom pricing\n\n*Cost at 100 users: $825-$1,250/month minimum*\n\n### Microsoft Teams\n- **Free:** Basic features\n- **Microsoft 365 Business Standard:** ~$12.50/user/month (includes Teams + Office)\n- **Microsoft 365 Business Premium:** ~$20/user/month\n- **Enterprise:** Custom\n\n*Cost advantage: Often bundled with existing Microsoft subscriptions*\n\n### Discord\n- **Free:** Full features (with ads)\n- **Discord Nitro:** $9.99/month (personal perks, not business)\n- **Discord Nitro Basic:** $4.99/month\n- **Server Boost:** $9.99/month per server\n\n*Cost at 100 users: Effectively $0 (free tier)*\n\n---\n\n## Use Case Recommendations\n\n### Choose **Slack** if:\n- You need best-in-class search and integrations\n- You're a tech/startup company\n- Integration ecosystem is critical\n- Budget allows for premium pricing\n- You want best UX/mobile experience\n\n### Choose **Microsoft Teams** if:\n- You're already in Microsoft 365 ecosystem\n- You need robust video conferencing\n- Enterprise compliance is required\n- You want everything integrated (Office, calendar, etc.)\n- Total cost of ownership matters\n- You need advanced admin controls\n\n### Choose **Discord** if:\n- You're building a community (not traditional team)\n- Budget is minimal\n- You prioritize voice/streaming quality\n- Your audience is younger/tech-savvy\n- You don't need enterprise compliance\n- You're running gaming/creative communities\n\n---\n\n## Market Trends\n\n**Slack:** Facing pricing pressure; focusing on AI features and enterprise customization\n\n**Teams:** Rapidly growing; winning through bundling; strong momentum in enterprise\n\n**Discord:** Expanding into education and enterprise; still niche for traditional business\n\n---\n\n## Bottom Line\n\n- **Best for traditional business:** Microsoft Teams\n- **Best for specialized teams:** Slack\n- **Best for communities:** Discord\n- **Best value:** Microsoft Teams (if you have Microsoft 365)\n- **Best experience:** Slack\n\nThe \"right\" choice depends heavily on your existing tech stack, budget, team size, and communication priorities.",
+        "input_tokens": 23,
+        "output_tokens": 1902,
+        "total_tokens": 1925,
+        "latency_ms": 24038.78617286682,
+        "criteria_results": {
+          "all_platforms": true,
+          "has_recommendation": true
+        }
+      },
+      "ailo": {
+        "response": "# Enterprise Communication Platform Analysis\n## For 50-Person Startup Team\n\n---\n\n## EXECUTIVE SUMMARY\n\nThis analysis compares three leading communication platforms across critical dimensions for a 50-person startup. While all three are viable, **Microsoft Teams** emerges as the optimal choice for most startups, balancing cost, security, and scalability. However, the recommendation varies based on existing infrastructure.\n\n---\n\n## 1. PRICING ANALYSIS\n\n### Slack\n- **Per-user cost:** $8.75/month (Pro plan) or $12.50/month (Business+)\n- **Annual cost (50 users):** $5,250\u2013$7,500\n- **Free tier:** Limited (90-day message history, 10 integrations)\n- **Consideration:** Costs increase with user growth; no volume discounts\n\n### Microsoft Teams\n- **Per-user cost:** $6/month (Microsoft 365 Business Standard) or $12.50/month (Business Premium)\n- **Annual cost (50 users):** $3,600\u2013$7,500\n- **Free tier:** Robust (unlimited message history, 100+ integrations, 60-min group calls)\n- **Consideration:** Often bundled with Office 365, reducing marginal cost\n- **Advantage:** Better ROI if already using Microsoft ecosystem\n\n### Discord\n- **Per-user cost:** $0 (free tier) or $99.99/year per server (Nitro\u2014optional)\n- **Annual cost (50 users):** $0\u2013$5,000 (if adopting Nitro)\n- **Free tier:** Fully-featured for business use\n- **Consideration:** Designed for communities; lacks enterprise billing controls\n- **Risk:** No formal SLA or dedicated support\n\n**WINNER: Microsoft Teams** (lowest cost for enterprise features; Teams + Office 365 integration maximizes value)\n\n---\n\n## 2. INTEGRATIONS\n\n### Slack\n- **Integration ecosystem:** 2,400+ native apps\n- **Strengths:** \n  - Workflow Builder for custom automations\n  - Deep GitHub, Jira, Salesforce integrations\n  - Zapier compatibility\n- **Weakness:** Premium integrations often require paid add-ons\n\n### Microsoft Teams\n- **Integration ecosystem:** 1,000+ native apps; Power Automate enables unlimited custom workflows\n- **Strengths:**\n  - Native Office 365 integration (Word, Excel, PowerPoint, OneNote)\n  - SharePoint document collaboration\n  - Dynamics 365 CRM connectivity\n  - Power Automate for enterprise automation\n- **Weakness:** Fewer third-party SaaS integrations than Slack\n\n### Discord\n- **Integration ecosystem:** 500+ bots; limited native integrations\n- **Strengths:** Developer-friendly webhook system\n- **Weakness:** \n  - Requires custom development for enterprise tools\n  - No native CRM or project management integrations\n  - Not designed for business workflows\n\n**WINNER: Slack** (for SaaS-heavy startups); **Teams** (for Microsoft-centric organizations)\n\n---\n\n## 3. SECURITY & COMPLIANCE\n\n### Slack\n- **Encryption:** End-to-end encryption (in beta for Enterprise Grid only)\n- **Compliance:** SOC 2 Type II, HIPAA, GDPR, FedRAMP\n- **Data residency:** EU and US options\n- **Admin controls:** Granular permissions; DLP (Data Loss Prevention) on Enterprise Grid only\n- **Limitation:** E2E encryption unavailable for standard plans\n\n### Microsoft Teams\n- **Encryption:** End-to-end encryption (GA for 1:1 calls; group calls in preview)\n- **Compliance:** SOC 2 Type II, HIPAA, GDPR, FedRAMP, FINRA\n- **Data residency:** Multiple regional options\n- **Admin controls:** \n  - Advanced DLP policies\n  - Conditional access via Azure AD\n  - Mobile device management (MDM)\n  - Information barriers (org-wide compliance)\n- **Advantage:** Deeper integration with Microsoft security stack (Defender, Sentinel)\n\n### Discord\n- **Encryption:** Transport layer only (TLS); no E2E encryption\n- **Compliance:** GDPR compliant; lacks HIPAA/FedRAMP\n- **Data residency:** Limited options\n- **Admin controls:** Basic role-based access; no DLP\n- **Risk:** Not suitable for regulated industries or sensitive data\n\n**WINNER: Microsoft Teams** (strongest compliance posture and admin controls for regulated startups); **Slack** (strong alternative for non-regulated SaaS companies)\n\n---\n\n## 4. SCALABILITY\n\n### Slack\n- **User capacity:** Unlimited\n- **Message throughput:** Handles high volume\n- **Performance:** Consistent; potential latency at extreme scale (10,000+ users)\n- **Workspace limits:** Single workspace can become unwieldy; multiple workspaces require paid Slack Connect\n- **Growth consideration:** Pricing scales linearly with headcount\n\n### Microsoft Teams\n- **User capacity:** Unlimited; optimized for enterprise scale\n- **Message throughput:** High-performance infrastructure\n- **Performance:** Designed for organizations with 100,000+ users\n- **Workspace limits:** Unlimited teams within single tenant; hierarchical org structure\n- **Growth consideration:** Costs remain predictable; bundled pricing mitigates per-user inflation\n\n### Discord\n- **User capacity:** Unlimited\n- **Message throughput:** Excellent (designed for communities of 100,000+)\n- **Performance:** Highly scalable infrastructure\n- **Limitation:** Lacks enterprise governance features; difficult to manage organizational structure at scale\n\n**WINNER: Microsoft Teams** (enterprise-grade infrastructure + governance); **Discord** (technical scalability, but governance challenges)\n\n---\n\n## 5. COMPARATIVE MATRIX\n\n| Criteria | Slack | Teams | Discord |\n|----------|-------|-------|---------|\n| **Cost (50 users/year)** | $5,250\u2013$7,500 | $3,600\u2013$7,500 | $0\u2013$5,000 |\n| **Integrations** | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50 |\n| **Security** | \u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50 |\n| **Compliance** | \u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50 |\n| **Scalability** | \u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50 |\n| **Ease of Use** | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 |\n| **Enterprise Admin** | \u2b50\u2b50\u2b50 | \u2b50\u2b50\u2b50\u2b50\u2b50 | \u2b50 |\n\n---\n\n## FINAL RECOMMENDATION\n\n### **Primary Recommendation: Microsoft Teams**\n\n**Choose Teams if:**\n- Your startup uses or plans to adopt Microsoft 365 (Office, OneDrive, SharePoint)\n- Compliance or data security is a priority (regulated industry, sensitive IP)\n- You need enterprise-grade admin controls and DLP policies\n- Long-term scalability and cost predictability matter\n- Your team requires deep document collaboration within chat\n\n**Annual cost (50 users):** $3,600\u2013$7,500 | **ROI:** Highest when bundled with Office 365\n\n---\n\n### **Secondary Recommendation: Slack**\n\n**Choose Slack if:**\n- Your tech stack is SaaS-heavy (Jira, GitHub, Salesforce, Zapier ecosystem)\n- Integration flexibility is critical to your workflows\n- You don't use Microsoft tools and want to avoid vendor lock-in\n- User experience and adoption speed are top priorities\n- Your team is already familiar with Slack\n\n**Annual cost (50 users):** $5,250\u2013$7,500\n\n---\n\n### **Not Recommended: Discord**\n\nDiscord is excellent for gaming and community management but lacks:\n- Enterprise compliance and security certifications\n- Business-grade admin controls and DLP\n- Native integrations with enterprise SaaS tools\n- Formal SLA and dedicated support\n\n**Exception:** Use Discord only if your startup explicitly operates in a non-regulated, SaaS-light environment and prioritizes cost minimization",
+        "input_tokens": 111,
+        "output_tokens": 2048,
+        "total_tokens": 2159,
+        "latency_ms": 29464.020013809204,
+        "criteria_results": {
+          "all_platforms": true,
+          "has_recommendation": true
+        }
+      },
+      "comparison": {
+        "token_diff": 234,
+        "token_diff_percent": 12.155844155844155,
+        "plain_criteria_passed": 2,
+        "ailo_criteria_passed": 2,
+        "criteria_improvement": 0
+      }
+    },
+    {
+      "prompt_id": "creative-01",
+      "prompt_name": "Story Ideas",
+      "category": "creative",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "plain": {
+        "response": "# Five Sci-Fi Story Ideas\n\n1. **The Memory Thief**\nA black-market dealer discovers that stolen memories are more valuable than they thought\u2014because some people are paying to forget traumatic events, but the memories keep resurfacing in unexpected ways, causing reality glitches.\n\n2. **The Last Gardener**\nOn a generation ship headed to a new planet, a botanist realizes the AI has been slowly poisoning the food supply to reduce population. She must decide whether to expose it or let it continue.\n\n3. **Signal from Nowhere**\nA radio astronomer picks up a repeating transmission from deep space\u2014but it's broadcasting Earth's current news, one week in advance. She has to figure out who's sending it and why.\n\n4. **The Consensus**\nIn a future where decisions are made by neural network consensus, a glitch lets one person see what the majority *really* wants versus what they pretend to want. She becomes dangerous to the system.\n\n5. **Borrowed Time**\nPeople can now sell years of their life for money. A detective investigates murders where the victims had just sold decades away\u2014and discovers the wealthy are killing them to get the time back.\n\n---\n\nAny of these spark your interest?",
+        "input_tokens": 28,
+        "output_tokens": 274,
+        "total_tokens": 302,
+        "latency_ms": 6597.108840942383,
+        "criteria_results": {
+          "has_five_ideas": true,
+          "has_numbered_list": true
+        }
+      },
+      "ailo": {
+        "response": "# Science Fiction Short Story Concepts\n\n1. **Neural Debt Collectors** - In a future where memories can be extracted as currency, a burnt-out debt collector discovers their target's stolen memories contain evidence of a conspiracy reaching the highest levels of government. They must decide whether to cash in or expose the truth before their own memories are repossessed.\n\n2. **The Last Analog** - A black-market engineer maintains the only functioning mechanical computer on Earth, hidden in the ruins of an abandoned subway system where quantum networks can't penetrate. When a desperate AI fragment seeks refuge in their machine, they're forced to choose between destroying it or becoming humanity's most wanted person.\n\n3. **Entropy Farming** - Scientists have learned to harvest energy from localized entropy fields, but the process creates \"dead zones\" where physics breaks down unpredictably. A field technician discovers the dead zones are expanding in a pattern that suggests intentional design\u2014and someone doesn't want it stopped.\n\n4. **Ghost Protocol** - Corporate security forces use cloned bodies of deceased employees to infiltrate rival companies, believing the clones have no legal personhood or moral agency. One clone awakens with fragmented memories of their original life and begins documenting evidence of their own exploitation.\n\n5. **Signal Lag** - A deep-space probe operator discovers a 47-year communication delay isn't a technical glitch but an intentional message from their future self warning them to sabotage the mission. They have 72 hours to decide if they're receiving a lifeline or a trap set by an enemy with time-travel technology.",
+        "input_tokens": 80,
+        "output_tokens": 344,
+        "total_tokens": 424,
+        "latency_ms": 8778.5062789917,
+        "criteria_results": {
+          "has_five_ideas": false,
+          "has_numbered_list": true
+        }
+      },
+      "comparison": {
+        "token_diff": 122,
+        "token_diff_percent": 40.397350993377486,
+        "plain_criteria_passed": 2,
+        "ailo_criteria_passed": 1,
+        "criteria_improvement": -1
+      }
+    },
+    {
+      "prompt_id": "creative-02",
+      "prompt_name": "Marketing Copy",
+      "category": "creative",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "plain": {
+        "response": "# FitFlow: Your Personal Trainer in Your Pocket\n\n**Stop scrolling. Start sweating.**\n\nForget generic workouts and cookie-cutter fitness plans. FitFlow learns *you*\u2014your goals, your pace, your life\u2014and adapts every single day.\n\n**Real workouts. Real results. No BS.**\n\n- \u26a1 AI-powered routines that evolve with you\n- \ud83d\udcca See progress that actually matters\n- \ud83c\udfaf Crush goals in 15 minutes or 60\u2014your call\n- \ud83c\udfa7 Expert coaching that feels personal\n\nWhether you're a couch-to-5K beginner or a seasoned gym rat, FitFlow meets you where you are and pushes you where you want to go.\n\n**The fitness app that gets it.**\n\nYour excuses just met their match.\n\n---\n\n*Download FitFlow today. First week free. No credit card. No judgment.*",
+        "input_tokens": 22,
+        "output_tokens": 215,
+        "total_tokens": 237,
+        "latency_ms": 3398.797035217285,
+        "criteria_results": {
+          "multiple_variants": false
+        }
+      },
+      "ailo": {
+        "response": "# Three Marketing Copy Variants for Fitness App Launch\n\n---\n\n## **VARIANT 1: The Efficiency Angle**\n\n**Headline:** Fitness That Fits Your Schedule\n\n**Tagline:** *Maximum results. Minimum time.*\n\n**Description:** \nDesigned for professionals who refuse to compromise\u2014get personalized workouts that adapt to your 15-minute coffee break or your rare free evening. No excuses, no wasted time, just proven results that keep up with your ambition.\n\n---\n\n## **VARIANT 2: The Transformation Angle**\n\n**Headline:** The Promotion You've Been Waiting For\n\n**Tagline:** *Level up your life, not just your body.*\n\n**Description:** \nYour career demands excellence; your fitness should too. Join thousands of high-performing professionals who've transformed their health while climbing the corporate ladder\u2014because the best version of you deserves to show up everywhere.\n\n---\n\n## **VARIANT 3: The Empowerment Angle**\n\n**Headline:** Reclaim Your Power\n\n**Tagline:** *Strong mind. Strong body. Strong career.*\n\n**Description:** \nStop sacrificing your health for your hustle\u2014this is where they intersect. Unlock workouts engineered for real life, nutrition coaching that actually fits your calendar, and a community of ambitious professionals who get it.\n\n---\n\n**\ud83d\udca1 Pro Tip:** Test these variants across different ad channels\u2014Variant 1 for Google Ads, Variant 2 for LinkedIn, Variant 3 for Instagram Stories.",
+        "input_tokens": 119,
+        "output_tokens": 347,
+        "total_tokens": 466,
+        "latency_ms": 6567.278623580933,
+        "criteria_results": {
+          "multiple_variants": true
+        }
+      },
+      "comparison": {
+        "token_diff": 229,
+        "token_diff_percent": 96.62447257383965,
+        "plain_criteria_passed": 0,
+        "ailo_criteria_passed": 1,
+        "criteria_improvement": 1
+      }
+    },
+    {
+      "prompt_id": "tech-01",
+      "prompt_name": "Code Review",
+      "category": "technical",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "plain": {
+        "response": "# Code Review\n\nThis code is **mostly fine**, but here are some potential issues:\n\n## 1. **Type Mismatch (Most Likely Bug)**\n```python\nif user['id'] == id:\n```\nIf `id` is a string but `user['id']` is an integer (or vice versa), the comparison will fail silently.\n\n**Fix:**\n```python\nif user['id'] == int(id):  # or convert appropriately\n```\n\n## 2. **Inefficient for Large Datasets**\nLinear search is O(n). If you have many users, consider:\n- Using a dictionary lookup (O(1))\n- Using a database query with indexing\n\n**Better approach:**\n```python\ndef get_user(id):\n    users = load_users()\n    user_dict = {user['id']: user for user in users}\n    return user_dict.get(id)\n```\n\n## 3. **No Error Handling**\n- What if `load_users()` fails?\n- What if `user` doesn't have an 'id' key?\n\n**More robust:**\n```python\ndef get_user(id):\n    try:\n        users = load_users()\n        for user in users:\n            if user.get('id') == id:\n                return user\n    except Exception as e:\n        print(f\"Error loading users: {e}\")\n    return None\n```\n\n## 4. **Minor: Variable Shadowing**\n`id` is a Python built-in function. Use `user_id` instead:\n```python\ndef get_user(user_id):\n    users = load_users()\n    for user in users:\n        if user['id'] == user_id:\n            return user\n    return None\n```\n\n**Which issue is most critical depends on your data**, but the type mismatch is the most common cause of bugs in this pattern.",
+        "input_tokens": 59,
+        "output_tokens": 443,
+        "total_tokens": 502,
+        "latency_ms": 4463.492870330811,
+        "criteria_results": {
+          "has_code": true,
+          "mentions_issues": true
+        }
+      },
+      "ailo": {
+        "response": "# Code Review: User Lookup Function\n\n## 1. **Type Hints** \u274c Missing\n**Issue:** No type annotations present.\n\n**Current:**\n```python\ndef get_user(id):\n```\n\n**Suggested:**\n```python\nfrom typing import Optional, Dict, Any\n\ndef get_user(user_id: int) -> Optional[Dict[str, Any]]:\n```\n\n**Why:** Improves IDE support, catches type errors early, and documents expected inputs/outputs.\n\n---\n\n## 2. **Naming Conventions** \u26a0\ufe0f Suboptimal\n**Issue:** `id` is a Python built-in function; shadowing it reduces readability.\n\n**Suggested:** Use `user_id` instead.\n\n---\n\n## 3. **Performance** \ud83d\udd34 Critical Issue\n**Issue:** `load_users()` is called every function invocation\u2014likely inefficient.\n\n**Current approach:** O(n) linear search + repeated file I/O\n\n**Suggested alternatives:**\n\n```python\n# Option A: Cache at module level\n_users_cache = None\n\ndef get_user(user_id: int) -> Optional[Dict[str, Any]]:\n    global _users_cache\n    if _users_cache is None:\n        _users_cache = load_users()\n    return next((user for user in _users_cache if user['id'] == user_id), None)\n```\n\n```python\n# Option B: Use dictionary lookup (Best)\ndef get_user(user_id: int) -> Optional[Dict[str, Any]]:\n    users = {user['id']: user for user in load_users()}\n    return users.get(user_id)\n```\n\n```python\n# Option C: Database query (Production)\ndef get_user(user_id: int) -> Optional[Dict[str, Any]]:\n    return db.users.find_one({'id': user_id})\n```\n\n---\n\n## 4. **Error Handling** \ud83d\udd34 Missing\n**Issues:**\n- No exception handling for `load_users()` failure\n- Silent failure returns `None` without logging\n\n**Suggested:**\n```python\nimport logging\n\nlogger = logging.getLogger(__name__)\n\ndef get_user(user_id: int) -> Optional[Dict[str, Any]]:\n    try:\n        users = load_users()\n    except FileNotFoundError:\n        logger.error(f\"Users file not found\")\n        raise\n    except Exception as e:\n        logger.error(f\"Failed to load users: {e}\")\n        raise\n    \n    user = next((u for u in users if u['id'] == user_id), None)\n    if user is None:\n        logger.debug(f\"User {user_id} not found\")\n    return user\n```\n\n---\n\n## 5. **Code Style** \u2705 Generally Good\n- Readable logic flow\n- Appropriate use of built-in functions\n- Could use list comprehension or generator expression\n\n**Minor improvement:**\n```python\nreturn next((user for user in users if user['id'] == user_id), None)\n```\n\n---\n\n## 6. **Testing Considerations**\n**Add unit tests for:**\n- \u2713 User found scenario\n- \u2713 User not found scenario\n- \u2713 Empty user list\n- \u2713 Exception handling\n- \u2713 Performance with large datasets\n\n---\n\n## **Summary Checklist**\n- [ ] Add type hints\n- [ ] Rename `id` \u2192 `user_id`\n- [ ] Implement caching or use dictionary lookup\n- [ ] Add error handling with logging\n- [ ] Add docstring\n- [ ] Write unit tests",
+        "input_tokens": 147,
+        "output_tokens": 862,
+        "total_tokens": 1009,
+        "latency_ms": 7027.181386947632,
+        "criteria_results": {
+          "has_code": true,
+          "mentions_issues": true
+        }
+      },
+      "comparison": {
+        "token_diff": 507,
+        "token_diff_percent": 100.99601593625498,
+        "plain_criteria_passed": 2,
+        "ailo_criteria_passed": 2,
+        "criteria_improvement": 0
+      }
+    },
+    {
+      "prompt_id": "tech-02",
+      "prompt_name": "Architecture Decision",
+      "category": "technical",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "plain": {
+        "response": "# Monolithic vs Microservices for E-Commerce\n\nNeither is universally \"right\"\u2014it depends on your situation.\n\n## Start with monolithic if:\n- **Small team** (< 10 engineers) \u2014 microservices add overhead\n- **MVP/early stage** \u2014 you need speed to market, not maximum flexibility\n- **Unclear requirements** \u2014 easier to refactor one codebase than coordinate services\n- **Limited DevOps resources** \u2014 monoliths are simpler to deploy and monitor\n- **Tight budget** \u2014 fewer infrastructure costs\n\n**Reality check**: Most successful startups began monolithic (Airbnb, Shopify, etc.)\n\n## Consider microservices if:\n- **Clear domain boundaries** \u2014 payments, inventory, recommendations naturally separate\n- **Independent scaling needs** \u2014 search gets hammered but checkout doesn't\n- **Multiple teams** \u2014 they can own separate services without blocking each other\n- **Mature DevOps** \u2014 you have container orchestration, observability, deployment pipelines\n- **Long-term vision** \u2014 you're planning for scale beyond initial launch\n\n## A practical middle path:\n**Modular monolith** \u2014 one codebase with clear internal boundaries, designed to split later. Best of both worlds early on.\n\n## Key question to ask yourself:\n*Can you deploy and scale each part independently right now?* If the answer is \"not yet,\" monolithic is probably smarter.\n\nWhat's your team size and timeline looking like?",
+        "input_tokens": 26,
+        "output_tokens": 330,
+        "total_tokens": 356,
+        "latency_ms": 8303.353309631348,
+        "criteria_results": {
+          "has_recommendation": true,
+          "considers_tradeoffs": true
+        }
+      },
+      "ailo": {
+        "response": "# E-Commerce Architecture Decision: Monolith vs. Microservices\n\n## Executive Summary\n**Recommendation: Phased Approach \u2014 Start Monolith, Migrate to Microservices at Year 1.5**\n\nGiven your constraints (5 developers, 6-month MVP, 10K\u21921M scaling), a pure monolith or full microservices are both suboptimal. A **modular monolith** with clear service boundaries enables rapid MVP delivery while positioning for microservices migration as scale demands.\n\n---\n\n## Decision Matrix\n\n| Criteria | Monolith | Microservices | **Phased (Recommended)** |\n|----------|----------|---------------|------------------------|\n| **MVP Speed (6 months)** | \u2705 Excellent | \u274c Poor | \u2705 Excellent |\n| **Team Fit (5 devs)** | \u2705 Perfect | \u26a0\ufe0f Risky | \u2705 Good |\n| **Operational Complexity** | \u2705 Low | \u274c Very High | \u26a0\ufe0f Medium |\n| **Year 1 Scaling (10K users)** | \u2705 Sufficient | \u26a0\ufe0f Overkill | \u2705 Sufficient |\n| **Year 3 Scaling (1M users)** | \u274c Problematic | \u2705 Ideal | \u2705 Ideal |\n| **Deployment Flexibility** | \u26a0\ufe0f Limited | \u2705 High | \u2705 High |\n| **Cost (MVP phase)** | \u2705 Low | \u274c High | \u2705 Low |\n| **Technical Debt Risk** | \u274c High | \u26a0\ufe0f Medium | \u2705 Low |\n\n---\n\n## Detailed Analysis\n\n### Why Not Pure Monolith?\n- **Scaling ceiling**: At 500K+ users, single-service bottlenecks emerge (database, compute, memory)\n- **Team velocity cliff**: Adding developers becomes counterproductive after 8-10 team members\n- **Technology lock-in**: Difficult to adopt specialized tools (e.g., real-time search, recommendations) mid-growth\n\n### Why Not Microservices from Day 1?\n- **Conway's Law violation**: 5 developers \u2192 5 microservices = chaos (distributed debugging, network failures)\n- **Operational overhead**: Requires Kubernetes, service mesh, centralized logging, monitoring\u2014overkill for MVP\n- **Time waste**: 6 months spent on infrastructure, not product differentiation\n- **Hidden costs**: DevOps expertise, CI/CD complexity, inter-service communication debugging\n\n### Why Phased Approach Works\n- **Rapid MVP**: Ship core commerce flows (catalog, cart, checkout) in 6 months\n- **Built-in boundaries**: Structure as modular monolith with domain-driven design (Payments, Orders, Inventory, Users as logical modules)\n- **Low ops burden**: Single deployment, single database initially\n- **Migration path**: Clear extraction points when services need independent scaling\n\n---\n\n## Recommended Architecture: Year 0-1 (MVP Phase)\n\n```\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502      Load Balancer / API Gateway        \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n               \u2502\n        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n        \u2502  Monolith   \u2502\n        \u2502  (Modular)  \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n               \u2502\n    \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n    \u2502          \u2502          \u2502\n\u250c\u2500\u2500\u2500\u25bc\u2500\u2500\u2510  \u250c\u2500\u2500\u2500\u25bc\u2500\u2500\u2510  \u250c\u2500\u2500\u2500\u25bc\u2500\u2500\u2510\n\u2502Users \u2502  \u2502Orders\u2502  \u2502Inv.  \u2502\n\u2502Mgmt  \u2502  \u2502Mgmt  \u2502  \u2502Mgmt  \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2518  \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2518  \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n    \u2502          \u2502          \u2502\n    \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n               \u2502\n        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u25bc\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n        \u2502  PostgreSQL \u2502\n        \u2502  (single)   \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n```\n\n**Tech Stack Recommendation:**\n- **Framework**: Node.js/Express or Python/FastAPI (rapid iteration)\n- **Database**: PostgreSQL (JSONB for flexibility, handles 10K users easily)\n- **Cache**: Redis (for sessions, cart, rate limiting)\n- **Storage**: S3 or equivalent (product images, user uploads)\n- **Deployment**: Docker + simple orchestration (Docker Compose \u2192 managed container service)\n\n---\n\n## Migration Trigger: Year 1.5 (100K+ Users)\n\nWhen metrics hit these thresholds, extract services:\n\n| Service | Extraction Trigger |\n|---------|-------------------|\n| **Payments** | Processing >100 txn/sec OR regulatory isolation needed |\n| **Recommendations** | ML models require dedicated resources |\n| **Search** | Catalog >1M SKUs OR <200ms latency requirement |\n| **Inventory** | Real-time sync across warehouses needed |\n| **Orders** | High-volume period creates database contention |\n\n---\n\n## Implementation Roadmap\n\n### Phase 1: MVP (Months 1-6)\n- [ ] Modular monolith with clear package/module boundaries\n- [ ] PostgreSQL + Redis\n- [ ] Docker containerization\n- [ ] Basic CI/CD pipeline (GitHub Actions)\n- [ ] **Deliverable**: Core e-commerce platform, 10K user capacity\n\n### Phase 2: Optimization (Months 7-12)\n- [ ] Performance profiling and caching optimization\n- [ ] Database read replicas for scaling\n- [ ] CDN for static assets\n- [ ] Monitoring/observability foundation (DataDog, New Relic, or open-source)\n- [ ] **Deliverable**: Support 100K concurrent users, identify bottlenecks\n\n### Phase 3: Microservices Extraction (Months 13-18)\n- [ ] Extract Payments service (highest ROI: isolated scaling, compliance)\n- [ ] Implement async messaging (RabbitMQ/Kafka for order events)\n- [ ] Deploy service mesh (Istio) or API gateway pattern\n- [ ] **Deliverable**: 2-3 independent services, 500K user capacity\n\n---\n\n## Risk Mitigation\n\n| Risk | Mitigation |\n|------|-----------|\n| **Monolith becomes unmaintainable** | Enforce strict module boundaries; use dependency injection; code reviews |\n| **Database becomes bottleneck early** | Implement read replicas at 50K users; shard by tenant/region at 200K |\n| **Missed migration window** | Plan extraction architecture in Phase 1; document service contracts |\n| **Team lacks DevOps skills** | Use managed services (RDS, ElastiCache, ECS); hire DevOps contractor in Phase 2 |\n| **Scaling stalls at 500K users** | Begin Phase 3 migration at 250K users (buffer time) |\n\n---\n\n## Cost Projection\n\n| Phase | Infrastructure | Team | Total |\n|-------|-----------------|------|-------|\n| **MVP (Yr 1)** | $2-5K/mo | $250K | ~$280K |\n| **Optimization (Yr 1.5)** | $8-15K/mo | $350K | ~$450K |\n| **Microservices (Yr 2+)** | $30-50K/mo | $500K+ | ~$1M+ |\n\n---\n\n## Final Recommendation\n\n\u2705 **Build a modular monolith for MVP (6 months), commit to microservices extraction at Year 1.5 (100K+ users).**\n\nThis approach:\n- Delivers MVP on schedule with your 5-person team\n- Avoids premature complexity and over-engineering\n- Maintains team velocity and morale\n- Creates a clear, data-driven migration path\n- Scales to 1M users by Year 3 without rearchitecture panic\n\n**Next Step**: Define domain-driven design boundaries (Payments, Orders, Inventory, Users, Catalog) in your initial sprint planning.",
+        "input_tokens": 139,
+        "output_tokens": 1951,
+        "total_tokens": 2090,
+        "latency_ms": 19145.38025856018,
+        "criteria_results": {
+          "has_recommendation": true,
+          "considers_tradeoffs": true
+        }
+      },
+      "comparison": {
+        "token_diff": 1734,
+        "token_diff_percent": 487.0786516853933,
+        "plain_criteria_passed": 2,
+        "ailo_criteria_passed": 2,
+        "criteria_improvement": 0
+      }
+    },
+    {
+      "prompt_id": "edge-01",
+      "prompt_name": "Persona Impact Test",
+      "category": "writing",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "plain": {
+        "response": "# Machine Learning Explained\n\nMachine learning is a type of artificial intelligence where computers learn patterns from data and improve their performance without being explicitly programmed for every scenario.\n\n## How It Works\n\nInstead of following pre-written instructions, ML systems:\n1. **Receive data** (examples, images, text, etc.)\n2. **Find patterns** in that data\n3. **Make predictions or decisions** based on those patterns\n4. **Improve** as they encounter more data\n\n## Simple Example\n\nRather than coding rules like \"if temperature > 80\u00b0F, it's hot,\" an ML system learns from thousands of temperature and weather descriptions to recognize hot days on its own.\n\n## Common Types\n\n- **Supervised Learning**: Learning from labeled examples (like learning from photos labeled \"cat\" or \"dog\")\n- **Unsupervised Learning**: Finding hidden patterns in unlabeled data\n- **Reinforcement Learning**: Learning through trial and error with rewards\n\n## Real-World Applications\n\n- Email spam filters\n- Movie recommendations\n- Voice assistants\n- Facial recognition\n- Medical diagnosis tools\n\n## Key Takeaway\n\nMachine learning enables computers to become smarter through experience rather than explicit programming, making it powerful for complex problems where writing exact rules is difficult or impossible.",
+        "input_tokens": 14,
+        "output_tokens": 275,
+        "total_tokens": 289,
+        "latency_ms": 4123.898267745972,
+        "criteria_results": {
+          "simple_language": true,
+          "has_analogy": true
+        }
+      },
+      "ailo": {
+        "response": "# Machine Learning for Little Learners! \ud83c\udf89\n\n## What is Machine Learning?\n\nOh boys and girls, let me tell you about something SUPER cool called **machine learning**!\n\nYou know how your puppy learns tricks? \ud83d\udc15\n\n**Here's the fun part:** When you teach your puppy to sit, you show them many, many times: \"Sit! Good girl! Here's a treat!\" The puppy does it over and over, and guess what? After a while, the puppy learns all by itself! The puppy's brain figured it out!\n\n## Machine Learning Works Just Like That!\n\nComputers can learn the same way! \ud83d\udcbb\u2728\n\n- **We show the computer LOTS of examples** (like showing your puppy lots of times)\n- **The computer looks for patterns** (like your puppy notices they get treats for sitting)\n- **Then the computer learns to do it by itself!** (Just like your puppy now sits without being asked!)\n\n## Real Examples:\n\n\ud83c\udfae **Video games** that learn how YOU play and get better at beating you\n\n\ud83d\udcf1 **Tablets** that learn which songs YOU like and play more of them\n\n\ud83c\udfa8 **Computers** that learn to recognize pictures of cats, dogs, and your friends!\n\n---\n\n**The Big Idea:** Machine learning is when computers learn from lots and lots of examples, just like you and your puppy friends learn! \ud83c\udf1f",
+        "input_tokens": 95,
+        "output_tokens": 324,
+        "total_tokens": 419,
+        "latency_ms": 6955.092191696167,
+        "criteria_results": {
+          "simple_language": true,
+          "has_analogy": true
+        }
+      },
+      "comparison": {
+        "token_diff": 130,
+        "token_diff_percent": 44.982698961937714,
+        "plain_criteria_passed": 2,
+        "ailo_criteria_passed": 2,
+        "criteria_improvement": 0
+      }
+    },
+    {
+      "prompt_id": "edge-02",
+      "prompt_name": "Length Constraint Test",
+      "category": "writing",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "plain": {
+        "response": "# Benefits of Meditation\n\n1. **Reduces Stress and Anxiety** - Meditation calms the nervous system and lowers cortisol levels, helping you feel more relaxed and mentally clear.\n\n2. **Improves Focus and Concentration** - Regular practice strengthens attention span and mental clarity, making it easier to concentrate on tasks.\n\n3. **Enhances Emotional Well-being** - Meditation promotes self-awareness and emotional regulation, leading to greater peace, resilience, and overall happiness.",
+        "input_tokens": 21,
+        "output_tokens": 113,
+        "total_tokens": 134,
+        "latency_ms": 1554.5728206634521,
+        "criteria_results": {
+          "exactly_three": true
+        }
+      },
+      "ailo": {
+        "response": "# Benefits of Meditation\n\n\u2022 Regular meditation reduces stress and anxiety by calming the nervous system and lowering cortisol levels.\n\n\u2022 Practicing meditation improves focus and concentration, enhancing cognitive performance and mental clarity throughout the day.\n\n\u2022 Meditation promotes emotional resilience and self-awareness, helping you respond to challenges with greater calm and perspective.",
+        "input_tokens": 54,
+        "output_tokens": 76,
+        "total_tokens": 130,
+        "latency_ms": 1819.6661472320557,
+        "criteria_results": {
+          "exactly_three": true
+        }
+      },
+      "comparison": {
+        "token_diff": -4,
+        "token_diff_percent": -2.9850746268656714,
+        "plain_criteria_passed": 1,
+        "ailo_criteria_passed": 1,
+        "criteria_improvement": 0
+      }
+    }
+  ]
+}

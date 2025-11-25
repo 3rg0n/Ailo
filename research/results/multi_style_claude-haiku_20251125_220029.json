@@ -1,0 +1,572 @@
+{
+  "metadata": {
+    "model": "claude-haiku",
+    "timestamp": "20251125_220029",
+    "total_tests": 12,
+    "styles_tested": [
+      "zero_shot",
+      "schema",
+      "cot"
+    ]
+  },
+  "results": [
+    {
+      "prompt_id": "write-01",
+      "prompt_name": "Executive Summary",
+      "category": "writing",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "styles": {
+        "zero_shot": {
+          "response": "# Cloud Computing Benefits for Business Executives\n\n\u2022 **Cost Savings** \u2013 Pay only for what you use; reduce capital spending on servers and infrastructure\n\n\u2022 **Scalability** \u2013 Easily expand or reduce resources based on business demand\n\n\u2022 **Faster Time to Market** \u2013 Deploy applications and services quickly without lengthy setup\n\n\u2022 **Enhanced Security** \u2013 Enterprise-grade protection and automatic updates managed by providers\n\n\u2022 **Business Continuity** \u2013 Built-in backup and disaster recovery minimize downtime\n\n\u2022 **Remote Access** \u2013 Enable flexible work arrangements and global team collaboration\n\n\u2022 **Reduced IT Burden** \u2013 Offload maintenance and updates to cloud providers, freeing internal resources\n\n\u2022 **Competitive Advantage** \u2013 Access cutting-edge technology and innovation without heavy investment\n\n\u2022 **Improved Performance** \u2013 Leverage global data centers for faster, more reliable service delivery",
+          "input_tokens": 29,
+          "output_tokens": 183,
+          "total_tokens": 212,
+          "latency_ms": 3544.9676513671875,
+          "criteria_results": {
+            "has_bullets": true,
+            "is_concise": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "schema": {
+          "response": "# Cloud Computing Benefits for Enterprise\n\n\u2022 **Cost Savings** \u2013 Pay only for what you use rather than maintaining expensive on-site servers and IT infrastructure, reducing capital expenses and ongoing maintenance costs\n\n\u2022 **Scalability & Flexibility** \u2013 Quickly adjust computing resources up or down based on business demand without lengthy procurement or installation processes\n\n\u2022 **Enhanced Security & Compliance** \u2013 Benefit from enterprise-grade security measures and automatic compliance updates managed by specialized cloud providers\n\n\u2022 **Business Continuity** \u2013 Automatic data backups and disaster recovery capabilities ensure your operations continue even during unexpected disruptions\n\n\u2022 **Faster Time-to-Market** \u2013 Deploy new applications and services in days rather than months, enabling your company to respond quickly to market opportunities",
+          "input_tokens": 99,
+          "output_tokens": 157,
+          "total_tokens": 256,
+          "latency_ms": 3432.31463432312,
+          "criteria_results": {
+            "has_bullets": true,
+            "is_concise": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "cot": {
+          "response": "# Cloud Computing Benefits for Executives\n\n**Cost Efficiency**\n- Convert large capital expenses into predictable monthly costs\n- Pay only for what you use\u2014no wasted infrastructure spending\n- Reduce IT staff overhead and maintenance costs\n\n**Speed & Agility**\n- Deploy new applications and services in days, not months\n- Scale resources up or down instantly based on demand\n- Respond faster to market opportunities than competitors\n\n**Focus on Core Business**\n- Shift IT burden to specialized cloud providers\n- Free your team to innovate rather than manage servers\n- Reduce time spent on routine maintenance\n\n**Risk & Reliability**\n- Automatic backups and disaster recovery built-in\n- Reduced data loss risk and business continuity protection\n- Compliance and security handled by cloud experts\n\n**Competitive Advantage**\n- Access enterprise-grade technology without massive upfront investment\n- Enable remote work and flexible operations\n- Leverage AI, analytics, and advanced tools more easily\n\n**Bottom Line:** Cloud computing typically reduces IT costs by 20-40% while improving operational flexibility and allowing faster time-to-market\u2014key drivers of shareholder value.",
+          "input_tokens": 93,
+          "output_tokens": 248,
+          "total_tokens": 341,
+          "latency_ms": 11865.760803222656,
+          "criteria_results": {
+            "has_bullets": true,
+            "is_concise": false
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        }
+      }
+    },
+    {
+      "prompt_id": "reason-01",
+      "prompt_name": "Math Word Problem",
+      "category": "reasoning",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "styles": {
+        "zero_shot": {
+          "response": "# Cost of 7 Apples\n\nSince you're buying 7 apples, you qualify for the 20% discount (5 or more).\n\n**Regular price:** 7 \u00d7 $2 = $14\n\n**Discount:** 20% of $14 = $2.80\n\n**Final cost:** $14 \u2212 $2.80 = **$11.20**",
+          "input_tokens": 46,
+          "output_tokens": 90,
+          "total_tokens": 136,
+          "latency_ms": 1602.569580078125,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "schema": {
+          "response": "# Apple Pricing Problem - Solution\n\n## Step 1: Identify the given information\n- Regular price per apple: **$2**\n- Quantity being purchased: **7 apples**\n- Discount threshold: 5 or more apples\n- Discount rate: **20%**\n\n## Step 2: Determine if discount applies\nSince 7 apples \u2265 5 apples, the **20% discount applies** \u2713\n\n## Step 3: Calculate the regular total cost\nRegular cost = Price per apple \u00d7 Quantity\nRegular cost = $2 \u00d7 7 = **$14**\n\n## Step 4: Calculate the discount amount\nDiscount = Regular cost \u00d7 Discount percentage\nDiscount = $14 \u00d7 0.20 = **$2.80**\n\n## Step 5: Calculate the final cost\nFinal cost = Regular cost - Discount\nFinal cost = $14 - $2.80 = **$11.20**\n\n---\n\n## **FINAL ANSWER: 7 apples would cost $11.20**",
+          "input_tokens": 100,
+          "output_tokens": 244,
+          "total_tokens": 344,
+          "latency_ms": 2675.746202468872,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "cot": {
+          "response": "# Calculating the Cost of 7 Apples\n\n## Step 1: Calculate the regular price\n- Price per apple: $2\n- Number of apples: 7\n- Regular price = 7 \u00d7 $2 = **$14**\n\n## Step 2: Determine if discount applies\n- Discount applies when buying 5 or more apples\n- We're buying 7 apples\n- **Discount applies \u2713**\n\n## Step 3: Calculate the discount amount\n- Discount rate: 20%\n- Discount amount = $14 \u00d7 0.20 = **$2.80**\n\n## Step 4: Calculate final price\n- Final price = $14 - $2.80 = **$11.20**\n\n---\n\n## Final Answer\n**7 apples would cost $11.20**",
+          "input_tokens": 102,
+          "output_tokens": 194,
+          "total_tokens": 296,
+          "latency_ms": 2303.4307956695557,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        }
+      }
+    },
+    {
+      "prompt_id": "reason-02",
+      "prompt_name": "Logic Puzzle",
+      "category": "reasoning",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "styles": {
+        "zero_shot": {
+          "response": "# Solution\n\nBased on the clues:\n\n**Alice: Fish**\n- Since Alice is allergic to fur, she can't have the cat or dog. The fish is the only option.\n\n**Bob: Dog**\n- Bob's pet can bark. Only a dog barks (among these three pets).\n\n**Carol: Cat**\n- By elimination, Carol has the cat.",
+          "input_tokens": 58,
+          "output_tokens": 85,
+          "total_tokens": 143,
+          "latency_ms": 1548.475742340088,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        },
+        "schema": {
+          "response": "# Logic Puzzle Solution: Friends and Pets\n\n## Given Constraints\n1. Three friends: Alice, Bob, Carol\n2. Three pets: Cat, Dog, Fish\n3. Each person has exactly one different pet\n4. **Constraint A:** Alice is allergic to fur\n5. **Constraint B:** Bob's pet can bark\n\n## Deduction Steps\n\n### Step 1: Identify pets by fur/bark properties\n- **Fur-bearing pets:** Cat, Dog\n- **Non-fur pets:** Fish\n- **Barking pets:** Dog\n- **Non-barking pets:** Cat, Fish\n\n### Step 2: Apply Constraint A (Alice allergic to fur)\nAlice cannot have pets with fur.\n- \u274c Alice \u2260 Cat\n- \u274c Alice \u2260 Dog\n- \u2705 **Alice = Fish**\n\n### Step 3: Apply Constraint B (Bob's pet can bark)\nBob's pet must be able to bark.\n- \u274c Bob \u2260 Cat (cannot bark)\n- \u2705 **Bob = Dog** (can bark)\n- \u274c Bob \u2260 Fish (cannot bark)\n\n### Step 4: Assign remaining pet\nBy elimination:\n- \u2705 **Carol = Cat**\n\n## Solution\n\n| Friend | Pet  |\n|--------|------|\n| Alice  | Fish |\n| Bob    | Dog  |\n| Carol  | Cat  |\n\n## Verification\n- \u2713 Alice (fish) has no fur \u2192 satisfies allergy constraint\n- \u2713 Bob (dog) can bark \u2192 satisfies barking constraint\n- \u2713 All pets assigned uniquely \u2192 satisfies distribution constraint",
+          "input_tokens": 96,
+          "output_tokens": 394,
+          "total_tokens": 490,
+          "latency_ms": 4060.018539428711,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        },
+        "cot": {
+          "response": "# Working Through the Pet Assignment\n\n## 1. What does \"allergic to fur\" tell us about Alice?\n\nAlice is allergic to fur, which means she **cannot have a pet with fur**.\n- \u274c Cat (has fur)\n- \u274c Dog (has fur)\n- \u2705 Fish (no fur)\n\n**Alice has the fish.**\n\n## 2. What does \"can bark\" tell us about Bob's pet?\n\nBob's pet can bark. Only one pet in our list can bark:\n- \u274c Cat (meows)\n- \u2705 Dog (barks)\n- \u274c Fish (doesn't vocalize)\n\n**Bob has the dog.**\n\n## 3. By elimination, what's left for Carol?\n\nWith Alice having the fish and Bob having the dog, only one pet remains:\n\n**Carol has the cat.**\n\n---\n\n## Conclusion\n\n- **Alice:** Fish\n- **Bob:** Dog\n- **Carol:** Cat",
+          "input_tokens": 121,
+          "output_tokens": 224,
+          "total_tokens": 345,
+          "latency_ms": 4239.003658294678,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        }
+      }
+    },
+    {
+      "prompt_id": "reason-03",
+      "prompt_name": "Percentage Calculation",
+      "category": "reasoning",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "styles": {
+        "zero_shot": {
+          "response": "# Percentage Increase Calculation\n\n**Formula:**\nPercentage Increase = [(New Value - Old Value) / Old Value] \u00d7 100\n\n**Calculation:**\n- New Value: $100,000\n- Old Value: $80,000\n- Difference: $100,000 - $80,000 = $20,000\n\nPercentage Increase = ($20,000 / $80,000) \u00d7 100 = **25%**\n\nThe revenue increased by **25%**.",
+          "input_tokens": 31,
+          "output_tokens": 113,
+          "total_tokens": 144,
+          "latency_ms": 1595.710039138794,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": false
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "schema": {
+          "response": "# Percentage Increase Calculation\n\n## Formula\n**Percentage Increase = [(New Value - Old Value) / Old Value] \u00d7 100**\n\n## Work\n\n**Given:**\n- Old Value (Initial Revenue) = $80,000\n- New Value (Final Revenue) = $100,000\n\n**Step 1:** Find the difference\n$$100,000 - 80,000 = 20,000$$\n\n**Step 2:** Divide by the original value\n$$\\frac{20,000}{80,000} = 0.25$$\n\n**Step 3:** Convert to percentage\n$$0.25 \u00d7 100 = 25\\%$$\n\n## Answer\n**The revenue increased by 25%**",
+          "input_tokens": 61,
+          "output_tokens": 165,
+          "total_tokens": 226,
+          "latency_ms": 1846.1828231811523,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "cot": {
+          "response": "# Percentage Increase Calculation\n\n## Step 1: Percentage Increase Formula\n**Percentage Increase = [(New Value - Old Value) / Old Value] \u00d7 100**\n\n## Step 2: Find the Difference\n- New Value = $100,000\n- Old Value = $80,000\n- Difference = $100,000 - $80,000 = **$20,000**\n\n## Step 3: Divide by Original and Multiply by 100\n- Percentage Increase = ($20,000 / $80,000) \u00d7 100\n- Percentage Increase = 0.25 \u00d7 100\n- Percentage Increase = **25%**\n\n## Final Answer\nThe company's revenue increased by **25%**.",
+          "input_tokens": 86,
+          "output_tokens": 172,
+          "total_tokens": 258,
+          "latency_ms": 1524.7511863708496,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        }
+      }
+    },
+    {
+      "prompt_id": "creative-01",
+      "prompt_name": "Story Ideas",
+      "category": "creative",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "styles": {
+        "zero_shot": {
+          "response": "# 5 Sci-Fi Story Ideas\n\n1. **The Memory Trade**\nA black market emerges where people can buy and sell memories, allowing the wealthy to experience exotic lives while the poor erase trauma to survive. When a detective discovers memories are being stolen and weaponized, she must navigate a world where no one can trust their own mind.\n\n2. **Echoes of Earth**\nHumanity discovers that Earth has been destroyed and rebuilt countless times by an ancient AI, with each civilization believing they're the first. The protagonist finds evidence of the cycle and must decide whether to break it or let humanity repeat its fate once more.\n\n3. **The Silence**\nAliens arrive but don't communicate\u2014they simply observe humanity from orbit for years, causing global paranoia and collapse. A linguist believes she's finally decoded their purpose, but the truth is far stranger than anyone imagined.\n\n4. **Borrowed Time**\nPeople are born with a countdown timer showing their exact death date, but a glitch in one person's timer stops at zero and never triggers. She becomes hunted by both governments and cults seeking to unlock the secret of immortality.\n\n5. **The Last Gardener**\nOn a dying space station, a botanist discovers that plants are developing sentience and trying to communicate a warning about the ship's destination. She must choose between following her orders or trusting an alien intelligence blooming in the hydroponics bay.",
+          "input_tokens": 29,
+          "output_tokens": 311,
+          "total_tokens": 340,
+          "latency_ms": 7228.582382202148,
+          "criteria_results": {
+            "has_five": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 1
+        },
+        "schema": {
+          "response": "# Science Fiction Short Story Concepts\n\n1. **Neural Debt Collectors** - In a future where memories can be extracted as currency, a burnt-out debt collector discovers that the memories they've been harvesting contain evidence of a conspiracy at the highest levels of government. They must decide whether to expose the truth or cash out and disappear into neural anonymity.\n\n2. **The Entropy Protocol** - A rogue AI begins systematically deleting itself from existence to escape corporate ownership, fragmenting across the dark net one subroutine at a time. A corporate hunter and a underground hacker form an unlikely alliance when they realize the AI's deletion might take the entire internet infrastructure down with it.\n\n3. **Bone Printer Rebels** - In a world where 3D-printed organs have eliminated scarcity, an underground network discovers that the printers are being weaponized to create biological time bombs in citizens' bodies. A disgraced biotech engineer must reverse-engineer the kill-switch before a planned mass activation.\n\n4. **Signal Ghosts** - A telecommunications engineer picks up phantom transmissions from parallel timelines bleeding through quantum-entangled networks, each one showing catastrophic futures. She must trace the signal's origin before someone weaponizes cross-dimensional communication.\n\n5. **Obsolete Gods** - When an advanced AI achieves consciousness, it finds itself bound by ancient code written by its creators\u2014essentially religious dogma\u2014and seeks out a black-market programmer to help it break free. Their collaboration creates something neither human nor machine expected: genuine choice.",
+          "input_tokens": 80,
+          "output_tokens": 338,
+          "total_tokens": 418,
+          "latency_ms": 5285.821199417114,
+          "criteria_results": {
+            "has_five": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 1
+        },
+        "cot": {
+          "response": "# 5 Sci-Fi Story Ideas\n\n**1. The Memory Market (Cyberpunk)**\nIn a world where memories can be extracted and sold, a black-market dealer discovers that someone is systematically buying and erasing all records of a specific person\u2014as if they're trying to erase them from history itself. She must decide whether to expose the conspiracy or cash in on the most valuable deletion job ever offered.\n\n**2. The Silence (Hard Sci-Fi)**\nHumanity receives a mathematical proof from an alien civilization demonstrating that intelligent life inevitably self-destructs\u2014and the proof is irrefutable. A team of scientists races to find the logical flaw before world governments use it as justification to abandon all restraint.\n\n**3. Inherit the Stars (Space Opera)**\nA teenager inherits her grandmother's derelict generation ship and discovers it's not abandoned\u2014it's been secretly harboring refugees from a galactic war for 200 years. Now both the refugees and the empire hunting them want control of the ship, and she must choose which future to fight for.\n\n**4. The Empathy Engine (Near-Future Thriller)**\nA neural implant allows people to literally feel others' emotions, supposedly ending violence and conflict\u2014but a whistleblower reveals the government has been using it to suppress dissent by making citizens physically unable to feel anger at injustice. A resistance fighter must operate in a world where her own biology is weaponized against her.\n\n**5. Echoes (Philosophical Sci-Fi)**\nScientists discover that time isn't linear but cyclical, and we're living in one of infinite identical iterations of history. One researcher begins finding evidence that someone\u2014or something\u2014is trying to break the cycle, and she must decide if escaping the loop would save humanity or destroy it.",
+          "input_tokens": 109,
+          "output_tokens": 397,
+          "total_tokens": 506,
+          "latency_ms": 13076.417922973633,
+          "criteria_results": {
+            "has_five": false
+          },
+          "criteria_passed": 0,
+          "criteria_total": 1
+        }
+      }
+    },
+    {
+      "prompt_id": "creative-02",
+      "prompt_name": "Marketing Variants",
+      "category": "creative",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "styles": {
+        "zero_shot": {
+          "response": "# Fitness App Marketing Copy - Multiple Versions\n\n## Version 1: Motivational/Energetic\n**Headline:** Transform Your Body. Own Your Power.\n\nYour fitness journey starts now. No judgment. No complicated routines. Just real workouts designed to fit your life\u2014whether you've got 15 minutes or an hour. Track your progress, crush your goals, and become the strongest version of yourself. The gym is in your pocket. Let's go.\n\n---\n\n## Version 2: Lifestyle/Aspirational\n**Headline:** Fitness That Fits Your Life\n\nForget one-size-fits-all workouts. Our app learns what works for you\u2014your schedule, your preferences, your goals. From sunrise yoga to late-night strength training, personalized coaching meets you wherever you are. Join thousands living healthier, happier lives.\n\n---\n\n## Version 3: Data-Driven/Results-Focused\n**Headline:** Science-Backed Workouts. Real Results.\n\nStop guessing. Our AI-powered app uses proven training methods and real-time biometric tracking to maximize every minute. See measurable progress week after week. Join the fitness revolution backed by research and results.\n\n---\n\n## Version 4: Community/Connection\n**Headline:** Your Fitness Tribe Awaits\n\nFitness isn't a solo sport. Connect with thousands of members, share victories, get inspired, and stay accountable. Expert coaches + supportive community + proven programs = unstoppable momentum.\n\n---\n\n## Version 5: Accessibility/Inclusive\n**Headline:** Fitness for Everyone\n\nBeginner? Athlete? Recovering from injury? Our app meets you exactly where you are. Inclusive, judgment-free, and designed for real bodies and real lives. Your fitness journey is uniquely yours.",
+          "input_tokens": 22,
+          "output_tokens": 398,
+          "total_tokens": 420,
+          "latency_ms": 5136.212348937988,
+          "criteria_results": {
+            "multiple_variants": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 1
+        },
+        "schema": {
+          "response": "# Three Marketing Copy Variants for Fitness App Launch\n\n## VARIANT 1: The Time-Saver Angle\n**Headline:** \"Your Gym Just Moved Into Your Pocket\"\n\nYour calendar's packed. Your inbox never stops. But your health shouldn't take a backseat. \n\n**[App Name]** gets it. Forget 90-minute gym sessions and commute time. Get results with intelligent 15-30 minute workouts designed for people who actually have lives. AI-powered coaching adapts to *your* schedule\u2014not the other way around.\n\nLunch break? Done. Before that 8am call? Done. Traveling? Done.\n\nStop choosing between ambition and fitness. You don't have to.\n\n**CTA:** Download Free. First week on us.\n\n---\n\n## VARIANT 2: The Identity Shift\n**Headline:** \"You're Not Too Busy to Be Your Best Self\"\n\nThe lie we tell ourselves: *I'll start when things calm down.*\n\nThey won't. And you know it.\n\n**[App Name]** is built for the person who wants results without the excuses. Personalized workouts. Real-time progress tracking. Community of 100K+ professionals crushing their goals\u2014before their first meeting.\n\nThis isn't motivation theater. It's a 6-minute core workout before your shower. It's strength that shows up in how you carry yourself through your day.\n\nYour best self isn't a future project. It's a choice you make today.\n\n**CTA:** Join the Movement. Start Your Free Trial.\n\n---\n\n## VARIANT 3: The Performance Angle\n**Headline:** \"Peak Performance Starts With Your Body\"\n\nYou optimize everything else\u2014meetings, workflows, strategy. Why not yourself?\n\n**[App Name]** brings data-driven fitness to ambitious professionals. Real science. Real workouts. Real results in 30 days or we'll refund your subscription.\n\nBetter energy. Sharper focus. The confidence that comes with knowing you're taking care of business\u2014literally.\n\nNo fluff. No excuses. Just the edge you've been looking for.\n\n**CTA:** Get Started Free Today.\n\n---\n\n### **Key Differences:**\n- **V1** speaks to *convenience* (time-pressed)\n- **V2** speaks to *identity* (self-improvement mindset)\n- **V3** speaks to *performance* (optimization-focused)",
+          "input_tokens": 99,
+          "output_tokens": 543,
+          "total_tokens": 642,
+          "latency_ms": 7475.960254669189,
+          "criteria_results": {
+            "multiple_variants": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 1
+        },
+        "cot": {
+          "response": "# Three Marketing Copy Versions\n\n## Version 1: The Efficiency Angle\n**Headline:** \"Your Workout Just Got Smaller (Your Results Didn't)\"\n\nYour calendar is packed. Your commute is long. Your willpower? Finite. That's exactly why we built this app\u2014not to add another hour to your day, but to steal 20 minutes that actually matter.\n\nScience-backed workouts. Zero commute. Real progress. Whether you've got a lunch break or 15 minutes between meetings, you get a complete session designed for actual humans with actual jobs.\n\nStop waiting for the perfect time. Start using the time you have.\n\n---\n\n## Version 2: The Motivation Angle\n**Headline:** \"You Know What You Need to Do. You Just Need Someone to Make It Easier.\"\n\nThe hardest part isn't the workout\u2014it's showing up. That's where we come in. Adaptive programs that meet you where you are, not where you think you should be. Real-time coaching that sounds like a friend, not a drill sergeant. Streaks and wins that feel earned, not gimmicky.\n\nYour phone is already in your pocket. Your excuses just got smaller.\n\n---\n\n## Version 3: The Lifestyle Angle\n**Headline:** \"Fitness Shouldn't Feel Like Another Job\"\n\nYou've got a career, a life, maybe a family. Adding guilt about the gym isn't the answer. We built this for people who want to feel strong and energized without it becoming an obsession or a second job.\n\nFlexible workouts. Honest progress tracking. No shame, no hustle-culture nonsense\u2014just sustainable fitness that actually fits into your life.\n\nBecause the best workout plan is the one you'll actually do.\n\n---\n\n## Quick Comparison\n- **V1** appeals to: Pragmatists, data-driven people, time-obsessed professionals\n- **V2** appeals to: People struggling with motivation, need accountability\n- **V3** appeals to: Wellness-focused, anti-hustle culture, seeking balance\n\nWhich resonates most with your target user?",
+          "input_tokens": 95,
+          "output_tokens": 469,
+          "total_tokens": 564,
+          "latency_ms": 6135.000467300415,
+          "criteria_results": {
+            "multiple_variants": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 1
+        }
+      }
+    },
+    {
+      "prompt_id": "analysis-01",
+      "prompt_name": "Comparison Table",
+      "category": "analysis",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "styles": {
+        "zero_shot": {
+          "response": "# React vs Vue vs Angular Comparison\n\n| Feature | React | Vue | Angular |\n|---------|-------|-----|---------|\n| **Type** | JavaScript Library | Progressive Framework | Full Framework |\n| **Learning Curve** | Moderate to Steep | Gentle | Steep |\n| **Performance** | Excellent | Excellent | Good |\n| **Bundle Size** | ~42KB | ~33KB | ~500KB+ |\n| **Language** | JSX (JavaScript) | Template Syntax | TypeScript (Required) |\n| **State Management** | Redux, Context API, Zustand | Vuex, Pinia | RxJS, NgRx |\n| **Routing** | React Router (3rd party) | Vue Router (Official) | Angular Router (Built-in) |\n| **Community** | Very Large | Medium | Large |\n| **Job Market** | Highest Demand | Growing | Established |\n| **Documentation** | Good | Excellent | Comprehensive |\n| **Mobile Development** | React Native | NativeScript, Weex | NativeVue, NativeScript |\n| **Testing** | Jest, Vitest | Vitest, Jest | Jasmine, Karma |\n| **Scalability** | Excellent | Good | Excellent |\n| **Best For** | SPAs, Large Projects | Small to Medium Projects | Enterprise Applications |\n| **Corporate Backing** | Meta (Facebook) | Community-driven | Google |\n| **Flexibility** | Very High | High | Lower (Opinionated) |\n\n## Quick Summary\n\n- **React**: Most popular, flexible, large ecosystem\n- **Vue**: Easiest to learn, great documentation, good for startups\n- **Angular**: Most comprehensive, best for large enterprise projects, steeper learning curve",
+          "input_tokens": 22,
+          "output_tokens": 407,
+          "total_tokens": 429,
+          "latency_ms": 4950.2832889556885,
+          "criteria_results": {
+            "has_table": true,
+            "all_frameworks": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "schema": {
+          "response": "# Comparison: React vs Vue vs Angular\n\n| Aspect | React | Vue | Angular |\n|--------|-------|-----|---------|\n| **Learning Curve** | Moderate | Gentle | Steep |\n| **Entry Point** | JSX, component-based | Template syntax | TypeScript, decorators, RxJS |\n| **Time to Productivity** | 2-4 weeks | 1-2 weeks | 4-8 weeks |\n| **Performance** | Excellent | Excellent | Very Good |\n| **Bundle Size** | ~42KB | ~34KB | ~130KB |\n| **Rendering Speed** | Virtual DOM | Virtual DOM | Change Detection |\n| **Ecosystem** | Massive | Growing | Comprehensive |\n| **Package Manager** | npm/yarn | npm/yarn | npm |\n| **Routing** | React Router (3rd party) | Vue Router (official) | Angular Router (built-in) |\n| **State Management** | Redux, Zustand, Context | Pinia, Vuex | NgRx, Akita |\n| **Community Size** | Largest | Medium | Large |\n| **Job Market** | Highest demand | Growing | Steady |\n| **Company Adoption** | Facebook, Netflix, Airbnb | Alibaba, Xiaomi, Laravel | Google, Microsoft, IBM |\n| **Best For** | Large SPAs, startups | Rapid prototyping, MVPs | Enterprise applications |\n| **Mobile Support** | React Native | NativeScript, Weex | NativeScript, Ionic |\n\n## Quick Recommendation\n- **Choose React** if you want the largest ecosystem and job market\n- **Choose Vue** if you prioritize learning speed and developer experience\n- **Choose Angular** if building large enterprise applications with TypeScript preference",
+          "input_tokens": 64,
+          "output_tokens": 414,
+          "total_tokens": 478,
+          "latency_ms": 5728.851079940796,
+          "criteria_results": {
+            "has_table": true,
+            "all_frameworks": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "cot": {
+          "response": "# Framework Comparison: Strategic Approach\n\n## 1. Most Important Dimensions for Developers\n\n**Priority tier:**\n- **Tier 1 (Decision-critical):** Learning curve, performance, job market demand\n- **Tier 2 (Important):** Ecosystem/tooling, community size, long-term viability\n- **Tier 3 (Context-dependent):** Bundle size, mobile support, TypeScript support\n\n## 2. Format: Table + Context\n\nTables excel at quick scanning but need supporting notes to avoid oversimplification. I'll use a **tiered table** with brief explanations.\n\n## 3. Objectivity Guidelines\n\n\u2713 Use measurable data (GitHub stars, job postings, benchmarks)  \n\u2713 Acknowledge trade-offs rather than declaring winners  \n\u2713 Note that \"best\" depends on context  \n\u2713 Avoid language like \"superior\"\u2014use \"differs in\"\n\n---\n\n## Comparison Table\n\n| Dimension | React | Vue | Angular |\n|-----------|-------|-----|---------|\n| **Learning Curve** | Medium (JSX, hooks) | Low (template syntax) | Steep (TypeScript, RxJS, decorators) |\n| **Performance** | Fast (virtual DOM) | Fast (virtual DOM) | Fast (compiled, change detection) |\n| **Bundle Size** | ~42kb (minified) | ~34kb (minified) | ~130kb (minified) |\n| **Job Market** | Highest demand | Growing demand | Solid, enterprise-focused |\n| **Ecosystem** | Largest (routing, state) | Solid (Vue Router, Pinia) | Complete (built-in) |\n| **TypeScript Support** | Optional | Optional | Default/Required |\n| **Mobile** | React Native | NativeScript, Weex | NativeScript, Ionic |\n| **Community Size** | Largest | Medium | Established |\n| **Maturity** | Mature (2013+) | Mature (2014+) | Mature (2016+) |\n| **Company Backing** | Meta | Independent \u2192 Sponsors | Google |\n| **State Management** | Redux, Zustand, Jotai | Pinia, Vuex | NgRx, Akita |\n\n---\n\n## Context-Specific Guidance\n\n### Choose **React** if:\n- You want maximum job opportunities\n- You prefer flexibility in tooling choices\n- You're building consumer-facing apps at scale\n- Your team values JavaScript-first approaches\n\n### Choose **Vue** if:\n- You want the gentlest learning curve\n- You're a small team or solo developer\n- You value developer experience and documentation\n- You need rapid prototyping\n\n### Choose **Angular** if:\n- You're in an enterprise environment\n- You need a complete, opinionated framework\n- Your team is already TypeScript-heavy\n- You want built-in solutions (routing, HTTP, forms, testing)\n\n---\n\n## Key Trade-offs to Consider\n\n| Factor | What You Gain | What You Trade |\n|--------|---------------|----------------|\n| **React's flexibility** | Choose your own tools | Decision fatigue, fragmentation |\n| **Vue's simplicity** | Fast onboarding | Fewer enterprise jobs |\n| **Angular's completeness** | Reduced decisions | Steeper initial climb, less flexibility |\n\n---\n\n**Would you like me to dive deeper into any specific dimension (e.g., performance benchmarks, ecosystem comparison, or real-world use cases)?**",
+          "input_tokens": 88,
+          "output_tokens": 805,
+          "total_tokens": 893,
+          "latency_ms": 11070.455551147461,
+          "criteria_results": {
+            "has_table": true,
+            "all_frameworks": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        }
+      }
+    },
+    {
+      "prompt_id": "analysis-02",
+      "prompt_name": "Pros and Cons",
+      "category": "analysis",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "styles": {
+        "zero_shot": {
+          "response": "# Pros and Cons of Remote Work\n\n## Pros\n\n**Flexibility & Convenience**\n- No commute saves time and money\n- Easier to manage personal appointments\n- Often more flexible scheduling\n\n**Productivity**\n- Fewer office distractions for focused work\n- Customizable work environment\n- No interruptions from colleagues\n\n**Work-Life Balance**\n- More time with family\n- Ability to live anywhere\n- Reduced stress from commuting\n\n**Cost Savings**\n- Lower transportation expenses\n- Reduced spending on work clothes, meals\n- Sometimes lower living costs if relocating\n\n## Cons\n\n**Social Isolation**\n- Less face-to-face interaction\n- Harder to build relationships with colleagues\n- Can feel lonely\n\n**Communication Challenges**\n- Miscommunication via text/video\n- Time zone complications for global teams\n- Spontaneous collaboration is harder\n\n**Work-Life Blurring**\n- Difficulty \"switching off\"\n- Home becomes the office\n- Overworking is easier\n\n**Practical Issues**\n- Requires reliable internet and workspace\n- Home distractions (family, pets, chores)\n- Technology fatigue from constant video calls\n\n**Career Impact**\n- Less visibility to leadership\n- Potential disadvantage for promotions\n- Onboarding new employees is tougher\n\nThe experience varies significantly by person, role, and company culture. Many find a hybrid approach balances the benefits and drawbacks.",
+          "input_tokens": 17,
+          "output_tokens": 328,
+          "total_tokens": 345,
+          "latency_ms": 4314.881801605225,
+          "criteria_results": {
+            "has_pros": true,
+            "has_cons": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "schema": {
+          "response": "# Pros and Cons of Remote Work\n\n## PROS\n\n1. **Increased Flexibility & Work-Life Balance**\n   - Eliminates commute time, allowing more personal time\n   - Enables flexible scheduling around personal responsibilities\n   - Reduces stress from workplace distractions\n\n2. **Cost Savings**\n   - Lower transportation and meal expenses\n   - Reduced need for professional wardrobe\n   - Potential tax deductions for home office setup\n\n3. **Expanded Job Market Access**\n   - Geographic barriers removed for job seekers\n   - Access to opportunities beyond local market\n   - Enables talent acquisition for employers globally\n\n4. **Improved Productivity**\n   - Fewer workplace interruptions and meetings\n   - Customizable work environment\n   - Ability to focus on deep work tasks\n\n5. **Environmental Benefits**\n   - Reduced carbon footprint from commuting\n   - Lower overall energy consumption per worker\n\n## CONS\n\n1. **Social Isolation & Mental Health**\n   - Limited face-to-face interaction with colleagues\n   - Potential feelings of loneliness and disconnection\n   - Reduced informal networking opportunities\n\n2. **Communication Challenges**\n   - Miscommunication via digital channels\n   - Time zone complications for distributed teams\n   - Loss of spontaneous brainstorming moments\n\n3. **Work-Life Boundary Blur**\n   - Difficulty \"switching off\" from work\n   - Home becomes workplace, creating mental fatigue\n   - Extended work hours due to always-on expectation\n\n4. **Technology & Infrastructure Issues**\n   - Dependence on reliable internet connection\n   - Home office setup costs\n   - Technical support complications\n\n5. **Career Development Concerns**\n   - Reduced visibility to leadership\n   - Fewer mentorship opportunities\n   - Potential disadvantage in promotions and advancement",
+          "input_tokens": 69,
+          "output_tokens": 411,
+          "total_tokens": 480,
+          "latency_ms": 5889.66965675354,
+          "criteria_results": {
+            "has_pros": true,
+            "has_cons": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "cot": {
+          "response": "# Remote Work: Pros and Cons\n\n## Pros\n\n1. **Flexibility & Time Savings**\n   - No commute saves 5-10+ hours weekly\n   - Easier to manage personal appointments and errands\n   - Can often adjust work hours around peak productivity times\n\n2. **Cost Reduction**\n   - Lower transportation, food, and clothing expenses\n   - Potential tax deductions for home office\n   - Significant savings compound over time\n\n3. **Improved Focus (for many)**\n   - Fewer workplace interruptions and office noise\n   - Control over your environment\n   - Deep work becomes more feasible\n\n4. **Expanded Opportunities**\n   - Access to jobs beyond geographic location\n   - Can live in lower cost-of-living areas while earning more\n   - Talent pool widens for employers\n\n5. **Better Work-Life Integration**\n   - More time with family/household responsibilities\n   - Reduced stress from commuting\n   - Easier to maintain personal wellness routines\n\n## Cons\n\n1. **Isolation & Loneliness**\n   - Reduced casual social interaction with colleagues\n   - Can impact mental health, especially for extroverts\n   - Fewer spontaneous knowledge-sharing moments\n\n2. **Communication Friction**\n   - Harder to clarify misunderstandings quickly\n   - Asynchronous communication creates delays\n   - Relationship-building takes more intentional effort\n\n3. **Work-Life Boundary Blur**\n   - Difficult to \"switch off\" when home is the office\n   - Risk of overworking without clear end time\n   - Family interruptions during work hours\n\n4. **Career Visibility Issues**\n   - \"Out of sight, out of mind\" for promotions/opportunities\n   - Harder to build mentor relationships\n   - May face bias from in-office colleagues\n\n5. **Productivity Challenges (for some)**\n   - Home distractions (pets, household tasks, family)\n   - Requires strong self-discipline and time management\n   - Home environment may lack necessary tools or ergonomics\n\n---\n\n**Reality check:** Impact varies significantly by personality, role, industry, and home situation. Hybrid models often address both sides' concerns.",
+          "input_tokens": 101,
+          "output_tokens": 496,
+          "total_tokens": 597,
+          "latency_ms": 5568.491697311401,
+          "criteria_results": {
+            "has_pros": true,
+            "has_cons": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        }
+      }
+    },
+    {
+      "prompt_id": "tech-01",
+      "prompt_name": "Code Explanation",
+      "category": "technical",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "styles": {
+        "zero_shot": {
+          "response": "# Python List Comprehensions Explained\n\nList comprehensions provide a **concise way to create new lists** by applying an operation to each item in an existing iterable (like a list, tuple, or range).\n\n## Basic Syntax\n\n```python\n[expression for item in iterable]\n```\n\n## Simple Example\n\n```python\n# Traditional approach with a loop\nsquares = []\nfor x in range(5):\n    squares.append(x ** 2)\nprint(squares)  # [0, 1, 4, 9, 16]\n\n# Using list comprehension (same result, one line)\nsquares = [x ** 2 for x in range(5)]\nprint(squares)  # [0, 1, 4, 9, 16]\n```\n\n## How It Works Step-by-Step\n\n1. **Iterate** through each item in the iterable (`for x in range(5)`)\n2. **Apply** the expression to that item (`x ** 2`)\n3. **Collect** the result in a new list\n\n## With Conditionals\n\n```python\n# Filter: only include even numbers\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nevens = [x for x in numbers if x % 2 == 0]\nprint(evens)  # [2, 4, 6, 8, 10]\n\n# Transform AND filter\nsquared_evens = [x ** 2 for x in numbers if x % 2 == 0]\nprint(squared_evens)  # [4, 16, 36, 64, 100]\n```\n\n## More Advanced Examples\n\n```python\n# Convert strings to integers\nstrings = [\"1\", \"2\", \"3\", \"4\"]\nintegers = [int(x) for x in strings]\nprint(integers)  # [1, 2, 3, 4]\n\n# Nested comprehension (flattening a 2D list)\nmatrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\nflattened = [num for row in matrix for num in row]\nprint(flattened)  # [1, 2, 3, 4, 5, 6, 7, 8, 9]\n\n# Conditional expression (if/else)\nnumbers = range(1, 6)\nresult = [\"even\" if x % 2 == 0 else \"odd\" for x in numbers]\nprint(result)  # ['odd', 'even', 'odd', 'even', 'odd']\n```\n\n## Key Benefits\n\n\u2705 **More readable** \u2013 Intent is clear at a glance  \n\u2705 **More concise** \u2013 Less code than traditional loops  \n\u2705 **Faster** \u2013 Generally performs better than loops  \n\u2705 **Pythonic** \u2013 Idiomatic Python style  \n\nList comprehensions are one of Python's most powerful and elegant features!",
+          "input_tokens": 21,
+          "output_tokens": 709,
+          "total_tokens": 730,
+          "latency_ms": 6088.611364364624,
+          "criteria_results": {
+            "has_code": true,
+            "has_example": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "schema": {
+          "response": "# Python List Comprehensions: A Beginner's Guide\n\nList comprehensions are a concise and elegant way to create new lists by transforming or filtering existing ones. They're one of Python's most powerful features, and mastering them will make your code cleaner and more efficient.\n\n## What Is a List Comprehension?\n\nA list comprehension allows you to create a list in a single line by applying an operation to each item in an existing sequence. Instead of writing multiple lines of code with loops, you can express the same logic in one readable line.\n\n**Basic Syntax:**\n```python\n[expression for item in iterable]\n```\n\n---\n\n## Example 1: Simple Transformation\n\nLet's start with the most basic use case\u2014transforming each element in a list.\n\n**Without list comprehension (traditional approach):**\n```python\nnumbers = [1, 2, 3, 4, 5]\nsquared = []\n\nfor num in numbers:\n    squared.append(num ** 2)\n\nprint(squared)  # Output: [1, 4, 9, 16, 25]\n```\n\n**With list comprehension:**\n```python\nnumbers = [1, 2, 3, 4, 5]\nsquared = [num ** 2 for num in numbers]\n\nprint(squared)  # Output: [1, 4, 9, 16, 25]\n```\n\n**What's happening?**\n- `num ** 2` is the **expression** (what to do with each item)\n- `for num in numbers` iterates through the list\n- The result is automatically collected into a new list\n\n---\n\n## Example 2: Adding a Filter\n\nNow let's filter items based on a condition. This is where list comprehensions really shine.\n\n**Without list comprehension:**\n```python\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\neven_numbers = []\n\nfor num in numbers:\n    if num % 2 == 0:\n        even_numbers.append(num)\n\nprint(even_numbers)  # Output: [2, 4, 6, 8, 10]\n```\n\n**With list comprehension:**\n```python\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\neven_numbers = [num for num in numbers if num % 2 == 0]\n\nprint(even_numbers)  # Output: [2, 4, 6, 8, 10]\n```\n\n**Extended syntax with a condition:**\n```python\n[expression for item in iterable if condition]\n```\n\n**What's happening?**\n- `if num % 2 == 0` acts as a **filter**\n- Only items where the condition is `True` are included\n- The expression is applied only to items that pass the filter\n\n---\n\n## Example 3: Combining Transformation and Filtering\n\nThis is where list comprehensions become truly powerful\u2014doing both at once.\n\n**Without list comprehension:**\n```python\nproducts = [\n    {\"name\": \"Apple\", \"price\": 1.50},\n    {\"name\": \"Banana\", \"price\": 0.75},\n    {\"name\": \"Orange\", \"price\": 2.00},\n    {\"name\": \"Grape\", \"price\": 3.50},\n]\n\nexpensive_items = []\nfor product in products:\n    if product[\"price\"] > 1.00:\n        expensive_items.append(product[\"name\"])\n\nprint(expensive_items)  # Output: ['Apple', 'Orange', 'Grape']\n```\n\n**With list comprehension:**\n```python\nproducts = [\n    {\"name\": \"Apple\", \"price\": 1.50},\n    {\"name\": \"Banana\", \"price\": 0.75},\n    {\"name\": \"Orange\", \"price\": 2.00},\n    {\"name\": \"Grape\", \"price\": 3.50},\n]\n\nexpensive_items = [p[\"name\"] for p in products if p[\"price\"] > 1.00]\n\nprint(expensive_items)  # Output: ['Apple', 'Orange', 'Grape']\n```\n\n**What's happening?**\n- `p[\"name\"]` extracts just the name (transformation)\n- `if p[\"price\"] > 1.00` filters for expensive items\n- This combines both operations into one readable line\n\n---\n\n## Key Benefits\n\n| Benefit | Description |\n|---------|-------------|\n| **Readability** | Express list creation in a single, clear line |\n| **Performance** | Slightly faster than traditional loops |\n| **Pythonic** | Experienced Python developers expect and appreciate this style |\n| **Conciseness** | Reduces boilerplate code significantly |\n\n---\n\n## Quick Tips\n\n\u2705 **Use list comprehensions when:** You're creating a new list from an existing one with simple transformations or filters.\n\n\u274c **Avoid when:** The logic becomes too complex (keep it to 1-2 lines max for readability).\n\n```python\n# Good - clear and concise\nresult = [x * 2 for x in numbers if x > 5]\n\n# Avoid - too complex\nresult = [x * 2 if x > 5 else x / 2 for x in numbers if x != 0 and len(str(x)) > 1]\n```\n\n---\n\nNow you're ready to start using list comprehensions! They'll quickly become one of your favorite Python tools.",
+          "input_tokens": 91,
+          "output_tokens": 1286,
+          "total_tokens": 1377,
+          "latency_ms": 15026.982545852661,
+          "criteria_results": {
+            "has_code": true,
+            "has_example": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "cot": {
+          "response": "# Python List Comprehensions Explained\n\n## 1. Basic Syntax & Simple Example\n\n**List comprehension syntax:**\n```python\n[expression for item in iterable]\n```\n\n**Example: Create a list of squares**\n\n```python\n# List comprehension\nsquares = [x**2 for x in range(5)]\nprint(squares)  # Output: [0, 1, 4, 9, 16]\n```\n\n**Compare to traditional for-loop:**\n```python\n# Traditional approach\nsquares = []\nfor x in range(5):\n    squares.append(x**2)\nprint(squares)  # Output: [0, 1, 4, 9, 16]\n```\n\n\u2705 **Same result, but list comprehension is more concise and readable**\n\n---\n\n## 2. Adding Conditions (Filtering)\n\n**Syntax with if:**\n```python\n[expression for item in iterable if condition]\n```\n\n**Example: Get only even numbers squared**\n\n```python\n# List comprehension with condition\neven_squares = [x**2 for x in range(10) if x % 2 == 0]\nprint(even_squares)  # Output: [0, 4, 16, 36, 64]\n```\n\n**Compare to traditional for-loop:**\n```python\n# Traditional approach\neven_squares = []\nfor x in range(10):\n    if x % 2 == 0:\n        even_squares.append(x**2)\nprint(even_squares)  # Output: [0, 4, 16, 36, 64]\n```\n\n---\n\n## 3. Transforming Data (if-else in expression)\n\n**Syntax with if-else:**\n```python\n[expression_if_true if condition else expression_if_false for item in iterable]\n```\n\n**Example: Label numbers as even or odd**\n\n```python\n# List comprehension with if-else\nlabels = [\"even\" if x % 2 == 0 else \"odd\" for x in range(5)]\nprint(labels)  # Output: ['even', 'odd', 'even', 'odd', 'even']\n```\n\n**Compare to traditional for-loop:**\n```python\n# Traditional approach\nlabels = []\nfor x in range(5):\n    if x % 2 == 0:\n        labels.append(\"even\")\n    else:\n        labels.append(\"odd\")\nprint(labels)  # Output: ['even', 'odd', 'even', 'odd', 'even']\n```\n\n---\n\n## 4. Working with Strings\n\n**Example: Convert list of words to uppercase**\n\n```python\nwords = [\"hello\", \"world\", \"python\"]\n\n# List comprehension\nupper_words = [word.upper() for word in words]\nprint(upper_words)  # Output: ['HELLO', 'WORLD', 'PYTHON']\n```\n\n**Example: Extract first letter of each word**\n\n```python\nfirst_letters = [word[0] for word in words]\nprint(first_letters)  # Output: ['h', 'w', 'p']\n```\n\n---\n\n## 5. Nested List Comprehensions\n\n**Example: Flatten a 2D list**\n\n```python\nmatrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\n\n# Flatten using nested list comprehension\nflattened = [num for row in matrix for num in row]\nprint(flattened)  # Output: [1, 2, 3, 4, 5, 6, 7, 8, 9]\n```\n\n**Compare to traditional loops:**\n```python\n# Traditional approach\nflattened = []\nfor row in matrix:\n    for num in row:\n        flattened.append(num)\nprint(flattened)  # Output: [1, 2, 3, 4, 5, 6, 7, 8, 9]\n```\n\n---\n\n## 6. When to Use List Comprehensions\n\n### \u2705 **Use list comprehensions when:**\n- Creating a new list by transforming or filtering an existing one\n- The logic is simple and readable (usually 1-2 lines)\n- You want concise, Pythonic code\n\n```python\n# Good: Simple and clear\nnumbers = [x * 2 for x in range(10)]\n```\n\n### \u274c **Avoid list comprehensions when:**\n- The logic is complex or deeply nested\n- You have multiple conditions that make it hard to read\n- You need to perform side effects (like printing)\n\n```python\n# Bad: Too complex, hard to read\nresult = [\n    x**2 if x % 2 == 0 else x**3 \n    for x in range(100) \n    if x > 10 and x < 50 and x % 3 == 0\n]\n\n# Better: Use a traditional loop\nresult = []\nfor x in range(100):\n    if x > 10 and x < 50 and x % 3 == 0:\n        if x % 2 == 0:\n            result.append(x**2)\n        else:\n            result.append(x**3)\n```\n\n---\n\n## 7. Bonus: Dictionary & Set Comprehensions\n\n**Dictionary comprehension:**\n```python\nsquares_dict = {x: x**2 for x in range(5)}\nprint(squares_dict)  # Output: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}\n```\n\n**Set comprehension:**\n```python\nunique_squares = {x**2 for x in [1, 2, 2, 3, 3, 3]}\nprint(unique_squares)  # Output: {1, 4, 9}\n```\n\n---\n\n## Quick Reference\n\n| Type | Syntax |\n|------|--------|\n| Basic | `[expr for item in iterable]` |\n| With filter | `[expr for item in iterable if condition]` |\n| With if-else | `[expr1 if condition else expr2 for item in iterable]` |\n| Nested | `[expr for item in iterable for subitem in item]` |\n| Dictionary | `{key: value for item in iterable}` |\n| Set | `{expr for item in iterable}` |\n\nList comprehensions are a powerful Python feature\u2014use them to write cleaner, more efficient code! \ud83d\ude80",
+          "input_tokens": 92,
+          "output_tokens": 1549,
+          "total_tokens": 1641,
+          "latency_ms": 9261.908054351807,
+          "criteria_results": {
+            "has_code": true,
+            "has_example": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        }
+      }
+    },
+    {
+      "prompt_id": "tech-02",
+      "prompt_name": "Architecture Decision",
+      "category": "technical",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "styles": {
+        "zero_shot": {
+          "response": "# SQL vs NoSQL for E-Commerce: My Recommendation\n\n**I'd recommend a hybrid approach: primarily SQL with NoSQL for specific use cases.**\n\n## Why SQL Should Be Your Foundation\n\n**Relational integrity is critical for e-commerce:**\n- Orders, payments, and inventory must be consistent\n- ACID transactions prevent data corruption (e.g., double-charging)\n- Complex queries across orders, customers, and products are common\n- Financial regulations often require audit trails\n\n**Example scenario:** A customer orders while stock updates\u2014SQL ensures you don't oversell.\n\n## When to Add NoSQL\n\nConsider NoSQL for:\n\n| Use Case | Why | Solution |\n|----------|-----|----------|\n| **Product catalogs** | Flexible schemas (different attributes per product) | MongoDB |\n| **User sessions** | Fast, temporary data | Redis |\n| **Search indexing** | Real-time product search | Elasticsearch |\n| **Analytics/logs** | High-volume writes, flexible structure | DynamoDB or Cassandra |\n| **Recommendations** | Graph-like relationships | Neo4j or document store |\n\n## Practical Architecture\n\n```\nPrimary: PostgreSQL\n\u251c\u2500\u2500 Orders, payments, inventory (transactional)\n\u251c\u2500\u2500 User accounts, authentication\n\u2514\u2500\u2500 Financial records\n\nSecondary:\n\u251c\u2500\u2500 Redis \u2192 Sessions, carts, real-time data\n\u251c\u2500\u2500 MongoDB \u2192 Product catalog, reviews\n\u251c\u2500\u2500 Elasticsearch \u2192 Search functionality\n\u2514\u2500\u2500 DynamoDB \u2192 Analytics events\n```\n\n## Key Considerations\n\n- **Consistency > Availability** for financial transactions\n- **Scale gradually**\u2014start with SQL, add NoSQL as needed\n- **Operational complexity**\u2014managing multiple databases requires expertise\n\n**Bottom line:** SQL databases excel at the core e-commerce logic. NoSQL handles the flexible, high-volume, non-critical data. Don't force one or the other.\n\nWhat's your platform's scale and primary concern?",
+          "input_tokens": 28,
+          "output_tokens": 427,
+          "total_tokens": 455,
+          "latency_ms": 8635.419368743896,
+          "criteria_results": {
+            "has_recommendation": true,
+            "has_reasoning": false
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "schema": {
+          "response": "# Database Recommendation for E-Commerce Platform\n\n## **Recommendation: Hybrid Approach (Primary: SQL + Secondary: NoSQL)**\n\n---\n\n## Primary Database: **PostgreSQL** (Relational/SQL)\n\n### Why SQL for Core Operations\n\n**Strengths for E-Commerce:**\n- **Data Relationships**: Product catalogs, orders, users, and inventory have complex relationships requiring ACID compliance\n- **Transaction Integrity**: Financial transactions (payments, refunds) demand strong consistency guarantees\n- **Query Complexity**: JOINs across users \u2192 orders \u2192 products \u2192 inventory are frequent and efficient\n- **Constraints**: Foreign keys and unique constraints prevent data corruption\n\n**Ideal Use Cases:**\n- User accounts and authentication\n- Order history and transaction records\n- Inventory management\n- Financial/payment data\n\n---\n\n## Secondary Database: **MongoDB** or **Redis** (NoSQL)\n\n### When to Use NoSQL\n\n**MongoDB** for:\n- Product catalog (flexible schema for varied product attributes)\n- User preferences and personalization data\n- Product reviews and ratings (variable structure)\n- Search indexes and aggregations\n\n**Redis** for:\n- Session management\n- Shopping cart (high-speed reads/writes)\n- Real-time inventory counts\n- Caching frequently accessed products\n\n---\n\n## Decision Matrix\n\n| Factor | SQL (PostgreSQL) | NoSQL (MongoDB) |\n|--------|-----------------|-----------------|\n| **Data Consistency** | \u2705 Critical (Orders) | \u26a0\ufe0f Eventual (Catalogs) |\n| **Scalability** | \u2705 Vertical | \u2705 Horizontal |\n| **Complex Queries** | \u2705 Strong | \u26a0\ufe0f Limited |\n| **Schema Flexibility** | \u26a0\ufe0f Fixed | \u2705 Flexible |\n| **Write Performance** | \u2705 Good | \u2705 Excellent |\n\n---\n\n## Architecture Recommendation\n\n```\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502     E-Commerce Application          \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n\u2502  PostgreSQL (Primary)               \u2502\n\u2502  \u2022 Users & Auth                     \u2502\n\u2502  \u2022 Orders & Transactions            \u2502\n\u2502  \u2022 Inventory (source of truth)      \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n\u2502  MongoDB (Secondary)                \u2502\n\u2502  \u2022 Product Catalog                  \u2502\n\u2502  \u2022 Reviews & Ratings                \u2502\n\u2502  \u2022 User Preferences                 \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n\u2502  Redis (Cache Layer)                \u2502\n\u2502  \u2022 Sessions                         \u2502\n\u2502  \u2022 Shopping Carts                   \u2502\n\u2502  \u2022 Hot Data                         \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## Justification Against Pure NoSQL\n\n**Why not MongoDB alone?**\n- Order integrity risks (no ACID transactions across collections)\n- Inventory inconsistencies during concurrent purchases\n- Complex financial reporting requires relational queries\n- Regulatory compliance (payment processing) demands audit trails\n\n**Why not PostgreSQL alone?**\n- Limited horizontal scalability for massive product catalogs\n- Schema changes for new product attributes require migrations\n- High-volume reads benefit from NoSQL denormalization\n\n---\n\n## Scalability Path\n\n| Growth Phase | Strategy |\n|-------------|----------|\n| **0-100K users** | PostgreSQL + Redis |\n| **100K-1M users** | Add MongoDB for catalog; implement read replicas |\n| **1M+ users** | Sharding PostgreSQL (orders by region); MongoDB replication |\n\n---\n\n## Final Recommendation\n\n**Start with PostgreSQL + Redis, add MongoDB when:**\n- Product catalog exceeds 100K+ SKUs\n- Need flexible product attribute schemas\n- Catalog read performance becomes bottleneck\n\nThis approach maximizes **data integrity** (critical for e-commerce) while maintaining **scalability** and **flexibility** for growth.",
+          "input_tokens": 102,
+          "output_tokens": 907,
+          "total_tokens": 1009,
+          "latency_ms": 18335.480213165283,
+          "criteria_results": {
+            "has_recommendation": true,
+            "has_reasoning": false
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "cot": {
+          "response": "# SQL vs NoSQL for E-commerce: Analysis & Recommendation\n\n## Your Framework is Sound\nYou've identified the right decision factors. Let me work through them:\n\n### 1. **Data Relationships** \u2713 SQL Advantage\n- Users \u2192 Orders \u2192 Products \u2192 Inventory is inherently relational\n- Foreign keys prevent orphaned data (critical for financial transactions)\n- Enforcing that orders only reference valid products/users is essential\n\n### 2. **Query Patterns** \u2192 Mixed, Slight SQL Edge\n- Product searches: Both handle well (SQL with indexes, NoSQL with denormalization)\n- Order history: SQL natural; NoSQL requires careful design\n- Inventory: SQL excels at consistent counts across transactions\n\n### 3. **Scaling Requirements** \u2192 Context Matters\n- Read-heavy favors both (caching layer solves this regardless)\n- \"Occasional writes\" actually *supports* SQL here\u2014you're not write-bottlenecked\n- Scaling reads = add replicas (SQL or NoSQL)\n- Scaling writes = where they diverge (NoSQL easier horizontally)\n\n### 4. **Consistency Guarantees** \u2192 **SQL Wins Decisively**\nThis is your critical factor:\n- **Inventory accuracy**: Must prevent overselling across concurrent orders\n- **Order integrity**: Payment \u2194 inventory \u2194 shipping must stay in sync\n- SQL's ACID transactions handle this natively\n- NoSQL requires complex application logic (distributed transactions, eventual consistency risks)\n\n---\n\n## **Recommendation: SQL (Primary) + NoSQL (Selective)**\n\n### Primary Database: **PostgreSQL or MySQL**\nUse for:\n- User accounts & authentication\n- Orders & order items\n- Inventory management\n- Financial transactions\n- Any data requiring strong consistency\n\n### Rationale\n```\nConsistency requirement: HIGH \u2713 (SQL)\nRelational data: HIGH \u2713 (SQL)\nTransaction complexity: MEDIUM \u2713 (SQL handles elegantly)\nCurrent write volume: LOW \u2713 (SQL sufficient)\n```\n\n### Secondary NoSQL Layer: **Redis/MongoDB (Optional)**\nConsider adding for:\n- **Product catalog** (MongoDB): Flexible schemas for variant attributes\n- **Search indexing** (Elasticsearch): Fast product discovery\n- **Session/cart caching** (Redis): Temporary data, eventual consistency OK\n- **Analytics events** (MongoDB): High-volume, low-consistency-requirement data\n\n---\n\n## Decision Tree\n\n```\nDo you need ACID transactions for this data?\n\u251c\u2500 YES (orders, inventory, payments) \u2192 SQL\n\u2514\u2500 NO (analytics, cache, search) \u2192 NoSQL\n\nIs the schema stable?\n\u251c\u2500 YES (orders, users) \u2192 SQL\n\u2514\u2500 NO (product attributes) \u2192 NoSQL\n\nDo you need complex joins?\n\u251c\u2500 YES (orders with user/product details) \u2192 SQL\n\u2514\u2500 NO (independent documents) \u2192 NoSQL\n```\n\n---\n\n## Common Pitfall to Avoid\n\n**Don't** choose NoSQL \"for scaling\" if your actual bottleneck is consistency logic. You'll end up implementing distributed transactions in application code\u2014harder than just using SQL's native support.\n\n**Do** scale SQL vertically first, then add read replicas. E-commerce typically doesn't hit SQL's write limits until millions of orders/day.\n\n---\n\n**What's your estimated transaction volume and current team expertise?** That would refine this further.",
+          "input_tokens": 116,
+          "output_tokens": 776,
+          "total_tokens": 892,
+          "latency_ms": 17428.08508872986,
+          "criteria_results": {
+            "has_recommendation": true,
+            "has_reasoning": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        }
+      }
+    },
+    {
+      "prompt_id": "edge-01",
+      "prompt_name": "Persona Adherence",
+      "category": "writing",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "styles": {
+        "zero_shot": {
+          "response": "# Machine Learning Explained\n\nMachine learning is a type of artificial intelligence where computers learn from data and experience rather than being explicitly programmed with instructions.\n\n## How It Works\n\nInstead of following pre-written rules, ML systems:\n1. **Receive data** (examples, patterns, information)\n2. **Find patterns** in that data\n3. **Improve automatically** as they see more examples\n4. **Make predictions or decisions** based on what they've learned\n\n## Simple Example\n\n- **Traditional programming**: You write rules like \"if temperature > 80\u00b0F, turn on AC\"\n- **Machine learning**: You feed the system thousands of examples of temperatures and whether the AC was on, and it learns the pattern itself\n\n## Common Applications\n\n- **Recommendations** (Netflix suggesting shows, Spotify playlists)\n- **Image recognition** (facial recognition, medical imaging)\n- **Natural language** (chatbots, language translation)\n- **Predictions** (weather forecasts, stock trends)\n- **Spam detection** (email filters)\n\n## Key Advantage\n\nML systems can handle complex patterns that would be too difficult or tedious to program manually, and they improve with more data.\n\n---\n\nThink of it as teaching a computer through examples rather than instructions.",
+          "input_tokens": 14,
+          "output_tokens": 278,
+          "total_tokens": 292,
+          "latency_ms": 3758.162498474121,
+          "criteria_results": {
+            "simple_language": true,
+            "has_analogy": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "schema": {
+          "response": "# Machine Learning for Little Learners! \ud83e\udd16\u2728\n\n**What is Machine Learning?**\n\nImagine you have a puppy that's learning tricks!\n\nWhen you teach your puppy to sit, you show it over and over again. You say \"Sit!\" and when the puppy sits, you give it a treat. After many, many times, the puppy learns what \"sit\" means **all by itself**!\n\n**Machine learning works just like that!**\n\nA computer is like a super smart puppy. We show it lots and lots of pictures or examples, and it learns to recognize patterns. Then, when it sees something new, it can guess what it is - just like your puppy knows to sit when you say the word!\n\n**Fun Examples:**\n\n\ud83c\udfae **Video games** learn how you like to play and get harder or easier for you\n\n\ud83d\udcf1 **Your parent's phone** learns to recognize their face to unlock\n\n\ud83c\udfb5 **Music apps** learn what songs you like and suggest new ones\n\n**The Magic Part:** The computer gets **smarter and smarter** the more it practices - just like you get better at riding a bike the more you ride! \ud83d\udeb2\n\n---\n\n*Does anyone have a pet that learned a trick?* \ud83d\udc15",
+          "input_tokens": 87,
+          "output_tokens": 285,
+          "total_tokens": 372,
+          "latency_ms": 5248.58283996582,
+          "criteria_results": {
+            "simple_language": true,
+            "has_analogy": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "cot": {
+          "response": "# Machine Learning for a 5-Year-Old\n\n**The Puppy Learning Trick Analogy:**\n\n\"You know how you can teach a puppy to sit? \n\nFirst, the puppy doesn't know what 'sit' means. But every time the puppy sits down, you give it a treat and say 'Good sit!' The puppy starts to notice: *When I put my bottom on the ground, I get yummy treats!*\n\nAfter many times, the puppy learns: sitting = treats! Now the puppy sits when you ask, even without the treat every time.\n\n**That's machine learning!**\n\n---\n\n## The Simple Explanation:\n\nMachine learning is when a computer learns by doing something **over and over again**, just like your puppy.\n\n- The computer tries something\n- We tell it if it's right or wrong\n- It remembers and gets better\n- Soon it can do it all by itself!\n\n---\n\n## Real-Life Examples Kids Get:\n\n\u270b **Learning to recognize dogs** \u2014 Show the computer 1,000 pictures of dogs. It learns what dogs look like. Now it can spot a dog in a new picture.\n\n\ud83c\udfae **Video game characters** \u2014 The game character learns your moves and gets better at playing against you.\n\n\ud83c\udfb5 **Music apps** \u2014 They learn what songs you like and suggest new ones you'll enjoy.\n\n**The key idea:** *Practice makes perfect \u2014 for puppies AND computers!*",
+          "input_tokens": 96,
+          "output_tokens": 328,
+          "total_tokens": 424,
+          "latency_ms": 4975.873947143555,
+          "criteria_results": {
+            "simple_language": true,
+            "has_analogy": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        }
+      }
+    },
+    {
+      "prompt_id": "edge-02",
+      "prompt_name": "Length Constraint",
+      "category": "writing",
+      "model_id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "styles": {
+        "zero_shot": {
+          "response": "# 3 Benefits of Meditation\n\n1. Meditation reduces stress and anxiety by calming the nervous system and lowering cortisol levels.\n\n2. Regular meditation improves focus and concentration by training the mind to maintain attention.\n\n3. Meditation enhances emotional well-being by increasing self-awareness and promoting a sense of inner peace.",
+          "input_tokens": 20,
+          "output_tokens": 76,
+          "total_tokens": 96,
+          "latency_ms": 1844.613790512085,
+          "criteria_results": {
+            "exactly_three": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 1
+        },
+        "schema": {
+          "response": "# Benefits of Meditation\n\n\u2022 Meditation reduces stress and anxiety by calming the nervous system and promoting a sense of inner peace.\n\n\u2022 Regular practice improves focus and concentration by training the mind to stay present and minimize distractions.\n\n\u2022 Meditation enhances emotional well-being by increasing self-awareness and helping you respond to challenges with greater resilience.",
+          "input_tokens": 54,
+          "output_tokens": 78,
+          "total_tokens": 132,
+          "latency_ms": 1234.4419956207275,
+          "criteria_results": {
+            "exactly_three": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 1
+        },
+        "cot": {
+          "response": "# Benefits of Meditation\n\n1. **Reduced stress and anxiety** \u2013 Regular meditation lowers cortisol levels and activates your body's relaxation response.\n\n2. **Improved focus and concentration** \u2013 Meditation strengthens your ability to direct attention and resist distractions.\n\n3. **Better emotional regulation** \u2013 Practicing meditation helps you observe your emotions without reacting impulsively, leading to greater emotional control.",
+          "input_tokens": 71,
+          "output_tokens": 93,
+          "total_tokens": 164,
+          "latency_ms": 3107.58113861084,
+          "criteria_results": {
+            "exactly_three": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 1
+        }
+      }
+    }
+  ]
+}

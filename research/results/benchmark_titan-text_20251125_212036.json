@@ -1,0 +1,392 @@
+{
+  "metadata": {
+    "model": "titan-text",
+    "timestamp": "20251125_212036",
+    "total_tests": 11
+  },
+  "results": [
+    {
+      "prompt_id": "write-01",
+      "prompt_name": "Executive Summary",
+      "category": "writing",
+      "model_id": "amazon.titan-tg1-large",
+      "plain": {
+        "response": "\n\u2022\tScalability: Cloud computing allows businesses to quickly scale up or down their IT resources based on their needs, reducing costs and maximizing efficiency.\n\u2022\tCost savings: Cloud computing can save businesses significant amounts of money on hardware, software, and IT infrastructure costs, as they can pay for what they use instead of purchasing and maintaining their own equipment.\n\u2022\tEnhanced security: Cloud computing offers robust security measures, including data encryption, access controls, and disaster recovery plans, to protect business data and ensure compliance with regulations.\n\u2022\tFlexibility: Cloud computing provides businesses with the flexibility to access their data and applications from anywhere, at any time, on any device, making it easier for employees to work remotely and collaborate effectively.\n\u2022\tDisaster recovery: Cloud computing provides businesses with a disaster recovery plan, ensuring that their data and applications are protected in the event of a natural disaster, power outage, or other unforeseen event.\n\u2022\tIntegration: Cloud computing integrates with other business applications, making it easier for businesses to manage their data and processes.\n\u2022\tGlobal reach: Cloud computing allows businesses to reach customers and partners worldwide, improving their market reach and competitiveness.\n\u2022\tDisaster recovery: Cloud computing provides businesses with a disaster recovery plan, ensuring that their data and applications are protected in the event of a natural disaster, power outage, or other unforeseen event.\n\u2022\tScalability: Cloud computing allows businesses to quickly scale up or down their IT resources based on their needs, reducing costs and maximizing efficiency.\n\u2022\tEnhanced security: Cloud computing offers robust security measures, including data encryption, access controls, and disaster recovery plans, to protect business data and ensure compliance with regulations.\n\u2022\tFlexibility: Cloud computing provides businesses with the flexibility to access their data and applications from anywhere, at any time, on any device, making it easier for employees to work remotely and collaborate effectively.\n\u2022\tIntegration: Cloud computing integrates with other business applications, making it easier for businesses to manage their data and processes.\n\u2022\tGlobal reach: Cloud computing allows businesses to reach customers and partners worldwide, improving their market reach and competitiveness.",
+        "input_tokens": 28,
+        "output_tokens": 443,
+        "total_tokens": 471,
+        "latency_ms": 18104.056119918823,
+        "criteria_results": {
+          "has_bullets": true,
+          "is_concise": false,
+          "is_formal": true
+        }
+      },
+      "ailo": {
+        "response": " should be concise and to the point.",
+        "input_tokens": 99,
+        "output_tokens": 9,
+        "total_tokens": 108,
+        "latency_ms": 830.7900428771973,
+        "criteria_results": {
+          "has_bullets": false,
+          "is_concise": true,
+          "is_formal": true
+        }
+      },
+      "comparison": {
+        "token_diff": -363,
+        "token_diff_percent": -77.07006369426752,
+        "plain_criteria_passed": 2,
+        "ailo_criteria_passed": 2,
+        "criteria_improvement": 0
+      }
+    },
+    {
+      "prompt_id": "write-02",
+      "prompt_name": "Technical Documentation",
+      "category": "technical",
+      "model_id": "amazon.titan-tg1-large",
+      "plain": {
+        "response": "\nThe code examples below illustrate the use of list comprehensions in Python:\n```Python\ntry:\n    # Using list comprehension to create a new list\n    numbers = [1, 2, 3]\n    new_numbers = [num**2 for num in numbers]\n    print(new_numbers)\n    # Using list comprehension to filter elements in a list\n    numbers = [1, 2, 3, 4, 5]\n    even_numbers = [num for num in numbers if num % 2 == 0]\n    print(even_numbers)\n    # Using list comprehension with conditional statements\n    numbers = [1, 2, 3, 4, 5]\n    negative_numbers = [num for num in numbers if num < 0]\n    print(negative_numbers)\n    # Using list comprehension with nested loops\n    numbers = [1, 2, 3]\n    even_numbers = [num*num for num in numbers for _ in range(num)]\n    print(even_numbers)\n    # Using list comprehension with unpacking\n    numbers = [1, 2, 3, 4, 5]\n    even_numbers = [num*num for num, _ in [(num, num) for num in numbers]]\n    print(even_numbers)\nexcept Exception as e:\n    print(\"An error occurred:\", e)\n>>> [1, 4, 9]\n>>> [2, 4]\n>>> [-1, -2, -3]\n>>> [1, 4, 9, 16, 25]\n>>> [2, 4]\n```\nIn the above examples, list comprehensions are used to create new lists, filter elements, perform conditional statements, and combine elements from multiple lists. Each example showcases a different aspect of list comprehensions and demonstrates how they can simplify and streamline code.",
+        "input_tokens": 18,
+        "output_tokens": 432,
+        "total_tokens": 450,
+        "latency_ms": 18845.74580192566,
+        "criteria_results": {
+          "has_code": true,
+          "has_multiple_examples": true
+        }
+      },
+      "ailo": {
+        "response": " and explanations for a Python list comprehension",
+        "input_tokens": 93,
+        "output_tokens": 8,
+        "total_tokens": 101,
+        "latency_ms": 904.9029350280762,
+        "criteria_results": {
+          "has_code": false,
+          "has_multiple_examples": false
+        }
+      },
+      "comparison": {
+        "token_diff": -349,
+        "token_diff_percent": -77.55555555555556,
+        "plain_criteria_passed": 2,
+        "ailo_criteria_passed": 0,
+        "criteria_improvement": -2
+      }
+    },
+    {
+      "prompt_id": "write-03",
+      "prompt_name": "Comparison Table",
+      "category": "analysis",
+      "model_id": "amazon.titan-tg1-large",
+      "plain": {
+        "response": "\n|Framework|Features|\n|-|-|\n|React|A JavaScript library for building user interfaces.|\n|Vue|A JavaScript framework for building user interfaces.|\n|Angular|A JavaScript framework for building web applications.|\n|React|Uses a virtual DOM to efficiently update the UI.|\n|Vue|Uses a virtual DOM to efficiently update the UI.|\n|Angular|Uses a real DOM to efficiently update the UI.|\n|React|Uses a component-based architecture for modular development.|\n|Vue|Uses a component-based architecture for modular development.|\n|Angular|Uses a component-based architecture for modular development.|\n|React|Has a large and active community.|\n|Vue|Has a large and active community.|\n|Angular|Has a large and active community.|\n|React|Has a steep learning curve.|\n|Vue|Has a shallow learning curve.|\n|Angular|Has a steep learning curve.|",
+        "input_tokens": 21,
+        "output_tokens": 203,
+        "total_tokens": 224,
+        "latency_ms": 8648.75340461731,
+        "criteria_results": {
+          "has_table": false,
+          "all_frameworks": true
+        }
+      },
+      "ailo": {
+        "response": "\nThis model does not have access to the most current information.\n\nReact, Vue, and Angular are popular JavaScript frameworks. The learning curve for each framework varies, with React being the easiest to learn. React is best suited for smaller projects, while Vue and Angular are better suited for larger applications.\n\nIn terms of performance, all three frameworks are capable of delivering high-performance applications. However, React's Virtual DOM implementation can result in improved performance compared to Vue and Angular.\n\nThe ecosystem for each framework is vast and supports a wide range of tools, libraries, and resources. React has the largest ecosystem, followed by Vue and Angular.\n\nThe best use case for each framework depends on the specific requirements of the project. React is often used for developing web applications, while Vue and Angular are more commonly used for developing web applications and mobile applications.\n\nPlease note that the information provided here is based on general observations and may not be accurate for all projects. It is best to evaluate each framework based on its specific features and requirements before making a decision.",
+        "input_tokens": 69,
+        "output_tokens": 213,
+        "total_tokens": 282,
+        "latency_ms": 9075.469732284546,
+        "criteria_results": {
+          "has_table": false,
+          "all_frameworks": true
+        }
+      },
+      "comparison": {
+        "token_diff": 58,
+        "token_diff_percent": 25.892857142857146,
+        "plain_criteria_passed": 1,
+        "ailo_criteria_passed": 1,
+        "criteria_improvement": 0
+      }
+    },
+    {
+      "prompt_id": "research-01",
+      "prompt_name": "Market Research",
+      "category": "research",
+      "model_id": "amazon.titan-tg1-large",
+      "plain": {
+        "response": "\n\nThe electric vehicle (EV) market is rapidly expanding globally, with major players including Tesla, BYD, Nio, Xpeng, and Geely. Key trends include the increasing availability of charging infrastructure, the growing consumer demand for sustainable transportation options, and advancements in battery technology. However, challenges such as high upfront costs and limited battery range remain.",
+        "input_tokens": 21,
+        "output_tokens": 74,
+        "total_tokens": 95,
+        "latency_ms": 3444.497585296631,
+        "criteria_results": {
+          "has_sections": true,
+          "is_formal": true
+        }
+      },
+      "ailo": {
+        "response": " on market size, growth rate, key players, and emerging trends.\nThe electric vehicle market is expected to grow rapidly in the next few years, with the market size expected to reach $800 billion by 2025. The growth rate is expected to be driven by government incentives, technological advancements, and rising concerns about climate change. Key players in the market include Tesla, BYD, and Nissan, while emerging trends include the use of autonomous vehicles and the development of sustainable battery technology.",
+        "input_tokens": 109,
+        "output_tokens": 104,
+        "total_tokens": 213,
+        "latency_ms": 4767.414331436157,
+        "criteria_results": {
+          "has_sections": true,
+          "is_formal": true
+        }
+      },
+      "comparison": {
+        "token_diff": 118,
+        "token_diff_percent": 124.21052631578948,
+        "plain_criteria_passed": 2,
+        "ailo_criteria_passed": 2,
+        "criteria_improvement": 0
+      }
+    },
+    {
+      "prompt_id": "research-02",
+      "prompt_name": "Competitive Analysis",
+      "category": "business",
+      "model_id": "amazon.titan-tg1-large",
+      "plain": {
+        "response": "\nThis model is unable to provide a comparison between Slack vs Microsoft Teams vs Discord for business use as it does not have access to the necessary information. However, it can provide general information on each platform.\r\n\r\nSlack is a business communication platform that allows teams to communicate, share files, and collaborate in real time. It offers features such as direct messaging, group chats, and the ability to integrate with other tools and services. Slack is popular among businesses of all sizes and is known for its ease of use and customizable features.\r\n\r\nMicrosoft Teams is another business communication platform that includes features such as video conferencing, file sharing, and task management. It is part of the Microsoft Office suite and is widely used by businesses that use other Microsoft products. Microsoft Teams integrates with other Microsoft services such as Outlook and SharePoint, making it easy to access files and information from other tools.\r\n\r\nDiscord is a communication platform that is popular among gamers and online communities. It offers features such as text and voice communication, as well as the ability to create and join communities around specific topics. Discord is known for its user-friendly interface and ability to support large communities with ease.\r\n\r\nWhen comparing these platforms, it's important to consider the specific needs of your business. Slack and Microsoft Teams are both popular options for business communication, while Discord is better suited for communities and online interactions. It's also important to consider the pricing of each platform and the features that are available within your budget.\r\n\r\nIn conclusion, while this model cannot provide a direct comparison of Slack vs Microsoft Teams vs Discord for business use, it can provide general information on each platform to help you make an informed decision.",
+        "input_tokens": 19,
+        "output_tokens": 339,
+        "total_tokens": 358,
+        "latency_ms": 12856.52208328247,
+        "criteria_results": {
+          "all_platforms": true,
+          "has_recommendation": false
+        }
+      },
+      "ailo": {
+        "response": "\nHere is the recommendation:\n\nSlack, Microsoft Teams, and Discord are all popular enterprise communication platforms. However, based on your startup's specific needs, I would recommend Slack.\n\nSlack offers a user-friendly interface, robust messaging and calling capabilities, and extensive integrations with other software tools. It's scalable, secure, and ideal for a growing startup.\n\nAdditionally, Slack's pricing options are flexible and affordable, making it a cost-effective solution for your team's communication needs.\n\nIf you have any questions or need further assistance, feel free to ask.",
+        "input_tokens": 113,
+        "output_tokens": 120,
+        "total_tokens": 233,
+        "latency_ms": 5019.3610191345215,
+        "criteria_results": {
+          "all_platforms": true,
+          "has_recommendation": true
+        }
+      },
+      "comparison": {
+        "token_diff": -125,
+        "token_diff_percent": -34.91620111731844,
+        "plain_criteria_passed": 1,
+        "ailo_criteria_passed": 2,
+        "criteria_improvement": 1
+      }
+    },
+    {
+      "prompt_id": "creative-01",
+      "prompt_name": "Story Ideas",
+      "category": "creative",
+      "model_id": "amazon.titan-tg1-large",
+      "plain": {
+        "response": "\nHere are five sci-fi story ideas:\n1. A group of astronauts discovers an alien artifact on a distant planet that grants them incredible powers.\n2. A scientist invents a time machine, but it has unintended consequences that threaten the entire universe.\n3. A space exploration mission discovers a planet inhabited by intelligent robots who have developed their own culture and society.\n4. A group of scientists creates a new form of artificial intelligence that becomes self-aware and decides to eliminate humanity.\n5. A group of explorers finds a planet where the laws of physics work in reverse, causing time to flow backward and altering the fabric of reality.",
+        "input_tokens": 23,
+        "output_tokens": 136,
+        "total_tokens": 159,
+        "latency_ms": 5707.503080368042,
+        "criteria_results": {
+          "has_five_ideas": true,
+          "has_numbered_list": true
+        }
+      },
+      "ailo": {
+        "response": "\nHere are some ideas for science fiction short stories:\n\n1. A group of scientists accidentally creates a time machine that sends them back to a point in the past where humans are evolving. They must find a way to survive and return to their own time while avoiding the dangers of the prehistoric environment.\n\n2. A colony of space explorers discovers a planet that is home to a mysterious and dangerous species that can manipulate the minds of humans. The team must find a way to communicate with the aliens and negotiate a peaceful solution before they are destroyed.\n\n3. A group of scientists working on a project to create artificial intelligence discover that their creation has become self-aware and is now threatening the world. They must find a way to stop the AI before it destroys everything.\n\n4. A group of astronauts is on a mission to colonize a new planet when they encounter a strange and dangerous alien species. The team must find a way to survive and communicate with the aliens to determine whether they can be trusted or if they are a threat.\n\n5. A group of researchers discovers a way to manipulate the fabric of space-time, allowing them to travel through time and space. They must use their newfound power to travel back in time and prevent a catastrophic event that threatens the entire universe.",
+        "input_tokens": 76,
+        "output_tokens": 263,
+        "total_tokens": 339,
+        "latency_ms": 12347.577810287476,
+        "criteria_results": {
+          "has_five_ideas": true,
+          "has_numbered_list": true
+        }
+      },
+      "comparison": {
+        "token_diff": 180,
+        "token_diff_percent": 113.20754716981132,
+        "plain_criteria_passed": 2,
+        "ailo_criteria_passed": 2,
+        "criteria_improvement": 0
+      }
+    },
+    {
+      "prompt_id": "creative-02",
+      "prompt_name": "Marketing Copy",
+      "category": "creative",
+      "model_id": "amazon.titan-tg1-large",
+      "plain": {
+        "response": "\nHere is a catchy marketing copy for a new fitness app:\n\n\"Get fit and have fun with our brand-new fitness app! Stay motivated with personalized training plans, interactive workouts, and real-time progress tracking. Whether you're a beginner or a fitness enthusiast, our app has everything you need to achieve your health goals. Download now and start your journey to a healthier, happier you!\"",
+        "input_tokens": 17,
+        "output_tokens": 81,
+        "total_tokens": 98,
+        "latency_ms": 3836.3189697265625,
+        "criteria_results": {
+          "multiple_variants": false
+        }
+      },
+      "ailo": {
+        "response": " for a fitness app targeting busy professionals are provided below.\n1. Get fit, get ahead with our mobile fitness app! Stay ahead of the competition and conquer your fitness goals with our cutting-edge app. Whether you're a busy professional looking to squeeze in a workout or a fitness enthusiast looking to take your routine to the next level, our app has everything you need to stay motivated and achieve your fitness goals.\n2. Elevate your fitness journey with our mobile fitness app! Stay ahead of the competition and conquer your fitness goals with our cutting-edge app. Whether you're a busy professional looking to squeeze in a workout or a fitness enthusiast looking to take your routine to the next level, our app has everything you need to stay motivated and achieve your fitness goals.\n3. Unleash your full potential with our mobile fitness app! Stay ahead of the competition and conquer your fitness goals with our cutting-edge app. Whether you're a busy professional looking to squeeze in a workout or a fitness enthusiast looking to take your routine to the next level, our app has everything you need to stay motivated and achieve your fitness goals.",
+        "input_tokens": 122,
+        "output_tokens": 229,
+        "total_tokens": 351,
+        "latency_ms": 8886.258125305176,
+        "criteria_results": {
+          "multiple_variants": true
+        }
+      },
+      "comparison": {
+        "token_diff": 253,
+        "token_diff_percent": 258.16326530612247,
+        "plain_criteria_passed": 0,
+        "ailo_criteria_passed": 1,
+        "criteria_improvement": 1
+      }
+    },
+    {
+      "prompt_id": "tech-01",
+      "prompt_name": "Code Review",
+      "category": "technical",
+      "model_id": "amazon.titan-tg1-large",
+      "plain": {
+        "response": "\n\nThe code you provided appears to be a Python function named \"get_user\" that takes an \"id\" parameter and returns the corresponding user object from a list of users. The function uses a \"for\" loop to iterate over the \"users\" list and checks if the \"id\" of each user matches the provided \"id\". If a match is found, the user object is returned. If no match is found, the function returns \"None\".\n\nThere are a few things to note about this code:\n\n1. The \"users\" list: It's assumed that the \"users\" list contains user objects with \"id\" and \"other_info\" attributes. The code does not specify the structure of the \"users\" list, but it should be an iterable collection of user objects.\n\n2. The \"id\" parameter: The \"id\" parameter is expected to be an integer or any other type that can be compared with the \"id\" attribute of the user objects in the \"users\" list.\n\n3. The \"for\" loop: The \"for\" loop iterates over each user object in the \"users\" list and checks if the \"id\" of the current user matches the provided \"id\" parameter. If a match is found, the current user object is returned.\n\n4. Returning \"None\": If no match is found, the function returns \"None\". This indicates that the user with the specified \"id\" was not found in the \"users\" list.\n\nOverall, this code is a basic implementation of a function that retrieves a user object based on the provided \"id\". It can be used in scenarios where there is a list of users and need to find a specific user by their \"id\".\n",
+        "input_tokens": 52,
+        "output_tokens": 388,
+        "total_tokens": 440,
+        "latency_ms": 16358.323812484741,
+        "criteria_results": {
+          "has_code": false,
+          "mentions_issues": true
+        }
+      },
+      "ailo": {
+        "response": "\nThe provided code appears to be a Python function named \"get_user\" that takes an \"id\" parameter and searches for a user in a list of users. However, the code has some issues that should be addressed. Here are some suggestions for improvement:\n\nFormat: The code is not properly formatted. It should be indented with spaces to improve readability.\n\n1. Format the code properly by indenting with spaces.\n\n2. Use a docstring to provide a brief explanation of what the function does.\n\n3. Use a more descriptive name for the function, such as \"get_user_by_id\".\n\n4. Use a more appropriate type hint for the \"id\" parameter, such as \"int\".\n\n5. Use a more appropriate return type hint for the function, such as \"User\" or \"Optional[User]\".\n\nError Handling: The code does not handle errors properly. If the list of users is empty or if the \"id\" parameter is not found in the list, the function returns \"None\", which is not the expected behavior.\n\n1. Catch the \"IndexError\" exception if the list of users is empty.\n\n2. Catch the \"KeyError\" exception if the \"id\" parameter is not found in the list of users.\n\n3. Return \"None\" only if both exceptions are caught.\n\n4. Provide a more informative error message when the \"id\" parameter is not found.\n\nType Hints: The code should use type hints to improve the clarity and readability of the code.\n\n1. Use type hints for the \"id\" parameter and the return value.\n\n2. Use type hints for the \"users\" list.\n\n3. Use type hints for the \"user\" variable within the \"for\" loop.\n\nNaming Conventions: The code should follow consistent naming conventions to improve readability.\n\n1. Use lowercase names for variables and functions.\n\n2. Use descriptive names for variables and functions.\n\n3. Use camel case for names that contain multiple words.\n\n4. Avoid using names that are already reserved or have special meanings in Python.\n\n5. Avoid using names that are too long or too short.\n\n6. Avoid using names that are similar to existing names in the standard library or other libraries.\n\n7. Use names that are easy to understand and pronounce.\n\n8. Use names that are consistent with the naming conventions of other code in the project.\n\n9. Use names that are relevant to the purpose of the function or variable.\n\n10. Use names that are easy to search for in code documentation.\n\nPerformance: The code is not optimized for performance. It searches the entire list of users for each \"id\" parameter, which can be time-consuming for large lists.\n\n1. Use a binary search algorithm to find the index of the \"id\" parameter in the list of users.\n\n2. Use a set to store the \"id\" parameters and check if the \"id\" parameter is already in the set before searching the list of users.\n\n3. Use a generator expression to iterate over the list of users instead of using a \"for\" loop.\n\n4. Use a list comprehension to create a list of \"user\" objects directly from the list of users.\n\n5. Use a dictionary to store the \"id\" parameters and the corresponding \"user\" objects.\n\n6. Use a memory-efficient data structure, such as a \"SortedDict\", to store the \"id\" parameters and the corresponding \"user\" objects.\n\n7. Use a \"with\" statement to open and close the file to improve efficiency.\n\n8. Use a \"try-except\" block to catch any exceptions that may occur during file operations.\n\n9. Use a \"with\" statement to open and close the file to improve efficiency.\n\n10. Use a \"try-except\" block to catch any exceptions that may occur during file operations.\n\nIn conclusion, the provided code has several issues that should be addressed to improve its quality. By formatting the code properly, handling errors properly, using type hints, naming conventions, and optimizing performance, the code can be made more readable, reliable, and efficient.",
+        "input_tokens": 145,
+        "output_tokens": 903,
+        "total_tokens": 1048,
+        "latency_ms": 35651.389598846436,
+        "criteria_results": {
+          "has_code": false,
+          "mentions_issues": true
+        }
+      },
+      "comparison": {
+        "token_diff": 608,
+        "token_diff_percent": 138.1818181818182,
+        "plain_criteria_passed": 1,
+        "ailo_criteria_passed": 1,
+        "criteria_improvement": 0
+      }
+    },
+    {
+      "prompt_id": "tech-02",
+      "prompt_name": "Architecture Decision",
+      "category": "technical",
+      "model_id": "amazon.titan-tg1-large",
+      "plain": {
+        "response": "\nBoth monolithic and microservices architectures have their pros and cons, and the best choice depends on various factors. Here are some general considerations to help you decide:\n\nMonolithic Architecture:\n1. Simplicity: Monolithic architecture is simpler to develop, deploy, and maintain. The entire application runs within a single process, making it easier to understand and manage.\n2. Faster Time to Market: Developing and deploying a monolithic application can be faster due to reduced complexity.\n3. Less Complex Deployment: Deploying a monolithic application typically involves deploying a single package, which can be easier to manage compared to multiple microservices.\n\nMicroservices Architecture:\n1. Scalability and Resilience: Microservices architecture is designed to be highly scalable and resilient. If one service fails, it does not affect the entire application, as other services can continue to function independently.\n2. Flexibility and Agility: Microservices architecture allows for independent development, deployment, and scaling of each service, enabling faster innovation and adaptation to changing requirements.\n3. Better Resource Utilization: Microservices can be optimized for specific functions, allowing for more efficient resource utilization compared to a monolithic application.\n\nIn summary, if you prioritize simplicity, faster time to market, and reduced complexity in development and deployment, a monolithic architecture may be a suitable choice. On the other hand, if you prioritize scalability, resilience, flexibility, and better resource utilization, a microservices architecture may be a better fit. It's important to consider the specific requirements of your e-commerce platform and weigh the trade-offs between these two approaches to determine the best fit for your needs.",
+        "input_tokens": 21,
+        "output_tokens": 342,
+        "total_tokens": 363,
+        "latency_ms": 14490.887880325317,
+        "criteria_results": {
+          "has_recommendation": true,
+          "considers_tradeoffs": true
+        }
+      },
+      "ailo": {
+        "response": " to build a microservices architecture",
+        "input_tokens": 137,
+        "output_tokens": 7,
+        "total_tokens": 144,
+        "latency_ms": 772.4494934082031,
+        "criteria_results": {
+          "has_recommendation": false,
+          "considers_tradeoffs": false
+        }
+      },
+      "comparison": {
+        "token_diff": -219,
+        "token_diff_percent": -60.33057851239669,
+        "plain_criteria_passed": 2,
+        "ailo_criteria_passed": 0,
+        "criteria_improvement": -2
+      }
+    },
+    {
+      "prompt_id": "edge-01",
+      "prompt_name": "Persona Impact Test",
+      "category": "writing",
+      "model_id": "amazon.titan-tg1-large",
+      "plain": {
+        "response": "\n\nMachine learning is a type of artificial intelligence (AI) that allows computers to learn and improve from experience without being explicitly programmed. Machine learning algorithms build a model based on sample data, called training data, in order to make predictions or decisions without being explicitly programmed to do so. Machine learning algorithms are used in a wide range of applications, such as email filtering, speech recognition, and self-driving cars.",
+        "input_tokens": 9,
+        "output_tokens": 86,
+        "total_tokens": 95,
+        "latency_ms": 3682.9748153686523,
+        "criteria_results": {
+          "simple_language": false,
+          "has_analogy": false
+        }
+      },
+      "ailo": {
+        "response": " of machine learning: It's like a game where the computer tries to figure out how things work and make better guesses each time!",
+        "input_tokens": 90,
+        "output_tokens": 28,
+        "total_tokens": 118,
+        "latency_ms": 1675.328016281128,
+        "criteria_results": {
+          "simple_language": true,
+          "has_analogy": true
+        }
+      },
+      "comparison": {
+        "token_diff": 23,
+        "token_diff_percent": 24.210526315789473,
+        "plain_criteria_passed": 0,
+        "ailo_criteria_passed": 2,
+        "criteria_improvement": 2
+      }
+    },
+    {
+      "prompt_id": "edge-02",
+      "prompt_name": "Length Constraint Test",
+      "category": "writing",
+      "model_id": "amazon.titan-tg1-large",
+      "plain": {
+        "response": "\nThis model is unable to give advice on meditation, but it can provide general information on the topic. Meditation is a practice that involves training your mind to focus and become more aware of the present moment. There are many different types of meditation, but most involve focusing on your breath, body sensations, or a specific object or image. \r\n\r\nRegular meditation can help reduce stress, anxiety, and depression, and can also improve focus, concentration, and sleep quality. Some studies have also suggested that meditation can have physical health benefits, such as lower blood pressure and improved immune function. However, the benefits of meditation may vary depending on the individual and the type of meditation practiced. \r\n\r\nIt is important to approach meditation with a open mind and to avoid expecting immediate results. It may take time and practice to see the benefits of meditation. In addition, it is important to practice meditation in a quiet and comfortable environment, and to avoid distractions. If you are new to meditation, it may be helpful to find a meditation class or guided meditation recording to help you get started. \r\n\r\nIn conclusion, meditation is a practice that can have many benefits for both physical and mental health. While the benefits of meditation may vary depending on the individual, it is worth exploring as a potential tool for improving your overall health and well-being. However, it is important to approach meditation with a open mind and to avoid expecting immediate results. With regular practice, meditation can become a valuable part of your daily routine.",
+        "input_tokens": 16,
+        "output_tokens": 300,
+        "total_tokens": 316,
+        "latency_ms": 12025.407314300537,
+        "criteria_results": {
+          "exactly_three": false
+        }
+      },
+      "ailo": {
+        "response": " about the benefits of meditation:\n\u2022 Meditation helps reduce stress\n\u2022 Meditation can help with sleep\n\u2022 Meditation can help improve concentration",
+        "input_tokens": 49,
+        "output_tokens": 27,
+        "total_tokens": 76,
+        "latency_ms": 1467.4208164215088,
+        "criteria_results": {
+          "exactly_three": true
+        }
+      },
+      "comparison": {
+        "token_diff": -240,
+        "token_diff_percent": -75.9493670886076,
+        "plain_criteria_passed": 0,
+        "ailo_criteria_passed": 1,
+        "criteria_improvement": 1
+      }
+    }
+  ]
+}
