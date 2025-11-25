@@ -287,7 +287,7 @@ Ailo is not limited to one-off prompts. It is designed to support **orchestratio
 - **Tool Use** → AI can trigger external tools, APIs, or databases.  
 - **Automation Pipelines** → Multi-step sequences that run with minimal human input.  
 
-### 10.2 How Ailo Supports Level 5
+### 10.2 How Ailo Supports schema prompting
 
 1. **Chaining**  
    Ailo’s ACT/OBJ/OUTPUT fields allow for explicit stepwise flows.  
@@ -327,7 +327,7 @@ Ailo is not limited to one-off prompts. It is designed to support **orchestratio
    OUTPUT = Text
    ```
 
-### 10.3 Benefits of Ailo at Level 5
+### 10.3 Benefits of Ailo
 - **Scalable** → Can orchestrate 10, 50, or 100 prompts in sequence.  
 - **Consistent** → Every step has predictable format and delivery.  
 - **Machine-friendly** → JSON-ready for APIs, automation, and agents.  
