@@ -1,0 +1,119 @@
+{
+  "metadata": {
+    "model": "nova-micro",
+    "timestamp": "20251125_224334",
+    "total_tests": 10
+  },
+  "results": [
+    {
+      "prompt_id": "agent-math-01",
+      "technique": "zero_shot",
+      "model_id": "amazon.nova-micro-v1:0",
+      "final_answer": "To determine the cost of 7 apples with the given discount, we can follow these steps:\n\n1. **Calculate the total cost without the discount:**\n   Each apple costs $2, and you are buying 7 apples.\n   \\[\n   \\text{Total cost without discount} = 7 \\times 2 = 14 \\text{ dollars}\n   \\]\n\n2. **Check if the discount applies:**\n   Since you are buying 7 apples, which is more than 5, you qualify for the 20% discount.\n\n3. **Calculate the discount amount:**\n   The discount is 20% of the total cost.\n   \\[\n   \\te",
+      "success": true,
+      "total_tokens": 285,
+      "num_llm_calls": 1,
+      "num_tool_calls": 0,
+      "latency_ms": 1323.8725662231445
+    },
+    {
+      "prompt_id": "agent-math-01",
+      "technique": "react",
+      "model_id": "amazon.nova-micro-v1:0",
+      "final_answer": "The final price for 7 apples with the discount is $11.20.",
+      "success": true,
+      "total_tokens": 581,
+      "num_llm_calls": 1,
+      "num_tool_calls": 0,
+      "latency_ms": 1046.3848114013672
+    },
+    {
+      "prompt_id": "agent-math-01",
+      "technique": "pal",
+      "model_id": "amazon.nova-micro-v1:0",
+      "final_answer": "11.2",
+      "success": true,
+      "total_tokens": 155,
+      "num_llm_calls": 1,
+      "num_tool_calls": 1,
+      "latency_ms": 485.62145233154297
+    },
+    {
+      "prompt_id": "agent-math-01",
+      "technique": "chaining",
+      "model_id": "amazon.nova-micro-v1:0",
+      "final_answer": "The final price for 7 apples, after applying the 20% discount, is **$11.20**.",
+      "success": true,
+      "total_tokens": 1890,
+      "num_llm_calls": 3,
+      "num_tool_calls": 0,
+      "latency_ms": 2468.9011573791504
+    },
+    {
+      "prompt_id": "agent-math-01",
+      "technique": "reflexion",
+      "model_id": "amazon.nova-micro-v1:0",
+      "final_answer": "To determine the cost of 7 apples with the given discount, we'll follow these steps:\n\n1. **Calculate the regular price for 7 apples:**\n   Each apple costs $2.\n   \\[\n   \\text{Regular price for 7 apples} = 7 \\times 2 = 14 \\text{ dollars}\n   \\]\n\n2. **Determine if the discount applies:**\n   Since you are buying 7 apples, which is more than 5, you qualify for the 20% discount.\n\n3. **Calculate the discount amount:**\n   The discount is 20% of the regular price.\n   \\[\n   \\text{Discount amount} = 0.20 \\t",
+      "success": true,
+      "total_tokens": 820,
+      "num_llm_calls": 2,
+      "num_tool_calls": 0,
+      "latency_ms": 1641.3722038269043
+    },
+    {
+      "prompt_id": "agent-math-02",
+      "technique": "zero_shot",
+      "model_id": "amazon.nova-micro-v1:0",
+      "final_answer": "To determine the percentage increase in the company's revenue, we can use the following formula for percentage increase:\n\n\\[\n\\text{Percentage Increase} = \\left( \\frac{\\text{New Value} - \\text{Original Value}}{\\text{Original Value}} \\right) \\times 100\n\\]\n\nHere, the original value is $80,000 and the new value is $100,000.\n\nFirst, we calculate the difference between the new value and the original value:\n\n\\[\n\\text{Difference} = 100,000 - 80,000 = 20,000\n\\]\n\nNext, we divide this difference by the ori",
+      "success": true,
+      "total_tokens": 273,
+      "num_llm_calls": 1,
+      "num_tool_calls": 0,
+      "latency_ms": 696.9380378723145
+    },
+    {
+      "prompt_id": "agent-math-02",
+      "technique": "react",
+      "model_id": "amazon.nova-micro-v1:0",
+      "final_answer": "[your answer]",
+      "success": false,
+      "total_tokens": 426,
+      "num_llm_calls": 1,
+      "num_tool_calls": 0,
+      "latency_ms": 667.4444675445557
+    },
+    {
+      "prompt_id": "agent-math-02",
+      "technique": "pal",
+      "model_id": "amazon.nova-micro-v1:0",
+      "final_answer": "25.0",
+      "success": true,
+      "total_tokens": 129,
+      "num_llm_calls": 1,
+      "num_tool_calls": 1,
+      "latency_ms": 381.5772533416748
+    },
+    {
+      "prompt_id": "agent-math-02",
+      "technique": "chaining",
+      "model_id": "amazon.nova-micro-v1:0",
+      "final_answer": "The percentage increase in the company's revenue is **25%**.",
+      "success": true,
+      "total_tokens": 1708,
+      "num_llm_calls": 3,
+      "num_tool_calls": 0,
+      "latency_ms": 2645.6809043884277
+    },
+    {
+      "prompt_id": "agent-math-02",
+      "technique": "reflexion",
+      "model_id": "amazon.nova-micro-v1:0",
+      "final_answer": "To determine the percentage increase in the company's revenue, we can follow these steps:\n\n1. **Identify the initial and final values:**\n   - Initial revenue: \\( \\$80,000 \\)\n   - Final revenue: \\( \\$100,000 \\)\n\n2. **Calculate the increase in revenue:**\n   \\[\n   \\text{Increase} = \\text{Final revenue} - \\text{Initial revenue} = \\$100,000 - \\$80,000 = \\$20,000\n   \\]\n\n3. **Determine the percentage increase:**\n   The percentage increase is calculated using the formula:\n   \\[\n   \\text{Percentage incre",
+      "success": true,
+      "total_tokens": 1022,
+      "num_llm_calls": 2,
+      "num_tool_calls": 0,
+      "latency_ms": 1781.5325260162354
+    }
+  ]
+}
