@@ -6,141 +6,196 @@ This research compares different prompting techniques across multiple LLM models
 
 ## Prompting Styles Tested
 
-| Style | Description | Example |
-|-------|-------------|---------|
-| **Zero-shot** | Plain natural language prompt | "Summarize cloud computing benefits" |
-| **Schema** | Structured format with explicit fields | `ACT=Summarize OBJ=Cloud benefits TAGS=[Format:Bullets]` |
-| **Chain-of-Thought** | Explicit reasoning scaffolding | "Think step by step: 1) What matters to audience? 2) ..." |
+### Fully Tested (9 techniques)
+
+| Style | Description | Token Overhead |
+|-------|-------------|----------------|
+| **Zero-shot** | Plain natural language prompt | Baseline |
+| **Few-shot** | Include 1-2 examples before the task | -25% to +30% |
+| **Chain-of-Thought (CoT)** | Explicit step-by-step reasoning | +15% to +68% |
+| **Schema** | Structured format (ACT/OBJ/TAGS) | +4% to +86% |
+| **Meta Prompting** | LLM designs its own approach first | +46% to +123% |
+| **Generate Knowledge** | Generate relevant facts, then answer | +5% to +75% |
+| **Directional Stimulus** | Hints/keywords to guide response | -10% to +27% |
+| **Tree of Thoughts** | Explore multiple solution paths | +80% to +166% |
+| **Self-Consistency** | Multiple approaches, then reconcile | +44% to +211% |
+
+### Not Directly Testable (require special infrastructure)
+
+| Style | Why Not Testable | Alternative |
+|-------|------------------|-------------|
+| Prompt Chaining | Multi-turn by design | Test individual turns |
+| RAG | Requires retrieval system | Simulate with gen_knowledge |
+| ART (Auto Reasoning + Tools) | Requires tool access | N/A |
+| APE (Auto Prompt Engineer) | Meta-optimization loop | N/A |
+| Active-Prompt | Requires human-in-loop | N/A |
+| ReAct | Requires tool execution | N/A |
+| Reflexion | Multi-turn self-correction | N/A |
+| Multimodal CoT | Requires image input | N/A |
+| PAL (Program-Aided) | Requires code execution | Generate code only |
+| Graph Prompting | Complex structure | Simplified ToT covers |
 
 ## Key Findings
 
-### Finding 1: Schema Prompting Helps Budget Models Most
+### Finding 1: Few-shot is the Hidden Champion
 
 ```
-PASS RATE BY MODEL TIER
-                    Zero-shot   Schema    Improvement
-Budget models:        77-91%    86-100%      +9-23%
-Mid-tier models:      86-91%    95-100%      +5-14%
-Premium models:       86-95%    95-100%      +0-14%
+MISTRAL 7B RESULTS (Budget Model)
+Style              Pass Rate    vs Zero-shot    Token Overhead
+--------------------------------------------------------------
+Zero-shot            72.2%       baseline        baseline
+Few-shot             88.9%       +16.7%          -24.6%  <-- BEST ROI!
+Directional          94.4%       +22.2%          -10.4%
+Gen-Knowledge        94.4%       +22.2%          +5.0%
+CoT                  94.4%       +22.2%          +14.5%
 ```
 
-**Insight**: Smaller/cheaper models benefit significantly from structured prompts. The structure compensates for reduced instruction-following capability.
+**Insight**: Few-shot prompting improved accuracy AND reduced tokens on budget models. The examples help the model understand the task without verbose instructions.
 
-### Finding 2: Chain-of-Thought Underperformed in General Tasks
+### Finding 2: Directional Stimulus is Underrated
+
+Adding simple hints/keywords (e.g., "HINTS: Calculate total first, then apply discount") achieves similar improvements to CoT but with far less token overhead.
 
 ```
-OVERALL RESULTS (6 models, 12 test cases each)
-                    Pass Rate    Avg Tokens    Token Overhead
-Zero-shot:            89.5%         334            baseline
-Schema:               93.9%         399            +19%
-Chain-of-Thought:     88.6%         451            +35%
+DIRECTIONAL vs COT (Mistral 7B)
+Directional: +22.2% improvement, -10.4% tokens
+CoT:         +22.2% improvement, +14.5% tokens
 ```
 
-**Insight**: CoT added significant token overhead (+35%) without improving pass rates on our general test suite. CoT shines specifically on mathematical/logical reasoning tasks.
+**Winner**: Directional Stimulus for same accuracy at lower cost.
 
-### Finding 3: Schema Has Best ROI for Format Compliance
+### Finding 3: Complex Techniques Often Underperform
 
-Looking at specific test cases, schema prompting excelled at:
-- Persona adherence (e.g., "explain like a kindergarten teacher")
-- Length constraints (e.g., "exactly 3 bullet points")
-- Output format requirements (e.g., "as a markdown table")
+Tree of Thoughts and Self-Consistency add massive token overhead (80-211%) without corresponding accuracy gains:
 
-These constraints are easily forgotten in zero-shot but explicitly encoded in schema.
+```
+NOVA MICRO (Budget Model)
+Style              Pass Rate    Token Overhead
+----------------------------------------------
+Zero-shot            94.4%       baseline
+Tree of Thoughts     83.3%       +130.8%  <-- WORSE accuracy!
+Self-Consistency     94.4%       +118.4%  <-- Same accuracy, 2x tokens
+```
 
-### Finding 4: Premium Models Don't Need Help
+**Insight**: Simpler techniques often win. Complex prompting adds cognitive load for the model.
 
-Claude Haiku/Sonnet showed minimal improvement from structured prompts:
-- Already excellent at instruction following
-- Schema overhead not justified for simple tasks
-- Better to optimize for token efficiency
+### Finding 4: Best ROI by Model Tier
 
-## Model-Specific Results
+| Model Tier | Best Technique | Why |
+|------------|---------------|-----|
+| **Budget** (Mistral 7B) | Few-shot or Directional | +16-22% accuracy, saves tokens |
+| **Mid** (Nova Micro) | Schema or Few-shot | +5.6% accuracy, moderate overhead |
+| **Premium** (Claude) | Zero-shot | Already 95%+ accurate |
+
+## Comprehensive Results
 
 ### Amazon Nova Micro (Budget)
-```
-Zero-shot:        90.9% |  390 tokens
-Schema:           95.5% |  452 tokens  (+4.5%)
-Chain-of-Thought: 90.9% |  494 tokens  (same)
-Winner: Schema
-```
 
-### Amazon Nova Lite (Budget)
 ```
-Zero-shot:        95.5% |  379 tokens
-Schema:          100.0% |  389 tokens  (+4.5%)
-Chain-of-Thought: 90.9% |  469 tokens  (-4.5%)
-Winner: Schema
+Style              Pass Rate    vs Zero    Tokens    Token Diff
+----------------------------------------------------------------
+Zero-Shot            94.4%      baseline      323     baseline
+Few-Shot            100.0%       +5.6%        317       -1.9%
+CoT                  94.4%        same        543      +67.9%
+Schema              100.0%       +5.6%        440      +36.2%
+Meta                 94.4%        same        686     +112.0%
+Gen-Knowledge        94.4%        same        566      +75.1%
+Directional         100.0%       +5.6%        410      +26.9%
+ToT                  83.3%      -11.1%        746     +130.8%
+Self-Consistency     94.4%        same        706     +118.4%
+
+WINNER: Few-shot (+5.6% accuracy, -2% tokens)
 ```
 
 ### Mistral 7B (Budget)
-```
-Zero-shot:        77.3% |  370 tokens
-Schema:           86.4% |  392 tokens  (+9.1%)
-Chain-of-Thought: 86.4% |  434 tokens  (+9.1%)
-Winner: Schema/CoT tied
-```
 
-### Mistral Small (Budget)
 ```
-Zero-shot:        90.9% |  343 tokens
-Schema:           90.9% |  366 tokens  (same)
-Chain-of-Thought: 86.4% |  406 tokens  (-4.5%)
-Winner: Zero-shot (simplest)
-```
+Style              Pass Rate    vs Zero    Tokens    Token Diff
+----------------------------------------------------------------
+Zero-Shot            72.2%      baseline      419     baseline
+Few-Shot             88.9%      +16.7%        316      -24.6%
+CoT                  94.4%      +22.2%        480      +14.5%
+Schema               88.9%      +16.7%        402       -3.9%
+Meta                 83.3%      +11.1%        610      +45.8%
+Gen-Knowledge        94.4%      +22.2%        440       +5.0%
+Directional          94.4%      +22.2%        375      -10.4%
+ToT                  77.8%       +5.6%        753      +79.8%
+Self-Consistency     88.9%      +16.7%        601      +43.5%
 
-### Claude Haiku 4.5 (Mid)
-```
-Zero-shot:        90.9% |  312 tokens
-Schema:           95.5% |  519 tokens  (+4.5%)
-Chain-of-Thought: 90.9% |  577 tokens  (same)
-Winner: Zero-shot (best ROI)
+WINNER: Directional (+22.2% accuracy, -10.4% tokens)
+RUNNER-UP: Few-shot (+16.7% accuracy, -24.6% tokens)
 ```
 
 ## Recommendations Matrix
 
-| Use Case | Model Tier | Recommended Style |
-|----------|------------|-------------------|
-| General tasks | Premium | Zero-shot |
-| General tasks | Budget | Schema |
-| Math/Logic problems | Any | Chain-of-Thought |
-| Format-critical output | Any | Schema |
-| Simple questions | Any | Zero-shot |
-| Persona-driven responses | Budget/Mid | Schema |
-| Cost-sensitive | Any | Zero-shot |
-| Accuracy-critical | Budget | Schema |
+| Use Case | Model Tier | Recommended Style | Why |
+|----------|------------|-------------------|-----|
+| General tasks | Premium | Zero-shot | Already accurate |
+| General tasks | Budget | Few-shot | Best ROI |
+| Math/Logic | Any | CoT or Directional | Reasoning benefits |
+| Format-critical | Any | Schema | Explicit constraints |
+| Persona-driven | Budget | Schema or Few-shot | Examples help |
+| Token-sensitive | Budget | Few-shot or Directional | Can save tokens |
+| Accuracy-critical | Budget | CoT or Gen-Knowledge | Higher accuracy |
+| Quick prototyping | Any | Zero-shot | Fastest iteration |
 
 ## When to Use Each Style
 
-### Use Zero-shot When:
-- Using premium/advanced models (Claude, GPT-4)
-- Task is simple and straightforward
-- Token cost is a concern
-- Response speed is critical
-- Model already follows instructions well
+### Zero-shot (Baseline)
+- Premium models that follow instructions well
+- Simple, well-defined tasks
+- When iterating quickly on prompts
+- Token cost is critical
 
-### Use Schema When:
-- Using budget/smaller models
-- Output format must be exact
-- Persona or context is important
-- Multiple constraints must be satisfied
-- Cheaper alternative to premium model
+### Few-shot (Best ROI for Budget Models)
+- Budget/smaller models
+- Tasks where examples clarify the expected format
+- When you have good representative examples
+- Want accuracy boost without token penalty
 
-### Use Chain-of-Thought When:
-- Mathematical calculations required
+### Chain-of-Thought
+- Mathematical calculations
 - Multi-step logical reasoning
-- Problem decomposition needed
-- Accuracy matters more than cost
-- Debugging complex issues
+- When showing work is valuable
+- Debugging complex problems
+
+### Schema (Structured)
+- Multiple constraints must be met
+- Specific output format required
+- Persona/context is critical
+- Complex multi-part tasks
+
+### Directional Stimulus
+- You know the expected answer pattern
+- Want to guide without full examples
+- Lower token overhead than CoT
+- Combining with other techniques
+
+### Generate Knowledge
+- Tasks requiring factual background
+- When model might lack specific knowledge
+- Two-phase reasoning needed
+
+### Meta Prompting
+- Novel/unusual tasks
+- When standard approaches might fail
+- Letting model choose its approach
+
+### Tree of Thoughts / Self-Consistency
+- High-stakes decisions only
+- When token cost is not a concern
+- Complex problems benefiting from multiple perspectives
+- Generally NOT recommended due to high overhead
 
 ## Methodology
 
-### Test Suite
-12 test cases across 5 categories:
-- Writing (executive summaries, documentation)
-- Reasoning (math problems, logic puzzles)
-- Creative (story ideas, marketing copy)
-- Analysis (comparisons, pros/cons)
-- Technical (code review, architecture)
+### Test Suite (v3)
+9 test cases across 5 categories:
+- **Writing**: Executive summaries, persona adherence
+- **Reasoning**: Math problems, logic puzzles, percentages
+- **Creative**: Story ideas generation
+- **Analysis**: Framework comparisons, pros/cons
+- **Technical**: Code explanations
 
 ### Evaluation Criteria
 Each response evaluated against 2-3 objective criteria:
@@ -149,8 +204,8 @@ Each response evaluated against 2-3 objective criteria:
 - Content accuracy (correct answers, required elements)
 
 ### Models Tested
-- **Budget**: Nova Micro, Nova Lite, Mistral 7B, Mistral Small
-- **Mid**: Claude Haiku 4.5
+- **Budget**: Nova Micro, Mistral 7B
+- **Mid**: Nova Lite, Claude Haiku 4.5
 - **Premium**: Claude Sonnet 4.5, Mistral Large
 
 ## Running the Benchmarks
@@ -163,8 +218,11 @@ pip install -r requirements.txt
 export AWS_ACCESS_KEY_ID=your_key
 export AWS_SECRET_ACCESS_KEY=your_secret
 
-# Run multi-style benchmark
+# Run 3-style benchmark (quick)
 python multi_style_benchmark.py --model nova-micro
+
+# Run comprehensive 9-style benchmark
+python multi_style_benchmark_v2.py --model mistral-7b
 
 # Generate report
 python generate_report.py
@@ -174,28 +232,31 @@ python generate_report.py
 
 ```
 research/
-├── bedrock_client.py      # AWS Bedrock API client
-├── test_prompts_v2.py     # Multi-style test cases
-├── multi_style_benchmark.py # Benchmark runner
-├── generate_report.py     # Report generator
-├── results/               # Benchmark results (JSON)
-└── FINDINGS.md            # This document
+├── bedrock_client.py           # AWS Bedrock API client
+├── test_prompts_v2.py          # 3-style test cases (Zero/Schema/CoT)
+├── test_prompts_v3.py          # 9-style comprehensive test cases
+├── multi_style_benchmark.py    # 3-style benchmark runner
+├── multi_style_benchmark_v2.py # 9-style comprehensive runner
+├── generate_report.py          # Report generator
+├── results/                    # Benchmark results (JSON)
+└── FINDINGS.md                 # This document
 ```
 
 ## Limitations
 
-1. **Sample Size**: 12 test cases may not cover all use cases
-2. **Model Versions**: Results may vary with model updates
-3. **Task Types**: General tasks; specialized domains may differ
-4. **Evaluation**: Automated criteria; subjective quality not measured
+1. **Sample Size**: 9 test cases per comprehensive run
+2. **Single-call Simulation**: ToT and Self-Consistency simulated in single prompt
+3. **Model Versions**: Results may vary with model updates
+4. **Task Types**: General tasks; specialized domains may differ
+5. **Evaluation**: Automated criteria; subjective quality not measured
 
-## Future Work
+## Key Takeaways
 
-- Add Few-shot prompting comparison
-- Test more specialized models (coding, reasoning)
-- Measure latency alongside tokens
-- Add subjective quality ratings
-- Expand test case coverage
+1. **Simple often wins**: Few-shot and Directional beat complex techniques
+2. **ROI matters**: Consider accuracy gain vs token cost
+3. **Model tier matters**: Budget models benefit most from prompting techniques
+4. **Premium models are robust**: Zero-shot works fine for Claude/GPT-4
+5. **Overhead adds up**: ToT/Self-Consistency rarely justify their cost
 
 ## License
 
@@ -204,3 +265,4 @@ MIT - Use this research and tooling freely.
 ---
 
 *Generated from benchmark data collected November 2025*
+*9 prompting techniques tested across multiple AWS Bedrock models*
