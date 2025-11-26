@@ -1,0 +1,531 @@
+{
+  "metadata": {
+    "model": "gemini-2.0-flash",
+    "model_name": "Gemini 2.0 Flash",
+    "provider": "gemini",
+    "tier": "budget",
+    "timestamp": "20251125_234922",
+    "styles_tested": [
+      "zero_shot",
+      "few_shot",
+      "cot",
+      "schema",
+      "meta",
+      "gen_knowledge",
+      "directional",
+      "tot",
+      "self_consistency"
+    ]
+  },
+  "results": [
+    {
+      "test_id": "reason-math-01",
+      "test_name": "Discount Calculation",
+      "category": "reasoning",
+      "styles": {
+        "zero_shot": {
+          "response": "Let the cost of one apple be $2.\nIf you buy 5 or more apples, you get a 20% discount.\nWe want to find the cost of 7 apples.\nSince we are buying 7 apples, which is more than 5, we get a 20% discount.\nThe cost of 7 apples without discount is $7 \\times 2 = $14$.\nThe discount is 20% of the total cost, which is $0.20 \\times 14 = 2.8$.\nThe discounted price is $14 - 2.8 = 11.2$.\nThe cost of 7 apples with a 20% discount is $11.2.\n\nAlternatively, the price of one apple is $2.\nIf you buy 5 or more apples, you get a 20% discount.\nSince we are buying 7 apples, we get a 20% discount.\nThe price of one apple with a 20% discount is $2 - (0.2 \\times 2) = 2 - 0.4 = 1.6$.\nThe cost of 7 apples with the discount is $7 \\times 1.6 = 11.2$.\n\nThe cost of 7 apples is $7 \\times 2 = 14$.\nThe discount is 20%, so we pay 100% - 20% = 80% of the original price.\nThe cost of 7 apples with the discount is $14 \\times 0.8 = 11.2$.\n\nFinal Answer: The final answer is $\\boxed{11.20}$",
+          "input_tokens": 35,
+          "output_tokens": 368,
+          "total_tokens": 403,
+          "latency_ms": 2425.8241653442383,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "few_shot": {
+          "response": "Here's how to calculate the cost of 7 apples:\n\n*   **Original price:** 7 apples * $2/apple = $14\n*   **Discount:** $14 * 20% = $2.80\n*   **Final price:** $14 - $2.80 = $11.20\n\nSo, 7 apples would cost $11.20.\n",
+          "input_tokens": 116,
+          "output_tokens": 91,
+          "total_tokens": 207,
+          "latency_ms": 979.0453910827637,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "cot": {
+          "response": "Here's the breakdown:\n\n1.  **Regular Price:** 7 apples at $2 each would cost 7 * $2 = $14.\n2.  **Discount Applies?** Yes, since you are buying 7 apples, which is more than 5.\n3.  **Discount Amount:** The discount is 20% of the regular price, so 0.20 * $14 = $2.80.\n4.  **Final Price:** Subtract the discount from the regular price: $14 - $2.80 = $11.20.\n\n**Final Answer:** 7 apples would cost $11.20.\n",
+          "input_tokens": 91,
+          "output_tokens": 147,
+          "total_tokens": 238,
+          "latency_ms": 1062.6184940338135,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "schema": {
+          "response": "Okay, I will calculate the cost of 7 apples with the given discount.\n\n**Steps:**\n\n1.  **Calculate the original cost:**\n    *   The original cost of 7 apples is 7 * $2 = $14\n\n2.  **Determine if the discount applies:**\n    *   Since you are buying 7 apples, which is more than 5, the 20% discount applies.\n\n3.  **Calculate the discount amount:**\n    *   Discount = 20% of $14 = 0.20 * $14 = $2.80\n\n4.  **Calculate the final cost:**\n    *   Final cost = Original cost - Discount\n    *   Final cost = $14 - $2.80 = $11.20\n\n**Final Answer:**\n\nThe cost of 7 apples would be $11.20.\n",
+          "input_tokens": 83,
+          "output_tokens": 195,
+          "total_tokens": 278,
+          "latency_ms": 1420.6111431121826,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "meta": {
+          "response": "Okay, let's break down this problem and figure out the best way to solve it.\n\n**1. Problem Type:**\n\nThis is a word problem involving discounts and basic arithmetic. It requires understanding how discounts are applied and calculating the final cost.\n\n**2. Mathematical Operations:**\n\n*   Multiplication: To find the initial cost of the apples.\n*   Percentage Calculation: To determine the amount of the discount.\n*   Subtraction: To subtract the discount from the original price to get the final price.\n\n**3. Efficient Solution Method:**\n\nSince we're buying 7 apples, which is more than 5, we qualify for the discount. The most efficient way to solve this is:\n\n1.  Calculate the original cost of 7 apples.\n2.  Calculate the discount amount.\n3.  Subtract the discount from the original cost.\n\n**Solution:**\n\n1.  **Original cost:** 7 apples * $2/apple = $14\n2.  **Discount amount:** $14 * 20% = $14 * 0.20 = $2.80\n3.  **Final cost:** $14 - $2.80 = $11.20\n\n**Answer:** 7 apples would cost $11.20.\n",
+          "input_tokens": 93,
+          "output_tokens": 277,
+          "total_tokens": 370,
+          "latency_ms": 1770.2820301055908,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "gen_knowledge": {
+          "response": "Here's how to calculate the cost:\n\n1. **Price per apple:** $2\n2. **Number of apples:** 7\n3. **Total original price:** 7 * $2 = $14\n4. **Discount applies:** Since you're buying 7 apples (more than 5), you get a 20% discount.\n5. **Discount amount:** $14 * 0.20 = $2.80\n6. **Final price:** $14 - $2.80 = $11.20\n\nTherefore, 7 apples would cost $11.20.\n",
+          "input_tokens": 92,
+          "output_tokens": 137,
+          "total_tokens": 229,
+          "latency_ms": 1171.0801124572754,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "directional": {
+          "response": "Okay, let's break it down:\n\n*   **Cost without discount:** 7 apples * $2/apple = $14\n*   **Discount amount:** $14 * 0.20 (20%) = $2.80\n*   **Final cost:** $14 - $2.80 = $11.20\n\nSo, 7 apples would cost $11.20.\n",
+          "input_tokens": 63,
+          "output_tokens": 94,
+          "total_tokens": 157,
+          "latency_ms": 833.7783813476562,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "tot": {
+          "response": "Okay, let's explore the different solution paths to calculate the cost of 7 apples with the given discount.\n\n**Understanding the Problem:**\n\n*   Price per apple: $2\n*   Discount: 20% if you buy 5 or more apples.\n*   Number of apples: 7\n\n**Path A: Calculate total, then subtract discount amount**\n\n1.  **Calculate the total cost without the discount:** 7 apples * $2/apple = $14\n2.  **Calculate the discount amount:** $14 * 20% = $14 * 0.20 = $2.80\n3.  **Subtract the discount from the total cost:** $14 - $2.80 = $11.20\n\n**Path B: Calculate discounted unit price, then multiply**\n\n1.  **Calculate the discount per apple:** $2 * 20% = $2 * 0.20 = $0.40\n2.  **Calculate the discounted price per apple:** $2 - $0.40 = $1.60\n3.  **Calculate the total cost:** 7 apples * $1.60/apple = $11.20\n\n**Path C: Calculate what percentage you pay (80%), apply to total**\n\n1.  **Determine the percentage you pay:** 100% - 20% = 80%\n2.  **Calculate the total cost without the discount:** 7 apples * $2/apple = $14\n3.  **Apply the percentage you pay to the total cost:** $14 * 80% = $14 * 0.80 = $11.20\n\n**Evaluation:**\n\nAll three paths lead to the same answer: $11.20. All are valid and reliable.\n\n**Most Reliable Answer:**\n\n$11.20\n\n**Final Answer:** The final answer is $\\boxed{11.20}$",
+          "input_tokens": 90,
+          "output_tokens": 433,
+          "total_tokens": 523,
+          "latency_ms": 2912.2672080993652,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "self_consistency": {
+          "response": "Okay, let's calculate the cost of 7 apples with the given discount using three different methods.\n\n**1. Method 1: Standard Calculation**\n\n*   **Price per apple:** $2\n*   **Number of apples:** 7\n*   **Total price without discount:** 7 * $2 = $14\n*   **Discount:** 20% of $14 = 0.20 * $14 = $2.80\n*   **Final price:** $14 - $2.80 = $11.20\n\n**2. Method 2: Alternative Approach**\n\n*   **Discounted price per apple:** $2 * (1 - 0.20) = $2 * 0.80 = $1.60\n*   **Number of apples:** 7\n*   **Total price:** 7 * $1.60 = $11.20\n\n**3. Method 3: Verification Method**\n\n* Calculate as if buying 5 apples to get the discount, then add the price of the remaining 2 apples without discount.\n* **Price of 5 apples without discount:** 5 * $2 = $10\n* **Discount:** 20% of $10 = 0.20 * $10 = $2\n* **Discounted price of 5 apples:** $10 - $2 = $8\n* **Price of remaining 2 apples (without discount):** 2 * $2 = $4\n* **Total Price:** $8 + $4 = $12 (This does NOT match the previous methods)\n\n**Comparison:**\n\n*   Method 1: $11.20\n*   Method 2: $11.20\n*   Method 3: $12.00\n\n**Analysis:**\n\nMethods 1 and 2 agree, while Method 3 is incorrect. The error in method 3 is that you cannot apply the discount only to 5 apples and then add the other 2 apples at the full price. You must calculate the discount on ALL apples.\n\n**Final Answer:**\n\nThe cost of 7 apples is $\\boxed{$11.20}$.\n",
+          "input_tokens": 89,
+          "output_tokens": 479,
+          "total_tokens": 568,
+          "latency_ms": 3529.4625759124756,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        }
+      }
+    },
+    {
+      "test_id": "reason-logic-01",
+      "test_name": "Pet Logic Puzzle",
+      "category": "reasoning",
+      "styles": {
+        "zero_shot": {
+          "response": "Here's the solution:\n\n*   **Alice is allergic to fur:** This means Alice cannot have the cat or the dog. Therefore, Alice must have the **fish**.\n\n*   **Bob's pet can bark:** This means Bob must have the **dog**.\n\n*   **Carol is left:** Since Alice has the fish and Bob has the dog, Carol must have the **cat**.\n\n**Therefore:**\n\n*   Alice has the fish.\n*   Bob has the dog.\n*   Carol has the cat.",
+          "input_tokens": 51,
+          "output_tokens": 110,
+          "total_tokens": 161,
+          "latency_ms": 1012.8638744354248,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        },
+        "few_shot": {
+          "response": "Okay, let's solve this logic puzzle:\n\n*   **Alice is allergic to fur:** This means Alice cannot have the cat or the dog. Therefore, Alice must have the fish.\n\n*   **Bob's pet can bark:** This means Bob must have the dog.\n\n*   **That leaves Carol:** Since Alice has the fish and Bob has the dog, Carol must have the cat.\n\n**Answer:**\n\n*   Alice = Fish\n*   Bob = Dog\n*   Carol = Cat\n",
+          "input_tokens": 113,
+          "output_tokens": 106,
+          "total_tokens": 219,
+          "latency_ms": 792.0777797698975,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        },
+        "cot": {
+          "response": "Okay, let's break this down:\n\n*   **Clue 1: Alice is allergic to fur.**\n    *   **Conclusion:** This means Alice cannot have the cat or the dog. Therefore, Alice must have the fish.\n\n*   **Clue 2: Bob's pet can bark.**\n    *   **Conclusion:** This means Bob must have the dog.\n\n*   **Clue 3: By elimination, what's left for Carol?**\n    *   **Conclusion:** Since Alice has the fish and Bob has the dog, Carol must have the cat.\n\n**Final Answer:**\n\n*   Alice has the fish.\n*   Bob has the dog.\n*   Carol has the cat.",
+          "input_tokens": 116,
+          "output_tokens": 151,
+          "total_tokens": 267,
+          "latency_ms": 1411.4646911621094,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        },
+        "schema": {
+          "response": "Okay, I will solve the logic puzzle and provide a structured reasoning process to arrive at the solution.\n\n**Let's define our variables:**\n\n*   **Friends:** Alice, Bob, Carol\n*   **Pets:** Cat, Dog, Fish\n\n**Constraints/Facts:**\n\n1.  Each friend has only one pet.\n2.  Each pet is owned by only one friend.\n3.  Alice is allergic to fur.\n4.  Bob's pet can bark.\n\n**Reasoning:**\n\n1.  **From Constraint 3 (Alice is allergic to fur):** Alice cannot have the cat or the dog. Therefore, Alice must have the fish.\n    *   Alice = Fish\n\n2.  **From Constraint 4 (Bob's pet can bark):** Bob must have the dog.\n    *   Bob = Dog\n\n3.  **Since Alice has the fish and Bob has the dog:** Carol must have the remaining pet, which is the cat.\n    *   Carol = Cat\n\n**Solution:**\n\n*   Alice = Fish\n*   Bob = Dog\n*   Carol = Cat\n",
+          "input_tokens": 92,
+          "output_tokens": 237,
+          "total_tokens": 329,
+          "latency_ms": 1833.7135314941406,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        },
+        "meta": {
+          "response": "Okay, here's my approach to solving this logic puzzle:\n\n**1. Logical Framework:**\n\nI'll use **process of elimination** combined with **constraint satisfaction**.  The constraints are the clues given in the puzzle. I'll systematically eliminate possibilities for each person based on these constraints until only one possibility remains.\n\n**2. Information Organization:**\n\nI'll use a table to organize the information.  This makes it easy to visualize the possibilities and mark them as eliminated. The table will have:\n\n*   **Rows:**  The people (Alice, Bob, Carol)\n*   **Columns:** The pets (Cat, Dog, Fish)\n*   **Cells:**  Representing whether a person *could* have a particular pet. I'll use \"X\" to mark a cell as impossible and a checkmark or the name of the person when the solution is found.\n\nHere's the initial table:\n\n| Person | Cat | Dog | Fish |\n|---|---|---|---|\n| Alice |  |  |  |\n| Bob |  |  |  |\n| Carol |  |  |  |\n\n**3. Tracking Possibilities:**\n\n*   I'll start by filling in the \"X\"s based on the clues.\n*   Once a person is definitely assigned a pet, I'll mark that cell with their name. This also means I need to \"X\" out that pet for the other two people, and \"X\" out the other pets for that person.\n*   I will proceed step-by-step based on the deductions that can be made at each stage.\n\n**In summary:** I'll use a process of elimination with a table for organization, focusing on applying the constraints to reduce the possibilities until the solution becomes clear.\n",
+          "input_tokens": 104,
+          "output_tokens": 374,
+          "total_tokens": 478,
+          "latency_ms": 2985.25071144104,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        },
+        "gen_knowledge": {
+          "response": "Here's the solution:\n\n1.  **Alice's Pet:** Since Alice is allergic to fur, she cannot have a cat or a dog. Therefore, Alice must have the **fish**.\n\n2.  **Bob's Pet:** Bob's pet can bark, and only dogs can bark. Therefore, Bob must have the **dog**.\n\n3.  **Carol's Pet:** Since Alice has the fish and Bob has the dog, Carol must have the **cat**.\n\n**Answer:**\n\n*   Alice has the fish.\n*   Bob has the dog.\n*   Carol has the cat.\n",
+          "input_tokens": 97,
+          "output_tokens": 130,
+          "total_tokens": 227,
+          "latency_ms": 1549.5221614837646,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        },
+        "directional": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 37.706735093s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 37\n}\n]"
+        },
+        "tot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 37.659044377s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 37\n}\n]"
+        },
+        "self_consistency": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 37.617328235s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 37\n}\n]"
+        }
+      }
+    },
+    {
+      "test_id": "write-exec-01",
+      "test_name": "Executive Summary",
+      "category": "writing",
+      "styles": {
+        "zero_shot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 37.568652679s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 37\n}\n]"
+        },
+        "few_shot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 37.522125592s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 37\n}\n]"
+        },
+        "cot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 37.480517429s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 37\n}\n]"
+        },
+        "schema": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 37.435753144s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 37\n}\n]"
+        },
+        "meta": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 37.386777474s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 37\n}\n]"
+        },
+        "gen_knowledge": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 37.343301324s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 37\n}\n]"
+        },
+        "directional": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 37.305359162s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 37\n}\n]"
+        },
+        "tot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 37.261652768s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 37\n}\n]"
+        },
+        "self_consistency": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 37.219487116s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 37\n}\n]"
+        }
+      }
+    },
+    {
+      "test_id": "analysis-compare-01",
+      "test_name": "Framework Comparison",
+      "category": "analysis",
+      "styles": {
+        "zero_shot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 37.175841659s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 37\n}\n]"
+        },
+        "few_shot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 37.129880122s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 37\n}\n]"
+        },
+        "cot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 37.086554265s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 37\n}\n]"
+        },
+        "schema": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 37.039550303s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 37\n}\n]"
+        },
+        "meta": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.992047783s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "gen_knowledge": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.942758023s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "directional": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.893912333s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "tot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.8476342s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "self_consistency": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.807871372s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        }
+      }
+    },
+    {
+      "test_id": "tech-explain-01",
+      "test_name": "Code Explanation",
+      "category": "technical",
+      "styles": {
+        "zero_shot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.764436505s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "few_shot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.716776064s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "cot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.668898414s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "schema": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.625571716s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "meta": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.582446725s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "gen_knowledge": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.542967339s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "directional": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.498223617s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "tot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.446919633s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "self_consistency": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.402022493s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        }
+      }
+    },
+    {
+      "test_id": "creative-story-01",
+      "test_name": "Story Ideas",
+      "category": "creative",
+      "styles": {
+        "zero_shot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.358318901s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "few_shot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.318161248s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "cot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.274694886s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "schema": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.227842212s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "meta": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.189234616s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "gen_knowledge": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.145626988s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "directional": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.100840337s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "tot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.056104508s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        },
+        "self_consistency": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 36.01759718s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 36\n}\n]"
+        }
+      }
+    },
+    {
+      "test_id": "reason-percent-01",
+      "test_name": "Percentage Calculation",
+      "category": "reasoning",
+      "styles": {
+        "zero_shot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.967367907s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "few_shot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.921032957s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "cot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.879139879s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "schema": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.829419255s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "meta": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.781898992s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "gen_knowledge": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.736797087s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "directional": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.683944381s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "tot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.641658167s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "self_consistency": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.598559047s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        }
+      }
+    },
+    {
+      "test_id": "write-persona-01",
+      "test_name": "Persona Adherence",
+      "category": "writing",
+      "styles": {
+        "zero_shot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.559114944s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "few_shot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.51372764s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "cot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.467702074s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "schema": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.427558762s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "meta": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.390555719s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "gen_knowledge": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.347942675s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "directional": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.30779768s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "tot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.269437793s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "self_consistency": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.226083514s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        }
+      }
+    },
+    {
+      "test_id": "analysis-proscons-01",
+      "test_name": "Pros and Cons",
+      "category": "analysis",
+      "styles": {
+        "zero_shot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.176615244s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "few_shot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.117095959s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "cot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.068833228s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "schema": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 35.008864932s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "meta": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 34.950192306s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 34\n}\n]"
+        },
+        "gen_knowledge": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 34.906924285s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 34\n}\n]"
+        },
+        "directional": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 34.867211518s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 34\n}\n]"
+        },
+        "tot": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 34.822157452s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 34\n}\n]"
+        },
+        "self_consistency": {
+          "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash\nPlease retry in 34.77848068s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 15\n}\n, retry_delay {\n  seconds: 34\n}\n]"
+        }
+      }
+    }
+  ],
+  "summary": {
+    "zero_shot": {
+      "pass_rate": 100.0,
+      "avg_tokens": 282,
+      "tests_completed": 2
+    },
+    "few_shot": {
+      "pass_rate": 100.0,
+      "avg_tokens": 213,
+      "tests_completed": 2
+    },
+    "cot": {
+      "pass_rate": 100.0,
+      "avg_tokens": 252,
+      "tests_completed": 2
+    },
+    "schema": {
+      "pass_rate": 100.0,
+      "avg_tokens": 304,
+      "tests_completed": 2
+    },
+    "meta": {
+      "pass_rate": 100.0,
+      "avg_tokens": 424,
+      "tests_completed": 2
+    },
+    "gen_knowledge": {
+      "pass_rate": 100.0,
+      "avg_tokens": 228,
+      "tests_completed": 2
+    },
+    "directional": {
+      "pass_rate": 100.0,
+      "avg_tokens": 157,
+      "tests_completed": 1
+    },
+    "tot": {
+      "pass_rate": 100.0,
+      "avg_tokens": 523,
+      "tests_completed": 1
+    },
+    "self_consistency": {
+      "pass_rate": 100.0,
+      "avg_tokens": 568,
+      "tests_completed": 1
+    }
+  }
+}

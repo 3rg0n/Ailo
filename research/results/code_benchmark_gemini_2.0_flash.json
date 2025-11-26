@@ -1,0 +1,1024 @@
+{
+  "model": "gemini-2.0-flash",
+  "results": [
+    {
+      "algorithm": "factorial",
+      "style": "zero_shot",
+      "similarity": {
+        "sequence_similarity": 0.625,
+        "line_similarity": 0.296,
+        "token_overlap": 0.323,
+        "structural_score": 0.6,
+        "combined_score": 0.415
+      },
+      "correctness": {
+        "checks": {
+          "has_function": false,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 5,
+        "total": 6,
+        "correctness_score": 0.833
+      },
+      "tokens": 221,
+      "generated_code": "/**\n * Calculates the factorial of a number.\n *\n * @param {number} number The number to calculate the factorial of.\n * @returns {number} The factorial of the number.\n */\nconst factorial = (number) => {\n  if (number === 0) {\n    return 1;\n  }\n\n  if (number < 0) {\n    return NaN; // Factorial is not defined for negative numbers\n  }\n\n  let result = 1;\n  for (let i = 1; i <= number; i++) {\n    result *= i;\n  }\n  return result;\n};\n\nexport default factorial;"
+    },
+    {
+      "algorithm": "factorial",
+      "style": "few_shot",
+      "similarity": {
+        "sequence_similarity": 0.884,
+        "line_similarity": 0.706,
+        "token_overlap": 0.786,
+        "structural_score": 0.8,
+        "combined_score": 0.792
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 6,
+        "total": 6,
+        "correctness_score": 1.0
+      },
+      "tokens": 230,
+      "generated_code": "export default function factorial(number) {\n  if (number === 0) {\n    return 1;\n  }\n\n  let result = 1;\n  for (let i = 1; i <= number; i += 1) {\n    result *= i;\n  }\n  return result;\n}"
+    },
+    {
+      "algorithm": "factorial",
+      "style": "cot",
+      "similarity": {
+        "sequence_similarity": 0.432,
+        "line_similarity": 0.267,
+        "token_overlap": 0.238,
+        "structural_score": 0.6,
+        "combined_score": 0.312
+      },
+      "correctness": {
+        "checks": {
+          "has_function": false,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 5,
+        "total": 6,
+        "correctness_score": 0.833
+      },
+      "tokens": 582,
+      "generated_code": "/**\n * Calculates the factorial of a number.\n * @param {number} number The number to calculate the factorial of.\n * @returns {number} The factorial of the number.\n * @throws {Error} If the number is negative or not an integer.\n */\nconst factorial = (number) => {\n  if (number < 0) {\n    throw new Error(\"Factorial is not defined for negative numbers.\");\n  }\n\n  if (!Number.isInteger(number)) {\n    throw new Error(\"Factorial is only defined for integers.\");\n  }\n\n  if (number === 0) {\n    return 1;\n  }\n\n  let result = 1;\n  for (let i = 1; i <= number; i++) {\n    result *= i;\n  }\n\n  return result;\n};\n\nexport default factorial;"
+    },
+    {
+      "algorithm": "factorial",
+      "style": "schema",
+      "similarity": {
+        "sequence_similarity": 0.665,
+        "line_similarity": 0.462,
+        "token_overlap": 0.344,
+        "structural_score": 0.8,
+        "combined_score": 0.49
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 6,
+        "total": 6,
+        "correctness_score": 1.0
+      },
+      "tokens": 231,
+      "generated_code": "/**\n * Calculates the factorial of a number.\n *\n * @param {number} number The number to calculate the factorial of.\n * @returns {number} The factorial of the number.\n */\nexport default function factorial(number) {\n  if (number < 0) {\n    throw new Error(\"Factorial is not defined for negative numbers.\");\n  }\n\n  if (number === 0) {\n    return 1;\n  }\n\n  let result = 1;\n  for (let i = 1; i <= number; i++) {\n    result *= i;\n  }\n\n  return result;\n}"
+    },
+    {
+      "algorithm": "factorial",
+      "style": "meta",
+      "similarity": {
+        "sequence_similarity": 0.372,
+        "line_similarity": 0.216,
+        "token_overlap": 0.208,
+        "structural_score": 0.6,
+        "combined_score": 0.266
+      },
+      "correctness": {
+        "checks": {
+          "has_function": false,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 5,
+        "total": 6,
+        "correctness_score": 0.833
+      },
+      "tokens": 820,
+      "generated_code": "/**\n * Calculates the factorial of a number.\n * @param {number} number The number to calculate the factorial of.\n * @returns {number} The factorial of the number. Returns NaN for negative numbers.\n *                   Returns Infinity if the factorial exceeds Number.MAX_SAFE_INTEGER\n * @throws {TypeError} If the input is not a number or not an integer.\n */\nconst factorial = (number) => {\n  if (typeof number !== 'number') {\n    throw new TypeError(\"Input must be a number.\");\n  }\n\n  if (!Number.isInteger(number)) {\n    throw new TypeError(\"Input must be an integer.\");\n  }\n\n  if (number < 0) {\n    return NaN;\n  }\n\n  if (number === 0) {\n    return 1;\n  }\n\n  let result = 1;\n  for (let i = 1; i <= number; i++) {\n    result *= i;\n\n    if (result > Number.MAX_SAFE_INTEGER) {\n      return Infinity;\n    }\n  }\n\n  return result;\n};\n\nexport default factorial;"
+    },
+    {
+      "algorithm": "factorial",
+      "style": "gen_knowledge",
+      "similarity": {
+        "sequence_similarity": 0.625,
+        "line_similarity": 0.229,
+        "token_overlap": 0.227,
+        "structural_score": 0.6,
+        "combined_score": 0.36
+      },
+      "correctness": {
+        "checks": {
+          "has_function": false,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 5,
+        "total": 6,
+        "correctness_score": 0.833
+      },
+      "tokens": 341,
+      "generated_code": "/**\n * Calculates the factorial of a number (n! = n * (n-1) * ... * 1)\n *\n * @param {number} number The number to calculate the factorial of.\n * @returns {number} The factorial of the number.\n *\n * Examples:\n * factorial(5) = 120\n * factorial(0) = 1\n */\nconst factorial = (number) => {\n  // Edge cases:\n  if (number < 0) {\n    return NaN; // Factorial is not defined for negative numbers.\n  }\n\n  if (number === 0) {\n    return 1; // Base case: factorial of 0 is 1.\n  }\n\n  // Recursive implementation:\n  // return number * factorial(number - 1);\n\n  // Iterative implementation (more efficient):\n  let result = 1;\n  for (let i = 1; i <= number; i++) {\n    result *= i;\n  }\n  return result;\n};\n\nexport default factorial;"
+    },
+    {
+      "algorithm": "factorial",
+      "style": "directional",
+      "similarity": {
+        "sequence_similarity": 0.576,
+        "line_similarity": 0.222,
+        "token_overlap": 0.262,
+        "structural_score": 0.6,
+        "combined_score": 0.353
+      },
+      "correctness": {
+        "checks": {
+          "has_function": false,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 5,
+        "total": 6,
+        "correctness_score": 0.833
+      },
+      "tokens": 359,
+      "generated_code": "/**\n * Calculates the factorial of a number (n! = n * (n-1) * ... * 1)\n *\n * @param {number} number The number to calculate the factorial of.\n * @returns {number} The factorial of the number.\n *\n * @example\n * factorial(5) // returns 120\n * factorial(0) // returns 1\n */\nconst factorial = (number) => {\n  // Handle edge cases:\n  if (number < 0) {\n    return NaN; // Factorial is not defined for negative numbers\n  }\n\n  if (number === 0) {\n    return 1; // Base case: 0! = 1\n  }\n\n  if (number === 1) {\n    return 1; // Base case: 1! = 1\n  }\n\n  // Iterative calculation:\n  let result = 1;\n  for (let i = 2; i <= number; i++) {\n    result *= i;\n  }\n\n  return result;\n};\n\nexport default factorial;"
+    },
+    {
+      "algorithm": "factorial",
+      "style": "tot",
+      "similarity": {
+        "sequence_similarity": 0.541,
+        "line_similarity": 0.185,
+        "token_overlap": 0.075,
+        "structural_score": 0.8,
+        "combined_score": 0.267
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 6,
+        "total": 6,
+        "correctness_score": 1.0
+      },
+      "tokens": 785,
+      "generated_code": "/**\n * Calculates the factorial of a number (n! = n * (n-1) * ... * 1)\n *\n * @param {number} number The number to calculate the factorial of.\n * @returns {number} The factorial of the number.\n * @throws {Error} If the input is not a non-negative integer.\n */\nfunction factorial(number) {\n  // Input validation: Check for non-negative integer\n  if (!Number.isInteger(number) || number < 0) {\n    throw new Error(\"Input must be a non-negative integer.\");\n  }\n\n  // Edge case: factorial of 0 is 1\n  if (number === 0) {\n    return 1;\n  }\n\n  // Iterative approach (Approach A) - Selected as the best due to performance and readability\n\n  let result = 1;\n  for (let i = 1; i <= number; i++) {\n    result *= i;\n  }\n  return result;\n\n\n  //APPROACH B - Recursive (Less efficient for large numbers due to call stack limits)\n\n  // if (number === 0) {\n  //   return 1;\n  // } else {\n  //   return number * factorial(number - 1);\n  // }\n\n\n  // APPROACH C - Functional (Using reduce) - Less readable and potentially less performant\n\n  // return Array.from({ length: number }, (_, i) => i + 1).reduce((acc, val) => acc * val, 1);\n\n}\n\n// Evaluate each approach:\n\n// APPROACH A - Iterative:\n// - Readability: Very readable.  The loop clearly shows the factorial calculation.\n// - Performance: Excellent.  Iterative solutions are generally faster than recursive ones, especially for larger numbers.  No call stack overhead.\n// - Edge case handling:  Handles 0 correctly after initial input validation.\n\n// APPROACH B - Recursive:\n// - Readability: Relatively readable, especially for those familiar with recursion.\n// - Performance:  Less efficient than the iterative approach due to function call overhead.  Can lead to stack overflow errors for large inputs.\n// - Edge case handling: Handles 0 correctly after initial input validation.\n\n// APPROACH C - Functional:\n// - Readability:  Less readable, especially for those not comfortable with array methods like reduce.  The creation of the array and the reduce operation can be less intuitive.\n// - Performance:  Potentially less performant than the iterative approach.  Creating an array and then reducing it adds overhead.\n// - Edge case handling: Handles 0 correctly after initial input validation.\n\n// Chosen approach: Iterative (Approach A)\n// Rationale: The iterative approach offers the best balance of readability, performance, and maintainability. It is the most efficient and avoids the potential stack overflow issues of recursion.  The code is also straightforward to understand.\n\nexport default factorial;"
+    },
+    {
+      "algorithm": "factorial",
+      "style": "self_consistency",
+      "similarity": {
+        "sequence_similarity": 0.397,
+        "line_similarity": 0.216,
+        "token_overlap": 0.224,
+        "structural_score": 0.8,
+        "combined_score": 0.279
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 6,
+        "total": 6,
+        "correctness_score": 1.0
+      },
+      "tokens": 1592,
+      "generated_code": "/**\n * Calculates the factorial of a non-negative integer.\n * @param {number} number The number to calculate the factorial of.\n * @returns {number} The factorial of the number.\n * @throws {TypeError} If the input is not a number.\n * @throws {RangeError} If the input is a non-integer number.\n */\nfunction factorial(number) {\n  if (typeof number !== 'number') {\n    throw new TypeError('Input must be a number.');\n  }\n\n  if (!Number.isInteger(number)) {\n    throw new RangeError('Input must be an integer.');\n  }\n\n  if (number < 0) {\n    return NaN;\n  }\n\n  if (number > 170) {\n    return Infinity; // Avoids potential overflow issues\n  }\n\n  if (number === 0) {\n    return 1;\n  }\n\n  let result = 1;\n  for (let i = 1; i <= number; i++) {\n    result = result * i;\n  }\n  return result;\n}\n\nexport default factorial;"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "zero_shot",
+      "similarity": {
+        "sequence_similarity": 0.191,
+        "line_similarity": 0.167,
+        "token_overlap": 0.289,
+        "structural_score": 0.6,
+        "combined_score": 0.216
+      },
+      "correctness": {
+        "checks": {
+          "has_function": false,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 5,
+        "total": 7,
+        "correctness_score": 0.714
+      },
+      "tokens": 228,
+      "generated_code": "/**\n * Calculates the first n numbers in the Fibonacci sequence.\n *\n * @param {number} n The number of Fibonacci numbers to generate.\n * @returns {number[]} An array containing the first n Fibonacci numbers.\n */\nconst fibonacci = (n) => {\n  if (n <= 0) {\n    return [];\n  }\n\n  if (n === 1) {\n    return [1];\n  }\n\n  const result = [1, 1];\n\n  for (let i = 2; i < n; i++) {\n    result.push(result[i - 1] + result[i - 2]);\n  }\n\n  return result;\n};\n\nexport default fibonacci;"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "few_shot",
+      "similarity": {
+        "sequence_similarity": 0.257,
+        "line_similarity": 0.235,
+        "token_overlap": 0.545,
+        "structural_score": 0.8,
+        "combined_score": 0.346
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 289,
+      "generated_code": "export default function fibonacci(n) {\n  if (n <= 0) {\n    return [];\n  }\n\n  const result = [1];\n\n  if (n === 1) {\n    return result;\n  }\n\n  result.push(1);\n\n  if (n === 2) {\n    return result;\n  }\n\n  for (let i = 2; i < n; i += 1) {\n    const nextFib = result[i - 1] + result[i - 2];\n    result.push(nextFib);\n  }\n\n  return result;\n}"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "cot",
+      "similarity": {
+        "sequence_similarity": 0.181,
+        "line_similarity": 0.15,
+        "token_overlap": 0.268,
+        "structural_score": 0.6,
+        "combined_score": 0.2
+      },
+      "correctness": {
+        "checks": {
+          "has_function": false,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 5,
+        "total": 7,
+        "correctness_score": 0.714
+      },
+      "tokens": 607,
+      "generated_code": "/**\n * Calculates the first n numbers in the Fibonacci sequence.\n * @param {number} n The number of Fibonacci numbers to generate.\n * @returns {number[]} An array containing the first n Fibonacci numbers.\n */\nconst fibonacci = (n) => {\n  if (n <= 0) {\n    return [];\n  }\n\n  if (n === 1) {\n    return [1];\n  }\n\n  const result = [1, 1];\n  let a = 1;\n  let b = 1;\n\n  for (let i = 2; i < n; i++) {\n    const nextFib = a + b;\n    result.push(nextFib);\n    a = b;\n    b = nextFib;\n  }\n\n  return result;\n};\n\nexport default fibonacci;"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "schema",
+      "similarity": {
+        "sequence_similarity": 0.349,
+        "line_similarity": 0.216,
+        "token_overlap": 0.293,
+        "structural_score": 0.8,
+        "combined_score": 0.286
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": false,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 5,
+        "total": 7,
+        "correctness_score": 0.714
+      },
+      "tokens": 241,
+      "generated_code": "/**\n * Returns the first n numbers in the Fibonacci sequence as an array.\n *\n * @param {number} n The number of Fibonacci numbers to return.\n * @returns {number[]} An array containing the first n Fibonacci numbers.\n */\nexport default function fibonacci(n) {\n  if (n <= 0) {\n    return [];\n  }\n\n  const fibonacciSequence = [];\n  let a = 1;\n  let b = 1;\n\n  for (let i = 0; i < n; i++) {\n    fibonacciSequence.push(a);\n    const temp = a;\n    a = b;\n    b = temp + b;\n  }\n\n  return fibonacciSequence;\n}"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "meta",
+      "similarity": {
+        "sequence_similarity": 0.258,
+        "line_similarity": 0.162,
+        "token_overlap": 0.316,
+        "structural_score": 0.6,
+        "combined_score": 0.245
+      },
+      "correctness": {
+        "checks": {
+          "has_function": false,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 5,
+        "total": 7,
+        "correctness_score": 0.714
+      },
+      "tokens": 563,
+      "generated_code": "/**\n * Generates the first n numbers in the Fibonacci sequence.\n *\n * @param {number} n The number of Fibonacci numbers to generate.\n * @returns {number[]} An array containing the first n Fibonacci numbers.\n */\nconst fibonacci = (n) => {\n  if (n <= 0) {\n    return [];\n  }\n\n  if (n === 1) {\n    return [1];\n  }\n\n  const fibSequence = [1, 1];\n\n  for (let i = 2; i < n; i++) {\n    const nextFib = fibSequence[i - 1] + fibSequence[i - 2];\n    fibSequence.push(nextFib);\n  }\n\n  return fibSequence;\n};\n\nexport default fibonacci;"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "gen_knowledge",
+      "similarity": {
+        "sequence_similarity": 0.141,
+        "line_similarity": 0.109,
+        "token_overlap": 0.159,
+        "structural_score": 0.6,
+        "combined_score": 0.136
+      },
+      "correctness": {
+        "checks": {
+          "has_function": false,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": false,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 4,
+        "total": 7,
+        "correctness_score": 0.571
+      },
+      "tokens": 453,
+      "generated_code": "/**\n * Generates the first n numbers in the Fibonacci sequence.\n *\n * @param {number} n The number of Fibonacci numbers to generate.\n * @returns {number[]} An array containing the first n Fibonacci numbers.\n *\n * Key facts about Fibonacci Sequence:\n * - Mathematical definition: F(0) = 0, F(1) = 1, F(n) = F(n-1) + F(n-2) for n > 1\n * - Common implementation patterns: Recursive, Iterative, Matrix exponentiation (for large n)\n * - Edge cases to consider: n <= 0, n = 1, n = 2\n * - Optimization opportunities: Memoization (for recursive), Iterative is generally faster\n *\n * Examples:\n * fibonacci(5) = [1, 1, 2, 3, 5]\n */\nconst fibonacci = (n) => {\n  if (n <= 0) {\n    return [];\n  }\n\n  const result = [];\n\n  if (n >= 1) {\n    result.push(1);\n  }\n\n  if (n >= 2) {\n    result.push(1);\n  }\n\n  if (n > 2) {\n    let a = 1;\n    let b = 1;\n\n    for (let i = 3; i <= n; i++) {\n      const next = a + b;\n      result.push(next);\n      a = b;\n      b = next;\n    }\n  }\n\n  return result;\n};\n\nexport default fibonacci;"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "directional",
+      "similarity": {
+        "sequence_similarity": 0.37,
+        "line_similarity": 0.244,
+        "token_overlap": 0.232,
+        "structural_score": 0.8,
+        "combined_score": 0.282
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 337,
+      "generated_code": "/**\n * Calculates the first n numbers in the Fibonacci sequence.\n *\n * @param {number} n The number of Fibonacci numbers to generate.\n * @returns {number[]} An array containing the first n Fibonacci numbers.\n *                     Returns an empty array if n is 0 or negative.\n */\nexport default function fibonacci(n) {\n  // Handle edge cases: 0 or negative input\n  if (n <= 0) {\n    return [];\n  }\n\n  // Handle the case where n is 1\n  if (n === 1) {\n    return [1];\n  }\n\n  // Initialize the sequence with the first two Fibonacci numbers\n  const fibSequence = [1, 1];\n\n  // Generate the remaining Fibonacci numbers iteratively\n  for (let i = 2; i < n; i++) {\n    const nextFib = fibSequence[i - 1] + fibSequence[i - 2];\n    fibSequence.push(nextFib);\n  }\n\n  return fibSequence;\n}"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "tot",
+      "similarity": {
+        "sequence_similarity": 0.168,
+        "line_similarity": 0.071,
+        "token_overlap": 0.08,
+        "structural_score": 0.8,
+        "combined_score": 0.107
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 944,
+      "generated_code": "/**\n * Generates the first n numbers in the Fibonacci sequence.\n *\n * @param {number} n The number of Fibonacci numbers to generate.\n * @returns {number[]} An array containing the first n Fibonacci numbers.\n * @throws {Error} If n is not a non-negative integer.\n */\nfunction fibonacci(n) {\n  if (!Number.isInteger(n) || n < 0) {\n    throw new Error(\"Input must be a non-negative integer.\");\n  }\n\n  if (n === 0) {\n    return [];\n  }\n\n  if (n === 1) {\n    return [1];\n  }\n\n  // APPROACH A - Iterative (Chosen as the best approach)\n  const sequence = [1, 1];\n  for (let i = 2; i < n; i++) {\n    sequence.push(sequence[i - 1] + sequence[i - 2]);\n  }\n  return sequence;\n\n  // APPROACH B - Recursive (Not chosen due to performance issues)\n  // function fibonacciRecursive(n) {\n  //   if (n <= 0) {\n  //     return [];\n  //   } else if (n === 1) {\n  //     return [1];\n  //   } else if (n === 2) {\n  //     return [1, 1];\n  //   } else {\n  //     const sequence = fibonacciRecursive(n - 1);\n  //     sequence.push(sequence[sequence.length - 1] + sequence[sequence.length - 2]);\n  //     return sequence;\n  //   }\n  // }\n  // return fibonacciRecursive(n);\n\n  // APPROACH C - Functional (Not chosen due to readability and complexity)\n  // if (n === 0) return [];\n  // if (n === 1) return [1];\n\n  // return Array(n)\n  //   .fill(0)\n  //   .reduce((acc, _, i) => {\n  //     if (i < 2) {\n  //       acc.push(1);\n  //     } else {\n  //       acc.push(acc[i - 1] + acc[i - 2]);\n  //     }\n  //     return acc;\n  //   }, []);\n}\n\n// Evaluation of Approaches:\n\n// APPROACH A - Iterative:\n// - Readability:  Very readable and easy to understand.\n// - Performance:  Excellent.  O(n) time complexity.\n// - Edge case handling: Handles n = 0 and n = 1 efficiently.  Also includes input validation.\n\n// APPROACH B - Recursive:\n// - Readability:  Potentially readable for small n, but can become harder to follow.\n// - Performance:  Poor.  O(2^n) time complexity due to redundant calculations.  Not suitable for larger values of n.\n// - Edge case handling: Can handle edge cases with appropriate base cases.\n\n// APPROACH C - Functional:\n// - Readability:  Less readable than the iterative approach, especially for those not familiar with array methods like reduce.\n// - Performance:  Decent, but generally slower than the iterative approach. O(n) time complexity, but with overhead from reduce.\n// - Edge case handling: Handles edge cases with proper initial conditions.\n\n// Choice of Best Approach:\n\n// The iterative approach (APPROACH A) is the best choice due to its excellent performance, readability, and ease of understanding.  It avoids the performance issues of recursion and is more straightforward than the functional approach.\n\nexport default fibonacci;"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "self_consistency",
+      "similarity": {
+        "sequence_similarity": 0.201,
+        "line_similarity": 0.133,
+        "token_overlap": 0.179,
+        "structural_score": 0.8,
+        "combined_score": 0.171
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": false,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 5,
+        "total": 7,
+        "correctness_score": 0.714
+      },
+      "tokens": 1500,
+      "generated_code": "/**\n * Balanced Implementation:  Combines clarity, elegance, and correctness.\n * @param {number} n The number of Fibonacci numbers to generate.\n * @returns {number[]} An array containing the first n Fibonacci numbers.\n * @throws {TypeError} If the input is not a non-negative integer.\n */\nfunction fibonacci(n) {\n  if (typeof n !== 'number') {\n    throw new TypeError(\"Input must be a number.\");\n  }\n\n  if (!Number.isInteger(n)) {\n    throw new TypeError(\"Input must be an integer.\");\n  }\n\n  if (n < 0) {\n    return []; // Or throw an error: throw new RangeError(\"Input must be a non-negative integer.\");\n  }\n\n  if (n === 0) {\n    return [];\n  }\n\n  const sequence = [];\n  let a = 1;\n  let b = 1;\n\n  for (let i = 0; i < n; i++) {\n    sequence.push(a);\n    [a, b] = [b, a + b]; // Use array destructuring for conciseness\n  }\n\n  return sequence;\n}\n\nexport default fibonacci;"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "zero_shot",
+      "similarity": {
+        "sequence_similarity": 0.588,
+        "line_similarity": 0.069,
+        "token_overlap": 0.279,
+        "structural_score": 0.6,
+        "combined_score": 0.312
+      },
+      "correctness": {
+        "checks": {
+          "has_function": false,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": true
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 292,
+      "generated_code": "/**\n * Finds the greatest common divisor of two numbers using the Euclidean algorithm.\n *\n * @param {number} originalA The first number.\n * @param {number} originalB The second number.\n * @returns {number} The greatest common divisor of the two numbers.\n *\n * Examples: gcd(12, 8) = 4, gcd(17, 13) = 1\n */\nconst euclideanAlgorithm = (originalA, originalB) => {\n  let a = Math.abs(originalA);\n  let b = Math.abs(originalB);\n\n  // Ensure a >= b\n  if (a < b) {\n    [a, b] = [b, a];\n  }\n\n  while (b !== 0) {\n    const remainder = a % b;\n    a = b;\n    b = remainder;\n  }\n\n  return a;\n};\n\nexport default euclideanAlgorithm;"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "few_shot",
+      "similarity": {
+        "sequence_similarity": 0.667,
+        "line_similarity": 0.167,
+        "token_overlap": 0.765,
+        "structural_score": 0.8,
+        "combined_score": 0.533
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 300,
+      "generated_code": "export default function euclideanAlgorithm(originalA, originalB) {\n  let a = Math.abs(originalA);\n  let b = Math.abs(originalB);\n\n  if (a === 0 && b === 0) {\n    return 0;\n  }\n\n  if (a === 0) {\n    return b;\n  }\n\n  if (b === 0) {\n    return a;\n  }\n\n  while (b) {\n    const temp = b;\n    b = a % b;\n    a = temp;\n  }\n\n  return a;\n}"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "cot",
+      "similarity": {
+        "sequence_similarity": 0.621,
+        "line_similarity": 0.069,
+        "token_overlap": 0.343,
+        "structural_score": 0.6,
+        "combined_score": 0.344
+      },
+      "correctness": {
+        "checks": {
+          "has_function": false,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": true
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 656,
+      "generated_code": "/**\n * Calculates the greatest common divisor (GCD) of two numbers using the Euclidean algorithm.\n *\n * @param {number} originalA The first number.\n * @param {number} originalB The second number.\n * @returns {number} The greatest common divisor of the two numbers.\n */\nconst euclideanAlgorithm = (originalA, originalB) => {\n  let a = Math.abs(originalA);\n  let b = Math.abs(originalB);\n\n  if (a === 0) {\n    return b;\n  }\n\n  if (b === 0) {\n    return a;\n  }\n\n  while (b !== 0) {\n    const temp = b;\n    b = a % b;\n    a = temp;\n  }\n\n  return a;\n};\n\nexport default euclideanAlgorithm;"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "schema",
+      "similarity": {
+        "sequence_similarity": 0.714,
+        "line_similarity": 0.167,
+        "token_overlap": 0.308,
+        "structural_score": 0.8,
+        "combined_score": 0.396
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 254,
+      "generated_code": "/**\n * Calculates the greatest common divisor (GCD) of two numbers using the Euclidean algorithm.\n *\n * @param {number} originalA The first number.\n * @param {number} originalB The second number.\n * @returns {number} The greatest common divisor of the two numbers.\n */\nexport default function euclideanAlgorithm(originalA, originalB) {\n  // Make sure that the numbers are positive\n  let a = Math.abs(originalA);\n  let b = Math.abs(originalB);\n\n  // Euclidean algorithm\n  while (b) {\n    const temp = b;\n    b = a % b;\n    a = temp;\n  }\n\n  return a;\n}"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "meta",
+      "similarity": {
+        "sequence_similarity": 0.614,
+        "line_similarity": 0.133,
+        "token_overlap": 0.271,
+        "structural_score": 0.8,
+        "combined_score": 0.339
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 704,
+      "generated_code": "/**\n * Calculates the greatest common divisor (GCD) of two numbers using the Euclidean algorithm (iterative).\n *\n * @param {number} originalA The first number.\n * @param {number} originalB The second number.\n * @returns {number} The greatest common divisor of a and b.\n */\nexport default function euclideanAlgorithm(originalA, originalB) {\n  let a = Math.floor(Math.abs(originalA));\n  let b = Math.floor(Math.abs(originalB));\n\n  // Handle edge case where one or both numbers are zero\n  if (a === 0 && b === 0) {\n    return 0;\n  } else if (a === 0) {\n    return b;\n  } else if (b === 0) {\n    return a;\n  }\n\n  while (b !== 0) {\n    const temp = b;\n    b = a % b;\n    a = temp;\n  }\n\n  return a;\n}"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "gen_knowledge",
+      "similarity": {
+        "sequence_similarity": 0.657,
+        "line_similarity": 0.103,
+        "token_overlap": 0.143,
+        "structural_score": 1.0,
+        "combined_score": 0.301
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 450,
+      "generated_code": "/**\n * Find the greatest common divisor of two numbers using the Euclidean algorithm.\n *\n * @param {number} originalA The first number.\n * @param {number} originalB The second number.\n * @returns {number} The greatest common divisor of the two numbers.\n *\n * Examples:\n * gcd(12, 8) = 4\n * gcd(17, 13) = 1\n */\nexport default function euclideanAlgorithm(originalA, originalB) {\n  // Handle edge cases:  Zero or negative inputs.  GCD is typically defined for non-negative integers.\n  // We'll take the absolute value to handle negative inputs, and return the other number if one is zero.\n  let a = Math.abs(originalA);\n  let b = Math.abs(originalB);\n\n  if (a === 0) {\n    return b;\n  }\n  if (b === 0) {\n    return a;\n  }\n\n  // Ensure 'a' is always the larger number for efficiency. Not strictly necessary, but can reduce iterations.\n  if (b > a) {\n    [a, b] = [b, a]; // Swap a and b using destructuring assignment.\n  }\n\n  // Iterative Euclidean Algorithm using the modulo operator.  This is generally more efficient than recursion.\n  while (b !== 0) {\n    const remainder = a % b;\n    a = b;\n    b = remainder;\n  }\n\n  return a;\n}"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "directional",
+      "similarity": {
+        "sequence_similarity": 0.537,
+        "line_similarity": 0.186,
+        "token_overlap": 0.241,
+        "structural_score": 0.8,
+        "combined_score": 0.321
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 435,
+      "generated_code": "/**\n * Euclidean Algorithm (GCD)\n *\n * Finds the greatest common divisor of two numbers using the Euclidean algorithm.\n *\n * @param {number} originalA - The first number.\n * @param {number} originalB - The second number.\n * @returns {number} - The greatest common divisor of the two numbers.\n *\n * Examples:\n * gcd(12, 8) = 4\n * gcd(17, 13) = 1\n */\nexport default function euclideanAlgorithm(originalA, originalB) {\n  // Handle edge cases: negative numbers\n  const a = Math.abs(originalA);\n  const b = Math.abs(originalB);\n\n  // Handle edge cases: if either number is 0, return the other number\n  if (a === 0) {\n    return b;\n  }\n  if (b === 0) {\n    return a;\n  }\n\n  // Handle edge cases: if either number is 1, return 1\n  if (a === 1 || b === 1) {\n    return 1;\n  }\n\n  // Iterative approach: Euclidean Algorithm\n  let dividend = a;\n  let divisor = b;\n\n  while (divisor !== 0) {\n    const remainder = dividend % divisor;\n    dividend = divisor;\n    divisor = remainder;\n  }\n\n  return dividend;\n}"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "tot",
+      "similarity": {
+        "sequence_similarity": 0.235,
+        "line_similarity": 0.02,
+        "token_overlap": 0.073,
+        "structural_score": 1.0,
+        "combined_score": 0.109
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 1172,
+      "generated_code": "/**\n * Finds the greatest common divisor (GCD) of two numbers using the Euclidean algorithm.\n *\n * @param {number} originalA The first number.\n * @param {number} originalB The second number.\n * @returns {number} The greatest common divisor of a and b.\n */\n\n// APPROACH A - Iterative:\nfunction euclideanAlgorithmIterative(originalA, originalB) {\n  let a = Math.abs(originalA); // Handle negative inputs\n  let b = Math.abs(originalB);\n\n  if (a === 0) {\n    return b;\n  }\n  if (b === 0) {\n    return a;\n  }\n\n  while (b !== 0) {\n    const temp = b;\n    b = a % b;\n    a = temp;\n  }\n  return a;\n}\n\n\n// APPROACH B - Recursive:\nfunction euclideanAlgorithmRecursive(originalA, originalB) {\n  let a = Math.abs(originalA); // Handle negative inputs\n  let b = Math.abs(originalB);\n\n  if (b === 0) {\n    return a;\n  }\n  return euclideanAlgorithmRecursive(b, a % b);\n}\n\n\n// APPROACH C - Functional (using reduce, not really suitable):\n// While reduce can technically be used, it's very unnatural for this algorithm and\n// significantly impacts readability and performance.  It's included for completeness\n// but should not be considered a viable option.\nfunction euclideanAlgorithmFunctional(originalA, originalB) {\n  let a = Math.abs(originalA); // Handle negative inputs\n  let b = Math.abs(originalB);\n\n  if (a === 0) {\n    return b;\n  }\n  if (b === 0) {\n    return a;\n  }\n\n  // This is a forced and inefficient way to use reduce.  Avoid.\n  const result = Array.from({ length: Math.max(a, b) }, (_, i) => i)\n    .reduce((acc, _) => {\n      if (acc.b === 0) {\n        return acc; // Stop when b is 0\n      }\n      const temp = acc.b;\n      const newB = acc.a % acc.b;\n      const newA = temp;\n      return { a: newA, b: newB };\n    }, { a: a, b: b });\n\n  return result.a;\n}\n\n// Evaluation:\n\n// Readability:\n// - Iterative: Very readable, easy to follow the steps.\n// - Recursive:  Concise but requires understanding of recursion.  Slightly less readable for some.\n// - Functional:  Poor readability.  The use of reduce is forced and obscures the algorithm's logic.\n\n// Performance:\n// - Iterative: Generally the fastest due to avoiding function call overhead.\n// - Recursive:  Slightly slower than iterative due to function call overhead.  Can lead to stack overflow for very large numbers (although modern JS engines optimize tail recursion).\n// - Functional:  Significantly slower.  The forced use of reduce and array creation adds unnecessary overhead.\n\n// Edge Case Handling:\n// - All: Properly handle cases where one or both inputs are zero by returning the absolute value of the non-zero input (or zero if both are zero).  Also handle negative inputs by taking the absolute value.\n\n// Best Approach:\n// The iterative approach (euclideanAlgorithmIterative) offers the best balance of readability, performance, and edge case handling.  It's easy to understand and efficient.  The recursive approach is a close second, but the iterative approach is generally preferred for its performance advantage.  The functional approach is not recommended.\n\n/**\n * Finds the greatest common divisor (GCD) of two numbers using the Euclidean algorithm.\n *\n * @param {number} originalA The first number.\n * @param {number} originalB The second number.\n * @returns {number} The greatest common divisor of a and b.\n */\nfunction euclideanAlgorithm(originalA, originalB) {\n    let a = Math.abs(originalA); // Handle negative inputs\n    let b = Math.abs(originalB);\n\n    if (a === 0) {\n        return b;\n    }\n    if (b === 0) {\n        return a;\n    }\n\n    while (b !== 0) {\n        const temp = b;\n        b = a % b;\n        a = temp;\n    }\n    return a;\n}\n\nexport default euclideanAlgorithm;"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "self_consistency",
+      "similarity": {
+        "sequence_similarity": 0.571,
+        "line_similarity": 0.214,
+        "token_overlap": 0.245,
+        "structural_score": 0.6,
+        "combined_score": 0.344
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 1432,
+      "generated_code": "/**\n * Finds the greatest common divisor (GCD) of two numbers using the Euclidean algorithm.\n *\n * @param {number} originalA The first number.\n * @param {number} originalB The second number.\n * @returns {number} The greatest common divisor of a and b. Returns NaN if inputs are not finite numbers.\n * @throws {TypeError} If inputs are not numbers.\n */\nfunction euclideanAlgorithm(originalA, originalB) {\n    if (typeof originalA !== 'number' || typeof originalB !== 'number') {\n        throw new TypeError('Inputs must be numbers.');\n    }\n\n    const a = Math.abs(originalA);\n    const b = Math.abs(originalB);\n\n    if (!Number.isFinite(a) || !Number.isFinite(b)) {\n        return NaN;  // Handle Infinity or NaN inputs\n    }\n\n\n    if (b === 0) {\n        return a;\n    }\n\n    return euclideanAlgorithm(b, a % b);\n}\n\nexport default euclideanAlgorithm;"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "zero_shot",
+      "similarity": {
+        "sequence_similarity": 0.082,
+        "line_similarity": 0.533,
+        "token_overlap": 0.385,
+        "structural_score": 0.6,
+        "combined_score": 0.333
+      },
+      "correctness": {
+        "checks": {
+          "has_function": false,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": false
+        },
+        "passed": 5,
+        "total": 7,
+        "correctness_score": 0.714
+      },
+      "tokens": 263,
+      "generated_code": "/**\n * Checks if a number is prime using trial division.\n *\n * @param {number} number The number to check.\n * @returns {boolean} True if the number is prime, false otherwise.\n */\nconst trialDivision = (number) => {\n  if (number <= 1) {\n    return false;\n  }\n  if (number <= 3) {\n    return true;\n  }\n  if (number % 2 === 0 || number % 3 === 0) {\n    return false;\n  }\n\n  for (let i = 5; i * i <= number; i = i + 6) {\n    if (number % i === 0 || number % (i + 2) === 0) {\n      return false;\n    }\n  }\n\n  return true;\n};\n\nexport default trialDivision;"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "few_shot",
+      "similarity": {
+        "sequence_similarity": 0.613,
+        "line_similarity": 0.562,
+        "token_overlap": 0.762,
+        "structural_score": 0.8,
+        "combined_score": 0.646
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 233,
+      "generated_code": "export default function trialDivision(number) {\n  if (number <= 1) {\n    return false;\n  }\n\n  for (let i = 2; i <= Math.sqrt(number); i += 1) {\n    if (number % i === 0) {\n      return false;\n    }\n  }\n\n  return true;\n}"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "cot",
+      "similarity": {
+        "sequence_similarity": 0.699,
+        "line_similarity": 0.478,
+        "token_overlap": 0.347,
+        "structural_score": 0.6,
+        "combined_score": 0.508
+      },
+      "correctness": {
+        "checks": {
+          "has_function": false,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": true
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 625,
+      "generated_code": "/**\n * Checks if a number is prime using trial division.\n *\n * @param {number} number The number to check.\n * @returns {boolean} True if the number is prime, false otherwise.\n */\nconst trialDivision = (number) => {\n  if (number <= 1) {\n    return false;\n  }\n\n  if (number <= 3) {\n    return true; // 2 and 3 are prime\n  }\n\n  if (number % 2 === 0) {\n      return false; // Even numbers greater than 2 are not prime\n  }\n\n  const sqrtNumber = Math.sqrt(number);\n\n  for (let i = 3; i <= sqrtNumber; i += 2) { // Check odd numbers only from 3\n    if (number % i === 0) {\n      return false;\n    }\n  }\n\n  return true;\n};\n\nexport default trialDivision;"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "schema",
+      "similarity": {
+        "sequence_similarity": 0.473,
+        "line_similarity": 0.359,
+        "token_overlap": 0.421,
+        "structural_score": 0.6,
+        "combined_score": 0.418
+      },
+      "correctness": {
+        "checks": {
+          "has_function": false,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": true
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 217,
+      "generated_code": "/**\n * Checks if a number is prime using trial division.\n *\n * @param {number} number The number to check for primality.\n * @returns {boolean} True if the number is prime, false otherwise.\n */\nconst trialDivision = (number) => {\n  if (number <= 1) {\n    return false;\n  }\n\n  for (let i = 2; i <= Math.sqrt(number); i++) {\n    if (number % i === 0) {\n      return false;\n    }\n  }\n\n  return true;\n};\n\nexport default trialDivision;"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "meta",
+      "similarity": {
+        "sequence_similarity": 0.438,
+        "line_similarity": 0.489,
+        "token_overlap": 0.421,
+        "structural_score": 0.6,
+        "combined_score": 0.449
+      },
+      "correctness": {
+        "checks": {
+          "has_function": false,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": true
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 639,
+      "generated_code": "/**\n * Checks if a number is prime using trial division.\n *\n * @param {number} number The number to check for primality.\n * @returns {boolean} True if the number is prime, false otherwise.\n */\nconst trialDivision = (number) => {\n  if (number < 2) {\n    return false;\n  }\n\n  if (number === 2) {\n    return true;\n  }\n\n  if (number % 2 === 0) {\n    return false;\n  }\n\n  for (let i = 3; i <= Math.sqrt(number); i += 2) {\n    if (number % i === 0) {\n      return false;\n    }\n  }\n\n  return true;\n};\n\nexport default trialDivision;"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "gen_knowledge",
+      "similarity": {
+        "sequence_similarity": 0.516,
+        "line_similarity": 0.538,
+        "token_overlap": 0.168,
+        "structural_score": 0.8,
+        "combined_score": 0.408
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 466,
+      "generated_code": "/**\n * Checks if a number is prime using trial division.\n *\n * @param {number} number The number to check for primality.\n * @returns {boolean} True if the number is prime, false otherwise.\n */\nexport default function trialDivision(number) {\n  // Edge Cases:\n  // 1. Numbers less than or equal to 1 are not prime.\n  if (number <= 1) {\n    return false;\n  }\n\n  // 2. 2 and 3 are prime numbers.\n  if (number <= 3) {\n    return true;\n  }\n\n  // 3. If divisible by 2 or 3, it's not prime.  This is an optimization.\n  if (number % 2 === 0 || number % 3 === 0) {\n    return false;\n  }\n\n  // Optimization: Only check divisors up to the square root of the number.\n  // Mathematical Definition: A number n is prime if it has no divisors other than 1 and itself.  If n is composite (not prime), then it must have a divisor d such that 1 < d <= sqrt(n).\n  for (let i = 5; i * i <= number; i = i + 6) {\n    // Common Implementation Pattern: Iterate through potential divisors.\n    // Optimization: Increment by 6.  After checking 2 and 3, all primes are of the form 6k \u00b1 1.\n    if (number % i === 0 || number % (i + 2) === 0) {\n      return false;\n    }\n  }\n\n  return true;\n}"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "directional",
+      "similarity": {
+        "sequence_similarity": 0.764,
+        "line_similarity": 0.56,
+        "token_overlap": 0.224,
+        "structural_score": 0.8,
+        "combined_score": 0.516
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 402,
+      "generated_code": "/**\n * Checks if a number is prime using trial division.\n *\n * @param {number} number The number to check for primality.\n * @returns {boolean} True if the number is prime, false otherwise.\n */\nexport default function trialDivision(number) {\n  // Handle edge cases: 0, 1, and negative numbers are not prime.\n  if (number <= 1) {\n    return false;\n  }\n\n  // 2 is the smallest prime number\n  if (number <= 3) {\n    return true;\n  }\n\n  // If the number is divisible by 2, it's not prime (except for 2 itself, which is already handled).\n  if (number % 2 === 0) {\n    return false;\n  }\n\n  // Iterate from 3 up to the square root of the number, checking for divisibility.\n  // We only need to check odd numbers, so we increment by 2.\n  for (let divisor = 3; divisor <= Math.sqrt(number); divisor += 2) {\n    if (number % divisor === 0) {\n      return false; // If divisible, it's not prime.\n    }\n  }\n\n  // If no divisors were found, the number is prime.\n  return true;\n}"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "tot",
+      "similarity": {
+        "sequence_similarity": 0.082,
+        "line_similarity": 0.231,
+        "token_overlap": 0.113,
+        "structural_score": 1.0,
+        "combined_score": 0.142
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 665,
+      "generated_code": "/**\n * APPROACH A - Iterative:\n * Uses a for loop to iterate through potential divisors up to the square root of the number.\n *\n * APPROACH B - Recursive:\n * Recursively checks divisibility starting from 2 up to the square root.\n *\n * APPROACH C - Functional:\n * Not suitable for this algorithm. Trial division is inherently iterative or recursive,\n * and forcing it into a functional paradigm using `reduce` would be unnecessarily complex\n * and inefficient.  `reduce` is designed for aggregating values from an array, not\n * for stepping through potential divisors.\n *\n * Evaluation:\n * Readability:\n * - Iterative: Very readable and easy to understand.\n * - Recursive: Slightly less readable than iterative for this particular problem.\n *\n * Performance:\n * - Iterative: Generally faster due to lower overhead compared to recursion.\n * - Recursive: Slower due to function call overhead.\n *\n * Edge case handling:\n * - Both: Can easily handle edge cases like numbers less than 2.\n *\n * Best Approach: Iterative (APPROACH A)\n * The iterative approach is the most readable and performant for this problem.  It avoids\n * the overhead of recursion while maintaining clarity.\n */\n\n/**\n * Checks if a number is prime using trial division.\n *\n * @param {number} number The number to check for primality.\n * @returns {boolean} True if the number is prime, false otherwise.\n *\n * Examples:\n * isPrime(17) = true\n * isPrime(100) = false\n */\nconst trialDivision = (number) => {\n  if (number <= 1) {\n    return false; // Numbers less than or equal to 1 are not prime\n  }\n  if (number <= 3) {\n    return true; // 2 and 3 are prime\n  }\n  if (number % 2 === 0 || number % 3 === 0) {\n    return false; // Check divisibility by 2 and 3\n  }\n\n  for (let i = 5; i * i <= number; i = i + 6) {\n    if (number % i === 0 || number % (i + 2) === 0) {\n      return false;\n    }\n  }\n\n  return true;\n};\n\nexport default trialDivision;"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "self_consistency",
+      "similarity": {
+        "sequence_similarity": 0.205,
+        "line_similarity": 0.588,
+        "token_overlap": 0.268,
+        "structural_score": 0.8,
+        "combined_score": 0.354
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 1863,
+      "generated_code": "/**\n * Checks if a number is prime using trial division.\n * @param {number} number The number to check for primality.\n * @returns {boolean} True if the number is prime, false otherwise.\n * @throws {TypeError} If the input is not a number.\n * @throws {RangeError} If the input is not an integer.\n */\nexport default function trialDivision(number) {\n  if (typeof number !== 'number') {\n    throw new TypeError('Input must be a number.');\n  }\n\n  if (!Number.isInteger(number)) {\n    throw new RangeError('Input must be an integer.');\n  }\n\n  if (number <= 1) {\n    return false;\n  }\n\n  if (number <= 3) {\n    return true;\n  }\n\n  if (number % 2 === 0 || number % 3 === 0) {\n    return false;\n  }\n\n  for (let i = 5; i * i <= number; i = i + 6) {\n    if (number % i === 0 || number % (i + 2) === 0) {\n      return false;\n    }\n  }\n\n  return true;\n}"
+    }
+  ],
+  "summary": {
+    "zero_shot": {
+      "avg_similarity": 0.319,
+      "avg_correctness": 0.779,
+      "avg_tokens": 251,
+      "count": 4
+    },
+    "few_shot": {
+      "avg_similarity": 0.579,
+      "avg_correctness": 0.964,
+      "avg_tokens": 263,
+      "count": 4
+    },
+    "cot": {
+      "avg_similarity": 0.341,
+      "avg_correctness": 0.815,
+      "avg_tokens": 618,
+      "count": 4
+    },
+    "schema": {
+      "avg_similarity": 0.397,
+      "avg_correctness": 0.893,
+      "avg_tokens": 236,
+      "count": 4
+    },
+    "meta": {
+      "avg_similarity": 0.325,
+      "avg_correctness": 0.851,
+      "avg_tokens": 682,
+      "count": 4
+    },
+    "gen_knowledge": {
+      "avg_similarity": 0.301,
+      "avg_correctness": 0.851,
+      "avg_tokens": 428,
+      "count": 4
+    },
+    "directional": {
+      "avg_similarity": 0.368,
+      "avg_correctness": 0.922,
+      "avg_tokens": 383,
+      "count": 4
+    },
+    "tot": {
+      "avg_similarity": 0.156,
+      "avg_correctness": 0.928,
+      "avg_tokens": 892,
+      "count": 4
+    },
+    "self_consistency": {
+      "avg_similarity": 0.287,
+      "avg_correctness": 0.893,
+      "avg_tokens": 1597,
+      "count": 4
+    }
+  }
+}

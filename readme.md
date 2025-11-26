@@ -1,343 +1,307 @@
-# 📘 Ailo Handbook
+# Prompting Styles Research
 
-Ailo is a **structured prompting framework** designed to optimize communication with AI.  
-It brings clarity, precision, and adaptability by breaking requests into simple, unambiguous parts.
-
----
-
-## 1. Introduction: Why Ailo Works
-
-Most AI responses depend heavily on how you phrase the prompt. Natural language can be vague, culturally biased, or ambiguous.  
-Ailo solves this by using a **clear, hierarchical schema**:
-
-- **Agent–Action–Object (ACT/OBJ)** at its core  
-- **Tags** for nuance and structure (format, audience, constraints, etc.)  
-- Optional **Context** (why) and **Persona** (who) to guide tone, relevance, and empathy  
-- Optional **Mode** (task type) to clarify intent  
+**An empirical comparison of prompting techniques across LLM models and use cases.**
 
 ---
 
-## 1.1 How AI Thinks
+## The Story
 
-Modern AI systems (like GPT, Claude, Gemini) don’t “understand” language in a human sense. They work by:  
+This project started as **Ailo** — a structured prompting framework using schema-based prompts (ACT/OBJ/TAGS) to optimize AI communication. The hypothesis was that structured prompts would consistently outperform natural language.
 
-- **Tokenization** → Every word or symbol is broken into “tokens” (numeric pieces of text). For example, “dictionary” might become `[5231, 98, 221]`.  
-- **Vector embeddings** → Each token is mapped into a high-dimensional vector space (a kind of “address” in thousands of dimensions). Words with similar meaning are close together.  
-- **Context window** → The AI keeps track of tokens in a rolling memory buffer (the “context window”), usually measured in thousands of tokens. The clearer the structure, the better it uses this space.  
-- **Attention mechanism** → The AI doesn’t treat every token equally. It “attends” more strongly to signals like explicit roles, instructions, and formatting.  
-- **Probabilistic next-token prediction** → The model generates responses by predicting the next most likely token, conditioned on all prior tokens and their weights.  
+Then we tested it.
 
----
+What we found was more nuanced: **schema prompting helps in some cases, but simpler techniques often win**. Few-shot examples beat complex reasoning chains. Premium models don't need elaborate prompts. Token overhead from fancy techniques rarely pays off.
 
-## 1.2 Why This Schema Works with AI
+So we pivoted. Instead of promoting one prompting style, we built a **research framework** to answer: *"Which prompting technique should I use for my model and use case?"*
 
-- Effective prompt engineering consistently improves AI performance by providing **clear context and specific instructions**, enabling the model to better understand intent and generate relevant outputs.  
-- Research shows that **users who follow more specific, structured, and context-rich prompts** experience significant gains in task efficiency and output quality.  
-- Techniques like **chain-of-thought prompting**—where the model reasons step-by-step—lead to more accurate, coherent, and thoughtful multi-step responses.  
-- Industry leaders like **Anthropic** recommend strategies such as **role prompting** (assigning persona) and **explicit reasoning structures** to reduce hallucinations and improve accuracy.  
-
-### How Ailo aligns with AI processing
-- **Structured schema (ACT, OBJ, TAGS)** → Tokens that clearly label intent (“ACT=Summarize”) cluster together in embedding space, reducing ambiguity.  
-- **CONTEXT and PERSONA** → Provide “high-weight anchor tokens” that guide the attention mechanism toward desired framing.  
-- **MODE** → Clarifies the *type* of reasoning path the model should activate (generation vs evaluation vs comparison).  
-- **OUTPUT definition** → Ensures the last step of token prediction is constrained (e.g., “give me a table” → the AI knows to format with rows/columns).  
+This repository now contains:
+- Benchmark tooling for 9+ prompting techniques
+- Results across budget, mid-tier, and premium models
+- Data-driven recommendations by use case
 
 ---
 
-## 2. Core Schema
+## Key Findings
+
+### Efficiency Ranking (Accuracy per Token)
 
 ```
-CONTEXT = [Optional: why you need this / background / problem statement / desired outcome]  
-PERSONA = [Optional: role or perspective AI should adopt: mentor, critic, marketer…]  
-MODE = [Optional: task type: Generate, Evaluate, Rewrite, Brainstorm, Plan, Compare…]  
-ACT = [What you want the AI to do]  
-OBJ = [The subject / thing to focus on]  
-TAGS = [
-    Format: [essay, list, dialogue, code, table, chart, PDF, JSON…]
-    Length: [short, 200 words, 5 bullets…]
-    Style/Tone: [formal, casual, persuasive, witty…]
-    Audience: [kids, experts, executives, general public…]
-    Timeframe: [past week, 2025, historical…]
-    Constraints: [no jargon, max 3 steps, use analogies…]
-    Region: [US, EU, Global…]
-    Sources: [official docs, peer-reviewed, web search…]
-    Language: [English, Ona, Spanish…]
-    Priority: [High, Normal, Low]
-    Deadline: [24h, ISO date…]
+few_shot       ████████████████████   Best ROI: +16% accuracy, -25% tokens
+directional    ██████████████████░░   +22% accuracy, -10% tokens
+zero_shot      ████████████████░░░░   Baseline (works great on premium models)
+schema         ███████████████░░░░░   +5-16% accuracy, variable overhead
+cot            ██████████████░░░░░░   +22% accuracy, +15% tokens
+gen_knowledge  █████████████░░░░░░░   +22% accuracy, +5% tokens
+meta           ███████████░░░░░░░░░   +11% accuracy, +46% tokens
+tot            █████████░░░░░░░░░░░   Often WORSE accuracy, +80-130% tokens
+self_consist   █████████░░░░░░░░░░░   Same accuracy, +44-118% tokens
+```
+
+### Winner by Model Tier
+
+```
+BUDGET MODELS (Mistral 7B, Nova Micro)
+──────────────────────────────────────────────────────────────────────────
+Technique      Accuracy   vs Zero    Tokens     Verdict
+──────────────────────────────────────────────────────────────────────────
+few_shot         88.9%    +16.7%      -25%      WINNER: Best ROI
+directional      94.4%    +22.2%      -10%      Runner-up
+cot              94.4%    +22.2%      +15%      Good if tokens don't matter
+zero_shot        72.2%   baseline   baseline   Needs help
+
+MID-TIER MODELS (Claude Haiku)
+──────────────────────────────────────────────────────────────────────────
+few_shot         94.4%     +5.6%       -5%      WINNER: Slight edge
+schema           94.4%     +5.6%      +53%      Good for format control
+zero_shot        88.9%   baseline   baseline   Already solid
+
+PREMIUM MODELS (Claude Sonnet/Opus, GPT-4)
+──────────────────────────────────────────────────────────────────────────
+zero_shot        95%+    baseline   baseline   WINNER: Already excellent
+few_shot          ~0%     minimal     -5%      Marginal benefit
+complex           ↓      can hurt    +50%+    Often counterproductive
+```
+
+### By Use Case
+
+```
+USE CASE           RECOMMENDED          WHY
+─────────────────────────────────────────────────────────────────────────
+Code generation    few_shot             53.9% similarity to reference
+Math/Logic         cot or directional   Step-by-step reasoning helps
+Format-critical    schema               Explicit constraints
+General tasks      few_shot (budget)    Best accuracy/token tradeoff
+                   zero_shot (premium)  Already accurate
+Token-sensitive    few_shot             Can SAVE tokens while improving
+Quick prototyping  zero_shot            Fastest iteration
+```
+
+---
+
+## Results by Model
+
+### Gemini 2.0 Flash
+
+```
+Style              Pass Rate   vs Zero   Tokens
+────────────────────────────────────────────────
+cot                  100.0%    +11.1%      697
+schema               100.0%    +11.1%      414    WINNER (fewer tokens)
+few_shot              94.4%     +5.5%      336
+directional           94.4%     +5.5%      506
+zero_shot             88.9%   baseline     675
+meta                  88.9%     +0.0%     1038
+gen_knowledge         83.3%     -5.6%      692
+tot                   83.3%     -5.6%     1087
+self_consistency      83.3%     -5.6%     1062
+```
+
+### Claude Haiku 4.5
+
+```
+Style              Pass Rate   vs Zero   Token Diff
+────────────────────────────────────────────────────
+few_shot             94.4%     +5.6%       -5.1%    WINNER
+schema               94.4%     +5.6%      +53.4%
+zero_shot            88.9%   baseline    baseline
+cot                  88.9%      same      +78.9%
+gen_knowledge        88.9%      same      +62.3%
+directional          83.3%     -5.6%      +21.3%
+tot                  83.3%     -5.6%     +132.7%
+meta                 77.8%    -11.1%     +162.4%
+self_consistency     77.8%    -11.1%     +142.7%
+```
+
+### Mistral 7B
+
+```
+Style              Pass Rate   vs Zero   Token Diff
+────────────────────────────────────────────────────
+directional          94.4%    +22.2%      -10.4%    WINNER
+cot                  94.4%    +22.2%      +14.5%
+gen_knowledge        94.4%    +22.2%       +5.0%
+few_shot             88.9%    +16.7%      -24.6%    Best ROI
+schema               88.9%    +16.7%       -3.9%
+self_consistency     88.9%    +16.7%      +43.5%
+meta                 83.3%    +11.1%      +45.8%
+tot                  77.8%     +5.6%      +79.8%
+zero_shot            72.2%   baseline    baseline
+```
+
+### Amazon Nova Micro
+
+```
+Style              Pass Rate   vs Zero   Token Diff
+────────────────────────────────────────────────────
+few_shot            100.0%     +5.6%       -1.9%    WINNER
+schema              100.0%     +5.6%      +36.2%
+directional         100.0%     +5.6%      +26.9%
+zero_shot            94.4%   baseline    baseline
+cot                  94.4%      same      +67.9%
+meta                 94.4%      same     +112.0%
+gen_knowledge        94.4%      same      +75.1%
+self_consistency     94.4%      same     +118.4%
+tot                  83.3%    -11.1%     +130.8%    WORSE!
+```
+
+---
+
+## Code Generation Results
+
+Tested on 4 JavaScript algorithms (factorial, fibonacci, GCD, primality) measuring similarity to reference implementations:
+
+```
+Style              Similarity   Correctness   Tokens
+────────────────────────────────────────────────────
+few_shot             53.9%        89.1%        315    WINNER
+zero_shot            41.1%        84.5%        227
+schema               37.7%        90.3%        270
+tot                  35.3%        75.8%       1211
+cot                  29.0%        72.8%        646
+self_consistency     21.7%        71.4%        943
+directional          24.7%        76.4%        514
+meta                 18.9%        64.5%        735
+gen_knowledge        16.7%        56.1%        604
+```
+
+**Why few-shot wins for code:**
+1. Examples demonstrate expected style and structure
+2. Models learn naming conventions from examples
+3. Avoids verbose explanations that dilute output
+4. Lower token overhead than reasoning techniques
+
+---
+
+## Prompting Techniques Tested
+
+| Technique | Description | Typical Overhead |
+|-----------|-------------|------------------|
+| **zero_shot** | Plain natural language | Baseline |
+| **few_shot** | 1-2 examples before task | -25% to +30% |
+| **cot** | Step-by-step reasoning | +15% to +68% |
+| **schema** | Structured ACT/OBJ/TAGS | +4% to +86% |
+| **meta** | LLM designs approach first | +46% to +123% |
+| **gen_knowledge** | Generate facts, then answer | +5% to +75% |
+| **directional** | Hints/keywords to guide | -10% to +27% |
+| **tot** | Multiple solution paths | +80% to +166% |
+| **self_consistency** | Multiple approaches, reconcile | +44% to +211% |
+
+### Agentic Techniques (with tools)
+
+| Technique | Description | Best For |
+|-----------|-------------|----------|
+| **ReAct** | Reason + Act loop | Tool-heavy tasks |
+| **PAL** | Generate & execute code | Math (saves 59% tokens) |
+| **Chaining** | Multi-step orchestration | Complex workflows |
+| **Reflexion** | Generate, critique, retry | Error recovery |
+
+---
+
+## Takeaways
+
+1. **Simple often wins** — Few-shot and directional beat complex techniques
+2. **ROI matters** — Consider accuracy gain vs token cost
+3. **Model tier matters** — Budget models benefit most from prompting techniques
+4. **Premium models are robust** — Zero-shot works fine for Claude/GPT-4
+5. **Complex techniques rarely justify cost** — ToT/Self-Consistency add overhead without gains
+
+---
+
+## Repository Structure
+
+```
+ailo/
+├── readme.md              # This file
+├── research/
+│   ├── FINDINGS.md        # Detailed findings and methodology
+│   ├── bedrock_client.py  # AWS Bedrock API client
+│   ├── multi_provider_client.py  # OpenAI, Gemini, Bedrock
+│   ├── unified_benchmark.py      # Cross-provider benchmark
+│   ├── code_benchmark.py         # Code generation tests
+│   ├── agentic_benchmark.py      # ReAct, PAL, Chaining tests
+│   └── results/           # Raw benchmark data (JSON)
+```
+
+## Running Benchmarks
+
+```bash
+cd research
+
+# Test a model
+python multi_provider_client.py claude-haiku
+
+# Run comprehensive benchmark
+python unified_benchmark.py --model gemini-2.0-flash
+
+# Run code generation benchmark
+python code_benchmark.py --model gpt-4o-mini --output results/code_gpt4o.json
+
+# List available models
+python multi_provider_client.py list
+```
+
+### Supported Models
+
+| Provider | Models |
+|----------|--------|
+| AWS Bedrock | Claude (Haiku, Sonnet, Opus), Nova (Micro, Lite), Mistral (7B, Small, Large), Llama |
+| OpenAI | GPT-4o, GPT-4o-mini, GPT-3.5-turbo, o1-mini |
+| Google | Gemini 2.0 Flash, 1.5 Flash, 1.5 Pro |
+
+---
+
+## What Happened to Ailo?
+
+This project started as **Ailo** — a structured prompting framework. The original hypothesis was that schema-based prompts would consistently outperform natural language.
+
+### The Ailo Schema
+
+```
+CONTEXT = [Background / why you need this]
+PERSONA = [Role for AI to adopt: mentor, critic, analyst...]
+MODE    = [Task type: Generate, Evaluate, Compare, Plan...]
+ACT     = [What you want done]
+OBJ     = [The subject/object to work on]
+TAGS    = [
+    Format: [list, table, code, JSON...]
+    Length: [short, 200 words, 5 bullets...]
+    Style:  [formal, casual, technical...]
+    Audience: [beginner, expert, executive...]
+    Constraints: [no jargon, max 3 steps...]
 ]
-OUTPUT = [How you want it delivered: plain text, table, code block, chart, image, file…]
+OUTPUT  = [Delivery format: text, code, file...]
 ```
 
----
-
-## 3. Tag Library
-
-- **Format** → Article, Bullets, Table, Code, Markdown, PDF, CSV, Chart, JSON  
-- **Length** → 100 words, 5 bullets, 10 rows  
-- **Style/Tone** → Neutral, Playful, Executive, Academic, Witty  
-- **Audience** → Beginner, Expert, Children, Executives, General public  
-- **Timeframe** → Past week, 2020–2025, Historical period  
-- **Constraints** → No jargon, Use analogies, Cite sources, Max 3 steps  
-- **Region** → US, EU, Global, APAC  
-- **Sources** → Official docs, Peer-reviewed, No social media  
-- **Language** → English, Ona, Spanish  
-- **Priority** → High, Normal, Low  
-- **Deadline** → Relative (24h) or ISO date (2025-08-23T17:00Z)  
-- **Privacy** → Public, Internal, Confidential  
-
----
-
-## 4. Response Templates
-
-Use when **replying to AI** or steering mid-task:
-
-**Confirm**
+**Example:**
 ```
-ACT=Confirm
-OBJ=Cheat sheet
-TAGS=[Format:Markdown]
-OUTPUT=File
-```
-
-**Reject**
-```
-ACT=Reject
-OBJ=Request
-TAGS=[Reason:Policy conflict]
-OUTPUT=None
-```
-
-**Modify**
-```
-ACT=Modify
-OBJ=Cheat sheet
-TAGS=[Add:Context field, Format:Markdown]
-OUTPUT=File
-```
-
-**Clarify**
-```
-ACT=Clarify
-OBJ=Competitor analysis
-TAGS=[Ask:Which region? Which timeframe?]
-OUTPUT=Text
-```
-
-**Deliver**
-```
-ACT=Deliver
-OBJ=Market report
-TAGS=[Format:PDF, Filename:Q3_report.pdf]
-OUTPUT=File
-```
-
----
-
-## 5. Examples in Practice
-
-**Writing**
-```
-CONTEXT = My boss has 2 minutes to read this.  
-PERSONA = You are a business analyst briefing an executive.  
-MODE = Summarize  
-ACT = Summarize  
-OBJ = Climate policy report  
-TAGS = [Format:Bullets, Length:5, Audience:Executive, Constraints:No jargon]  
-OUTPUT = Text
-```
-
-**Research**
-```
-MODE = Summarize  
-ACT = Summarize  
-OBJ = Climate change policies in Europe  
-TAGS = [Format:Bullets, Length:10, Timeframe:2020–2025, Audience:Policy makers]  
-OUTPUT = Text
-```
-
-**Technical**
-```
-CONTEXT = I want to teach a new hire Python basics.  
-PERSONA = You are a senior engineer mentoring a junior developer.  
-MODE = Explain  
-ACT = Explain  
-OBJ = Python dictionary comprehension  
-TAGS = [Format:Code+Explanation, Style:Beginner, Constraints:One code example + one analogy]  
-OUTPUT = Code + Text
-```
-
-**Creative**
-```
-MODE = Generate  
-ACT = Generate ideas  
-OBJ = Sci-fi short story plots  
-TAGS = [Format:List, Length:5, Style:Cyberpunk, Constraints:2 sentences each]  
-OUTPUT = Numbered list
-```
-
-**Business**
-```
-CONTEXT = I need to prepare a competitive landscape for an investor pitch.  
-PERSONA = You are a strategy consultant preparing a slide deck.  
-MODE = Analyze  
-ACT = Compare  
-OBJ = Top 5 competitors in renewable energy storage  
-TAGS = [Format:Table, Audience:Investors, Timeframe:2025, Constraints:Focus on strengths/weaknesses]  
-OUTPUT = Table
-```
-
----
-
-## 6. JSON Version
-
-```json
-{
-  "CONTEXT": "Boss only has 2 minutes to read this.",
-  "PERSONA": "Business analyst briefing an executive.",
-  "MODE": "Summarize",
-  "ACT": "Summarize",
-  "OBJ": "Climate policy report",
-  "TAGS": {
-    "Format": "Bullets",
-    "Length": "5",
-    "Audience": "Executive",
-    "Constraints": "No jargon"
-  },
-  "OUTPUT": "Text"
-}
-```
-
----
-
-## 7. With vs Without Context/Persona
-
-**Without**
-```
-ACT = Explain
-OBJ = Python dictionary comprehension
-TAGS = [Format:Code+Explanation, Style:Beginner]
-OUTPUT = Text
-```
-
-**With Context & Persona**
-```
-CONTEXT = I want to help a junior dev learn clean Python.  
-PERSONA = You are a senior engineer mentoring a new hire.  
-ACT = Explain
-OBJ = Python dictionary comprehension
-TAGS = [Format:Code+Explanation, Style:Beginner]
-OUTPUT = Text
-```
-
----
-
-## 8. Prompt Chaining
-
-Large or complex tasks often require step-by-step prompts. Ailo supports chaining:
-
-**Step 1 – Research facts**
-```
-ACT = Research
-OBJ = Current AI market size
-TAGS = [Format:Bullets, Sources:Official reports]
-OUTPUT = Text
-```
-
-**Step 2 – Draft summary**
-```
+PERSONA = Business analyst briefing an executive
+MODE = Summarize
 ACT = Summarize
-OBJ = Research results
-TAGS = [Format:Executive summary, Length:300 words]
+OBJ = Climate policy report
+TAGS = [Format:Bullets, Length:5, Audience:Executive, Constraints:No jargon]
 OUTPUT = Text
 ```
 
-**Step 3 – Reframe in persuasive tone**
-```
-PERSONA = You are a pitch deck writer  
-ACT = Rewrite
-OBJ = Executive summary
-TAGS = [Style/Tone:Persuasive, Audience:Investors]
-OUTPUT = Text
-```
+### What We Learned
+
+Schema prompting (tested as "schema" style in our benchmarks) performs well for:
+- **Format-critical tasks** — When specific output structure matters
+- **Complex multi-constraint tasks** — Multiple requirements to satisfy
+- **Gemini models** — +11.1% accuracy vs zero-shot
+
+But simpler techniques often win:
+- **Few-shot** beats schema for code generation (53.9% vs 37.7% similarity)
+- **Directional stimulus** matches schema accuracy with less overhead
+- **Zero-shot** works fine on premium models
+
+The research shows when to use schema prompting — and when simpler approaches work better.
 
 ---
 
-## 9. Best Practices
+## License
 
-- Always specify **ACT + OBJ** first.  
-- Use **TAGS** for clarity (format, length, style, audience).  
-- Add **CONTEXT** when nuance, stakes, or human-like reasoning are important.  
-- Add **PERSONA** when you want the AI to “speak as” someone.  
-- Add **MODE** when clarifying task type helps disambiguate intent.  
-- Explicitly support **multimodal OUTPUT** (text, file, image, chart).  
-- Break complex tasks into **prompt chains** for better accuracy.  
-- For APIs, keep it schema-only or use JSON.  
-- Always specify **OUTPUT** to control delivery.  
+MIT License — Use this research freely.
 
 ---
 
-## 10. Orchestration & Meta-Prompting
-
-Ailo is not limited to one-off prompts. It is designed to support **orchestration**: systems of prompts chained together to achieve larger goals. This is often called **Level 5 prompting**.  
-
-### 10.1 What Level 5 Includes
-- **Prompt Chaining** → Output from one prompt becomes input to the next.  
-- **Meta-Prompting** → Prompts that design or refine other prompts.  
-- **Agentic Workflows** → AI decides which prompt to run next.  
-- **Tool Use** → AI can trigger external tools, APIs, or databases.  
-- **Automation Pipelines** → Multi-step sequences that run with minimal human input.  
-
-### 10.2 How Ailo Supports schema prompting
-
-1. **Chaining**  
-   Ailo’s ACT/OBJ/OUTPUT fields allow for explicit stepwise flows.  
-   Example:  
-   ```
-   Step 1: ACT = Research | OBJ = AI market size  
-   Step 2: ACT = Summarize | OBJ = Step 1 results  
-   Step 3: ACT = Rewrite | OBJ = Step 2 summary  
-           TAGS = [Style:Persuasive, Audience:Investors]  
-   Step 4: ACT = Deliver | OBJ = Step 3 text  
-           OUTPUT = PDF
-   ```
-
-2. **MODE as Switchboard**  
-   The `MODE` field clarifies task type: Generate, Evaluate, Compare, Plan, Rewrite, Deliver.  
-   - Agents can read MODE and route tasks to the right “reasoning path.”  
-
-3. **JSON Compatibility**  
-   Ailo schemas are JSON-ready, making them easy to plug into orchestration frameworks like LangChain, Haystack, AutoGPT, or custom pipelines.  
-   ```json
-   {
-     "MODE": "Compare",
-     "ACT": "Analyze",
-     "OBJ": "Top 5 AI startups",
-     "TAGS": { "Format": "Table", "Audience": "VC investors" },
-     "OUTPUT": "Table"
-   }
-   ```
-
-4. **Response Templates as Workflow Primitives**  
-   Ailo’s Confirm / Reject / Modify / Clarify / Deliver templates act like “functions” for steering an agent mid-process.  
-   Example:  
-   ```
-   ACT = Clarify  
-   OBJ = Competitor analysis  
-   TAGS = [Ask: Which region? Which timeframe?]  
-   OUTPUT = Text
-   ```
-
-### 10.3 Benefits of Ailo
-- **Scalable** → Can orchestrate 10, 50, or 100 prompts in sequence.  
-- **Consistent** → Every step has predictable format and delivery.  
-- **Machine-friendly** → JSON-ready for APIs, automation, and agents.  
-- **Human-readable** → Easy for teams to debug and refine.  
-
----
-
-**In short:** Ailo is not just a prompt format. It is a **workflow language** for AI.  
-At Agent to Agent communication, Ailo becomes the bridge between **human clarity** and **machine orchestration**, enabling both individuals and organizations to scale AI use safely and efficiently.  
-
----
-
-© 2025 — *Ailo Prompt Framework v2*
+*Empirical prompting research, November 2025*

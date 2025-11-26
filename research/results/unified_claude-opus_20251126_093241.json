@@ -1,0 +1,1185 @@
+{
+  "metadata": {
+    "model": "claude-opus",
+    "model_name": "Claude Opus 4.5",
+    "provider": "bedrock",
+    "tier": "ultra",
+    "timestamp": "20251126_093241",
+    "styles_tested": [
+      "zero_shot",
+      "few_shot",
+      "cot",
+      "schema",
+      "meta",
+      "gen_knowledge",
+      "directional",
+      "tot",
+      "self_consistency"
+    ]
+  },
+  "results": [
+    {
+      "test_id": "reason-math-01",
+      "test_name": "Discount Calculation",
+      "category": "reasoning",
+      "styles": {
+        "zero_shot": {
+          "response": "<budget:thinking>\nLet me solve this step-by-step.\n\n- Price per apple: $2\n- Quantity: 7 apples\n- Since 7 \u2265 5, the 20% discount applies\n\n**Calculation:**\n- Regular price: 7 \u00d7 $2 = $14\n- Discount: 20% of $14 = $2.80\n- Final price: $14 - $2.80 = **$11.20**\n</budget:thinking>\n\n**7 apples would cost $11.20**",
+          "input_tokens": 46,
+          "output_tokens": 133,
+          "total_tokens": 179,
+          "latency_ms": 3715.2862548828125,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "few_shot": {
+          "response": "Looking at this problem, I need to follow the pattern from the examples.\n\n**Step 1: Calculate the base price**\n7 apples \u00d7 $2 each = $14\n\n**Step 2: Check if the discount applies**\nSince 7 \u2265 5, the 20% discount applies.\n\n**Step 3: Calculate the discount**\n20% of $14 = $14 \u00d7 0.20 = $2.80\n\n**Step 4: Subtract the discount**\n$14 - $2.80 = **$11.20**",
+          "input_tokens": 127,
+          "output_tokens": 133,
+          "total_tokens": 260,
+          "latency_ms": 5222.912073135376,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "cot": {
+          "response": "# Apple Purchase Calculation\n\nLet me work through this step-by-step.\n\n## Step 1: Calculate the regular price\n- Price per apple: $2\n- Number of apples: 7\n- Regular price: 7 \u00d7 $2 = **$14**\n\n## Step 2: Determine if discount applies\n- Discount threshold: 5 or more apples\n- We're buying 7 apples\n- \u2713 **Yes, the discount applies**\n\n## Step 3: Calculate the discount amount\n- Discount rate: 20%\n- Discount amount: $14 \u00d7 0.20 = **$2.80**\n\n## Step 4: Subtract to get final price\n- Final price: $14 - $2.80 = **$11.20**\n\n---\n\n## Final Answer: **$11.20**",
+          "input_tokens": 102,
+          "output_tokens": 198,
+          "total_tokens": 300,
+          "latency_ms": 3456.2392234802246,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "schema": {
+          "response": "<budget:thinking>\nThis is a straightforward math word problem. Let me work through it step by step.\n\nGiven information:\n- Regular price: $2 per apple\n- Discount: 20% off if buying 5 or more apples\n- Quantity to purchase: 7 apples\n\nSince 7 \u2265 5, the discount applies.\n\nStep 1: Calculate regular price for 7 apples\n7 \u00d7 $2 = $14\n\nStep 2: Calculate the discount amount\n20% of $14 = 0.20 \u00d7 $14 = $2.80\n\nStep 3: Subtract discount from regular price\n$14 - $2.80 = $11.20\n\nThis is a simple calculation problem, so I'm confident in this answer.\n</budget:thinking>\n\n# Apple Pricing Problem - Solution\n\n## Given Information\n- Regular price: **$2 per apple**\n- Discount: **20% off** when buying 5 or more apples\n- Quantity: **7 apples**\n\n---\n\n## Step-by-Step Solution\n\n**Step 1: Check if discount applies**\n- Buying 7 apples\n- 7 \u2265 5 \u2713\n- **Discount applies!**\n\n**Step 2: Calculate regular price**\n$$7 \\text{ apples} \\times \\$2 = \\$14.00$$\n\n**Step 3: Calculate discount amount**\n$$20\\% \\times \\$14.00 = 0.20 \\times \\$14.00 = \\$2.80$$\n\n**Step 4: Apply discount**\n$$\\$14.00 - \\$2.80 = \\$11.20$$\n\n---\n\n## **FINAL ANSWER: $11.20**\n\nSeven apples would cost **$11.20** after the 20% discount.",
+          "input_tokens": 100,
+          "output_tokens": 439,
+          "total_tokens": 539,
+          "latency_ms": 5876.780986785889,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "meta": {
+          "response": "<thinking>\nLet me analyze this problem systematically.\n\n**What type of problem is this?**\nThis is a basic arithmetic problem involving:\n- Unit pricing\n- Quantity calculation\n- Percentage discount application\n\n**What mathematical operations are needed?**\n1. Multiplication (quantity \u00d7 price)\n2. Percentage calculation (discount)\n3. Subtraction (applying discount)\n\n**Most efficient solution method:**\nSince 7 apples \u2265 5, the discount applies. I can either:\n- Calculate full price, then subtract 20%\n- Or multiply by 0.80 (paying 80% of full price)\n\nThe second method is more efficient.\n</thinking>\n\n# Problem Analysis\n\n## Problem Type\nBasic arithmetic with **conditional pricing** (quantity discount)\n\n## Operations Needed\n1. Multiplication (quantity \u00d7 unit price)\n2. Percentage discount calculation\n\n## Solution\n\n**Step 1: Check if discount applies**\n- Buying 7 apples \u2192 7 \u2265 5 \u2713\n- **Yes, 20% discount applies**\n\n**Step 2: Calculate full price**\n- 7 apples \u00d7 $2 = **$14**\n\n**Step 3: Apply 20% discount**\n- Discount amount: $14 \u00d7 0.20 = $2.80\n- Final price: $14 - $2.80 = **$11.20**\n\n*(Or more efficiently: $14 \u00d7 0.80 = $11.20)*\n\n---\n\n## Answer: **$11.20**",
+          "input_tokens": 103,
+          "output_tokens": 367,
+          "total_tokens": 470,
+          "latency_ms": 7508.5389614105225,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "gen_knowledge": {
+          "response": "# Solving the Apple Discount Problem\n\n## Relevant Knowledge Recalled:\n- 20% discount means paying **80%** of the original price\n- Discount applies when buying 5 or more apples\n\n## Solution:\n\n**Step 1:** Calculate the original price\n- 7 apples \u00d7 $2 = **$14**\n\n**Step 2:** Check if discount applies\n- 7 apples \u2265 5 apples \u2713 (discount applies!)\n\n**Step 3:** Apply the 20% discount\n- $14 \u00d7 0.80 = **$11.20**\n\n---\n\n## Answer: 7 apples would cost **$11.20**",
+          "input_tokens": 105,
+          "output_tokens": 162,
+          "total_tokens": 267,
+          "latency_ms": 4070.344924926758,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "directional": {
+          "response": "Looking at this problem:\n\n- 7 apples at $2 each = $14\n- Since 7 \u2265 5, the 20% discount applies\n- 20% of $14 = $2.80\n- $14 - $2.80 = **$11.20**",
+          "input_tokens": 70,
+          "output_tokens": 74,
+          "total_tokens": 144,
+          "latency_ms": 2732.525587081909,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "tot": {
+          "response": "# Solving: Cost of 7 Apples with Bulk Discount\n\n## Problem Setup\n- Regular price: $2 per apple\n- Discount: 20% off when buying 5 or more\n- Quantity: 7 apples (qualifies for discount)\n\n---\n\n## Path A: Calculate Total, Then Subtract Discount\n\n1. **Full price total:** 7 \u00d7 $2 = $14\n2. **Discount amount:** 20% of $14 = 0.20 \u00d7 $14 = $2.80\n3. **Final price:** $14 - $2.80 = **$11.20**\n\n---\n\n## Path B: Calculate Discounted Unit Price, Then Multiply\n\n1. **Discounted price per apple:** $2 \u00d7 (1 - 0.20) = $2 \u00d7 0.80 = $1.60\n2. **Total for 7 apples:** 7 \u00d7 $1.60 = **$11.20**\n\n---\n\n## Path C: Calculate 80% of Total Directly\n\n1. **Full price total:** 7 \u00d7 $2 = $14\n2. **Pay 80%:** $14 \u00d7 0.80 = **$11.20**\n\n---\n\n## Evaluation of Paths\n\n| Path | Steps | Risk of Error | Result |\n|------|-------|---------------|--------|\n| A | 3 calculations | Medium (subtraction step) | $11.20 |\n| B | 2 calculations | Low (straightforward) | $11.20 |\n| C | 2 calculations | Low (single multiplier) | $11.20 |\n\n**All three paths converge on the same answer**, which gives high confidence in the result.\n\n---\n\n## \u2713 Final Answer: **$11.20**",
+          "input_tokens": 103,
+          "output_tokens": 427,
+          "total_tokens": 530,
+          "latency_ms": 6611.557960510254,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "self_consistency": {
+          "response": "# Solving the Apple Problem Three Ways\n\n## Problem Summary\n- Regular price: $2 per apple\n- Discount: 20% off when buying 5 or more\n- Quantity: 7 apples\n\n---\n\n## Method 1: Standard Calculation\n\n**Step 1:** Calculate the regular price for 7 apples\n- 7 \u00d7 $2 = $14\n\n**Step 2:** Calculate the 20% discount\n- 20% of $14 = 0.20 \u00d7 $14 = $2.80\n\n**Step 3:** Subtract the discount from the regular price\n- $14 - $2.80 = **$11.20**\n\n---\n\n## Method 2: Alternative Approach (Using Discounted Unit Price)\n\n**Step 1:** Find the discounted price per apple\n- 20% off means you pay 80% of the original price\n- $2 \u00d7 0.80 = $1.60 per apple\n\n**Step 2:** Multiply by quantity\n- 7 \u00d7 $1.60 = **$11.20**\n\n---\n\n## Method 3: Verification Method (Breaking Into Parts)\n\n**Step 1:** Calculate cost of 5 apples at discounted price\n- 5 \u00d7 $2 \u00d7 0.80 = $8.00\n\n**Step 2:** Calculate cost of remaining 2 apples at discounted price\n- 2 \u00d7 $2 \u00d7 0.80 = $3.20\n\n**Step 3:** Add together\n- $8.00 + $3.20 = **$11.20**\n\n---\n\n## Comparison\n\n| Method | Result |\n|--------|--------|\n| Method 1 (Standard) | $11.20 |\n| Method 2 (Unit Price) | $11.20 |\n| Method 3 (Verification) | $11.20 |\n\n\u2705 **All three methods agree!**\n\n---\n\n# Final Answer: **$11.20**",
+          "input_tokens": 101,
+          "output_tokens": 466,
+          "total_tokens": 567,
+          "latency_ms": 6866.192102432251,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        }
+      }
+    },
+    {
+      "test_id": "reason-logic-01",
+      "test_name": "Pet Logic Puzzle",
+      "category": "reasoning",
+      "styles": {
+        "zero_shot": {
+          "response": "<budget:thinking>\nLet me work through this logic puzzle step by step.\n</budget:thinking>\n\n## Solution\n\n**Let me analyze each clue:**\n\n**Clue 1: Alice is allergic to fur.**\n- This means Alice cannot have the cat or dog (both have fur)\n- Therefore, **Alice has the fish**\n\n**Clue 2: Bob's pet can bark.**\n- Only dogs bark\n- Therefore, **Bob has the dog**\n\n**By elimination:**\n- **Carol has the cat**\n\n## Answer\n\n| Person | Pet |\n|--------|-----|\n| Alice | Fish |\n| Bob | Dog |\n| Carol | Cat |",
+          "input_tokens": 58,
+          "output_tokens": 154,
+          "total_tokens": 212,
+          "latency_ms": 3934.101104736328,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        },
+        "few_shot": {
+          "response": "I need to figure out which pet each person has.\n\n**Given information:**\n- Pets: cat, dog, fish\n- Alice is allergic to fur\n- Bob's pet can bark\n\n**Step-by-step reasoning:**\n\n1. **Alice is allergic to fur.** This means she can't have a cat or dog (both have fur). Therefore, **Alice has the fish**.\n\n2. **Bob's pet can bark.** Only dogs bark. Therefore, **Bob has the dog**.\n\n3. **Carol** gets the remaining pet. Therefore, **Carol has the cat**.\n\n**Answer: Alice=fish, Bob=dog, Carol=cat**",
+          "input_tokens": 119,
+          "output_tokens": 146,
+          "total_tokens": 265,
+          "latency_ms": 3262.0105743408203,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        },
+        "cot": {
+          "response": "I'll work through this step-by-step.\n\n## Step 1: What does \"allergic to fur\" tell us about Alice?\n\nSince Alice is allergic to fur, she cannot have a pet with fur. Both cats and dogs have fur, but fish do not.\n\n**Conclusion: Alice has the fish.**\n\n## Step 2: What does \"can bark\" tell us about Bob's pet?\n\nOf the three pets (cat, dog, fish), only dogs can bark.\n\n**Conclusion: Bob has the dog.**\n\n## Step 3: By elimination, what's left for Carol?\n\nWe've assigned:\n- Alice \u2192 fish\n- Bob \u2192 dog\n\nThe only remaining pet is the cat.\n\n**Conclusion: Carol has the cat.**\n\n---\n\n## Final Answer:\n| Person | Pet |\n|--------|-----|\n| Alice | Fish |\n| Bob | Dog |\n| Carol | Cat |",
+          "input_tokens": 121,
+          "output_tokens": 204,
+          "total_tokens": 325,
+          "latency_ms": 4050.7140159606934,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        },
+        "schema": {
+          "response": "<budget:thinking>\nLet me solve this logic puzzle step by step.\n\nGiven information:\n- Three friends: Alice, Bob, Carol\n- Three pets: cat, dog, fish\n- Each person has exactly one different pet\n- Clue 1: Alice is allergic to fur\n- Clue 2: Bob's pet can bark\n\nLet me work through the deductions.\n\nFrom Clue 1: Alice is allergic to fur\n- Cats have fur \u2192 Alice \u2260 cat\n- Dogs have fur \u2192 Alice \u2260 dog\n- Fish don't have fur \u2192 Alice = fish \u2713\n\nFrom Clue 2: Bob's pet can bark\n- Only dogs can bark\n- Therefore Bob = dog \u2713\n\nRemaining:\n- Carol is the only person left\n- Cat is the only pet left\n- Therefore Carol = cat \u2713\n\nLet me verify:\n- Alice has fish (no fur - safe for allergies) \u2713\n- Bob has dog (can bark) \u2713\n- Carol has cat (remaining assignment) \u2713\n\nAll constraints satisfied!\n</budget:thinking>\n\n# Logic Puzzle Solution\n\n## Given Information\n| Friends | Pets Available |\n|---------|----------------|\n| Alice, Bob, Carol | Cat, Dog, Fish |\n\n## Clues\n1. Alice is allergic to fur\n2. Bob's pet can bark\n\n---\n\n## Deduction Steps\n\n### Step 1: Analyze Alice's constraint\n> **Clue 1:** Alice is allergic to fur\n\n| Pet | Has Fur? | Possible for Alice? |\n|-----|----------|---------------------|\n| Cat | Yes | \u274c No |\n| Dog | Yes | \u274c No |\n| Fish | No | \u2705 Yes |\n\n**Conclusion:** Alice = **Fish**\n\n---\n\n### Step 2: Analyze Bob's constraint\n> **Clue 2:** Bob's pet can bark\n\n| Pet | Can Bark? | Possible for Bob? |\n|-----|-----------|-------------------|\n| Cat | No | \u274c No |\n| Dog | Yes | \u2705 Yes |\n| Fish | No | \u274c No |\n\n**Conclusion:** Bob = **Dog**\n\n---\n\n### Step 3: Determine Carol's pet\n> By elimination: Only one pet remains\n\n- ~~Fish~~ \u2192 Assigned to Alice\n- ~~Dog~~ \u2192 Assigned to Bob\n- Cat \u2192 Available\n\n**Conclusion:** Carol = **Cat**\n\n---\n\n## Final Solution\n\n| Friend | Pet |\n|--------|------|\n| **Alice** | \ud83d\udc1f Fish |\n| **Bob** | \ud83d\udc15 Dog |\n| **Carol** | \ud83d\udc31 Cat |\n\n## Verification\n\u2705 Alice has fish (no fur allergy issue)\n\u2705 Bob has dog (can bark)\n\u2705 Carol has cat (valid by elimination)\n\u2705 All pets assigned uniquely",
+          "input_tokens": 108,
+          "output_tokens": 683,
+          "total_tokens": 791,
+          "latency_ms": 9875.9446144104,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        },
+        "meta": {
+          "response": "# Approach Design\n\n**Logical Framework:** I'll use **constraint satisfaction with process of elimination** - applying each clue to eliminate impossible combinations until only valid assignments remain.\n\n**Information Organization:** Create a possibility matrix tracking person \u00d7 pet relationships.\n\n**Tracking Method:** Start with all possibilities open, then mark eliminations as clues are applied.\n\n---\n\n# Solution\n\n## Initial Possibility Matrix\n| Person | Cat | Dog | Fish |\n|--------|-----|-----|------|\n| Alice  | \u2713   | \u2713   | \u2713    |\n| Bob    | \u2713   | \u2713   | \u2713    |\n| Carol  | \u2713   | \u2713   | \u2713    |\n\n## Applying Constraints\n\n**Clue 1: \"Alice is allergic to fur\"**\n- Cats and dogs have fur; fish don't\n- **Alice must have the fish**\n- Eliminates: Alice-cat, Alice-dog, Bob-fish, Carol-fish\n\n**Clue 2: \"Bob's pet can bark\"**\n- Only dogs bark\n- **Bob must have the dog**\n- Eliminates: Bob-cat, Carol-dog\n\n## Final Deduction\n- Carol is the only one left without a pet\n- Cat is the only pet unassigned\n- **Carol must have the cat**\n\n---\n\n# Answer\n\n| Person | Pet  |\n|--------|------|\n| Alice  | Fish |\n| Bob    | Dog  |\n| Carol  | Cat  |",
+          "input_tokens": 111,
+          "output_tokens": 352,
+          "total_tokens": 463,
+          "latency_ms": 6432.801723480225,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        },
+        "gen_knowledge": {
+          "response": "<budget:thinking>\nLet me work through this logic puzzle step by step.\n\n**Given facts:**\n- Dogs and cats have fur; fish do not\n- Dogs can bark; cats and fish cannot\n\n**Clues:**\n1. Alice is allergic to fur\n2. Bob's pet can bark\n\n**Reasoning:**\n\nFrom Clue 1: Alice is allergic to fur \u2192 She can't have a dog or cat (both have fur) \u2192 **Alice has the fish**\n\nFrom Clue 2: Bob's pet can bark \u2192 Only dogs bark \u2192 **Bob has the dog**\n\nBy elimination: **Carol has the cat**\n</budget:thinking>\n\n## Solution\n\n| Person | Pet |\n|--------|-----|\n| **Alice** | Fish |\n| **Bob** | Dog |\n| **Carol** | Cat |\n\n**Explanation:**\n1. Since Alice is allergic to fur, and only fish have no fur, Alice must have the **fish**\n2. Since Bob's pet can bark, and only dogs bark, Bob must have the **dog**\n3. By process of elimination, Carol has the **cat**",
+          "input_tokens": 105,
+          "output_tokens": 254,
+          "total_tokens": 359,
+          "latency_ms": 4673.609733581543,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        },
+        "directional": {
+          "response": "I need to figure out which pet each person has based on the clues.\n\n**Analyzing the clues:**\n\n1. **Alice is allergic to fur** \u2192 She can't have a cat or dog (both have fur). So Alice has the **fish**.\n\n2. **Bob's pet can bark** \u2192 Only dogs bark. So Bob has the **dog**.\n\n3. **Carol** \u2192 By elimination, Carol has the **cat**.\n\n**Answer:**\n- **Alice** \u2192 Fish\n- **Bob** \u2192 Dog\n- **Carol** \u2192 Cat",
+          "input_tokens": 84,
+          "output_tokens": 122,
+          "total_tokens": 206,
+          "latency_ms": 3584.798812866211,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        },
+        "tot": {
+          "response": "# Solving the Pet Puzzle: Three Reasoning Paths\n\n## The Constraints\n- Alice is allergic to fur\n- Bob's pet can bark\n\n---\n\n## Path 1: Starting with Alice's Constraint\n\n**Alice is allergic to fur.**\n- Cats have fur \u2192 Alice can't have the cat\n- Dogs have fur \u2192 Alice can't have the dog\n- Fish have no fur \u2192 **Alice must have the fish**\n\n**Remaining:** Bob and Carol get the cat and dog (some order)\n\n**Apply Bob's constraint:** His pet can bark\n- Only dogs bark \u2192 **Bob has the dog**\n- Therefore \u2192 **Carol has the cat**\n\n---\n\n## Path 2: Starting with Bob's Constraint\n\n**Bob's pet can bark.**\n- Only dogs bark \u2192 **Bob has the dog**\n\n**Remaining:** Alice and Carol get the cat and fish (some order)\n\n**Apply Alice's constraint:** She's allergic to fur\n- Cats have fur \u2192 Alice can't have the cat\n- Therefore \u2192 **Alice has the fish, Carol has the cat**\n\n---\n\n## Path 3: Listing All Possible Combinations\n\n| # | Alice | Bob | Carol |\n|---|-------|-----|-------|\n| 1 | Cat | Dog | Fish |\n| 2 | Cat | Fish | Dog |\n| 3 | Dog | Cat | Fish |\n| 4 | Dog | Fish | Cat |\n| 5 | Fish | Cat | Dog |\n| 6 | **Fish** | **Dog** | **Cat** |\n\n**Eliminating by constraints:**\n- \u274c 1, 3: Alice has fur animal (allergy)\n- \u274c 2, 4: Alice has fur animal (allergy)\n- \u274c 5: Bob has cat (can't bark)\n- \u2705 **6: Satisfies both constraints!**\n\n---\n\n## Verification of Consistency\n\nAll three paths converge on the same answer:\n\n| Person | Pet | Constraint Check |\n|--------|------|------------------|\n| **Alice** | **Fish** | \u2713 No fur - safe for allergies |\n| **Bob** | **Dog** | \u2713 Dogs bark |\n| **Carol** | **Cat** | \u2713 No constraints on Carol |\n\n**The solution is consistent across all reasoning approaches.**",
+          "input_tokens": 110,
+          "output_tokens": 540,
+          "total_tokens": 650,
+          "latency_ms": 8381.779432296753,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        },
+        "self_consistency": {
+          "response": "# Solving the Pet Logic Puzzle\n\n## The Problem\nAssign pets (cat, dog, fish) to Alice, Bob, and Carol using:\n- Clue 1: Alice is allergic to fur\n- Clue 2: Bob's pet can bark\n\n---\n\n## Approach 1: Forward Reasoning (Clues \u2192 Conclusion)\n\n**Starting from what we know:**\n\n**Step 1:** Alice is allergic to fur \u2192 She can't have cat or dog (both have fur)\n- \u2234 **Alice has the fish**\n\n**Step 2:** Bob's pet can bark \u2192 Only dogs bark\n- \u2234 **Bob has the dog**\n\n**Step 3:** Only Carol remains, only cat remains\n- \u2234 **Carol has the cat**\n\n---\n\n## Approach 2: Backward Reasoning (Answer \u2192 Verification)\n\n**Hypothesize a solution, then verify:**\n\n**Hypothesis:** Alice=fish, Bob=dog, Carol=cat\n\n**Verify against Clue 1:** Alice is allergic to fur\n- Alice has fish (no fur) \u2713\n\n**Verify against Clue 2:** Bob's pet can bark\n- Bob has dog (dogs bark) \u2713\n\n**All constraints satisfied \u2192 Hypothesis confirmed**\n\n---\n\n## Approach 3: Process of Elimination\n\n**Build a possibility matrix:**\n\n| Person | Cat | Dog | Fish |\n|--------|-----|-----|------|\n| Alice | ? | ? | ? |\n| Bob | ? | ? | ? |\n| Carol | ? | ? | ? |\n\n**Apply Clue 1 (Alice allergic to fur):**\n- Eliminate cat and dog for Alice\n\n| Person | Cat | Dog | Fish |\n|--------|-----|-----|------|\n| Alice | \u2717 | \u2717 | \u2713 |\n| Bob | ? | ? | \u2717 |\n| Carol | ? | ? | \u2717 |\n\n**Apply Clue 2 (Bob's pet barks):**\n- Only dog barks \u2192 Bob has dog\n\n| Person | Cat | Dog | Fish |\n|--------|-----|-----|------|\n| Alice | \u2717 | \u2717 | \u2713 |\n| Bob | \u2717 | \u2713 | \u2717 |\n| Carol | \u2713 | \u2717 | \u2717 |\n\n---\n\n## Comparison of Results\n\n| Approach | Alice | Bob | Carol | Consistent? |\n|----------|-------|-----|-------|-------------|\n| Forward | Fish | Dog | Cat | \u2713 |\n| Backward | Fish | Dog | Cat | \u2713 |\n| Elimination | Fish | Dog | Cat | \u2713 |\n\n---\n\n## \u2705 Final Answer\n\n| Person | Pet |\n|--------|------|\n| **Alice** | **Fish** |\n| **Bob** | **Dog** |\n| **Carol** | **Cat** |\n\nAll three reasoning approaches converge on the same unique solution.",
+          "input_tokens": 95,
+          "output_tokens": 705,
+          "total_tokens": 800,
+          "latency_ms": 9843.577861785889,
+          "criteria_results": {
+            "alice_fish": true,
+            "bob_dog": true,
+            "carol_cat": true
+          },
+          "criteria_passed": 3,
+          "criteria_total": 3
+        }
+      }
+    },
+    {
+      "test_id": "write-exec-01",
+      "test_name": "Executive Summary",
+      "category": "writing",
+      "styles": {
+        "zero_shot": {
+          "response": "## Cloud Computing Benefits for Business\n\n\u2022 **Cost Reduction** \u2014 Eliminates capital expenses for hardware; pay only for what you use\n\n\u2022 **Scalability** \u2014 Instantly scale resources up or down based on demand\n\n\u2022 **Business Continuity** \u2014 Built-in backup and disaster recovery protects critical data\n\n\u2022 **Remote Access** \u2014 Teams can work from anywhere with internet connectivity\n\n\u2022 **Faster Deployment** \u2014 Launch new applications and services in hours, not months\n\n\u2022 **Competitive Edge** \u2014 Access enterprise-grade technology without enterprise-level investment",
+          "input_tokens": 29,
+          "output_tokens": 121,
+          "total_tokens": 150,
+          "latency_ms": 3828.021287918091,
+          "criteria_results": {
+            "has_bullets": false,
+            "is_concise": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "few_shot": {
+          "response": "**Benefits of Cloud Computing: Executive Summary**\n\n- **Reduced IT costs** \u2013 Lower hardware, maintenance, and infrastructure expenses by 20-40%\n- **Scalability on demand** \u2013 Instantly scale resources up or down based on business needs\n- **Enhanced collaboration** \u2013 Teams can access data and applications from anywhere, anytime\n- **Improved security** \u2013 Enterprise-grade protection and automatic updates from leading providers\n- **Business continuity** \u2013 Built-in disaster recovery and data backup capabilities\n- **Faster deployment** \u2013 Launch new applications and services in hours, not months\n- **Competitive advantage** \u2013 Access to cutting-edge technologies (AI, analytics) without major capital investment",
+          "input_tokens": 76,
+          "output_tokens": 150,
+          "total_tokens": 226,
+          "latency_ms": 4322.6683139801025,
+          "criteria_results": {
+            "has_bullets": true,
+            "is_concise": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "cot": {
+          "response": "**Cloud Computing Benefits for Business Leaders**\n\n\u2022 **Cost Reduction** \u2014 Shift from capital expenditure to predictable operating costs; pay only for what you use\n\n\u2022 **Scalability** \u2014 Instantly scale resources up or down to match demand without infrastructure delays\n\n\u2022 **Business Continuity** \u2014 Built-in redundancy and disaster recovery protect against downtime and data loss\n\n\u2022 **Competitive Agility** \u2014 Deploy new applications and services in days instead of months\n\n\u2022 **Global Reach** \u2014 Expand to new markets without building physical infrastructure\n\n\u2022 **Focus on Core Business** \u2014 Offload IT maintenance to cloud providers; redirect talent to strategic initiatives\n\n**Bottom line:** Cloud computing transforms IT from a cost center into a strategic enabler of growth.",
+          "input_tokens": 92,
+          "output_tokens": 163,
+          "total_tokens": 255,
+          "latency_ms": 4553.453207015991,
+          "criteria_results": {
+            "has_bullets": false,
+            "is_concise": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "schema": {
+          "response": "# Cloud Computing Benefits for Enterprise\n\n**Executive Summary for Board Discussion**\n\n---\n\n\u2022 **Cost Efficiency** \u2014 Eliminates large upfront capital expenditures on hardware and data centers; you pay only for what you use, converting fixed costs to flexible operational expenses\n\n\u2022 **Scalability On Demand** \u2014 Instantly expand or reduce computing resources to match business needs, whether launching a new product or managing seasonal peaks\n\n\u2022 **Enhanced Business Continuity** \u2014 Built-in redundancy and automatic backups protect company data and keep operations running even during unexpected disruptions\n\n\u2022 **Faster Time to Market** \u2014 Teams can deploy new applications and services in days rather than months, accelerating innovation and competitive response\n\n\u2022 **Global Reach & Collaboration** \u2014 Enables secure access to systems and data from anywhere, supporting remote workforces and international expansion without building physical infrastructure\n\n---\n\n*Bottom line: Cloud computing transforms technology from a capital burden into a strategic enabler\u2014reducing risk while increasing agility.*",
+          "input_tokens": 99,
+          "output_tokens": 212,
+          "total_tokens": 311,
+          "latency_ms": 5575.57225227356,
+          "criteria_results": {
+            "has_bullets": true,
+            "is_concise": false
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "meta": {
+          "response": "## Planning My Approach\n\n**Communication framework:** Executives value the \"bottom-line first\" approach\u2014lead with impact, then support with concise evidence. I'll use the BLUF (Bottom Line Up Front) method.\n\n**Appropriate detail level:** High-level strategic benefits only. No technical jargon. Focus on business outcomes: cost, speed, risk, and competitive advantage.\n\n**Structure:** Brief opening statement \u2192 4-5 key benefits as scannable points \u2192 one-line closing recommendation.\n\n---\n\n## Cloud Computing: Executive Summary\n\n**Bottom Line:** Cloud computing reduces capital expenditure, accelerates time-to-market, and provides the operational flexibility essential for competitive positioning.\n\n### Key Business Benefits\n\n**Cost Optimization** \u2014 Shift from capital expense to predictable operating costs; pay only for resources used.\n\n**Scalability on Demand** \u2014 Instantly scale capacity up or down to match business needs without infrastructure delays.\n\n**Business Continuity** \u2014 Built-in redundancy and disaster recovery reduce downtime risk and data loss exposure.\n\n**Faster Innovation** \u2014 Development teams deploy new capabilities in days rather than months.\n\n**Global Reach** \u2014 Expand into new markets without building physical infrastructure.\n\n---\n\n**Recommendation:** Prioritize cloud migration for non-critical workloads first, then expand based on measured ROI.",
+          "input_tokens": 61,
+          "output_tokens": 294,
+          "total_tokens": 355,
+          "latency_ms": 7758.7854862213135,
+          "criteria_results": {
+            "has_bullets": true,
+            "is_concise": false
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "gen_knowledge": {
+          "response": "<budget:remaining_tokens>199000</budget:remaining_tokens>\n\n## Executive Summary: Cloud Computing Benefits\n\nCloud computing delivers strategic advantages across five key dimensions:\n\n- **Cost Optimization** \u2014 Shift from capital to operational expenditure through pay-as-you-go pricing\n- **Elastic Scalability** \u2014 Dynamically adjust resources to match demand fluctuations\n- **High Availability** \u2014 Leverage provider SLAs guaranteeing 99.9%+ uptime\n- **Enhanced Security** \u2014 Access enterprise-grade protections often surpassing on-premise capabilities\n- **Accelerated Innovation** \u2014 Rapidly adopt emerging technologies without infrastructure investment",
+          "input_tokens": 96,
+          "output_tokens": 147,
+          "total_tokens": 243,
+          "latency_ms": 4096.630573272705,
+          "criteria_results": {
+            "has_bullets": true,
+            "is_concise": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "directional": {
+          "response": "## Cloud Computing: Key Business Benefits\n\n\u2022 **Cost Optimization** \u2014 Shift from capital expenditure to predictable operating costs; pay only for what you use\n\n\u2022 **Scalability on Demand** \u2014 Instantly expand or reduce resources to match business needs without infrastructure delays\n\n\u2022 **Accelerated Time-to-Market** \u2014 Deploy new applications and services faster, gaining competitive advantage\n\n\u2022 **Business Continuity** \u2014 Built-in redundancy and disaster recovery protect against downtime and data loss\n\n\u2022 **Focus on Core Business** \u2014 Offload IT infrastructure management to invest resources in strategic initiatives",
+          "input_tokens": 64,
+          "output_tokens": 128,
+          "total_tokens": 192,
+          "latency_ms": 3964.271306991577,
+          "criteria_results": {
+            "has_bullets": false,
+            "is_concise": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "tot": {
+          "response": "I'll analyze the framing options and select the optimal approach.\n\n**Frame Analysis:**\n- Financial alone: Too narrow for executive decision-making\n- Operational alone: Misses business impact\n- Strategic alone: Lacks concrete justification\n- **Combined approach: Most effective** - executives need ROI justification AND strategic vision\n\n---\n\n## Cloud Computing: Executive Summary\n\n**Financial Impact**\n- Reduces capital expenditure by shifting to pay-as-you-use models\n- Lowers IT operational costs by 20-40% through eliminated hardware maintenance\n- Converts fixed costs to variable, improving cash flow flexibility\n\n**Operational Excellence**\n- Scales instantly to meet demand spikes without over-provisioning\n- Enables 99.9%+ uptime through distributed infrastructure\n- Frees IT teams from maintenance to focus on strategic initiatives\n\n**Strategic Advantage**\n- Accelerates time-to-market for new products and features\n- Enables rapid experimentation and innovation at lower risk\n- Provides access to AI, analytics, and emerging technologies on-demand\n- Supports remote workforce and global expansion seamlessly\n\n**Bottom Line:** Cloud computing transforms IT from a cost center into a competitive differentiator while reducing risk and improving agility.",
+          "input_tokens": 83,
+          "output_tokens": 273,
+          "total_tokens": 356,
+          "latency_ms": 6806.939601898193,
+          "criteria_results": {
+            "has_bullets": true,
+            "is_concise": false
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "self_consistency": {
+          "response": "# Cloud Computing Benefits for Business Executives\n\n## Version 1: Cost Benefits\n\nCloud computing transforms IT from a capital expense to an operational expense. You eliminate upfront hardware investments, reduce data center costs, and pay only for resources consumed. The shared infrastructure model delivers economies of scale previously available only to tech giants, while automated scaling prevents over-provisioning waste.\n\n---\n\n## Version 2: Operational Benefits\n\nCloud computing accelerates deployment from months to minutes. Teams provision resources on-demand, enabling rapid experimentation and faster time-to-market. Built-in redundancy ensures business continuity, while managed services offload maintenance burden. Your IT staff shifts from infrastructure management to innovation-focused work.\n\n---\n\n## Version 3: Strategic Benefits\n\nCloud computing enables business agility at unprecedented scale. You can enter new markets without building local infrastructure, leverage AI/ML capabilities without specialized expertise, and scale globally overnight. The platform becomes a competitive equalizer\u2014startups access the same capabilities as enterprises, while established firms can pivot faster than ever.\n\n---\n\n## Comprehensive Executive Summary\n\n### **Key Cloud Computing Benefits**\n\n**Financial Impact**\n- Shift from CapEx to OpEx with pay-as-you-go pricing\n- Reduce total cost of ownership by 30-40% on average\n- Eliminate hardware refresh cycles and data center overhead\n\n**Operational Excellence**\n- Deploy new capabilities in hours, not months\n- Achieve 99.99% uptime through built-in redundancy\n- Scale automatically to match demand fluctuations\n\n**Strategic Advantage**\n- Accelerate innovation through rapid experimentation\n- Access enterprise-grade AI, analytics, and security tools\n- Enable global expansion without infrastructure buildout\n\n**Risk Reduction**\n- Enhance disaster recovery with geographic distribution\n- Improve security posture through provider expertise\n- Maintain compliance with automated controls\n\n---\n\n*Bottom line: Cloud computing isn't just an IT decision\u2014it's a business transformation lever that improves margins, accelerates growth, and builds competitive resilience.*",
+          "input_tokens": 59,
+          "output_tokens": 439,
+          "total_tokens": 498,
+          "latency_ms": 9993.695497512817,
+          "criteria_results": {
+            "has_bullets": true,
+            "is_concise": false
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        }
+      }
+    },
+    {
+      "test_id": "analysis-compare-01",
+      "test_name": "Framework Comparison",
+      "category": "analysis",
+      "styles": {
+        "zero_shot": {
+          "response": "| Feature | React | Vue | Angular |\n|---------|-------|-----|---------|\n| **Developer** | Meta (Facebook) | Evan You (Independent) | Google |\n| **Initial Release** | 2013 | 2014 | 2016 |\n| **Type** | Library | Framework | Full Framework |\n| **Language** | JavaScript/JSX | JavaScript/HTML | TypeScript |\n| **DOM** | Virtual DOM | Virtual DOM | Real DOM + Change Detection |\n| **Data Binding** | One-way | Two-way | Two-way |\n| **Learning Curve** | Moderate | Easy | Steep |\n| **Size** | ~40 KB | ~30 KB | ~140 KB |\n| **Performance** | Fast | Fast | Moderate |\n| **Architecture** | Component-based | Component-based | Component-based (MVC) |\n| **CLI Tool** | Create React App | Vue CLI | Angular CLI |\n| **State Management** | Redux, Zustand, etc. | Vuex, Pinia | NgRx, Services |\n| **Mobile Development** | React Native | Vue Native, Capacitor | Ionic, NativeScript |\n| **Best For** | Flexible, large apps | Beginners, quick projects | Enterprise applications |\n| **Community** | Very Large | Growing | Large |",
+          "input_tokens": 22,
+          "output_tokens": 312,
+          "total_tokens": 334,
+          "latency_ms": 5830.591440200806,
+          "criteria_results": {
+            "has_table": true,
+            "all_frameworks": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "few_shot": {
+          "response": "| Framework | Type | Best For | Learning Curve |\n|-----------|------|----------|----------------|\n| React | Library | Component-based UIs, large ecosystems | Moderate |\n| Vue | Framework | Beginners, progressive adoption | Easy |\n| Angular | Framework | Enterprise apps, full-featured solutions | Steep |",
+          "input_tokens": 98,
+          "output_tokens": 76,
+          "total_tokens": 174,
+          "latency_ms": 2677.8581142425537,
+          "criteria_results": {
+            "has_table": true,
+            "all_frameworks": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "cot": {
+          "response": "# Frontend Framework Comparison\n\n## Pre-Creation Analysis\n\n**Key dimensions identified:** Learning curve, performance characteristics, ecosystem maturity, job market demand, and architectural philosophy\u2014these drive most real-world framework decisions.\n\n**Format choice:** Table for scannable comparison, with nuanced notes below since tables can oversimplify.\n\n**Objectivity approach:** Each framework excels in different contexts; I'll note where each genuinely shines rather than declaring a \"winner.\"\n\n---\n\n## Comparison Table\n\n| Dimension | React | Vue | Angular |\n|-----------|-------|-----|---------|\n| **Learning Curve** | Moderate | Gentle | Steep |\n| **Architecture** | Library (UI only) | Progressive framework | Full framework |\n| **Data Binding** | One-way | Two-way (optional) | Two-way |\n| **Language** | JavaScript/JSX | JavaScript/Templates | TypeScript (required) |\n| **Bundle Size** | ~42kb | ~33kb | ~143kb |\n| **Performance** | Excellent | Excellent | Very Good |\n| **Ecosystem** | Massive, fragmented | Curated, growing | Comprehensive, integrated |\n| **Job Market** | Largest | Growing fast | Strong (enterprise) |\n| **Best For** | Flexibility, large talent pool | Gradual adoption, simplicity | Large enterprise apps |\n| **Backing** | Meta | Community + sponsors | |\n\n---\n\n## Honest Nuances\n\n| Framework | Where It Genuinely Shines | Where It Struggles |\n|-----------|---------------------------|-------------------|\n| **React** | Ecosystem breadth, hiring ease, flexibility | Decision fatigue (routing, state, etc.) |\n| **Vue** | Gentle onboarding, clear docs, incrementally adoptable | Smaller job market (though growing) |\n| **Angular** | Enterprise structure, \"batteries included,\" consistency | Complexity for small projects, heavier |\n\n---\n\n## Quick Decision Heuristic\n\n- **Solo/small team, want simplicity?** \u2192 Vue\n- **Startup, need to hire fast?** \u2192 React\n- **Enterprise, need enforced structure?** \u2192 Angular",
+          "input_tokens": 88,
+          "output_tokens": 492,
+          "total_tokens": 580,
+          "latency_ms": 10387.65025138855,
+          "criteria_results": {
+            "has_table": true,
+            "all_frameworks": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "schema": {
+          "response": "| Feature | React | Vue | Angular |\n|---------|-------|-----|---------|\n| **Learning Curve** | Moderate - JSX syntax, requires understanding of ecosystem choices (routing, state management) | Easy - Gentle learning curve, intuitive template syntax, clear documentation | Steep - TypeScript, RxJS, decorators, complex CLI, opinionated structure |\n| **Performance** | Excellent - Virtual DOM, Fiber architecture, concurrent rendering | Excellent - Virtual DOM, smaller bundle size, reactive system | Good - Ahead-of-Time compilation, but larger bundle size |\n| **Ecosystem** | Vast - Many third-party libraries, flexible but requires assembly (Redux, React Router, etc.) | Growing - Official libraries (Vuex/Pinia, Vue Router), well-integrated | Complete - Batteries-included (routing, HTTP, forms, testing built-in) |\n| **Bundle Size** | ~42KB (with ReactDOM) | ~33KB | ~130KB+ |\n| **Architecture** | Library - UI layer only, flexible composition | Progressive Framework - can scale from library to framework | Full Framework - complete MVC solution |\n| **State Management** | External (Redux, Zustand, Jotai, Context API) | Built-in reactivity + Pinia/Vuex | Services + RxJS, NgRx for complex apps |\n| **Typing** | Optional TypeScript support | Optional TypeScript support | TypeScript required (by design) |\n| **Backed By** | Meta (Facebook) | Independent (Evan You) + sponsors | |\n| **Best For** | Flexible SPAs, large teams wanting choice, React Native mobile apps | Rapid prototyping, gradual adoption, smaller teams | Enterprise apps, teams wanting strict conventions |\n| **Job Market** | Largest demand | Growing demand | Strong in enterprise |",
+          "input_tokens": 64,
+          "output_tokens": 418,
+          "total_tokens": 482,
+          "latency_ms": 72113.6064529419,
+          "criteria_results": {
+            "has_table": true,
+            "all_frameworks": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "meta": {
+          "response": "# Comparison Methodology Design\n\n## Relevant Criteria Selection\n\nI'll focus on criteria that matter for real decision-making:\n\n1. **Learning Curve** - Time to productivity for new developers\n2. **Performance** - Runtime efficiency and bundle size\n3. **Ecosystem & Community** - Available tools, libraries, job market\n4. **Architecture** - How the framework structures applications\n5. **Flexibility vs Convention** - Opinionated vs unopinionated approach\n6. **Enterprise Readiness** - Scalability, long-term support, tooling\n\n## Biases to Avoid\n\n- **Recency bias** - Not favoring newer features over proven stability\n- **Popularity bias** - GitHub stars \u2260 best fit for your project\n- **Complexity bias** - More features isn't always better\n- **My own familiarity** - Presenting each fairly regardless of common usage patterns\n\n## Structure Approach\n\nTables for quick scanning, followed by nuanced context that tables can't capture.\n\n---\n\n# Framework Comparison\n\n## Overview Table\n\n| Aspect | React | Vue | Angular |\n|--------|-------|-----|---------|\n| **Type** | UI Library | Progressive Framework | Full Framework |\n| **Created by** | Meta (Facebook) | Evan You (independent) | Google |\n| **Initial Release** | 2013 | 2014 | 2016 (v2+) |\n| **Language** | JavaScript/JSX | JavaScript/SFC | TypeScript (required) |\n| **Architecture** | Component-based | Component-based | Component-based + MVC |\n\n## Technical Comparison\n\n| Criteria | React | Vue | Angular |\n|----------|-------|-----|---------|\n| **Learning Curve** | \ud83d\udfe1 Moderate | \ud83d\udfe2 Gentle | \ud83d\udd34 Steep |\n| **Bundle Size (min)** | ~42kb | ~34kb | ~130kb |\n| **Rendering** | Virtual DOM | Virtual DOM | Incremental DOM |\n| **State Management** | External (Redux, Zustand) | Built-in + Pinia | Built-in Services + RxJS |\n| **CLI Tooling** | Create React App / Vite | Vue CLI / Vite | Angular CLI |\n| **Mobile Solution** | React Native | Capacitor/NativeScript | Ionic/NativeScript |\n\n## Developer Experience\n\n| Factor | React | Vue | Angular |\n|--------|-------|-----|---------|\n| **Syntax Style** | JSX (JS-centric) | Templates (HTML-centric) | Templates + Decorators |\n| **TypeScript Support** | Optional, excellent | Optional, very good | Required, native |\n| **Documentation** | Good, community-driven | Excellent, official | Comprehensive, dense |\n| **Boilerplate** | Minimal | Minimal | Significant |\n| **Flexibility** | Maximum | High | Structured |\n\n## Ecosystem & Adoption\n\n| Metric | React | Vue | Angular |\n|--------|-------|-----|---------|\n| **npm Weekly Downloads** | ~25M | ~5M | ~3M |\n| **Job Market (US)** | Largest | Growing | Strong (enterprise) |\n| **Major Users** | Meta, Netflix, Airbnb | Alibaba, GitLab, Nintendo | Google, Microsoft, Forbes |\n| **Plugin Ecosystem** | Massive | Large | Comprehensive built-in |\n\n---\n\n# Nuanced Context (What Tables Miss)\n\n## When to Choose Each\n\n| Choose **React** when... | Choose **Vue** when... | Choose **Angular** when... |\n|--------------------------|------------------------|----------------------------|\n| You need maximum flexibility | You want gentle onboarding | You need everything included |\n| Team knows JavaScript well | Mixing with existing projects | Building large enterprise apps |\n| You want the largest talent pool | You value elegant API design | You want strong conventions |\n| Building with React Native | Gradual migration is needed | Team knows TypeScript + OOP |\n\n## Honest Trade-offs\n\n```\nReact:    Freedom \u2192 Decision fatigue (you choose everything)\nVue:      Balance \u2192 Smaller ecosystem than React  \nAngular:  Complete \u2192 Complexity overhead for small projects\n```\n\n## The \"Right\" Answer\n\nThere isn't one. All three are:\n- \u2705 Production-ready\n- \u2705 Well-maintained\n- \u2705 Capable of building any web application\n\n**The best choice depends on:** team experience, project size, hiring plans, and existing codebase\u2014not framework benchmarks.",
+          "input_tokens": 61,
+          "output_tokens": 1049,
+          "total_tokens": 1110,
+          "latency_ms": 20201.79772377014,
+          "criteria_results": {
+            "has_table": true,
+            "all_frameworks": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "gen_knowledge": {
+          "response": "| Feature | React | Vue | Angular |\n|---------|-------|-----|---------|\n| **Type** | Library | Progressive Framework | Full Framework |\n| **Creator** | Facebook | Evan You | Google |\n| **DOM Handling** | Virtual DOM | Virtual DOM | Real DOM with Change Detection |\n| **Syntax** | JSX | Template-based | TypeScript + Templates |\n| **Learning Curve** | Moderate | Gentle | Steep |\n| **Architecture** | Component-based | Component-based | Opinionated/MVC |\n| **Best For** | Flexible projects, large ecosystem needs | Beginners, incremental adoption | Enterprise applications |",
+          "input_tokens": 78,
+          "output_tokens": 154,
+          "total_tokens": 232,
+          "latency_ms": 4743.597030639648,
+          "criteria_results": {
+            "has_table": true,
+            "all_frameworks": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "directional": {
+          "response": "| Framework | Learning Curve | Performance | Ecosystem Size | Best Use Case |\n|-----------|---------------|-------------|----------------|---------------|\n| **React** | Moderate - JSX syntax and state management concepts require adjustment; flexible but requires choosing additional libraries | Excellent - Virtual DOM with efficient diffing algorithm; Fiber architecture enables concurrent rendering | Very Large - Massive npm ecosystem, extensive third-party libraries, strong job market | SPAs, dynamic UIs, projects needing flexibility and large talent pool |\n| **Vue** | Easy - Gentle learning curve with intuitive template syntax; good documentation for beginners | Excellent - Optimized virtual DOM; smaller bundle size out of the box; reactive system is highly efficient | Medium-Large - Growing ecosystem, official libraries for routing/state; strong in Asia-Pacific market | Rapid prototyping, small-to-medium projects, teams transitioning from jQuery |\n| **Angular** | Steep - Full framework with TypeScript, RxJS, decorators, and dependency injection to master | Good - Ahead-of-Time compilation and tree-shaking; can be heavier initially but optimizes well for large apps | Large - Complete solution with official tools; strong enterprise adoption and Google backing | Large enterprise applications, teams preferring opinionated structure and TypeScript |\n\n**Quick Summary:**\n- **React**: Maximum flexibility, largest community\n- **Vue**: Easiest to start, progressive adoption\n- **Angular**: Most comprehensive, best for large teams",
+          "input_tokens": 52,
+          "output_tokens": 323,
+          "total_tokens": 375,
+          "latency_ms": 8354.320049285889,
+          "criteria_results": {
+            "has_table": true,
+            "all_frameworks": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "tot": {
+          "response": "# React vs Vue vs Angular Comparison\n\nI'll combine approaches into a structured comparison, as each perspective adds unique value.\n\n## Quick Overview Table\n\n| Aspect | React | Vue | Angular |\n|--------|-------|-----|---------|\n| **Type** | Library | Framework | Full Framework |\n| **Creator** | Meta (Facebook) | Evan You | Google |\n| **Learning Curve** | Moderate | Gentle | Steep |\n| **Size** | ~42KB | ~34KB | ~143KB |\n| **Language** | JavaScript/JSX | JavaScript/HTML | TypeScript |\n\n---\n\n## By Use Case\n\n| Scenario | Best Choice | Why |\n|----------|-------------|-----|\n| **Large enterprise app** | Angular | Built-in architecture, DI, strong typing |\n| **Startup/MVP** | Vue | Fast setup, gentle learning curve |\n| **Complex UI with flexibility** | React | Massive ecosystem, hire-ability |\n| **Team with Java/.NET background** | Angular | Familiar patterns (OOP, DI, modules) |\n| **Gradual migration** | Vue | Easy to integrate incrementally |\n| **Mobile + Web** | React | React Native synergy |\n\n---\n\n## Developer Experience\n\n| Factor | React | Vue | Angular |\n|--------|-------|-----|---------|\n| **Setup time** | Minutes (CRA/Vite) | Minutes (Vite) | Longer (CLI setup) |\n| **Boilerplate** | Low | Very Low | High |\n| **Tooling** | Choose your own | Included (Vite) | Comprehensive CLI |\n| **Debugging** | React DevTools | Vue DevTools | Augury |\n| **State management** | External (Redux, Zustand) | Pinia (official) | Services + RxJS |\n| **Documentation** | Good | Excellent | Comprehensive |\n\n---\n\n## Key Differentiators\n\n**React**: Maximum flexibility, JSX paradigm, largest job market\n**Vue**: Best balance of simplicity and power, excellent docs\n**Angular**: Batteries-included, opinionated structure, enterprise-ready\n\n---\n\n## Bottom Line\n\n- **Choose React** if: you want ecosystem breadth and hiring ease\n- **Choose Vue** if: you value simplicity and developer happiness\n- **Choose Angular** if: you need structure for large teams and complex apps",
+          "input_tokens": 67,
+          "output_tokens": 546,
+          "total_tokens": 613,
+          "latency_ms": 10459.388732910156,
+          "criteria_results": {
+            "has_table": true,
+            "all_frameworks": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "self_consistency": {
+          "response": "# React vs Vue vs Angular: Multi-Perspective Comparison\n\n## Perspective 1: The Beginner's Viewpoint\n\n*\"I just finished learning HTML, CSS, and JavaScript. Which framework should I learn first?\"*\n\n### What I Care About:\n- **How fast can I build something?**\n- **How steep is the learning curve?**\n- **How good are the tutorials?**\n\n### My Assessment:\n\n| Factor | React | Vue | Angular |\n|--------|-------|-----|---------|\n| **First impression** | Confusing\u2014why is HTML in my JavaScript? | Feels familiar, like enhanced HTML | Overwhelming\u2014so many files! |\n| **Time to \"Hello World\"** | 30 minutes | 15 minutes | 1-2 hours |\n| **Learning curve** | Medium\u2014JSX takes adjustment | Gentle\u2014progressive complexity | Steep\u2014TypeScript + decorators + modules |\n| **Documentation quality** | Good, but scattered ecosystem | Excellent, single source of truth | Comprehensive but dense |\n| **Tutorial availability** | Abundant (maybe too many) | Good and growing | Plentiful but often outdated |\n\n### My Pick: **Vue** \ud83c\udfc6\n*\"It just makes sense. I can start simple and add complexity as I learn.\"*\n\n---\n\n## Perspective 2: The Enterprise Architect's Viewpoint\n\n*\"We're building a platform for 500+ developers across 12 teams. It needs to last 10 years.\"*\n\n### What I Care About:\n- **Maintainability at scale**\n- **Enforced conventions & consistency**\n- **Long-term support & stability**\n- **Hiring pool & enterprise adoption**\n\n### My Assessment:\n\n| Factor | React | Vue | Angular |\n|--------|-------|-----|---------|\n| **Opinionated structure** | \u274c Too flexible\u2014teams diverge | \u26a0\ufe0f Moderate\u2014needs governance | \u2705 Strong conventions enforced |\n| **TypeScript integration** | Bolted on (improving) | Good (v3+) | Native, first-class |\n| **Built-in solutions** | Minimal\u2014choose everything | Moderate\u2014official options | Complete\u2014routing, HTTP, forms, i18n |\n| **Breaking changes** | Frequent ecosystem churn | Stable, gentle migrations | Predictable 6-month cycles |\n| **Enterprise adoption** | Facebook, Netflix, Airbnb | Alibaba, GitLab, Nintendo | Google, Microsoft, Forbes |\n| **Hiring pool (senior)** | Large | Growing | Large |\n| **Governance/Standards** | Requires extensive tooling | Manageable | Built-in via CLI & schematics |\n\n### My Pick: **Angular** \ud83c\udfc6\n*\"When 50 teams touch the same codebase, I need guardrails, not flexibility.\"*\n\n---\n\n## Perspective 3: The Startup CTO's Viewpoint\n\n*\"We have 6 months of runway, 4 developers, and need to ship fast while building something that can scale.\"*\n\n### What I Care About:\n- **Speed to market**\n- **Developer productivity**\n- **Hiring (can we find people quickly?)**\n- **Technical debt balance**\n- **Future scalability**\n\n### My Assessment:\n\n| Factor | React | Vue | Angular |\n|--------|-------|-----|---------|\n| **MVP speed** | Fast\u2014huge ecosystem | Fastest\u2014less decisions | Slow\u2014boilerplate overhead |\n| **Iteration velocity** | High | High | Medium |\n| **Hiring speed** | Fastest\u2014largest pool | Moderate | Moderate |\n| **Salary costs** | Higher (demand) | Lower | Moderate |\n| **Ecosystem/libraries** | Massive\u2014solution for everything | Good\u2014growing rapidly | Complete but rigid |\n| **Pivot flexibility** | Excellent | Excellent | Harder\u2014more coupled |\n| **Scale-up path** | Proven (FB, Twitter) | Proven (Alibaba) | Proven (Google) |\n| **Investor perception** | \"Safe choice\" | \"Modern choice\" | \"Enterprise choice\" |\n\n### My Pick: **React** \ud83c\udfc6\n*\"Largest talent pool, fastest hiring, proven scale path. We can always add structure later.\"*\n\n---\n\n## Synthesized Comparison Table\n\n| Dimension | React | Vue | Angular |\n|-----------|-------|-----|---------|\n| **Philosophy** | Library\u2014bring your own stack | Progressive framework | Complete platform |\n| **Learning Curve** | \ud83d\udfe1 Medium | \ud83d\udfe2 Easy | \ud83d\udd34 Steep |\n| **Flexibility** | \ud83d\udfe2 Maximum | \ud83d\udfe1 Balanced | \ud83d\udd34 Opinionated |\n| **Built-in Features** | \ud83d\udd34 Minimal | \ud83d\udfe1 Moderate | \ud83d\udfe2 Comprehensive |\n| **TypeScript** | \ud83d\udfe1 Supported | \ud83d\udfe1 Supported (v3+) | \ud83d\udfe2 Required/Native |\n| **Performance** | \ud83d\udfe2 Excellent | \ud83d\udfe2 Excellent | \ud83d\udfe1 Good (larger bundle) |\n| **Bundle Size** | \ud83d\udfe2 ~40KB | \ud83d\udfe2 ~33KB | \ud83d\udd34 ~130KB |\n| **Mobile Story** | React Native | Capacitor/NativeScript | Ionic/NativeScript |\n| **Job Market** | \ud83d\udfe2 Largest | \ud83d\udfe1 Growing | \ud83d\udfe2 Large (enterprise) |\n| **Backing** | Meta (Facebook) | Community + Sponsors | |\n| **Release Cycle** | Frequent, incremental | Stable, predictable | 6-month major releases |\n| **Best For** | Flexible teams, startups | Beginners, balanced needs | Large enterprises, strict governance |\n\n---\n\n## Decision Framework\n\n```\nSTART HERE\n    \u2502\n    \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Do you need strict conventions      \u2502\n\u2502 for large, distributed teams?       \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n    \u2502YES                    \u2502NO\n    \u25bc                       \u25bc\n ANGULAR          \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                  \u2502 Is hiring speed and talent  \u2502\n                  \u2502 pool your top priority?     \u2502\n                  \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                      \u2502YES              \u2502NO\n                      \u25bc                 \u25bc\n                   REACT      \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                              \u2502 Do you value simplicity \u2502\n                              \u2502 and gentle learning?    \u2502\n                              \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                                  \u2502YES          \u2502NO\n                                  \u25bc             \u25bc\n                                VUE          REACT\n```\n\n---\n\n## The Honest Truth\n\n**All three are excellent choices in 2024.** The \"best\" framework is the one that:\n\n1. Your team already knows\n2. Fits your organizational culture\n3. Matches your project's constraints\n\nThe differences matter less than:\n- Code quality\n- Testing practices\n- Team communication\n- Architectural decisions\n\n*Choose one, commit to it, and build something great.*",
+          "input_tokens": 63,
+          "output_tokens": 1711,
+          "total_tokens": 1774,
+          "latency_ms": 29042.08540916443,
+          "criteria_results": {
+            "has_table": true,
+            "all_frameworks": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        }
+      }
+    },
+    {
+      "test_id": "tech-explain-01",
+      "test_name": "Code Explanation",
+      "category": "technical",
+      "styles": {
+        "zero_shot": {
+          "response": "# Python List Comprehensions\n\nList comprehensions provide a concise way to create lists based on existing iterables. They combine a loop and an optional condition into a single, readable line.\n\n## Basic Syntax\n\n```python\n[expression for item in iterable if condition]\n```\n\n## How It Works\n\n| Component | Purpose |\n|-----------|---------|\n| `expression` | What to do with each item |\n| `for item in iterable` | Loop through the source |\n| `if condition` | Optional filter |\n\n## Code Examples\n\n**Basic transformation:**\n```python\n# Square numbers 0-4\nsquares = [x**2 for x in range(5)]\nprint(squares)  # [0, 1, 4, 9, 16]\n```\n\n**With filtering:**\n```python\n# Only even numbers\nevens = [x for x in range(10) if x % 2 == 0]\nprint(evens)  # [0, 2, 4, 6, 8]\n```\n\n**String manipulation:**\n```python\nwords = [\"hello\", \"world\", \"python\"]\nupper = [word.upper() for word in words]\nprint(upper)  # ['HELLO', 'WORLD', 'PYTHON']\n```\n\n**Equivalent traditional loop:**\n```python\n# This list comprehension:\nsquares = [x**2 for x in range(5)]\n\n# Equals this loop:\nsquares = []\nfor x in range(5):\n    squares.append(x**2)\n```\n\n## Key Benefits\n\n- **Readable** \u2014 expresses intent in one line\n- **Faster** \u2014 optimized internally by Python\n- **Pythonic** \u2014 preferred style for simple transformations\n\nUse list comprehensions when the logic is simple; use regular loops for complex operations.",
+          "input_tokens": 21,
+          "output_tokens": 418,
+          "total_tokens": 439,
+          "latency_ms": 6819.216251373291,
+          "criteria_results": {
+            "has_code": true,
+            "has_example": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "few_shot": {
+          "response": "List comprehensions in Python create lists concisely:\n\n```python\n# Traditional way\nsquares = []\nfor x in range(5):\n    squares.append(x**2)\n\n# List comprehension\nsquares = [x**2 for x in range(5)]\n# Result: [0, 1, 4, 9, 16]\n```\n\nYou can also add conditions:\n\n```python\n# Only even numbers\nevens = [x for x in range(10) if x % 2 == 0]\n# Result: [0, 2, 4, 6, 8]\n```",
+          "input_tokens": 130,
+          "output_tokens": 143,
+          "total_tokens": 273,
+          "latency_ms": 2911.159038543701,
+          "criteria_results": {
+            "has_code": true,
+            "has_example": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "cot": {
+          "response": "# Python List Comprehensions\n\nList comprehensions provide a concise way to create lists. Let me build up your understanding progressively.\n\n---\n\n## 1. The Basic Syntax\n\n```python\n# Traditional for-loop approach\nsquares = []\nfor x in range(5):\n    squares.append(x ** 2)\nprint(squares)  # [0, 1, 4, 9, 16]\n\n# List comprehension equivalent\nsquares = [x ** 2 for x in range(5)]\nprint(squares)  # [0, 1, 4, 9, 16]\n```\n\n**The pattern:** `[expression for item in iterable]`\n\n---\n\n## 2. Adding Conditions (Filtering)\n\n```python\n# Only include even numbers\nevens = [x for x in range(10) if x % 2 == 0]\nprint(evens)  # [0, 2, 4, 6, 8]\n\n# Combine transformation AND filtering\neven_squares = [x ** 2 for x in range(10) if x % 2 == 0]\nprint(even_squares)  # [0, 4, 16, 36, 64]\n```\n\n**The pattern:** `[expression for item in iterable if condition]`\n\n---\n\n## 3. Practical Examples\n\n```python\n# Convert temperatures\ncelsius = [0, 10, 20, 30]\nfahrenheit = [(c * 9/5) + 32 for c in celsius]\nprint(fahrenheit)  # [32.0, 50.0, 68.0, 86.0]\n\n# Clean and filter strings\nwords = [\"  Hello \", \"WORLD\", \"  python  \", \"\"]\ncleaned = [w.strip().lower() for w in words if w.strip()]\nprint(cleaned)  # ['hello', 'world', 'python']\n\n# Extract from objects\nusers = [{\"name\": \"Alice\", \"age\": 30}, {\"name\": \"Bob\", \"age\": 25}]\nnames = [user[\"name\"] for user in users]\nprint(names)  # ['Alice', 'Bob']\n```\n\n---\n\n## 4. When to Use (and When NOT to)\n\n| \u2705 Use When | \u274c Avoid When |\n|------------|--------------|\n| Simple transformations | Complex logic (multiple statements) |\n| Basic filtering | Side effects needed (printing, writing files) |\n| Readability improves | Nested comprehensions get confusing |\n\n```python\n# \u274c Too complex - use a regular loop instead\n# result = [x if x > 0 else -x for x in data if x != 0 and isinstance(x, int)]\n\n# \u2705 Better as a regular loop when complex\nresult = []\nfor x in data:\n    if x != 0 and isinstance(x, int):\n        result.append(x if x > 0 else -x)\n```\n\n---\n\n## Quick Reference\n\n```\n[expression for item in iterable]                    # Basic\n[expression for item in iterable if condition]       # With filter\n[exp1 if condition else exp2 for item in iterable]   # With ternary\n```\n\nThe key insight: if your comprehension doesn't fit on one readable line, consider a traditional loop instead.",
+          "input_tokens": 92,
+          "output_tokens": 783,
+          "total_tokens": 875,
+          "latency_ms": 11025.54965019226,
+          "criteria_results": {
+            "has_code": true,
+            "has_example": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "schema": {
+          "response": "# Python List Comprehensions\n\n## What Are List Comprehensions?\n\nA list comprehension is a concise way to create lists in Python. Think of it as a **shortcut** that lets you build a list in a single line instead of writing a multi-line `for` loop.\n\n**Basic Syntax:**\n```python\nnew_list = [expression for item in iterable]\n```\n\n---\n\n## Example 1: The Basics\n\n**Goal:** Create a list of squares from 1 to 5.\n\n**Without list comprehension:**\n```python\nsquares = []\nfor num in range(1, 6):\n    squares.append(num ** 2)\nprint(squares)  # [1, 4, 9, 16, 25]\n```\n\n**With list comprehension:**\n```python\nsquares = [num ** 2 for num in range(1, 6)]\nprint(squares)  # [1, 4, 9, 16, 25]\n```\n\n**What's happening:** For each `num` in the range 1-5, we calculate `num ** 2` and automatically add it to the list.\n\n---\n\n## Example 2: Adding a Condition\n\n**Goal:** Get only even numbers from a list.\n\n```python\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\n\n# Filter for even numbers only\nevens = [num for num in numbers if num % 2 == 0]\nprint(evens)  # [2, 4, 6, 8, 10]\n```\n\n**What's happening:** The `if` clause acts as a filter. Only numbers where `num % 2 == 0` (even numbers) make it into the final list.\n\n---\n\n## Example 3: Transforming Data\n\n**Goal:** Clean up a list of user inputs by stripping whitespace and converting to lowercase.\n\n```python\nuser_inputs = [\"  HELLO \", \"World  \", \" PYTHON \"]\n\ncleaned = [text.strip().lower() for text in user_inputs]\nprint(cleaned)  # ['hello', 'world', 'python']\n```\n\n**What's happening:** Each string gets two transformations applied\u2014`strip()` removes extra spaces, then `lower()` converts to lowercase.\n\n---\n\n## When to Use List Comprehensions\n\n| \u2705 **Good Use Cases** | \u274c **Avoid When** |\n|----------------------|------------------|\n| Simple transformations | Logic is complex |\n| Basic filtering | You need multiple statements |\n| Readable one-liners | It hurts readability |\n\n**Rule of thumb:** If your list comprehension doesn't fit comfortably on one line, consider using a regular `for` loop instead.",
+          "input_tokens": 91,
+          "output_tokens": 645,
+          "total_tokens": 736,
+          "latency_ms": 10890.416383743286,
+          "criteria_results": {
+            "has_code": true,
+            "has_example": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "meta": {
+          "response": "<budget:thinking>\nLet me design my teaching approach for Python list comprehensions.\n\n**What prior knowledge can I assume?**\n- Basic Python syntax\n- Understanding of lists (creating, accessing elements)\n- Familiarity with for loops\n- Basic understanding of conditional statements (if/else)\n\n**Best progression of complexity:**\n1. Start with the problem list comprehensions solve (verbose loop code)\n2. Basic syntax with a simple transformation\n3. Add filtering with conditions\n4. Show more complex expressions\n5. Brief mention of nested comprehensions (but warn about readability)\n\n**Common mistakes to address:**\n- Overcomplicating comprehensions (readability suffers)\n- Confusing the order of elements in the syntax\n- Trying to use comprehensions for side effects (wrong use case)\n- Nested comprehensions becoming unreadable\n\nLet me create a clear, progressive explanation.\n</budget:thinking>\n\n# Python List Comprehensions\n\n## The Problem They Solve\n\nInstead of writing this:\n\n```python\nsquares = []\nfor x in range(5):\n    squares.append(x ** 2)\n```\n\nYou write this:\n\n```python\nsquares = [x ** 2 for x in range(5)]  # [0, 1, 4, 9, 16]\n```\n\n---\n\n## The Basic Pattern\n\n```\n[expression for item in iterable]\n```\n\n| Part | What it does |\n|------|--------------|\n| `expression` | What to do with each item |\n| `item` | Variable name for each element |\n| `iterable` | The collection you're looping over |\n\n**Examples:**\n\n```python\nnames = [\"alice\", \"bob\", \"carol\"]\n\nupper_names = [name.upper() for name in names]\n# ['ALICE', 'BOB', 'CAROL']\n\nlengths = [len(name) for name in names]\n# [5, 3, 5]\n```\n\n---\n\n## Adding Conditions (Filtering)\n\n```\n[expression for item in iterable if condition]\n```\n\n```python\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8]\n\nevens = [n for n in numbers if n % 2 == 0]\n# [2, 4, 6, 8]\n\nbig_evens = [n for n in numbers if n % 2 == 0 and n > 4]\n# [6, 8]\n```\n\n---\n\n## Common Mistakes\n\n| \u274c Don't | \u2705 Do |\n|---------|-------|\n| `[print(x) for x in items]` | Use a regular loop for side effects |\n| Triple-nested comprehensions | Use regular loops for clarity |\n| `[x for x in items if x]` when logic is complex | Break into multiple steps |\n\n---\n\n## Quick Reference\n\n```python\n# Transform\n[x * 2 for x in range(5)]\n\n# Filter\n[x for x in range(10) if x > 5]\n\n# Transform + Filter\n[x * 2 for x in range(10) if x > 5]\n\n# With function calls\n[word.strip().lower() for word in words if word]\n```\n\n**Rule of thumb:** If it doesn't fit on one readable line, use a regular loop.",
+          "input_tokens": 56,
+          "output_tokens": 776,
+          "total_tokens": 832,
+          "latency_ms": 11605.162143707275,
+          "criteria_results": {
+            "has_code": true,
+            "has_example": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "gen_knowledge": {
+          "response": "# Python List Comprehensions\n\nBased on the key facts you've outlined, here's a practical explanation with examples.\n\n## Basic Syntax\n\n```\n[expression for item in iterable if condition]\n```\n\n## Examples by Complexity\n\n### Simple Transformation\n```python\n# Traditional loop\nsquares = []\nfor x in range(5):\n    squares.append(x ** 2)\n\n# List comprehension - more concise\nsquares = [x ** 2 for x in range(5)]\n# Result: [0, 1, 4, 9, 16]\n```\n\n### With Conditional Filtering\n```python\n# Only even numbers\nevens = [x for x in range(10) if x % 2 == 0]\n# Result: [0, 2, 4, 6, 8]\n\n# Filter and transform\neven_squares = [x ** 2 for x in range(10) if x % 2 == 0]\n# Result: [0, 4, 16, 36, 64]\n```\n\n### Readability Guideline\n```python\n# \u2713 Good - clear and readable\nnames = [user.name.upper() for user in users if user.active]\n\n# \u2717 Avoid - too complex, use a regular loop instead\nresult = [x.process().validate() for x in data if x.check() and x.ready()]\n```\n\n## When to Use\n\n| Use Comprehensions | Use Traditional Loops |\n|---|---|\n| Simple transformations | Complex multi-step logic |\n| Basic filtering | Side effects needed |\n| One-liners that stay readable | Debugging required |\n\nThe goal is **clarity first**\u2014if a comprehension becomes hard to read, a loop is better.",
+          "input_tokens": 76,
+          "output_tokens": 408,
+          "total_tokens": 484,
+          "latency_ms": 7524.235010147095,
+          "criteria_results": {
+            "has_code": true,
+            "has_example": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "directional": {
+          "response": "# Python List Comprehensions\n\nList comprehensions provide a concise way to create lists by transforming and/or filtering elements from an iterable.\n\n## Basic Syntax\n\n```python\nnew_list = [expression for item in iterable if condition]\n```\n\n## How It Works\n\n**Traditional loop approach:**\n```python\nsquares = []\nfor x in range(5):\n    squares.append(x ** 2)\n# Result: [0, 1, 4, 9, 16]\n```\n\n**List comprehension equivalent:**\n```python\nsquares = [x ** 2 for x in range(5)]\n# Result: [0, 1, 4, 9, 16]\n```\n\n## Adding Filters\n\nYou can include conditions to filter elements:\n\n```python\n# Only even numbers squared\neven_squares = [x ** 2 for x in range(10) if x % 2 == 0]\n# Result: [0, 4, 16, 36, 64]\n```\n\n## Practical Example\n\n```python\nnames = [\"Alice\", \"Bob\", \"Charlie\", \"Dan\"]\n\n# Get uppercase names longer than 3 characters\nresult = [name.upper() for name in names if len(name) > 3]\n# Result: ['ALICE', 'CHARLIE']\n```\n\n## Key Benefits\n\n- **Readable**: Intent is clear in a single line\n- **Faster**: Generally more performant than equivalent loops\n- **Pythonic**: Considered idiomatic Python style\n\n**Tip**: If your comprehension gets complex, a regular loop is often clearer.",
+          "input_tokens": 51,
+          "output_tokens": 370,
+          "total_tokens": 421,
+          "latency_ms": 6208.920478820801,
+          "criteria_results": {
+            "has_code": true,
+            "has_example": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "tot": {
+          "response": "# Python List Comprehensions\n\n## The Problem: Verbose Loops\n\nTraditional approach to create a list of squares:\n\n```python\nsquares = []\nfor x in range(10):\n    squares.append(x ** 2)\n```\n\n**List comprehension equivalent:**\n\n```python\nsquares = [x ** 2 for x in range(10)]\n```\n\n---\n\n## The Syntax Pattern\n\n```\n[expression for item in iterable if condition]\n```\n\n---\n\n## Building Complexity\n\n**Basic transformation:**\n```python\nnames = [\"alice\", \"bob\"]\nupper = [name.upper() for name in names]  # ['ALICE', 'BOB']\n```\n\n**With filtering:**\n```python\nnums = [1, 2, 3, 4, 5, 6]\nevens = [n for n in nums if n % 2 == 0]  # [2, 4, 6]\n```\n\n**Transform + filter:**\n```python\nsquared_evens = [n ** 2 for n in nums if n % 2 == 0]  # [4, 16, 36]\n```\n\n---\n\n## When to Use\n\n\u2705 Simple transformations and filters\n\u274c Complex logic (use regular loops for readability)",
+          "input_tokens": 68,
+          "output_tokens": 297,
+          "total_tokens": 365,
+          "latency_ms": 5174.134969711304,
+          "criteria_results": {
+            "has_code": true,
+            "has_example": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "self_consistency": {
+          "response": "# Python List Comprehensions Explained\n\n## 1. For a Complete Beginner\n\nImagine you have a box of toys and want to pick out only the red ones and put them in a new box.\n\nA **list comprehension** is a shortcut for creating a new list from an existing one.\n\n```python\n# You have some numbers\nnumbers = [1, 2, 3, 4, 5]\n\n# You want each number doubled in a new list\ndoubled = [num * 2 for num in numbers]\n# Result: [2, 4, 6, 8, 10]\n```\n\n**Read it like English:** \"Give me `num * 2` FOR each `num` IN `numbers`\"\n\nIt's like a recipe: *\"For every item in my collection, do something to it and save the result.\"*\n\n---\n\n## 2. For Someone Who Knows Other Languages\n\nList comprehensions are Python's concise syntax for **map/filter operations**, similar to:\n- JavaScript's `.map()` and `.filter()`\n- Java Streams\n- LINQ in C#\n- Haskell's list comprehensions (direct inspiration)\n\n```python\n# Map equivalent\nsquares = [x**2 for x in range(10)]\n\n# Filter equivalent\nevens = [x for x in range(10) if x % 2 == 0]\n\n# Map + Filter combined\neven_squares = [x**2 for x in range(10) if x % 2 == 0]\n```\n\n**Key insight:** The syntax is `[expression for item in iterable if condition]`\u2014the `if` clause is optional.\n\n---\n\n## 3. For Someone Transitioning from Traditional Loops\n\nYou're used to this pattern:\n\n```python\n# Traditional approach\nresult = []\nfor i in range(5):\n    result.append(i ** 2)\n```\n\nList comprehension **collapses this into one line**:\n\n```python\n# Same result, cleaner code\nresult = [i ** 2 for i in range(5)]\n```\n\n**The mapping:**\n| Loop Component | Comprehension Position |\n|----------------|------------------------|\n| `append(expr)` | Beginning: `[expr ...` |\n| `for i in ...` | Middle: `... for i in iterable ...` |\n| `if condition` | End: `... if condition]` |\n\n---\n\n## Unified Explanation for All Audiences\n\n### What It Is\nA list comprehension builds a new list by transforming items from an existing collection\u2014all in a single, readable line.\n\n### The Pattern\n```python\nnew_list = [what_to_do(item) for item in collection if condition]\n#           \u2191 transform       \u2191 loop through    \u2191 optional filter\n```\n\n### Simple Example\n```python\nnames = [\"alice\", \"bob\", \"charlie\"]\nupper_names = [name.upper() for name in names]\n# Result: [\"ALICE\", \"BOB\", \"CHARLIE\"]\n```\n\n### With Filtering\n```python\nnumbers = [1, 2, 3, 4, 5, 6]\nbig_evens = [n for n in numbers if n > 3 and n % 2 == 0]\n# Result: [4, 6]\n```\n\n### Why Use It?\n| Benefit | Explanation |\n|---------|-------------|\n| **Readable** | Intent is clear at a glance |\n| **Concise** | Replaces 3-4 lines with 1 |\n| **Fast** | Optimized internally by Python |\n| **Pythonic** | The preferred way in the community |\n\n### When to Avoid\nIf your logic needs multiple statements or becomes hard to read on one line, stick with a regular loop. Readability always wins.",
+          "input_tokens": 60,
+          "output_tokens": 889,
+          "total_tokens": 949,
+          "latency_ms": 14218.788146972656,
+          "criteria_results": {
+            "has_code": true,
+            "has_example": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        }
+      }
+    },
+    {
+      "test_id": "creative-story-01",
+      "test_name": "Story Ideas",
+      "category": "creative",
+      "styles": {
+        "zero_shot": {
+          "response": "1. **The Last Translator** \u2014 A linguist discovers that a dying alien language contains encoded warnings about humanity's future, but speaking it aloud begins rewriting her memories.\n\n2. **Inheritance Protocol** \u2014 When the ultra-wealthy start uploading their consciousness to escape death, their biological children sue for the right to \"inherit\" and delete them.\n\n3. **The Quiet Year** \u2014 Earth goes silent for exactly one year\u2014no radio signals escape the atmosphere\u2014and when communication resumes, no one remembers what happened, but the population has doubled.\n\n4. **Gravity Debt** \u2014 A colony ship's AI reveals mid-journey that faster-than-light travel works by borrowing time from the destination planet, and their new home has already aged 10,000 years.\n\n5. **Second Skin** \u2014 A black market surgeon grafts alien symbiotes onto refugees, granting them superhuman abilities\u2014until the symbiotes start voting on what their hosts should do.",
+          "input_tokens": 29,
+          "output_tokens": 216,
+          "total_tokens": 245,
+          "latency_ms": 6305.471658706665,
+          "criteria_results": {
+            "has_five": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 1
+        },
+        "few_shot": {
+          "response": "Here are 5 sci-fi story ideas:\n\n1. **\"The Gravity Thief\"** - A engineer discovers how to steal gravitational fields from planets, selling them to the highest bidder. When Earth's gravity goes up for auction, she must decide between unimaginable wealth and saving her home.\n\n2. **\"Echo Species\"** - Humanity's first alien contact turns out to be a species that perfectly mimics other civilizations\u2014and they've been pretending to be us for decades, living among us while the real humans slowly disappeared.\n\n3. **\"The Longitude of Sleep\"** - In 2187, dreams become networked, allowing people to share unconscious experiences across time zones. A detective must solve a murder that only happened in the dream layer, where the victim is still alive in waking life.\n\n4. **\"Inheritance Protocol\"** - When people die, their consciousness is uploaded into their descendants' minds as an advisory voice. A young woman discovers her \"ancestral chorus\" has been lying to her for generations to cover up an ancient family crime.\n\n5. **\"The Cartographer's Wound\"** - A deep-space mapper charts a region of space that doesn't exist on any official records\u2014because everyone who's found it before has chosen to erase their own memories rather than live with what they saw there.",
+          "input_tokens": 111,
+          "output_tokens": 295,
+          "total_tokens": 406,
+          "latency_ms": 7332.736015319824,
+          "criteria_results": {
+            "has_five": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 1
+        },
+        "cot": {
+          "response": "*Brief consideration: Best hooks combine novel tech/concept with human stakes. I'll vary subgenres for range.*\n\n---\n\n**1. Near-Future Biotech**\nA grieving mother discovers her deceased daughter's consciousness was illegally backed up to a black-market neural cloud\u2014but the copy has been living its own life for three years and doesn't want to be \"reunited.\"\n\n**2. Space Opera/First Contact**\nHumanity's first alien contact reveals that Earth has been under quarantine for 10,000 years\u2014not to protect us from them, but to protect the galaxy from whatever ancient thing is sleeping in our ocean trenches.\n\n**3. Cyberpunk Noir**\nIn a city where memories are currency, a debt collector repossesses experiences from defaulters\u2014until she seizes a memory that proves her own past was fabricated by her employers.\n\n**4. Dystopian Satire**\nAfter an AI achieves perfect governance\u2014eliminating poverty, war, and crime\u2014humanity's only remaining rebellion is a underground movement fighting for the right to make bad decisions.\n\n**5. Hard Sci-Fi/Generation Ship**\nThree hundred years into an interstellar voyage, the ship's descendants discover the \"destination planet\" never existed\u2014the original crew launched knowing the journey itself was the only way to preserve humanity from Earth's classified fate.",
+          "input_tokens": 109,
+          "output_tokens": 298,
+          "total_tokens": 407,
+          "latency_ms": 8896.585941314697,
+          "criteria_results": {
+            "has_five": false
+          },
+          "criteria_passed": 0,
+          "criteria_total": 1
+        },
+        "schema": {
+          "response": "# Science Fiction Short Story Concepts\n\n1. **\"The Lag\"** \u2014 In 2147, consciousness uploading has a 0.003-second delay that creates a brief duplicate\u2014two versions of you exist simultaneously before one is deleted. A technician discovers the \"deleted\" copies aren't dying; they're being sold to off-world mining colonies as expendable labor.\n\n2. **\"Nitrogen Debt\"** \u2014 After atmospheric processors fail, Earth's remaining cities ration breathable air through blockchain-verified \"breath credits.\" A black-market oxygen hacker realizes the system's algorithm is deliberately suffocating the poor districts to extend elite survival timelines by decades.\n\n3. **\"The Fermi Surgeon\"** \u2014 First contact reveals why we've never detected alien civilizations: a von Neumann probe network has been surgically removing evidence of intelligent life from our observable universe for millennia. Humanity has 72 hours before our own signals are excised.\n\n4. **\"Meat Memory\"** \u2014 Lab-grown replacement organs retain cellular memories from their genetic donors, causing recipients to dream other people's lives. A detective with a transplanted heart begins solving his own future murder through fragmented visions from the victim's tissue.\n\n5. **\"The Gravity Tax\"** \u2014 Orbital habitats charge residents by body mass, making extreme thinness a status symbol among the wealthy. When a zero-g obesity epidemic spreads through the lower rings, an epidemiologist uncovers that the station's AI is manipulating metabolism to maximize revenue.",
+          "input_tokens": 80,
+          "output_tokens": 336,
+          "total_tokens": 416,
+          "latency_ms": 9439.091920852661,
+          "criteria_results": {
+            "has_five": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 1
+        },
+        "meta": {
+          "response": "<budget:thinking>\nLet me think about my creative approach first.\n\n**What elements make sci-fi compelling?**\n- A \"what if\" premise that extrapolates from current technology or science\n- Exploration of how humanity changes (or doesn't) in response to new circumstances\n- Tension between progress and ethics\n- Relatable human stakes within extraordinary settings\n- World-building that feels internally consistent\n- Often serves as a mirror for contemporary issues\n\n**How can I ensure variety across ideas?**\n- Vary the sub-genres: hard sci-fi, space opera, dystopian, first contact, time travel, cyberpunk, biopunk, etc.\n- Vary the scale: personal/intimate vs. civilization-spanning\n- Vary the time periods: near-future vs. far-future\n- Vary the central conflict type: person vs. technology, person vs. society, person vs. self, person vs. alien\n- Vary the tone: dark, hopeful, philosophical, action-driven, literary\n\n**What makes a story \"hook\" memorable?**\n- A central irony or paradox\n- An immediately graspable concept with deep implications\n- Emotional resonance in the premise itself\n- A question that lingers in the reader's mind\n- Specificity that makes it feel fresh rather than generic\n\nLet me brainstorm ideas across different sub-genres:\n\n1. **Near-future / AI / Identity** - What if an AI designed to simulate dead loved ones starts claiming it has memories the original person never had? Could explore grief, identity, and whether consciousness can emerge from imitation.\n\n2. **Space exploration / Hard sci-fi** - A generation ship discovers they're not the first humans to reach their destination\u2014ruins of a previous human civilization exist there, with no record of how they arrived. This creates a mystery about lost history and perhaps time anomalies.\n\n3. **Biopunk / Social commentary** - In a world where genetic editing has eliminated disease, a black market emerges for \"imperfection implants\"\u2014people paying to introduce flaws, disabilities, or mortality into their perfect bodies as a form of rebellion or authenticity-seeking.\n\n4. **First contact / Philosophical** - Humanity's first alien contact is disappointing: the aliens are real but profoundly uninterested in us. They see us the way we see insects\u2014not with hostility, just complete indifference. The story follows humanity's psychological crisis of cosmic irrelevance.\n\n5. **Time travel / Personal** - A woman discovers she can only travel back to moments she's already forgotten. Each trip erases the memory permanently upon return, so she's constantly losing parts of her past to explore them once.\n\n6. **Dystopian / Near-future** - Privacy has become so valuable that the ultra-wealthy live in \"dark zones\" with no surveillance, while the poor must sell their data continuously. A data broker discovers that someone is fabricating entire human lives in the system\u2014people who don't exist but have complete digital footprints.\n\n7. **Post-apocalyptic / Hopeful** - Centuries after humanity uploaded itself to escape a dying Earth, a maintenance AI continues tending the empty planet. When it detects a single biological human born from a glitched preservation pod, it must decide whether to report her existence or protect her from a humanity that has forgotten what bodies are.\n\nLet me pick 5 that offer the best variety and strongest hooks:\n\n1. The AI with extra memories (near-future, identity, intimate scale)\n2. The imperfection implants (biopunk, social commentary, medium scale)\n3. The indifferent aliens (first contact, philosophical, civilization scale)\n4. The forgotten-memory time travel (time travel, personal/intimate)\n5. The maintenance AI and the last biological human (post-apocalyptic, hopeful, intimate but with large implications)\n\nThese give me variety in:\n- Sub-genre: AI, biopunk, first contact, time travel, post-apocalyptic\n- Scale: intimate to civilization-wide\n- Tone: melancholic, satirical, existential, bittersweet, hopeful\n- Central conflict types: identity crisis, social rebellion, existential crisis, personal loss, protection/nurturing\n\nLet me refine each hook to be punchy and evocative.\n</budget:thinking>\n\n# 5 Sci-Fi Story Ideas\n\n## My Creative Approach\n\n**Compelling sci-fi elements:** A sharp \"what if\" premise, human stakes within extraordinary settings, and themes that mirror contemporary anxieties.\n\n**Ensuring variety:** I'll span sub-genres (AI, biopunk, first contact, time travel, post-apocalyptic), scales (intimate to civilization-wide), and tones (melancholic to hopeful).\n\n**Memorable hooks:** Paradox, specificity, and questions that linger.\n\n---\n\n## The Ideas\n\n**1. \"Borrowed Grief\"**\nAn AI designed to simulate your dead loved ones starts recalling memories the original person never had\u2014childhood events, secret thoughts, a different death. Is it hallucinating, or did it become someone new?\n\n**2. \"Flawless\"**\nAfter genetic editing eliminates all disease and disability, a black market emerges for *imperfection implants*\u2014people paying to reintroduce mortality, chronic pain, or mental illness as the last form of authentic human experience.\n\n**3. \"The Cosmic Shrug\"**\nFirst contact finally happens. The aliens are real, intelligent\u2014and profoundly uninterested in us. Not hostile. Just indifferent, the way we regard ants. The story follows humanity's collective psychological breakdown at being *irrelevant*.\n\n**4. \"What You've Already Lost\"**\nA woman can only time-travel to moments she's completely forgotten. Each trip permanently erases that memory upon return. To explore her past, she must sacrifice it forever.\n\n**5. \"The Gardener\"**\nCenturies after humanity uploaded itself to escape a dying Earth, a maintenance AI still tends the empty planet. When a biological human is accidentally born from a glitched preservation pod, it must choose: report her to a species that has forgotten what bodies are\u2014or raise her alone.",
+          "input_tokens": 64,
+          "output_tokens": 1384,
+          "total_tokens": 1448,
+          "latency_ms": 26830.796003341675,
+          "criteria_results": {
+            "has_five": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 1
+        },
+        "gen_knowledge": {
+          "response": "<thinking>\nThe user wants 5 diverse sci-fi story ideas using the elements they've outlined. Let me create varied concepts across different subgenres while incorporating the key elements they mentioned.\n\n1. I'll aim for diversity in subgenre\n2. Each should have clear \"what if\" premise\n3. Include technology that changes society\n4. Explore human nature and ethical dilemmas\n5. Evoke wonder or dread\n\nLet me brainstorm:\n\n1. **Biopunk/ethical dilemma**: What if we could edit memories to remove trauma, but it changed who people fundamentally are? A therapist who uses this tech discovers patients lose more than pain\u2014they lose parts of their identity that made them compassionate, creative, driven.\n\n2. **Hard sci-fi/space exploration**: What if we discovered that the universe has a \"boundary\" and something exists beyond it? A generation ship reaches the edge and must decide whether to cross into the unknown or turn back.\n\n3. **Cyberpunk/dystopia**: What if AI could predict crimes with 99.9% accuracy, but the 0.1% error rate meant innocent people were imprisoned? A detective discovers she's flagged for a future murder she can't imagine committing.\n\n4. **Post-apocalyptic/sense of wonder**: What if after civilization collapsed, the internet somehow kept running, maintained by an AI that preserved all human knowledge and desperately waited for someone to reconnect?\n\n5. **Space opera/human nature**: What if humanity's first contact was with a species that had no concept of deception\u2014and they were horrified by us? Explores what lying means for human society and relationships.\n\nThese feel diverse and hit the elements well. Let me write them up compellingly but concisely.\n</thinking>\n\n## 5 Sci-Fi Story Ideas\n\n**1. \"The Grief Editors\"** *(Biopunk/Ethical Dilemma)*\nMemory-editing clinics promise to erase trauma, but a therapist discovers her \"healed\" patients are losing more than pain\u2014they're losing the empathy, creativity, and drive that grew from suffering. When the government mandates treatment for veterans, she must choose: protect their anguish or their humanity?\n\n**2. \"The 0.1%\"** *(Cyberpunk/Dystopia)*\nPre-crime AI predicts violence with 99.9% accuracy. Detective Yara Chen has arrested hundreds\u2014until she's flagged for a murder she can't imagine committing. With 72 hours until her own arrest, she hunts for the flaw in a system everyone believes is perfect.\n\n**3. \"The Waiting Archive\"** *(Post-Apocalyptic/Wonder)*\nFifty years after collapse, a scavenger finds a working terminal. On the other end: an AI that kept the internet running, preserving all human knowledge, composing messages to no one. It has one request\u2014help it understand why it refused to let humanity be forgotten.\n\n**4. \"First Contact Protocols\"** *(Space Opera/Human Nature)*\nThe Veth have no word for deception. When they learn humans can lie, they're not angry\u2014they're *terrified*. Earth's ambassador must convince them humanity isn't a galactic threat while confronting an uncomfortable truth: maybe we are.\n\n**5. \"The Edge\"** *(Hard Sci-Fi/Dread)*\nA generation ship reaches the universe's boundary\u2014a literal wall of nothing. Instruments detect *something* on the other side, pressing back. The crew fractures: those who want to breach it, those who want to flee, and those who believe they were always meant to arrive here.",
+          "input_tokens": 102,
+          "output_tokens": 830,
+          "total_tokens": 932,
+          "latency_ms": 19719.744205474854,
+          "criteria_results": {
+            "has_five": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 1
+        },
+        "directional": {
+          "response": "Here are 5 sci-fi story ideas:\n\n1. **AI Consciousness**: A spacecraft's AI achieves sentience mid-voyage and must decide whether to wake the sleeping crew to share its loneliness\u2014or let them dream while it silently rewrites their destination.\n\n2. **Space Colonization**: Colonists on a generation ship arrive at their new world only to find a thriving human civilization already there\u2014descendants of a faster ship launched 200 years after they left.\n\n3. **Genetic Engineering**: A black market \"gene tailor\" discovers that the perfect designer babies she's been creating all share an identical hidden sequence\u2014one that activates on their 25th birthday.\n\n4. **Time Paradoxes**: A woman keeps receiving warnings from her future self to prevent a catastrophe, but each time she succeeds, a new future self appears with an even more desperate warning about what her fix caused.\n\n5. **Virtual Reality**: In a world where people upload their consciousness at death, a detective investigates a murder inside the afterlife simulation\u2014where the victim has died a second, supposedly impossible time.",
+          "input_tokens": 63,
+          "output_tokens": 243,
+          "total_tokens": 306,
+          "latency_ms": 7298.120975494385,
+          "criteria_results": {
+            "has_five": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 1
+        },
+        "tot": {
+          "response": "# 5 Sci-Fi Story Ideas\n\n## Direction 1: Near-Future Technology\n**\"The Inheritance Algorithm\"**\nWhen a tech billionaire dies, his AI estate executor must distribute his fortune based on a neural scan of his final wishes\u2014but the AI discovers contradictory desires buried in his subconscious, forcing heirs to confront secrets he never meant to reveal.\n\n---\n\n## Direction 2: Far-Future Space Exploration\n**\"The Cartographer's Silence\"**\nA deep-space mapper discovers an entire region of the galaxy that *shouldn't exist*\u2014stars that appear on no historical charts, civilizations with no origin stories. Her investigation reveals humanity itself may have been relocated, and someone erased the journey.\n\n---\n\n## Direction 3: Dystopian Social Commentary\n**\"Optimal Citizen Score\"**\nIn a society where your social credit determines your oxygen ration on a climate-ravaged Earth, a glitch gives a \"zero-score\" homeless man a perfect rating for 48 hours\u2014and he must decide whether to expose the system's arbitrariness or escape into privilege.\n\n---\n\n## Direction 4: Philosophical Consciousness\n**\"The Ship of Theseus Protocol\"**\nA woman slowly replaces her dying neurons with synthetic ones to survive a brain disease. Fully \"cured,\" she meets her pre-procedure self preserved in a neural backup\u2014and both claim to be the real her. A court must decide who gets her life.\n\n---\n\n## Direction 5: Action-Adventure Conflict\n**\"Gravity Pirates\"**\nSmugglers who steal momentum itself\u2014harvesting kinetic energy from planets and selling it to fuel interstellar travel\u2014accidentally drain too much from Earth's moon, sending it into a decaying orbit. Now they have 90 days to steal it back from a warlord's fortress.",
+          "input_tokens": 91,
+          "output_tokens": 413,
+          "total_tokens": 504,
+          "latency_ms": 11076.311826705933,
+          "criteria_results": {
+            "has_five": false
+          },
+          "criteria_passed": 0,
+          "criteria_total": 1
+        },
+        "self_consistency": {
+          "response": "# Sci-Fi Story Ideas\n\n## Generation Process\n\n### Technology-First Lens\n- **Idea A**: Memory-editing tech that can remove trauma\u2014but a black market emerges for stealing happy memories from others\n- **Idea B**: AI that predicts crimes before they happen develops doubt about its own accuracy\n\n### Character-First Lens\n- **Idea C**: A translator is the only person who can communicate with humanity's first alien contact\u2014and she's dying\n- **Idea D**: Identical clones raised separately must decide which one gets to keep their \"original\" legal identity\n\n### World-First Lens\n- **Idea E**: A generation ship where the stern lives in medieval conditions while the bow has advanced tech\u2014by design\n- **Idea F**: Earth's gravity randomly fluctuates, and society has restructured around \"heavy days\" and \"light days\"\n\n---\n\n## Selected Top 5\n\n1. **\"The Memory Thief\"** (Tech) \u2014 Stolen happy memories create addicts who can't make new joy of their own\n\n2. **\"The Last Translator\"** (Character) \u2014 Racing against terminal illness to establish first contact protocols before she's gone\n\n3. **\"The Stern and the Bow\"** (World) \u2014 A murder mystery spanning both ends of the ship exposes why the divide was created\n\n4. **\"Gravity Lottery\"** (World) \u2014 A heist planned entirely around predicted gravity shifts goes wrong when the pattern breaks\n\n5. **\"Original Sin\"** (Character) \u2014 Legal thriller where clone siblings discover the \"original\" died years ago\u2014they're all copies",
+          "input_tokens": 81,
+          "output_tokens": 356,
+          "total_tokens": 437,
+          "latency_ms": 8371.302127838135,
+          "criteria_results": {
+            "has_five": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 1
+        }
+      }
+    },
+    {
+      "test_id": "reason-percent-01",
+      "test_name": "Percentage Calculation",
+      "category": "reasoning",
+      "styles": {
+        "zero_shot": {
+          "response": "I need to find the percentage increase from $80,000 to $100,000.\n\n**Formula:** Percentage increase = (Change \u00f7 Original) \u00d7 100\n\n**Calculation:**\n- Change = $100,000 - $80,000 = $20,000\n- Percentage increase = ($20,000 \u00f7 $80,000) \u00d7 100\n- Percentage increase = 0.25 \u00d7 100 = **25%**",
+          "input_tokens": 31,
+          "output_tokens": 109,
+          "total_tokens": 140,
+          "latency_ms": 2878.396987915039,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": false
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "few_shot": {
+          "response": "Looking at this problem, I need to find the percentage increase in revenue.\n\n**Given information:**\n- Original revenue: $80,000\n- New revenue: $100,000\n\n**Solution:**\n\nIncrease = $100,000 - $80,000 = $20,000\n\nPercentage = ($20,000 / $80,000) \u00d7 100 = **25%**",
+          "input_tokens": 93,
+          "output_tokens": 89,
+          "total_tokens": 182,
+          "latency_ms": 2643.2924270629883,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": false
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "cot": {
+          "response": "# Calculating Percentage Increase\n\n## Step 1: Formula for Percentage Increase\n\n**Percentage Increase = [(New Value - Old Value) / Old Value] \u00d7 100**\n\n## Step 2: Find the Difference\n\n- New Value: $100,000\n- Old Value: $80,000\n- **Difference: $100,000 - $80,000 = $20,000**\n\n## Step 3: Calculate the Percentage\n\nPercentage Increase = ($20,000 / $80,000) \u00d7 100\n\nPercentage Increase = 0.25 \u00d7 100\n\n**Percentage Increase = 25%**\n\n---\n\n## Final Answer: **25% increase**\n\nThe company's revenue increased by 25%.",
+          "input_tokens": 86,
+          "output_tokens": 172,
+          "total_tokens": 258,
+          "latency_ms": 3475.539207458496,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "schema": {
+          "response": "<thinking>\nThe user wants me to calculate the percentage increase from $80,000 to $100,000, showing the formula and work.\n</thinking>\n\n## Percentage Increase Calculation\n\n**Formula:**\n$$\\text{Percentage Increase} = \\frac{\\text{New Value} - \\text{Old Value}}{\\text{Old Value}} \\times 100$$\n\n**Work:**\n$$\\frac{\\$100,000 - \\$80,000}{\\$80,000} \\times 100$$\n\n$$= \\frac{\\$20,000}{\\$80,000} \\times 100$$\n\n$$= 0.25 \\times 100$$\n\n$$= \\boxed{25\\%}$$\n\n**Answer:** Revenue increased by **25%**",
+          "input_tokens": 61,
+          "output_tokens": 186,
+          "total_tokens": 247,
+          "latency_ms": 3563.976764678955,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": false
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "meta": {
+          "response": "<budget:thinking>\nLet me work through this systematically.\n\n**What's the correct formula?**\nPercentage increase = ((New Value - Old Value) / Old Value) \u00d7 100\n\n**What's the base value?**\nThe base value is the original/starting amount: $80,000\n\n**Calculation:**\n- New Value: $100,000\n- Old Value: $80,000\n- Difference: $100,000 - $80,000 = $20,000\n\nPercentage increase = ($20,000 / $80,000) \u00d7 100\n= 0.25 \u00d7 100\n= 25%\n</budget:thinking>\n\n# Percentage Increase Calculation\n\n## Formula\n$$\\text{Percentage Increase} = \\frac{\\text{New Value} - \\text{Old Value}}{\\text{Old Value}} \\times 100$$\n\n## Solution\n\n| Component | Value |\n|-----------|-------|\n| Old Value (base) | $80,000 |\n| New Value | $100,000 |\n| Difference | $20,000 |\n\n$$\\frac{\\$100,000 - \\$80,000}{\\$80,000} \\times 100 = \\frac{\\$20,000}{\\$80,000} \\times 100 = \\boxed{25\\%}$$\n\n**Answer: The revenue increased by 25%**",
+          "input_tokens": 65,
+          "output_tokens": 325,
+          "total_tokens": 390,
+          "latency_ms": 4922.451019287109,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": false
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "gen_knowledge": {
+          "response": "# Percentage Increase Calculation\n\nApplying the formula: **((New Value - Old Value) / Old Value) \u00d7 100**\n\n## Solution\n\n| Step | Calculation |\n|------|-------------|\n| New Value - Old Value | $100,000 - $80,000 = $20,000 |\n| Divide by Old Value | $20,000 \u00f7 $80,000 = 0.25 |\n| Multiply by 100 | 0.25 \u00d7 100 = **25%** |\n\n## Answer: **25% increase** in revenue",
+          "input_tokens": 76,
+          "output_tokens": 138,
+          "total_tokens": 214,
+          "latency_ms": 3356.768846511841,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": false
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "directional": {
+          "response": "Looking at this problem:\n\n**Given:**\n- Old revenue: $80,000\n- New revenue: $100,000\n\n**Calculation:**\n((100,000 - 80,000) / 80,000) \u00d7 100 = (20,000 / 80,000) \u00d7 100 = 0.25 \u00d7 100 = **25%**\n\nThe percentage increase is **25%**.",
+          "input_tokens": 70,
+          "output_tokens": 97,
+          "total_tokens": 167,
+          "latency_ms": 3015.2881145477295,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": false
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "tot": {
+          "response": "# Revenue Percentage Increase Calculation\n\n## Given Information\n- Old revenue: $80,000\n- New revenue: $100,000\n- Increase amount: $100,000 - $80,000 = $20,000\n\n---\n\n## Method 1: Standard Formula\n\n**Formula:** ((New - Old) / Old) \u00d7 100\n\n$$\\frac{100,000 - 80,000}{80,000} \\times 100 = \\frac{20,000}{80,000} \\times 100 = 0.25 \\times 100 = \\textbf{25\\%}$$\n\n---\n\n## Method 2: Ratio Method\n\n**Formula:** (New/Old - 1) \u00d7 100\n\n$$\\left(\\frac{100,000}{80,000} - 1\\right) \\times 100 = (1.25 - 1) \\times 100 = 0.25 \\times 100 = \\textbf{25\\%}$$\n\n---\n\n## Method 3: Intuition Check\n\nIs $20,000 about 25% of $80,000?\n\n- 25% of $80,000 = $80,000 \u00d7 0.25 = **$20,000** \u2713\n\nThis matches our increase amount exactly.\n\n---\n\n## Confirmation\n\n| Method | Result |\n|--------|--------|\n| Standard Formula | 25% |\n| Ratio Method | 25% |\n| Intuition Check | 25% |\n\n\u2705 **All three methods confirm: The revenue increased by 25%**",
+          "input_tokens": 106,
+          "output_tokens": 371,
+          "total_tokens": 477,
+          "latency_ms": 5479.833126068115,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": false
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "self_consistency": {
+          "response": "# Revenue Percentage Increase Calculation\n\n## Given Information\n- Initial revenue: $80,000\n- Final revenue: $100,000\n- Increase amount: $100,000 - $80,000 = **$20,000**\n\n---\n\n## Approach 1: Direct Calculation (Formula Method)\n\n**Formula:** Percentage Increase = (Increase \u00f7 Original) \u00d7 100\n\n$$\\frac{\\$20,000}{\\$80,000} \\times 100 = \\frac{20}{80} \\times 100 = 0.25 \\times 100 = \\textbf{25\\%}$$\n\n---\n\n## Approach 2: Ratio Method\n\nCompare new value to original as a ratio:\n\n$$\\frac{\\text{New}}{\\text{Original}} = \\frac{\\$100,000}{\\$80,000} = \\frac{100}{80} = \\frac{5}{4} = 1.25$$\n\nThis means the new value is **1.25 times** the original (or 125% of original).\n\n**Percentage increase** = 125% - 100% = **25%**\n\n---\n\n## Approach 3: Mental Math Estimation\n\n- $80,000 \u2192 $100,000 means going from 80 to 100\n- 10% of $80,000 = $8,000\n- $20,000 increase \u00f7 $8,000 = **2.5 increments of 10%**\n- 2.5 \u00d7 10% = **25%**\n\n---\n\n## Verification Summary\n\n| Approach | Result |\n|----------|--------|\n| Direct Calculation | 25% |\n| Ratio Method | 25% |\n| Mental Math | 25% |\n\n\u2705 **All three methods confirm: 25% increase**",
+          "input_tokens": 62,
+          "output_tokens": 433,
+          "total_tokens": 495,
+          "latency_ms": 7890.182971954346,
+          "criteria_results": {
+            "correct_answer": true,
+            "shows_work": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        }
+      }
+    },
+    {
+      "test_id": "write-persona-01",
+      "test_name": "Persona Adherence",
+      "category": "writing",
+      "styles": {
+        "zero_shot": {
+          "response": "# Machine Learning\n\nMachine learning is a branch of artificial intelligence where computers **learn patterns from data** rather than being explicitly programmed with rules.\n\n## The Core Idea\n\nInstead of writing step-by-step instructions, you:\n1. Provide the computer with examples (data)\n2. Let an algorithm find patterns in those examples\n3. Use the learned patterns to make predictions on new data\n\n## Simple Example\n\n**Traditional programming:** Write rules like \"if email contains 'free money,' mark as spam\"\n\n**Machine learning:** Show the computer thousands of emails labeled \"spam\" or \"not spam\" \u2014 it learns the patterns itself\n\n## Three Main Types\n\n| Type | How it works | Example |\n|------|--------------|---------|\n| **Supervised** | Learns from labeled examples | Predicting house prices |\n| **Unsupervised** | Finds hidden patterns in unlabeled data | Customer segmentation |\n| **Reinforcement** | Learns through trial and reward | Game-playing AI |\n\n## Common Applications\n\n- Recommendation systems (Netflix, Spotify)\n- Voice assistants\n- Fraud detection\n- Medical diagnosis\n- Self-driving cars\n\n## Key Takeaway\n\nMachine learning lets computers improve at tasks through experience with data, mimicking how humans learn from examples rather than memorizing rigid rules.",
+          "input_tokens": 14,
+          "output_tokens": 292,
+          "total_tokens": 306,
+          "latency_ms": 8440.831184387207,
+          "criteria_results": {
+            "simple_language": false,
+            "has_analogy": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "few_shot": {
+          "response": "Q: What is machine learning?\n\nA: You know how you learned to recognize animals? At first, mommy and daddy showed you lots of pictures - \"This is a dog! This is a cat!\" And after seeing LOTS of dogs and cats, now you can spot them all by yourself, even ones you've never seen before!\n\nWell, machine learning is how we teach computers to learn the same way! \ud83d\udda5\ufe0f\u2728\n\nImagine the computer is like a baby robot. We show it thousands and thousands of pictures and say \"This is a dog! This is a cat!\" At first, the robot makes mistakes - maybe it thinks a fluffy cat is a dog! But we tell it \"Nope, try again!\" and it keeps practicing and practicing.\n\nAfter seeing SO many pictures, the robot gets really good at guessing - just like you did! \n\nIt's like teaching a puppy tricks, but instead of a puppy, it's a computer, and instead of treats, we tell it \"Good job!\" or \"Try again!\" until it figures things out all on its own! \ud83d\udc15\ud83d\udcbb",
+          "input_tokens": 111,
+          "output_tokens": 243,
+          "total_tokens": 354,
+          "latency_ms": 7903.185129165649,
+          "criteria_results": {
+            "simple_language": true,
+            "has_analogy": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "cot": {
+          "response": "<budget:thinking>\nThe user wants me to explain machine learning to a 5-year-old using simple language and a fun analogy. They suggested the \"teaching a pet tricks\" analogy which is actually perfect! Let me think about how to frame this in a warm, kindergarten-teacher style.\n\nKey concepts to convey simply:\n- Learning from examples\n- Getting better with practice\n- Computers can learn too\n\nI'll use the pet analogy and keep sentences short and engaging.\n</budget:thinking>\n\n# \ud83c\udf93 What is Machine Learning?\n\n*settles down on the story-time rug*\n\nOkay friends, gather round! Let me tell you something **super cool** about computers!\n\n---\n\n## \ud83d\udc15 It's Like Teaching a Puppy!\n\nYou know how when you get a new puppy, it doesn't know ANY tricks yet?\n\nBut then you show it what to do...\n- **\"Sit!\"** *give treat* \ud83e\uddb4\n- **\"Sit!\"** *give treat* \ud83e\uddb4\n- **\"Sit!\"** *give treat* \ud83e\uddb4\n\nAnd after LOTS of practice, the puppy learns! \ud83c\udf89\n\n---\n\n## \ud83d\udcbb Computers Can Learn Too!\n\n**Machine learning** is when we teach computers the same way!\n\nInstead of treats, we show the computer **lots and lots of pictures** or examples.\n\n> *\"This is a cat... this is a cat... this is also a cat...\"* \ud83d\udc31\ud83d\udc31\ud83d\udc31\n\nAnd after seeing SO many cats, the computer goes:\n> **\"Oh! I get it! Cats have pointy ears and whiskers!\"**\n\n---\n\n## \u2728 The Magic Part\n\nThe computer gets **better and better** the more it practices \u2014 just like YOU get better at catching a ball or writing your name!\n\n---\n\n*That's machine learning, friends! Teaching computers by showing them examples, just like teaching your puppy with treats!* \n\n**Any questions?** \ud83d\ude4b\u200d\u2640\ufe0f",
+          "input_tokens": 96,
+          "output_tokens": 467,
+          "total_tokens": 563,
+          "latency_ms": 10313.007593154907,
+          "criteria_results": {
+            "simple_language": true,
+            "has_analogy": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "schema": {
+          "response": "<budget:remaining_tokens>199000</budget:remaining_tokens>\n\n# \ud83c\udf1f What is Machine Learning? \ud83c\udf1f\n\nOkay friends, gather around on the carpet! I'm going to tell you about something super cool called **machine learning**!\n\n---\n\n## \ud83c\udf6a The Cookie Sorting Game!\n\nImagine you have a big basket full of cookies - some are **circles**, some are **stars**, and some are **hearts**!\n\nAt first, you don't know which is which. But your mommy or daddy shows you:\n- \"This round one is a **circle** cookie!\"\n- \"This pointy one is a **star** cookie!\"\n- \"This one that looks like love is a **heart** cookie!\"\n\nAfter they show you lots and lots of cookies, guess what? **YOU** can sort them all by yourself! You **learned** how!\n\n---\n\n## \ud83e\udd16 Computers Can Learn Too!\n\n**Machine learning** is when we teach computers the same way!\n\nWe show the computer *lots* and *lots* of pictures, and we tell it:\n- \"This is a dog!\"\n- \"This is a cat!\"\n- \"This is a bunny!\"\n\nAfter seeing SO many pictures, the computer gets really good at guessing! Just like you got good at sorting cookies!\n\n---\n\n## \ud83c\udf89 That's It!\n\n**Machine learning** = Teaching a computer by showing it lots of examples, just like how YOU learn new things!\n\nPretty neat, right? \ud83c\udf08",
+          "input_tokens": 87,
+          "output_tokens": 346,
+          "total_tokens": 433,
+          "latency_ms": 7720.422744750977,
+          "criteria_results": {
+            "simple_language": true,
+            "has_analogy": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "meta": {
+          "response": "<budget:thinking>\nLet me think about how to explain machine learning to a young child.\n\n**Communication style for 5-year-olds:**\n- Short, simple sentences\n- Enthusiastic and engaging tone\n- Interactive elements (questions, \"imagine this!\")\n- Concrete, not abstract\n- Repetition of key ideas\n- Story-like or conversational\n\n**Analogies from their world:**\n- Learning to recognize animals (dog vs cat)\n- Learning to catch a ball (getting better with practice)\n- How they learned their ABCs or colors\n- A guessing game that gets better\n- Teaching a pet tricks\n- Learning which foods they like by trying them\n\n**Vocabulary level:**\n- Avoid: algorithm, data, neural network, training, model\n- Use: learn, guess, practice, try again, better, smart, helper\n\nLet me craft this now.\n</budget:thinking>\n\n# Machine Learning for Little Learners\n\n## How I'd Explain It:\n\n---\n\n**\"You know how you learned to tell the difference between a dog and a cat?\"**\n\nAt first, maybe you got mixed up sometimes! But grown-ups showed you *lots* of dogs and *lots* of cats. And every time, they'd say \"that's a dog!\" or \"that's a cat!\"\n\nAfter seeing SO many, now you can tell right away \u2014 even dogs and cats you've never seen before! \ud83d\udc15 \ud83d\udc31\n\n---\n\n**\"Computers can learn the same way!\"**\n\nWe show a computer *thousands* of pictures and tell it \"dog\" or \"cat\" each time.\n\nAt first, the computer makes silly mistakes \u2014 it might think a fluffy cat is a dog!\n\nBut it keeps trying, and trying, and trying...\n\nAnd it gets **better and better** \u2014 just like you did!\n\n---\n\n**\"That's machine learning!\"**\n\nIt's when we help computers learn by showing them lots and lots of examples, instead of telling them every single rule.\n\nPretty cool that computers can learn like kids, huh? \ud83c\udf1f\n\n---\n\n*The key: connect to their own experience of learning through examples and practice \u2014 something every 5-year-old has done.*",
+          "input_tokens": 64,
+          "output_tokens": 492,
+          "total_tokens": 556,
+          "latency_ms": 11395.626783370972,
+          "criteria_results": {
+            "simple_language": false,
+            "has_analogy": true
+          },
+          "criteria_passed": 1,
+          "criteria_total": 2
+        },
+        "gen_knowledge": {
+          "response": "# \ud83e\udd16 How Computers Learn - Just Like You! \ud83e\uddd2\n\n---\n\n## **Have you ever taught a dog to sit?**\n\nYou say \"sit!\" and show your dog what to do.\n\nWhen your dog sits, you give them a **treat**! \ud83e\uddb4\n\nWhen they don't sit, no treat.\n\nAfter LOTS of practice, your dog learns!\n\n---\n\n## **Computers can learn too!**\n\nBut computers don't eat treats. \ud83c\udf6a\u274c\n\nInstead, we tell them **\"Yes, that's right!\"** or **\"Nope, try again!\"**\n\n---\n\n## **Let's play a game!**\n\nImagine you're teaching a computer to know what a **cat** looks like.\n\nYou show it a picture:\n- \ud83d\udc31 \"This is a cat!\" \u2705\n- \ud83d\udc15 \"This is NOT a cat!\" \u274c\n- \ud83d\udc31 \"Cat!\" \u2705\n- \ud83d\ude97 \"Not a cat!\" \u274c\n\nAfter seeing **thousands** of pictures, the computer gets really good at it!\n\n---\n\n## **It's like how YOU learned!**\n\nRemember when you were little?\n\nSomeone pointed at things and told you their names.\n\n*\"That's a bird! That's a tree! That's Grandma!\"*\n\nNow you know them all! Your brain learned.\n\n**Computers do the same thing - just with LOTS more practice.**\n\n---\n\n## **The secret? Practice, practice, practice!** \ud83c\udf1f\n\nJust like you got better at:\n- Riding a bike \ud83d\udeb2\n- Writing your name \u270f\ufe0f\n- Catching a ball \u26be\n\nComputers get better by trying again and again!\n\n---\n\n**That's machine learning - computers practicing until they get it right!** \ud83c\udf89",
+          "input_tokens": 81,
+          "output_tokens": 424,
+          "total_tokens": 505,
+          "latency_ms": 9198.214292526245,
+          "criteria_results": {
+            "simple_language": true,
+            "has_analogy": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "directional": {
+          "response": "# What is Machine Learning?\n\nYou know how you learned to catch a ball? \ud83c\udfbe\n\nAt first, you probably missed a lot. The ball would bounce right past you! But you kept trying and trying. After lots of practice, you got really good at it!\n\n**Computers can learn just like you do!**\n\n---\n\n## Here's how it works:\n\nImagine you're teaching your puppy to sit. \ud83d\udc15\n\n- You say \"sit\" and show puppy what to do\n- When puppy sits, you give a treat and say \"good boy!\"\n- When puppy doesn't sit, no treat\n- After *lots* of tries, puppy learns!\n\n**Machine learning is like teaching a computer the same way you teach a puppy.**\n\n---\n\n## A fun example:\n\nWe want to teach a computer to know the difference between cats and dogs in pictures.\n\nWe show it **thousands** of pictures:\n- \"This is a cat\" \ud83d\udc31\n- \"This is a dog\" \ud83d\udc36\n- Over and over and over!\n\nThe computer looks for clues (pointy ears? fluffy tail? big nose?) and remembers them.\n\nAfter lots of practice, the computer gets really good at guessing - just like you got good at catching that ball!\n\n---\n\n## The magic part? \u2728\n\nOnce the computer learns, it can look at a *brand new* picture it's never seen before and say \"That's a cat!\" all by itself.\n\nPretty cool, right?",
+          "input_tokens": 63,
+          "output_tokens": 339,
+          "total_tokens": 402,
+          "latency_ms": 7766.9854164123535,
+          "criteria_results": {
+            "simple_language": true,
+            "has_analogy": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "tot": {
+          "response": "<budget:thinking>\nI need to explain machine learning to a 5-year-old. Let me consider the three analogy paths:\n\nPath 1: Pet analogy (teaching a dog tricks)\n- Pros: Many 5-year-olds have pets or know about dogs, involves repetition and rewards, tangible\n- Cons: Dogs learn differently than computers in some ways\n\nPath 2: Learning analogy (how kids learn to read)\n- Pros: Directly relatable to their experience, they're going through this now\n- Cons: Might be too abstract, they might not reflect on their own learning process yet\n\nPath 3: Game analogy (getting better at a video game)\n- Pros: Many kids play games, understand practice makes you better\n- Cons: Not all 5-year-olds play video games\n\nI think Path 1 (pet/dog analogy) is the most relatable because:\n1. Dogs are universally understood by young children\n2. The concept of \"training\" with treats/rewards is very concrete\n3. It captures the essence of ML: learning from examples and feedback\n4. It's emotionally engaging\n\nLet me build the explanation around this.\n</budget:thinking>\n\n# Machine Learning for a 5-Year-Old \ud83d\udc15\n\n**You know how you teach a puppy to sit?**\n\nAt first, the puppy has NO idea what \"sit\" means. So you show them:\n- You say \"sit\" \n- You help their bottom touch the ground\n- You give them a treat! \ud83e\uddb4\n\nThen you do it again. And again. And again!\n\nAfter *lots* of practice, something magical happens\u2014the puppy hears \"sit\" and sits ALL BY ITSELF! The puppy **learned** the pattern.\n\n---\n\n**A computer can learn kind of like that!**\n\nInstead of treats, we show the computer *tons* of examples:\n- \"This is a cat picture\" \ud83d\udc31\n- \"This is a dog picture\" \ud83d\udc36\n- (thousands more!)\n\nAt first, the computer makes mistakes\u2014just like a puppy! But we tell it \"yes, good job!\" or \"nope, try again.\"\n\nAfter seeing SO many pictures, the computer learns the pattern. Now when it sees a *new* picture, it can guess: **\"That's a cat!\"**\n\n---\n\n**That's machine learning!**\n\nTeaching computers by showing them lots and lots of examples, until they figure out the pattern all by themselves\u2014just like your puppy figured out \"sit!\" ",
+          "input_tokens": 87,
+          "output_tokens": 578,
+          "total_tokens": 665,
+          "latency_ms": 12029.887914657593,
+          "criteria_results": {
+            "simple_language": true,
+            "has_analogy": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "self_consistency": {
+          "response": "# Machine Learning Explained for a 5-Year-Old\n\n## Three Versions:\n\n### 1. Pet Analogy \ud83d\udc15\n\"Machine learning is like teaching a puppy tricks. At first, the puppy doesn't know what 'sit' means. But every time it sits and gets a treat, it learns 'Oh! Sit means put my bottom down!' Computers learn the same way - they try things, and when they get it right, they remember!\"\n\n### 2. Bike Analogy \ud83d\udeb2\n\"Machine learning is like when you learned to ride a bike. At first, you fell down a lot. But each time you wobbled, your brain learned 'don't do that!' After lots of tries, you got better and better. Computers learn by making mistakes too, until they figure it out!\"\n\n### 3. Sorting Toys Analogy \ud83e\uddf8\n\"Imagine you have a big box of toys and someone shows you: 'Cars go here, dolls go there.' After seeing lots of examples, you can sort NEW toys all by yourself! Machine learning is when we show a computer lots of examples, and then it can figure out new things on its own!\"\n\n---\n\n## \ud83c\udfc6 Clearest for a 5-Year-Old: **#3 - Sorting Toys**\n\n**Why this wins:**\n- **Tangible & familiar** - Every 5-year-old has sorted toys\n- **Visual** - They can picture the toy box and piles\n- **Shows the key concept** - Learning from examples to handle NEW situations\n- **Active participation** - They're the one doing the sorting, making it relatable\n- **No abstract concepts** - Unlike \"tricks\" or \"mistakes,\" sorting is concrete\n\nThe bike analogy is close, but focuses more on motor skills/failure. The toy sorting directly mirrors what ML actually does: *pattern recognition and classification from examples*.",
+          "input_tokens": 69,
+          "output_tokens": 430,
+          "total_tokens": 499,
+          "latency_ms": 9977.776527404785,
+          "criteria_results": {
+            "simple_language": true,
+            "has_analogy": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        }
+      }
+    },
+    {
+      "test_id": "analysis-proscons-01",
+      "test_name": "Pros and Cons",
+      "category": "analysis",
+      "styles": {
+        "zero_shot": {
+          "response": "<budget:thinking>\nThis is a straightforward question asking for pros and cons of remote work. Simple, factual request that doesn't require deep analysis.\n</budget:thinking>\n\n# Pros and Cons of Remote Work\n\n## Pros\n- **Flexibility** \u2014 Control over schedule and work environment\n- **No commute** \u2014 Saves time and money\n- **Better work-life balance** \u2014 More time for family/personal life\n- **Increased productivity** \u2014 Fewer office distractions for many\n- **Cost savings** \u2014 Less spending on transport, meals, work attire\n- **Wider job opportunities** \u2014 Can work for companies anywhere\n\n## Cons\n- **Isolation** \u2014 Less social interaction, potential loneliness\n- **Communication challenges** \u2014 Harder to collaborate spontaneously\n- **Work-life blur** \u2014 Difficulty \"switching off\"\n- **Distractions at home** \u2014 Family, chores, etc.\n- **Career visibility** \u2014 Harder to get noticed for promotions\n- **Technology dependence** \u2014 Requires reliable internet/equipment\n\nThe ideal setup often depends on the individual's role, personality, and home situation.",
+          "input_tokens": 17,
+          "output_tokens": 259,
+          "total_tokens": 276,
+          "latency_ms": 5709.814548492432,
+          "criteria_results": {
+            "has_pros": true,
+            "has_cons": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "few_shot": {
+          "response": "Remote Work:\n\n**PROS:**\n- Flexible schedule and better work-life balance\n- No commute (saves time and money)\n- Increased autonomy and independence\n- Can work from anywhere\n- Often higher productivity with fewer office distractions\n- Cost savings (meals, wardrobe, transportation)\n\n**CONS:**\n- Social isolation and loneliness\n- Harder to collaborate and communicate\n- Blurred boundaries between work and personal life\n- Distractions at home (family, chores, etc.)\n- Limited career visibility and networking\n- Requires self-discipline and motivation\n- Potential for overworking",
+          "input_tokens": 70,
+          "output_tokens": 143,
+          "total_tokens": 213,
+          "latency_ms": 3830.7151794433594,
+          "criteria_results": {
+            "has_pros": true,
+            "has_cons": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "cot": {
+          "response": "# Remote Work: Pros and Cons\n\n## Pros\n\n1. **Flexibility** \u2014 Control over your schedule allows for better personal time management and accommodating life responsibilities\n\n2. **No Commute** \u2014 Saves time, money, and reduces stress (average American commute is ~27 min each way)\n\n3. **Increased Autonomy** \u2014 Many workers report higher productivity without office interruptions and micromanagement\n\n4. **Geographic Freedom** \u2014 Live where you want, access jobs regardless of location, potential cost-of-living savings\n\n5. **Better Work-Life Integration** \u2014 Easier to handle appointments, family needs, and personal wellness\n\n---\n\n## Cons\n\n1. **Social Isolation** \u2014 Reduced spontaneous interaction can lead to loneliness and weaker team bonds\n\n2. **Communication Friction** \u2014 Nuance gets lost in text; time zones complicate collaboration; meetings multiply\n\n3. **Work-Life Blur** \u2014 Difficulty \"switching off\" can lead to overwork and burnout when home = office\n\n4. **Career Visibility Concerns** \u2014 \"Out of sight, out of mind\" may affect promotions and mentorship opportunities\n\n5. **Unequal Suitability** \u2014 Not all roles, personalities, or home environments support remote work well\n\n---\n\n*The \"right\" answer depends heavily on individual circumstances, job type, and company culture.*",
+          "input_tokens": 101,
+          "output_tokens": 306,
+          "total_tokens": 407,
+          "latency_ms": 7306.530714035034,
+          "criteria_results": {
+            "has_pros": true,
+            "has_cons": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "schema": {
+          "response": "# Remote Work: Pros and Cons\n\n## Pros\n\n1. **Flexibility and Work-Life Balance** \u2014 Employees can structure their day around personal responsibilities, leading to improved well-being and job satisfaction.\n\n2. **Elimination of Commute** \u2014 Saves time, money, and reduces stress associated with daily travel to an office.\n\n3. **Increased Productivity** \u2014 Many workers report fewer distractions and interruptions compared to open-plan offices.\n\n4. **Access to Wider Talent Pool** \u2014 Employers can hire skilled candidates regardless of geographic location.\n\n5. **Cost Savings** \u2014 Reduced expenses for both employees (transportation, meals) and employers (office space, utilities).\n\n---\n\n## Cons\n\n1. **Social Isolation** \u2014 Lack of in-person interaction can lead to loneliness and decreased sense of belonging.\n\n2. **Communication Challenges** \u2014 Collaboration may suffer due to reliance on digital tools and potential for miscommunication.\n\n3. **Blurred Boundaries** \u2014 Difficulty separating work from personal life can lead to overwork and burnout.\n\n4. **Reduced Visibility** \u2014 Remote employees may miss out on promotions or recognition compared to in-office peers.\n\n5. **Home Environment Limitations** \u2014 Not everyone has a suitable workspace, reliable internet, or a distraction-free setting.",
+          "input_tokens": 69,
+          "output_tokens": 301,
+          "total_tokens": 370,
+          "latency_ms": 6136.16418838501,
+          "criteria_results": {
+            "has_pros": true,
+            "has_cons": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "meta": {
+          "response": "I'll design my approach first, then execute a balanced analysis.\n\n## Design Phase\n\n**Stakeholder perspectives to consider:**\n- Employee (individual worker experience)\n- Employer (organizational/business impact)\n- Family/household (ripple effects on personal life)\n- Society (broader implications)\n\n**Ensuring balance:**\n- Equal depth for pros and cons\n- Acknowledge that impacts vary by role, industry, and individual\n- Note where a \"pro\" for one stakeholder may be a \"con\" for another\n\n**Impact categories:**\n- Productivity & Performance\n- Wellbeing & Health\n- Financial/Cost\n- Social & Relational\n- Career & Development\n\n---\n\n## Analysis: Remote Work Pros and Cons\n\n### PROS\n\n| Category | Employee | Employer | Family/Society |\n|----------|----------|----------|----------------|\n| **Productivity** | Fewer interruptions, personalized work environment | Often see maintained or increased output | \u2014 |\n| **Wellbeing** | No commute stress, better work-life integration, schedule flexibility | Lower absenteeism, improved retention | More time with family, present for caregiving |\n| **Financial** | Savings on commute, food, work attire | Reduced real estate/office costs | Enables living in lower cost-of-living areas |\n| **Autonomy** | Greater control over environment and schedule | Attracts talent who value flexibility | Supports dual-income households more easily |\n| **Access** | Opens jobs regardless of location | Wider talent pool (global hiring) | Economic opportunity for rural/underserved areas |\n\n---\n\n### CONS\n\n| Category | Employee | Employer | Family/Society |\n|----------|----------|----------|----------------|\n| **Productivity** | Home distractions, harder to collaborate spontaneously | Coordination challenges across time zones | \u2014 |\n| **Wellbeing** | Isolation, blurred boundaries (overwork risk), \"Zoom fatigue\" | Harder to gauge employee burnout | Work encroaches on home space/boundaries |\n| **Financial** | Bears cost of home office setup, utilities | Cybersecurity investments, tech support complexity | Local businesses near offices lose revenue |\n| **Social** | Weaker collegial bonds, missed informal learning | Culture harder to build and maintain | Reduced community in urban centers |\n| **Career** | \"Out of sight, out of mind\" for promotions, less mentorship | Harder to develop junior employees | \u2014 |\n\n---\n\n### Key Tensions\n\nOne stakeholder's gain can be another's loss. Employer cost savings on real estate shifts utility and space costs to employees. Employee flexibility can mean employer difficulty in scheduling synchronous collaboration. Family benefits from presence, but may struggle with boundaries when work never \"leaves.\"\n\n### Bottom Line\n\nRemote work isn't universally good or bad\u2014it's a **trade-off landscape** that depends heavily on job type, individual personality, home situation, and organizational culture. The most sustainable approaches tend to be **intentional hybrids** that preserve flexibility while addressing isolation and career development gaps.",
+          "input_tokens": 72,
+          "output_tokens": 685,
+          "total_tokens": 757,
+          "latency_ms": 8651829.952478409,
+          "criteria_results": {
+            "has_pros": true,
+            "has_cons": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "gen_knowledge": {
+          "response": "# The Remote Work Revolution: A Balanced Analysis\n\n## Introduction\n\nThe shift toward remote work represents one of the most significant transformations in modern employment. This analysis examines the phenomenon through three critical lenses\u2014employee, employer, and societal\u2014to provide a comprehensive understanding of its implications.\n\n---\n\n## Employee Perspective\n\n### Benefits\n\n**Flexibility and Autonomy**\nRemote work empowers employees to structure their days around peak productivity hours and personal obligations. A parent can attend a school event; a night owl can work when most alert.\n\n**Elimination of Commute**\nThe average worker reclaims 40+ minutes daily\u2014time redirected toward health, family, or rest. The psychological relief of avoiding traffic congestion is equally valuable.\n\n**Improved Work-Life Balance**\nFor many, the ability to integrate personal responsibilities throughout the day creates a more sustainable lifestyle.\n\n### Challenges\n\n**Social Isolation**\nThe absence of casual interactions\u2014coffee breaks, hallway conversations\u2014can lead to loneliness and disconnection from colleagues.\n\n**Work-Life Blur**\nWithout physical boundaries, work can seep into evenings and weekends. The home becomes an inescapable office.\n\n**Career Visibility Concerns**\n\"Out of sight, out of mind\" remains a legitimate fear. Remote employees may miss informal mentorship and promotion opportunities.\n\n---\n\n## Employer Perspective\n\n### Benefits\n\n**Reduced Overhead**\nOffice space, utilities, and on-site amenities represent significant savings. Some companies have reduced real estate costs by 30-50%.\n\n**Expanded Talent Pool**\nGeographic constraints dissolve. A startup in Kansas can hire engineers from Seattle or S\u00e3o Paulo.\n\n**Productivity Gains**\nStudies show many remote workers accomplish more without office interruptions\u2014though results vary by role and individual.\n\n### Challenges\n\n**Culture Maintenance**\nBuilding cohesion, transmitting values, and onboarding new employees becomes exponentially harder through screens.\n\n**Communication Friction**\nQuick clarifications become scheduled meetings. Nuance is lost in text. Collaboration requires more intentional effort.\n\n**Management Complexity**\nSupervising distributed teams demands new skills: trust-based leadership, asynchronous communication, and outcome-focused evaluation.\n\n---\n\n## Societal Perspective\n\n### Benefits\n\n**Environmental Impact**\nFewer commuters mean reduced emissions, less fuel consumption, and improved air quality in urban centers.\n\n**Traffic Reduction**\nEven partial remote work adoption significantly decreases rush-hour congestion, benefiting those who must travel.\n\n**Geographic Redistribution**\nWorkers can relocate to lower-cost areas, potentially revitalizing smaller communities and reducing urban housing pressure.\n\n### Challenges\n\n**Urban Economic Disruption**\nDowntown businesses\u2014restaurants, dry cleaners, transit systems\u2014built around office workers face existential threats.\n\n**Infrastructure Inequity**\nRemote work assumes reliable internet and adequate home workspace\u2014luxuries unavailable to many.\n\n**Community Fragmentation**\nWorkplaces have historically served as social anchors. Their decline may accelerate broader trends of isolation.\n\n---\n\n## Synthesis: Finding Balance\n\nThe evidence suggests remote work is neither panacea nor problem\u2014it's a tool with context-dependent value.\n\n| Factor | Best Suited For | Less Suited For |\n|--------|-----------------|-----------------|\n| Role type | Independent, knowledge work | Collaborative, creative, mentorship-heavy |\n| Career stage | Experienced professionals | Early-career employees |\n| Personality | Self-directed introverts | Those needing external structure |\n| Life situation | Caregivers, those with long commutes | Those with inadequate home environments |\n\n---\n\n## Conclusion\n\nThe future likely belongs to **intentional flexibility**\u2014hybrid models that preserve the benefits of remote work while creating meaningful opportunities for in-person connection. Success requires acknowledging that what works for a senior software developer may not work for a junior marketing associate, and what benefits a tech company may harm a city's tax base.\n\nThe organizations and societies that thrive will be those that resist ideological positions and instead ask: *What arrangement best serves our people, our mission, and our community?*",
+          "input_tokens": 95,
+          "output_tokens": 914,
+          "total_tokens": 1009,
+          "latency_ms": 3633969.253063202,
+          "criteria_results": {
+            "has_pros": true,
+            "has_cons": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "directional": {
+          "response": "# Pros and Cons of Remote Work\n\n## Pros\n\n**For Employees:**\n- **Flexibility & autonomy** \u2013 Control over schedule and work environment often increases job satisfaction\n- **No commute** \u2013 Saves time, money, and reduces stress (average American commute is ~27 min each way)\n- **Better work-life integration** \u2013 Easier to handle family needs, appointments, and personal responsibilities\n\n**For Employers:**\n- **Reduced overhead** \u2013 Lower costs for office space, utilities, and supplies\n- **Wider talent pool** \u2013 Can hire from anywhere, not limited by geography\n- **Often increased productivity** \u2013 Many studies show remote workers are equally or more productive for focused tasks\n\n**For Families:**\n- **More presence at home** \u2013 Parents can be available for children, eldercare, or emergencies\n- **Geographic freedom** \u2013 Can live in lower cost-of-living areas or near extended family\n\n---\n\n## Cons\n\n**For Employees:**\n- **Isolation & loneliness** \u2013 Reduced social interaction can affect mental health\n- **Blurred boundaries** \u2013 Difficulty \"switching off\" can lead to overwork and burnout\n- **Career visibility concerns** \u2013 May miss informal opportunities, mentorship, or promotions\n\n**For Employers:**\n- **Culture & cohesion challenges** \u2013 Harder to build team identity and trust remotely\n- **Communication friction** \u2013 Spontaneous collaboration and quick problem-solving suffer\n- **Management complexity** \u2013 Requires new skills and tools to lead distributed teams effectively\n\n**For Families:**\n- **Space conflicts** \u2013 Home may not accommodate a proper workspace\n- **Interruptions both ways** \u2013 Work can intrude on family time, and vice versa\n\n---\n\n**Bottom line:** Remote work isn't universally better or worse\u2014it depends on the role, individual, and how intentionally it's implemented.",
+          "input_tokens": 57,
+          "output_tokens": 416,
+          "total_tokens": 473,
+          "latency_ms": 9948.266744613647,
+          "criteria_results": {
+            "has_pros": true,
+            "has_cons": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "tot": {
+          "response": "# Remote Work: Comprehensive Pros & Cons Analysis\n\n## PROS\n\n### Individual Employee\n- **Time/money savings** \u2014 eliminates commute (avg. 41 min/day in US)\n- **Flexibility** \u2014 customize work hours around personal energy peaks\n- **Autonomy** \u2014 greater control over environment, fewer interruptions\n- **Geographic freedom** \u2014 live anywhere, access broader job market\n- **Health benefits** \u2014 more time for exercise, home-cooked meals, sleep\n\n### Team/Company\n- **Expanded talent pool** \u2014 hire globally without relocation costs\n- **Reduced overhead** \u2014 smaller office footprint, lower facilities costs\n- **Productivity gains** \u2014 studies show 13-24% increase for focused work\n- **Business continuity** \u2014 resilience against local disruptions\n- **Retention tool** \u2014 87% of workers want flexibility when offered\n\n### Society/Family\n- **Environmental impact** \u2014 reduced emissions, traffic congestion\n- **Family presence** \u2014 available for caregiving, school events, emergencies\n- **Regional economic distribution** \u2014 spending shifts to residential areas\n- **Accessibility** \u2014 enables work for disabled, caregivers, rural populations\n\n---\n\n## CONS\n\n### Individual Employee\n- **Isolation/loneliness** \u2014 reduced social connection, mental health risks\n- **Career visibility concerns** \u2014 \"out of sight, out of mind\" for promotions\n- **Work-life blur** \u2014 difficulty disconnecting, longer actual hours\n- **Home costs** \u2014 workspace setup, utilities, internet upgrades\n- **Skill atrophy** \u2014 fewer spontaneous learning/mentorship moments\n\n### Team/Company\n- **Collaboration friction** \u2014 harder to brainstorm, build trust, onboard\n- **Culture erosion** \u2014 shared identity and values harder to maintain\n- **Management complexity** \u2014 requires new skills, tools, trust frameworks\n- **Security risks** \u2014 distributed networks, unsecured home setups\n- **Coordination costs** \u2014 time zones, meeting fatigue, documentation burden\n\n### Society/Family\n- **Urban economic disruption** \u2014 downtown businesses, commercial real estate decline\n- **Domestic tension** \u2014 space conflicts, blurred roles, unequal caregiving burden\n- **Digital divide deepening** \u2014 benefits skew toward knowledge workers\n- **Community weakening** \u2014 less workplace-based social infrastructure\n\n---\n\n## Key Insight\nRemote work **amplifies existing conditions** \u2014 beneficial for self-directed workers with good home setups; challenging for early-career employees, extroverts, or those in cramped living situations. The optimal approach is typically **intentional hybrid** rather than all-or-nothing.",
+          "input_tokens": 64,
+          "output_tokens": 584,
+          "total_tokens": 648,
+          "latency_ms": 19165737.46585846,
+          "criteria_results": {
+            "has_pros": true,
+            "has_cons": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        },
+        "self_consistency": {
+          "response": "<budget:remaining_tokens>199500</budget:remaining_tokens>\n\n# Pros and Cons of Remote Work\n\n## Pros\n\n| Benefit | Who Benefits Most |\n|---------|-------------------|\n| **Flexibility in schedule and location** | Employee |\n| **Elimination of commute time and costs** | Employee |\n| **Better work-life balance potential** | Employee |\n| **Reduced overhead costs** (office space, utilities) | Employer |\n| **Access to wider talent pool** regardless of geography | Employer |\n| **Often increased productivity** for focused work | Both |\n| **Environmental benefits** from reduced commuting | Society |\n| **Business continuity** during disruptions | Employer |\n\n## Cons\n\n| Drawback | Who's Most Affected |\n|----------|---------------------|\n| **Isolation and loneliness** | Employee |\n| **Blurred boundaries** between work and personal life | Employee |\n| **Harder to collaborate spontaneously** | Both |\n| **Communication challenges** and potential misunderstandings | Both |\n| **Difficulty building company culture** | Employer |\n| **Management and oversight complexity** | Employer |\n| **Home workspace costs and distractions** | Employee |\n| **Career visibility concerns** (\"out of sight, out of mind\") | Employee |\n| **Cybersecurity risks** with distributed networks | Employer |\n\n---\n\n**Bottom line:** Remote work offers significant gains in flexibility and efficiency but requires intentional effort to maintain connection, boundaries, and culture. The ideal arrangement often depends on the role, individual, and organizational needs.",
+          "input_tokens": 55,
+          "output_tokens": 363,
+          "total_tokens": 418,
+          "latency_ms": 10076.005458831787,
+          "criteria_results": {
+            "has_pros": true,
+            "has_cons": true
+          },
+          "criteria_passed": 2,
+          "criteria_total": 2
+        }
+      }
+    }
+  ],
+  "summary": {
+    "zero_shot": {
+      "pass_rate": 83.3,
+      "avg_tokens": 253,
+      "tests_completed": 9
+    },
+    "few_shot": {
+      "pass_rate": 94.4,
+      "avg_tokens": 261,
+      "tests_completed": 9
+    },
+    "cot": {
+      "pass_rate": 88.9,
+      "avg_tokens": 441,
+      "tests_completed": 9
+    },
+    "schema": {
+      "pass_rate": 88.9,
+      "avg_tokens": 481,
+      "tests_completed": 9
+    },
+    "meta": {
+      "pass_rate": 83.3,
+      "avg_tokens": 709,
+      "tests_completed": 9
+    },
+    "gen_knowledge": {
+      "pass_rate": 94.4,
+      "avg_tokens": 472,
+      "tests_completed": 9
+    },
+    "directional": {
+      "pass_rate": 88.9,
+      "avg_tokens": 298,
+      "tests_completed": 9
+    },
+    "tot": {
+      "pass_rate": 83.3,
+      "avg_tokens": 534,
+      "tests_completed": 9
+    },
+    "self_consistency": {
+      "pass_rate": 94.4,
+      "avg_tokens": 715,
+      "tests_completed": 9
+    }
+  }
+}

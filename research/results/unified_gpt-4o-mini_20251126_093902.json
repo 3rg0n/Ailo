@@ -1,0 +1,329 @@
+{
+  "metadata": {
+    "model": "gpt-4o-mini",
+    "model_name": "GPT-4o Mini",
+    "provider": "openai",
+    "tier": "budget",
+    "timestamp": "20251126_093902",
+    "styles_tested": [
+      "zero_shot",
+      "few_shot",
+      "cot",
+      "schema",
+      "meta",
+      "gen_knowledge",
+      "directional",
+      "tot",
+      "self_consistency"
+    ]
+  },
+  "results": [
+    {
+      "test_id": "reason-math-01",
+      "test_name": "Discount Calculation",
+      "category": "reasoning",
+      "styles": {
+        "zero_shot": {
+          "error": "Connection error."
+        },
+        "few_shot": {
+          "error": "Connection error."
+        },
+        "cot": {
+          "error": "Connection error."
+        },
+        "schema": {
+          "error": "Connection error."
+        },
+        "meta": {
+          "error": "Connection error."
+        },
+        "gen_knowledge": {
+          "error": "Connection error."
+        },
+        "directional": {
+          "error": "Connection error."
+        },
+        "tot": {
+          "error": "Connection error."
+        },
+        "self_consistency": {
+          "error": "Connection error."
+        }
+      }
+    },
+    {
+      "test_id": "reason-logic-01",
+      "test_name": "Pet Logic Puzzle",
+      "category": "reasoning",
+      "styles": {
+        "zero_shot": {
+          "error": "Connection error."
+        },
+        "few_shot": {
+          "error": "Connection error."
+        },
+        "cot": {
+          "error": "Connection error."
+        },
+        "schema": {
+          "error": "Connection error."
+        },
+        "meta": {
+          "error": "Connection error."
+        },
+        "gen_knowledge": {
+          "error": "Connection error."
+        },
+        "directional": {
+          "error": "Connection error."
+        },
+        "tot": {
+          "error": "Connection error."
+        },
+        "self_consistency": {
+          "error": "Connection error."
+        }
+      }
+    },
+    {
+      "test_id": "write-exec-01",
+      "test_name": "Executive Summary",
+      "category": "writing",
+      "styles": {
+        "zero_shot": {
+          "error": "Connection error."
+        },
+        "few_shot": {
+          "error": "Connection error."
+        },
+        "cot": {
+          "error": "Connection error."
+        },
+        "schema": {
+          "error": "Connection error."
+        },
+        "meta": {
+          "error": "Connection error."
+        },
+        "gen_knowledge": {
+          "error": "Connection error."
+        },
+        "directional": {
+          "error": "Connection error."
+        },
+        "tot": {
+          "error": "Connection error."
+        },
+        "self_consistency": {
+          "error": "Connection error."
+        }
+      }
+    },
+    {
+      "test_id": "analysis-compare-01",
+      "test_name": "Framework Comparison",
+      "category": "analysis",
+      "styles": {
+        "zero_shot": {
+          "error": "Connection error."
+        },
+        "few_shot": {
+          "error": "Connection error."
+        },
+        "cot": {
+          "error": "Connection error."
+        },
+        "schema": {
+          "error": "Connection error."
+        },
+        "meta": {
+          "error": "Connection error."
+        },
+        "gen_knowledge": {
+          "error": "Connection error."
+        },
+        "directional": {
+          "error": "Connection error."
+        },
+        "tot": {
+          "error": "Connection error."
+        },
+        "self_consistency": {
+          "error": "Connection error."
+        }
+      }
+    },
+    {
+      "test_id": "tech-explain-01",
+      "test_name": "Code Explanation",
+      "category": "technical",
+      "styles": {
+        "zero_shot": {
+          "error": "Connection error."
+        },
+        "few_shot": {
+          "error": "Connection error."
+        },
+        "cot": {
+          "error": "Connection error."
+        },
+        "schema": {
+          "error": "Connection error."
+        },
+        "meta": {
+          "error": "Connection error."
+        },
+        "gen_knowledge": {
+          "error": "Connection error."
+        },
+        "directional": {
+          "error": "Connection error."
+        },
+        "tot": {
+          "error": "Connection error."
+        },
+        "self_consistency": {
+          "error": "Connection error."
+        }
+      }
+    },
+    {
+      "test_id": "creative-story-01",
+      "test_name": "Story Ideas",
+      "category": "creative",
+      "styles": {
+        "zero_shot": {
+          "error": "Connection error."
+        },
+        "few_shot": {
+          "error": "Connection error."
+        },
+        "cot": {
+          "error": "Connection error."
+        },
+        "schema": {
+          "error": "Connection error."
+        },
+        "meta": {
+          "error": "Connection error."
+        },
+        "gen_knowledge": {
+          "error": "Connection error."
+        },
+        "directional": {
+          "error": "Connection error."
+        },
+        "tot": {
+          "error": "Connection error."
+        },
+        "self_consistency": {
+          "error": "Connection error."
+        }
+      }
+    },
+    {
+      "test_id": "reason-percent-01",
+      "test_name": "Percentage Calculation",
+      "category": "reasoning",
+      "styles": {
+        "zero_shot": {
+          "error": "Connection error."
+        },
+        "few_shot": {
+          "error": "Connection error."
+        },
+        "cot": {
+          "error": "Connection error."
+        },
+        "schema": {
+          "error": "Connection error."
+        },
+        "meta": {
+          "error": "Connection error."
+        },
+        "gen_knowledge": {
+          "error": "Connection error."
+        },
+        "directional": {
+          "error": "Connection error."
+        },
+        "tot": {
+          "error": "Connection error."
+        },
+        "self_consistency": {
+          "error": "Connection error."
+        }
+      }
+    },
+    {
+      "test_id": "write-persona-01",
+      "test_name": "Persona Adherence",
+      "category": "writing",
+      "styles": {
+        "zero_shot": {
+          "error": "Connection error."
+        },
+        "few_shot": {
+          "error": "Connection error."
+        },
+        "cot": {
+          "error": "Connection error."
+        },
+        "schema": {
+          "error": "Connection error."
+        },
+        "meta": {
+          "error": "Connection error."
+        },
+        "gen_knowledge": {
+          "error": "Connection error."
+        },
+        "directional": {
+          "error": "Connection error."
+        },
+        "tot": {
+          "error": "Connection error."
+        },
+        "self_consistency": {
+          "error": "Connection error."
+        }
+      }
+    },
+    {
+      "test_id": "analysis-proscons-01",
+      "test_name": "Pros and Cons",
+      "category": "analysis",
+      "styles": {
+        "zero_shot": {
+          "error": "Connection error."
+        },
+        "few_shot": {
+          "error": "Connection error."
+        },
+        "cot": {
+          "error": "Connection error."
+        },
+        "schema": {
+          "error": "Connection error."
+        },
+        "meta": {
+          "error": "Connection error."
+        },
+        "gen_knowledge": {
+          "error": "Connection error."
+        },
+        "directional": {
+          "error": "Connection error."
+        },
+        "tot": {
+          "error": "Connection error."
+        },
+        "self_consistency": {
+          "error": "Connection error."
+        }
+      }
+    }
+  ],
+  "summary": {}
+}

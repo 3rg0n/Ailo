@@ -1,0 +1,1024 @@
+{
+  "model": "nova-micro",
+  "results": [
+    {
+      "algorithm": "factorial",
+      "style": "zero_shot",
+      "similarity": {
+        "sequence_similarity": 0.833,
+        "line_similarity": 0.706,
+        "token_overlap": 0.786,
+        "structural_score": 0.8,
+        "combined_score": 0.775
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 6,
+        "total": 6,
+        "correctness_score": 1.0
+      },
+      "tokens": 137,
+      "generated_code": "export default function factorial(number) {\n    if (number === 0) {\n        return 1;\n    }\n    let result = 1;\n    for (let i = number; i > 1; i--) {\n        result *= i;\n    }\n    return result;\n}"
+    },
+    {
+      "algorithm": "factorial",
+      "style": "few_shot",
+      "similarity": {
+        "sequence_similarity": 0.683,
+        "line_similarity": 0.6,
+        "token_overlap": 0.478,
+        "structural_score": 0.8,
+        "combined_score": 0.587
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 6,
+        "total": 6,
+        "correctness_score": 1.0
+      },
+      "tokens": 341,
+      "generated_code": "export default function factorial(number) {\n  if (number < 0) {\n    throw new Error(\"Factorial is not defined for negative numbers\");\n  }\n  if (number === 0) {\n    return 1;\n  }\n  let result = 1;\n  for (let i = 1; i <= number; i += 1) {\n    result *= i;\n  }\n  return result;\n}"
+    },
+    {
+      "algorithm": "factorial",
+      "style": "cot",
+      "similarity": {
+        "sequence_similarity": 0.425,
+        "line_similarity": 0.37,
+        "token_overlap": 0.324,
+        "structural_score": 0.8,
+        "combined_score": 0.373
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 6,
+        "total": 6,
+        "correctness_score": 1.0
+      },
+      "tokens": 653,
+      "generated_code": "function factorial(number) {\n    // Edge case: if the number is negative, return an error\n    if (number < 0) {\n        throw new Error(\"Factorial is not defined for negative numbers\");\n    }\n    // Edge case: if the number is not an integer, return an error\n    if (!Number.isInteger(number)) {\n        throw new Error(\"Factorial is not defined for non-integer numbers\");\n    }\n    // Special case: factorial of 0 is 1\n    if (number === 0) {\n        return 1;\n    }\n    \n    let result = 1;\n    for (let i = number; i > 0; i--) {\n        result *= i;\n    }\n    return result;\n}\n\nexport default factorial;"
+    },
+    {
+      "algorithm": "factorial",
+      "style": "schema",
+      "similarity": {
+        "sequence_similarity": 0.826,
+        "line_similarity": 0.571,
+        "token_overlap": 0.379,
+        "structural_score": 0.8,
+        "combined_score": 0.592
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 6,
+        "total": 6,
+        "correctness_score": 1.0
+      },
+      "tokens": 274,
+      "generated_code": "// Calculate the factorial of a number\nexport default function factorial(number) {\n    // Base case: factorial of 0 is 1\n    if (number === 0) {\n        return 1;\n    }\n\n    // Initialize result to 1\n    let result = 1;\n\n    // Loop from number down to 1, multiplying result by each number\n    for (let i = number; i > 0; i--) {\n        result *= i;\n    }\n\n    return result;\n}"
+    },
+    {
+      "algorithm": "factorial",
+      "style": "meta",
+      "similarity": {
+        "sequence_similarity": 0.411,
+        "line_similarity": 0.138,
+        "token_overlap": 0.211,
+        "structural_score": 0.8,
+        "combined_score": 0.253
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 6,
+        "total": 6,
+        "correctness_score": 1.0
+      },
+      "tokens": 641,
+      "generated_code": "/**\n * Calculate the factorial of a number.\n * @param {number} n - The number to calculate the factorial of.\n * @returns {number|undefined} - The factorial of n if n is a non-negative integer, undefined otherwise.\n */\nfunction factorial(n) {\n    // Edge case: factorial of 0 is 1\n    if (n === 0) {\n        return 1;\n    }\n    // Edge case: non-negative integers\n    if (n < 0 || !Number.isInteger(n)) {\n        return undefined;\n    }\n    // Base case for recursion\n    if (n === 1) {\n        return 1;\n    }\n    // Recursive case\n    return n * factorial(n - 1);\n}\n\nexport default factorial;"
+    },
+    {
+      "algorithm": "factorial",
+      "style": "gen_knowledge",
+      "similarity": {
+        "sequence_similarity": 0.466,
+        "line_similarity": 0.25,
+        "token_overlap": 0.14,
+        "structural_score": 0.8,
+        "combined_score": 0.285
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 6,
+        "total": 6,
+        "correctness_score": 1.0
+      },
+      "tokens": 481,
+      "generated_code": "export default function factorial(number) {\n    // Key facts about factorial:\n    // - Mathematical definition: n! = n * (n-1) * ... * 1\n    // - Common implementation: Recursive or iterative approach\n    // - Edge cases: Non-integer, negative numbers, and zero\n    // - Optimization: Early return for zero to avoid unnecessary calculations\n\n    // Check if the input is a non-negative integer\n    if (number < 0 || !Number.isInteger(number)) {\n        throw new Error(\"Input must be a non-negative integer\");\n    }\n\n    // Base case: factorial of 0 is 1\n    if (number === 0) {\n        return 1;\n    }\n\n    // Recursive case: n! = n * (n-1)!\n    return number * factorial(number - 1);\n}"
+    },
+    {
+      "algorithm": "factorial",
+      "style": "directional",
+      "similarity": {
+        "sequence_similarity": 0.615,
+        "line_similarity": 0.522,
+        "token_overlap": 0.333,
+        "structural_score": 0.8,
+        "combined_score": 0.49
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 6,
+        "total": 6,
+        "correctness_score": 1.0
+      },
+      "tokens": 436,
+      "generated_code": "export default function factorial(number) {\n    // Handle edge cases\n    if (number < 0) {\n        throw new Error(\"Factorial is not defined for negative numbers\");\n    }\n    if (number === 0 || number === 1) {\n        return 1;\n    }\n\n    // Initialize the result to 1\n    let result = 1;\n\n    // Use a for loop to calculate the factorial\n    for (let i = number; i > 1; i--) {\n        result *= i;\n    }\n\n    return result;\n}"
+    },
+    {
+      "algorithm": "factorial",
+      "style": "tot",
+      "similarity": {
+        "sequence_similarity": 0.681,
+        "line_similarity": 0.75,
+        "token_overlap": 0.478,
+        "structural_score": 0.8,
+        "combined_score": 0.636
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 6,
+        "total": 6,
+        "correctness_score": 1.0
+      },
+      "tokens": 871,
+      "generated_code": "export default function factorial(number) {\n    if (number < 0) throw new Error(\"Factorial is not defined for negative numbers\");\n    if (number === 0) return 1;\n    let result = 1;\n    for (let i = 1; i <= number; i++) {\n        result *= i;\n    }\n    return result;\n}"
+    },
+    {
+      "algorithm": "factorial",
+      "style": "self_consistency",
+      "similarity": {
+        "sequence_similarity": 0.391,
+        "line_similarity": 0.2,
+        "token_overlap": 0.212,
+        "structural_score": 0.6,
+        "combined_score": 0.268
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_multiplication": true
+        },
+        "passed": 6,
+        "total": 6,
+        "correctness_score": 1.0
+      },
+      "tokens": 652,
+      "generated_code": "function factorial(number) {\n    // Check if input is a non-negative integer\n    if (!Number.isInteger(number) || number < 0) {\n        throw new Error(\"Input must be a non-negative integer\");\n    }\n    \n    // Factorial of 0 is 1\n    if (number === 0) {\n        return 1;\n    }\n    \n    // Recursive case\n    return number * factorial(number - 1);\n}\n\nexport default factorial;"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "zero_shot",
+      "similarity": {
+        "sequence_similarity": 0.25,
+        "line_similarity": 0.231,
+        "token_overlap": 0.571,
+        "structural_score": 0.8,
+        "combined_score": 0.351
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 173,
+      "generated_code": "export default function fibonacci(n) {\n    if (n <= 0) return [];\n    if (n === 1) return [0];\n    if (n === 2) return [0, 1];\n\n    const sequence = [0, 1];\n    for (let i = 2; i < n; i++) {\n        sequence.push(sequence[i - 1] + sequence[i - 2]);\n    }\n    return sequence;\n}"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "few_shot",
+      "similarity": {
+        "sequence_similarity": 0.327,
+        "line_similarity": 0.231,
+        "token_overlap": 0.545,
+        "structural_score": 0.8,
+        "combined_score": 0.368
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 358,
+      "generated_code": "export default function fibonacci(n) {\n  if (n <= 0) return [];\n  if (n === 1) return [1];\n\n  const sequence = [1, 1];\n  for (let i = 2; i < n; i += 1) {\n    const nextValue = sequence[i - 1] + sequence[i - 2];\n    sequence.push(nextValue);\n  }\n  return sequence;\n}"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "cot",
+      "similarity": {
+        "sequence_similarity": 0.221,
+        "line_similarity": 0.2,
+        "token_overlap": 0.364,
+        "structural_score": 0.8,
+        "combined_score": 0.261
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 554,
+      "generated_code": "function fibonacci(n) {\n    // Handle edge cases\n    if (n <= 0) return [];\n    if (n === 1) return [1];\n    if (n === 2) return [1, 1];\n\n    // Initialize the array and the first two Fibonacci numbers\n    let fibSequence = [1, 1];\n    \n    // Generate the Fibonacci sequence\n    for (let i = 2; i < n; i++) {\n        fibSequence.push(fibSequence[i - 1] + fibSequence[i - 2]);\n    }\n    \n    return fibSequence;\n}\n\nexport default fibonacci;"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "schema",
+      "similarity": {
+        "sequence_similarity": 0.346,
+        "line_similarity": 0.214,
+        "token_overlap": 0.619,
+        "structural_score": 0.8,
+        "combined_score": 0.393
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 185,
+      "generated_code": "export default function fibonacci(n) {\n    if (n <= 0) return [];\n    if (n === 1) return [1];\n\n    const sequence = [1, 1];\n    let currentIndex = 2;\n\n    while (currentIndex < n) {\n        const nextValue = sequence[currentIndex - 1] + sequence[currentIndex - 2];\n        sequence.push(nextValue);\n        currentIndex++;\n    }\n\n    return sequence;\n}"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "meta",
+      "similarity": {
+        "sequence_similarity": 0.247,
+        "line_similarity": 0.167,
+        "token_overlap": 0.262,
+        "structural_score": 0.8,
+        "combined_score": 0.225
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 734,
+      "generated_code": "function fibonacci(n) {\n    // Edge case: if n is 0 or less, return an empty array\n    if (n <= 0) {\n        return [];\n    }\n    // Edge case: if n is 1, return the first Fibonacci number\n    if (n === 1) {\n        return [1];\n    }\n    \n    // Initialize the first two Fibonacci numbers\n    let fibSeq = [1, 1];\n    \n    // Compute the Fibonacci sequence iteratively\n    for (let i = 2; i < n; i++) {\n        fibSeq.push(fibSeq[i - 1] + fibSeq[i - 2]);\n    }\n    \n    // Return the first n Fibonacci numbers\n    return fibSeq.slice(0, n);\n}\n\n// Export the function\nexport default fibonacci;"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "gen_knowledge",
+      "similarity": {
+        "sequence_similarity": 0.288,
+        "line_similarity": 0.222,
+        "token_overlap": 0.212,
+        "structural_score": 0.8,
+        "combined_score": 0.241
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 596,
+      "generated_code": "export default function fibonacci(n) {\n    // Edge case: if n is less than 1, return an empty array\n    if (n < 1) {\n        return [];\n    }\n\n    // Base case: if n is 1, return [1] as the Fibonacci sequence starts with 1\n    if (n === 1) {\n        return [1];\n    }\n\n    // Initialize the array to hold the Fibonacci sequence\n    let fibSequence = [1, 1];\n\n    // Iteratively compute the Fibonacci sequence\n    for (let i = 2; i < n; i++) {\n        fibSequence[i] = fibSequence[i - 1] + fibSequence[i - 2];\n    }\n\n    // Return the first n numbers in the Fibonacci sequence\n    return fibSequence.slice(0, n);\n}\n\n// Example usage:\n// console.log(fibonacci(5)); // Output: [1, 1, 2, 3, 5]"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "directional",
+      "similarity": {
+        "sequence_similarity": 0.356,
+        "line_similarity": 0.242,
+        "token_overlap": 0.324,
+        "structural_score": 0.8,
+        "combined_score": 0.308
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 502,
+      "generated_code": "export default function fibonacci(n) {\n    // Handle edge cases\n    if (n <= 0) {\n        return [];\n    } else if (n === 1) {\n        return [1];\n    }\n\n    // Initialize the first two Fibonacci numbers\n    let fibSequence = [1, 1];\n    \n    // Generate the Fibonacci sequence iteratively\n    for (let i = 2; i < n; i++) {\n        let nextFibonacci = fibSequence[i - 1] + fibSequence[i - 2];\n        fibSequence.push(nextFibonacci);\n    }\n\n    // Return the first n numbers in the Fibonacci sequence\n    return fibSequence.slice(0, n);\n}"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "tot",
+      "similarity": {
+        "sequence_similarity": 0.28,
+        "line_similarity": 0.24,
+        "token_overlap": 0.619,
+        "structural_score": 0.8,
+        "combined_score": 0.38
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 934,
+      "generated_code": "export default function fibonacci(n) {\n    if (n <= 0) return [];\n    if (n === 1) return [1];\n    \n    const fibSequence = [1, 1];\n    for (let i = 2; i < n; i++) {\n        fibSequence.push(fibSequence[i - 1] + fibSequence[i - 2]);\n    }\n    return fibSequence.slice(0, n);\n}"
+    },
+    {
+      "algorithm": "fibonacci",
+      "style": "self_consistency",
+      "similarity": {
+        "sequence_similarity": 0.196,
+        "line_similarity": 0.148,
+        "token_overlap": 0.571,
+        "structural_score": 0.8,
+        "combined_score": 0.305
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_base_case": true,
+          "has_array": true,
+          "tracks_previous": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 762,
+      "generated_code": "function fibonacci(n) {\n    if (n <= 0) return [];\n    if (n === 1) return [0];\n    if (n === 2) return [0, 1];\n\n    const sequence = [0, 1];\n    for (let i = 2; i < n; i++) {\n        sequence.push(sequence[i - 1] + sequence[i - 2]);\n    }\n    return sequence;\n}\nexport default fibonacci;"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "zero_shot",
+      "similarity": {
+        "sequence_similarity": 0.633,
+        "line_similarity": 0.267,
+        "token_overlap": 0.625,
+        "structural_score": 0.8,
+        "combined_score": 0.508
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 145,
+      "generated_code": "export default function euclideanAlgorithm(originalA, originalB) {\n    let a = originalA;\n    let b = originalB;\n\n    while (b !== 0) {\n        let temp = b;\n        b = a % b;\n        a = temp;\n    }\n\n    return a;\n}"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "few_shot",
+      "similarity": {
+        "sequence_similarity": 0.633,
+        "line_similarity": 0.267,
+        "token_overlap": 0.625,
+        "structural_score": 0.8,
+        "combined_score": 0.508
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 287,
+      "generated_code": "export default function euclideanAlgorithm(originalA, originalB) {\n  let a = originalA;\n  let b = originalB;\n\n  while (b !== 0) {\n    let temp = b;\n    b = a % b;\n    a = temp;\n  }\n\n  return a;\n}"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "cot",
+      "similarity": {
+        "sequence_similarity": 0.576,
+        "line_similarity": 0.16,
+        "token_overlap": 0.265,
+        "structural_score": 0.8,
+        "combined_score": 0.334
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 625,
+      "generated_code": "export default function euclideanAlgorithm(originalA, originalB) {\n    // Handle edge cases\n    if (originalA === 0 && originalB === 0) {\n        throw new Error(\"Both numbers cannot be zero\");\n    }\n    \n    // Use absolute values\n    let a = Math.abs(originalA);\n    let b = Math.abs(originalB);\n\n    // Core algorithm logic\n    while (b !== 0) {\n        const temp = b;\n        b = a % b;\n        a = temp;\n    }\n\n    // When b is 0, a is the GCD\n    return a;\n}\n\n// Example usage:\nconsole.log(euclideanAlgorithm(12, 8)); // Output: 4\nconsole.log(euclideanAlgorithm(17, 13)); // Output: 1"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "schema",
+      "similarity": {
+        "sequence_similarity": 0.615,
+        "line_similarity": 0.174,
+        "token_overlap": 0.213,
+        "structural_score": 0.8,
+        "combined_score": 0.334
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 404,
+      "generated_code": "export default function euclideanAlgorithm(originalA, originalB) {\n    // Initialize the variables to hold the values of a and b\n    let a = originalA;\n    let b = originalB;\n\n    // Continue looping until b is 0\n    while (b !== 0) {\n        // Calculate the remainder of a divided by b\n        let remainder = a % b;\n\n        // Update a to be b and b to be the remainder\n        a = b;\n        b = remainder;\n    }\n\n    // When b is 0, a will be the GCD\n    return a;\n}\n\n// Example usage:\n// console.log(euclideanAlgorithm(12, 8)); // Output: 4\n// console.log(euclideanAlgorithm(17, 13)); // Output: 1"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "meta",
+      "similarity": {
+        "sequence_similarity": 0.421,
+        "line_similarity": 0.069,
+        "token_overlap": 0.227,
+        "structural_score": 0.8,
+        "combined_score": 0.239
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 768,
+      "generated_code": "export default function euclideanAlgorithm(a, b) {\n    // Handle edge case where both numbers are zero\n    if (a === 0 && b === 0) {\n        throw new Error(\"GCD is undefined for both numbers being zero\");\n    }\n    // Handle edge case where one number is zero\n    if (b === 0) {\n        return Math.abs(a);\n    }\n    // Handle negative numbers by taking absolute values\n    a = Math.abs(a);\n    b = Math.abs(b);\n\n    // Recursive Euclidean algorithm\n    if (a < b) {\n        [a, b] = [b, a]; // Swap if a is smaller than b\n    }\n    return euclideanAlgorithmHelper(a, b);\n\n    function euclideanAlgorithmHelper(a, b) {\n        if (b === 0) {\n            return a;\n        }\n        return euclideanAlgorithmHelper(b, a % b);\n    }\n}"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "gen_knowledge",
+      "similarity": {
+        "sequence_similarity": 0.438,
+        "line_similarity": 0.133,
+        "token_overlap": 0.145,
+        "structural_score": 0.8,
+        "combined_score": 0.239
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 666,
+      "generated_code": "/**\n * Function to find the greatest common divisor (GCD) of two numbers using the Euclidean Algorithm.\n * @param {number} originalA - The first number.\n * @param {number} originalB - The second number.\n * @returns {number} The greatest common divisor of originalA and originalB.\n */\nexport default function euclideanAlgorithm(originalA, originalB) {\n    // Ensure both numbers are positive integers\n    if (originalA < 0) originalA = -originalA;\n    if (originalB < 0) originalB = -originalB;\n\n    // Edge case: if one of the numbers is zero, the GCD is the other number\n    if (originalA === 0) return originalB;\n    if (originalB === 0) return originalA;\n\n    // Common implementation pattern using recursion\n    while (originalB !== 0) {\n        const remainder = originalA % originalB;\n        originalA = originalB;\n        originalB = remainder;\n    }\n\n    // When originalB is zero, originalA is the GCD\n    return originalA;\n}\n\n// Example usage:\n// const gcd = euclideanAlgorithm(12, 8); // returns 4\n// const gcd = euclideanAlgorithm(17, 13); // returns 1"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "directional",
+      "similarity": {
+        "sequence_similarity": 0.581,
+        "line_similarity": 0.069,
+        "token_overlap": 0.255,
+        "structural_score": 0.8,
+        "combined_score": 0.302
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 553,
+      "generated_code": "/**\n * Function to find the greatest common divisor (GCD) of two numbers using the Euclidean Algorithm.\n * \n * @param {number} originalA - The first number\n * @param {number} originalB - The second number\n * @returns {number} The GCD of the two numbers\n */\nfunction euclideanAlgorithm(originalA, originalB) {\n    // Handle edge cases\n    if (originalA === 0) return originalB;\n    if (originalB === 0) return originalA;\n\n    // Ensure both numbers are positive\n    let a = Math.abs(originalA);\n    let b = Math.abs(originalB);\n\n    // Iterative Euclidean algorithm\n    while (b !== 0) {\n        let temp = b;\n        b = a % b;\n        a = temp;\n    }\n\n    return a;\n}\n\n// Export the function\nexport default euclideanAlgorithm;"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "tot",
+      "similarity": {
+        "sequence_similarity": 0.685,
+        "line_similarity": 0.125,
+        "token_overlap": 0.75,
+        "structural_score": 0.8,
+        "combined_score": 0.52
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 782,
+      "generated_code": "function euclideanAlgorithm(originalA, originalB) {\n    let a = Math.abs(originalA);\n    let b = Math.abs(originalB);\n\n    while (b !== 0) {\n        let temp = b;\n        b = a % b;\n        a = temp;\n    }\n    return a;\n}\n\nexport default euclideanAlgorithm;"
+    },
+    {
+      "algorithm": "euclidean_gcd",
+      "style": "self_consistency",
+      "similarity": {
+        "sequence_similarity": 0.457,
+        "line_similarity": 0.105,
+        "token_overlap": 0.243,
+        "structural_score": 0.8,
+        "combined_score": 0.269
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "uses_modulo": true,
+          "handles_recursion_or_loop": true,
+          "handles_negative": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 780,
+      "generated_code": "export default function euclideanAlgorithm(a, b) {\n    if (typeof a !== 'number' || typeof b !== 'number') {\n        throw new TypeError('Both arguments must be numbers');\n    }\n    a = Math.floor(a);\n    b = Math.floor(b);\n    while (b !== 0) {\n        [a, b] = [b, a % b];\n    }\n    return a;\n}\n\n// Example usage:\nconsole.log(euclideanAlgorithm(12, 8)); // Output: 4\nconsole.log(euclideanAlgorithm(17, 13)); // Output: 1"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "zero_shot",
+      "similarity": {
+        "sequence_similarity": 0.373,
+        "line_similarity": 0.267,
+        "token_overlap": 0.652,
+        "structural_score": 0.8,
+        "combined_score": 0.431
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 172,
+      "generated_code": "export default function trialDivision(number) {\n    if (number <= 1) return false;\n    if (number <= 3) return true;\n    if (number % 2 === 0 || number % 3 === 0) return false;\n    for (let i = 5; i * i <= number; i += 6) {\n        if (number % i === 0 || number % (i + 2) === 0) return false;\n    }\n    return true;\n}"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "few_shot",
+      "similarity": {
+        "sequence_similarity": 0.339,
+        "line_similarity": 0.222,
+        "token_overlap": 0.349,
+        "structural_score": 0.8,
+        "combined_score": 0.303
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 416,
+      "generated_code": "export default function trialDivision(number) {\n  // Handle edge cases\n  if (number <= 1) return false;\n  if (number <= 3) return true;\n\n  // Check divisibility by 2 and 3\n  if (number % 2 === 0 || number % 3 === 0) return false;\n\n  // Check for factors from 5 to the square root of the number\n  for (let i = 5; i * i <= number; i += 6) {\n    if (number % i === 0 || number % (i + 2) === 0) return false;\n  }\n\n  return true;\n}\n\n// Example usage:\nconsole.log(trialDivision(17)); // true\nconsole.log(trialDivision(100)); // false"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "cot",
+      "similarity": {
+        "sequence_similarity": 0.554,
+        "line_similarity": 0.65,
+        "token_overlap": 0.571,
+        "structural_score": 0.8,
+        "combined_score": 0.592
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 666,
+      "generated_code": "export default function trialDivision(number) {\n    // Edge cases\n    if (number < 2) {\n        return false;\n    }\n    if (number === 2) {\n        return true;\n    }\n    if (number % 2 === 0) {\n        return false;\n    }\n    \n    // Check odd numbers from 3 to sqrt(number)\n    for (let i = 3; i <= Math.sqrt(number); i += 2) {\n        if (number % i === 0) {\n            return false;\n        }\n    }\n    \n    return true;\n}"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "schema",
+      "similarity": {
+        "sequence_similarity": 0.372,
+        "line_similarity": 0.25,
+        "token_overlap": 0.583,
+        "structural_score": 0.8,
+        "combined_score": 0.402
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 300,
+      "generated_code": "export default function trialDivision(number) {\n    if (number <= 1) return false;\n    if (number <= 3) return true;\n\n    if (number % 2 === 0 || number % 3 === 0) return false;\n\n    let i = 5;\n    while (i * i <= number) {\n        if (number % i === 0 || number % (i + 2) === 0) return false;\n        i += 6;\n    }\n\n    return true;\n}"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "meta",
+      "similarity": {
+        "sequence_similarity": 0.494,
+        "line_similarity": 0.585,
+        "token_overlap": 0.571,
+        "structural_score": 0.8,
+        "combined_score": 0.55
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 638,
+      "generated_code": "function trialDivision(number) {\n    // Edge cases\n    if (number < 2) {\n        return false;\n    }\n    if (number === 2) {\n        return true;\n    }\n    if (number % 2 === 0) {\n        return false;\n    }\n\n    // Check odd numbers from 3 to sqrt(number)\n    for (let i = 3; i <= Math.sqrt(number); i += 2) {\n        if (number % i === 0) {\n            return false;\n        }\n    }\n\n    return true;\n}\n\nexport default trialDivision;"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "gen_knowledge",
+      "similarity": {
+        "sequence_similarity": 0.501,
+        "line_similarity": 0.542,
+        "token_overlap": 0.25,
+        "structural_score": 0.8,
+        "combined_score": 0.431
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 553,
+      "generated_code": "export default function trialDivision(number) {\n    // Mathematical definition of primality:\n    // A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.\n    \n    // Common implementation patterns:\n    // 1. If the number is less than 2, it is not prime.\n    // 2. Check divisibility from 2 up to the square root of the number.\n    // 3. Optimization: Skip even numbers after checking for divisibility by 2.\n\n    if (number < 2) {\n        return false;\n    }\n\n    if (number === 2) {\n        return true;\n    }\n\n    if (number % 2 === 0) {\n        return false;\n    }\n\n    // Check odd numbers from 3 up to the square root of the number\n    for (let i = 3; i <= Math.sqrt(number); i += 2) {\n        if (number % i === 0) {\n            return false;\n        }\n    }\n\n    return true;\n}\n\n// Examples:\nconsole.log(trialDivision(17)); // true\nconsole.log(trialDivision(100)); // false"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "directional",
+      "similarity": {
+        "sequence_similarity": 0.372,
+        "line_similarity": 0.229,
+        "token_overlap": 0.381,
+        "structural_score": 1.0,
+        "combined_score": 0.327
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": true
+        },
+        "passed": 7,
+        "total": 7,
+        "correctness_score": 1.0
+      },
+      "tokens": 480,
+      "generated_code": "export default function trialDivision(number) {\n    // Handle edge cases\n    if (number <= 1) return false;\n    if (number <= 3) return true; // 2 and 3 are prime numbers\n\n    // Check if number is divisible by 2 or 3\n    if (number % 2 === 0 || number % 3 === 0) return false;\n\n    // Check for factors from 5 to sqrt(number) with step of 6\n    let i = 5;\n    while (i * i <= number) {\n        if (number % i === 0 || number % (i + 2) === 0) return false;\n        i += 6;\n    }\n\n    return true;\n}"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "tot",
+      "similarity": {
+        "sequence_similarity": 0.084,
+        "line_similarity": 0.194,
+        "token_overlap": 0.652,
+        "structural_score": 0.8,
+        "combined_score": 0.31
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 932,
+      "generated_code": "function trialDivision(number) {\n    if (number <= 1) return false;\n    if (number <= 3) return true;\n    if (number % 2 === 0 || number % 3 === 0) return false;\n    for (let i = 5; i * i <= number; i += 6) {\n        if (number % i === 0 || number % (i + 2) === 0) return false;\n    }\n    return true;\n}\n\nexport default trialDivision;"
+    },
+    {
+      "algorithm": "is_prime",
+      "style": "self_consistency",
+      "similarity": {
+        "sequence_similarity": 0.09,
+        "line_similarity": 0.171,
+        "token_overlap": 0.366,
+        "structural_score": 0.8,
+        "combined_score": 0.209
+      },
+      "correctness": {
+        "checks": {
+          "has_function": true,
+          "has_export": true,
+          "has_return": true,
+          "is_syntactically_complete": true,
+          "handles_edge_cases": true,
+          "checks_divisibility": true,
+          "uses_sqrt_optimization": false
+        },
+        "passed": 6,
+        "total": 7,
+        "correctness_score": 0.857
+      },
+      "tokens": 830,
+      "generated_code": "function trialDivision(number) {\n    // A prime number is greater than 1\n    if (number <= 1) return false;\n    // 2 and 3 are prime numbers\n    if (number <= 3) return true;\n    // 4 and any multiple of 2 greater than 2 are not prime\n    if (number % 2 === 0) return number === 2;\n    // Check divisibility from 3 to the square root of the number\n    for (let i = 3; i * i <= number; i += 2) {\n        if (number % i === 0) return false;\n    }\n    return true;\n}\n\nexport default trialDivision;"
+    }
+  ],
+  "summary": {
+    "zero_shot": {
+      "avg_similarity": 0.516,
+      "avg_correctness": 0.893,
+      "avg_tokens": 157,
+      "count": 4
+    },
+    "few_shot": {
+      "avg_similarity": 0.442,
+      "avg_correctness": 0.893,
+      "avg_tokens": 350,
+      "count": 4
+    },
+    "cot": {
+      "avg_similarity": 0.39,
+      "avg_correctness": 0.964,
+      "avg_tokens": 624,
+      "count": 4
+    },
+    "schema": {
+      "avg_similarity": 0.43,
+      "avg_correctness": 0.893,
+      "avg_tokens": 291,
+      "count": 4
+    },
+    "meta": {
+      "avg_similarity": 0.317,
+      "avg_correctness": 0.964,
+      "avg_tokens": 695,
+      "count": 4
+    },
+    "gen_knowledge": {
+      "avg_similarity": 0.299,
+      "avg_correctness": 0.928,
+      "avg_tokens": 574,
+      "count": 4
+    },
+    "directional": {
+      "avg_similarity": 0.357,
+      "avg_correctness": 0.964,
+      "avg_tokens": 493,
+      "count": 4
+    },
+    "tot": {
+      "avg_similarity": 0.462,
+      "avg_correctness": 0.928,
+      "avg_tokens": 880,
+      "count": 4
+    },
+    "self_consistency": {
+      "avg_similarity": 0.263,
+      "avg_correctness": 0.893,
+      "avg_tokens": 756,
+      "count": 4
+    }
+  }
+}

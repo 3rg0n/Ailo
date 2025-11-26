@@ -51,6 +51,16 @@ MODELS = {
         tier="premium",
     ),
 
+    # Anthropic - ultra premium flagship model
+    "claude-opus": ModelConfig(
+        model_id="global.anthropic.claude-opus-4-5-20251101-v1:0",
+        name="Claude Opus 4.5 (Global)",
+        provider="Anthropic",
+        input_cost_per_1k=0.015,
+        output_cost_per_1k=0.075,
+        tier="ultra",
+    ),
+
     # Anthropic - fast/cheap option with global profile
     "claude-haiku": ModelConfig(
         model_id="global.anthropic.claude-haiku-4-5-20251001-v1:0",
