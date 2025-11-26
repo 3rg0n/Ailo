@@ -6,6 +6,7 @@ Uses the new evaluation module with:
 - Numeric matching with tolerance for math
 - F1 scoring for partial credit
 - Keywords matching for subjective tasks
+- TRUE multi-turn conversations for ToT and Self-Consistency
 
 Usage:
     python unified_benchmark_v2.py --model gpt-4o-mini
@@ -22,6 +23,156 @@ from pathlib import Path
 from multi_provider_client import MultiProviderClient, MODELS, ModelConfig
 from test_prompts_v4 import MULTI_STYLE_PROMPTS, PromptStyle, MultiStylePrompt
 from evaluation import evaluate, EvalResult, evaluate_with_llm_judge
+
+
+# =============================================================================
+# Multi-Turn Implementations for ToT and Self-Consistency
+# =============================================================================
+
+def run_multi_turn_tot(client: MultiProviderClient, model_config: ModelConfig, task: str) -> dict:
+    """
+    Run TRUE multi-turn Tree of Thoughts:
+    1. Explore Path A
+    2. Explore Path B
+    3. Explore Path C
+    4. Synthesize and select best answer
+
+    Returns dict with response, token counts, and turn details.
+    """
+    total_input = 0
+    total_output = 0
+    turns = []
+
+    # Turn 1: Explore Path A
+    messages = [{"role": "user", "content": f"""I need you to solve this problem. First, let's explore Path A.
+
+TASK: {task}
+
+PATH A: Solve this using the most straightforward, direct approach. Show your work."""}]
+
+    result_a = client.invoke_multi_turn(messages, model_config)
+    total_input += result_a["input_tokens"]
+    total_output += result_a["output_tokens"]
+    turns.append({"path": "A", "response": result_a["response"]})
+    messages.append({"role": "assistant", "content": result_a["response"]})
+
+    # Turn 2: Explore Path B
+    messages.append({"role": "user", "content": """Good. Now let's explore Path B.
+
+PATH B: Solve this using an alternative method or perspective. Show your work differently than Path A."""})
+
+    result_b = client.invoke_multi_turn(messages, model_config)
+    total_input += result_b["input_tokens"]
+    total_output += result_b["output_tokens"]
+    turns.append({"path": "B", "response": result_b["response"]})
+    messages.append({"role": "assistant", "content": result_b["response"]})
+
+    # Turn 3: Explore Path C
+    messages.append({"role": "user", "content": """Good. Now let's explore Path C.
+
+PATH C: Verify using a third approach - this could be checking the logic, using estimation, or working backwards. Show your verification."""})
+
+    result_c = client.invoke_multi_turn(messages, model_config)
+    total_input += result_c["input_tokens"]
+    total_output += result_c["output_tokens"]
+    turns.append({"path": "C", "response": result_c["response"]})
+    messages.append({"role": "assistant", "content": result_c["response"]})
+
+    # Turn 4: Synthesize
+    messages.append({"role": "user", "content": """Now evaluate all three paths:
+
+1. Which path(s) arrived at the correct answer?
+2. Which approach was most reliable?
+3. What is the FINAL ANSWER?
+
+Synthesize your findings and provide the definitive answer."""})
+
+    result_synth = client.invoke_multi_turn(messages, model_config)
+    total_input += result_synth["input_tokens"]
+    total_output += result_synth["output_tokens"]
+    turns.append({"path": "synthesis", "response": result_synth["response"]})
+
+    return {
+        "response": result_synth["response"],
+        "input_tokens": total_input,
+        "output_tokens": total_output,
+        "turns": turns,
+        "num_calls": 4,
+    }
+
+
+def run_multi_turn_self_consistency(client: MultiProviderClient, model_config: ModelConfig, task: str) -> dict:
+    """
+    Run TRUE multi-turn Self-Consistency:
+    1. Solve with Method 1
+    2. Solve with Method 2
+    3. Solve with Method 3
+    4. Compare and reconcile answers
+
+    Returns dict with response, token counts, and turn details.
+    """
+    total_input = 0
+    total_output = 0
+    turns = []
+
+    # Turn 1: Method 1
+    messages = [{"role": "user", "content": f"""I need you to solve this problem using Method 1: Standard/Direct Calculation.
+
+TASK: {task}
+
+Solve using the most standard approach. Show your work and state your answer clearly."""}]
+
+    result_1 = client.invoke_multi_turn(messages, model_config)
+    total_input += result_1["input_tokens"]
+    total_output += result_1["output_tokens"]
+    turns.append({"method": "1", "response": result_1["response"]})
+    messages.append({"role": "assistant", "content": result_1["response"]})
+
+    # Turn 2: Method 2
+    messages.append({"role": "user", "content": """Now solve the SAME problem using Method 2: Alternative Approach.
+
+Use a different technique or formula. Don't just repeat what you did before - approach it fresh. Show your work and state your answer."""})
+
+    result_2 = client.invoke_multi_turn(messages, model_config)
+    total_input += result_2["input_tokens"]
+    total_output += result_2["output_tokens"]
+    turns.append({"method": "2", "response": result_2["response"]})
+    messages.append({"role": "assistant", "content": result_2["response"]})
+
+    # Turn 3: Method 3
+    messages.append({"role": "user", "content": """Now solve using Method 3: Verification/Cross-check.
+
+This could be: working backwards from an expected answer, using estimation, or applying a completely different framework. Show your work."""})
+
+    result_3 = client.invoke_multi_turn(messages, model_config)
+    total_input += result_3["input_tokens"]
+    total_output += result_3["output_tokens"]
+    turns.append({"method": "3", "response": result_3["response"]})
+    messages.append({"role": "assistant", "content": result_3["response"]})
+
+    # Turn 4: Reconcile
+    messages.append({"role": "user", "content": """Now compare all three methods:
+
+1. Method 1 answer: [state it]
+2. Method 2 answer: [state it]
+3. Method 3 answer: [state it]
+
+Do all methods agree? If not, which is most reliable and why?
+
+State your FINAL ANSWER with confidence."""})
+
+    result_reconcile = client.invoke_multi_turn(messages, model_config)
+    total_input += result_reconcile["input_tokens"]
+    total_output += result_reconcile["output_tokens"]
+    turns.append({"method": "reconcile", "response": result_reconcile["response"]})
+
+    return {
+        "response": result_reconcile["response"],
+        "input_tokens": total_input,
+        "output_tokens": total_output,
+        "turns": turns,
+        "num_calls": 4,
+    }
 
 
 # =============================================================================
@@ -80,8 +231,18 @@ def run_benchmark(
                 continue
 
             try:
-                # Call the model
-                response = client.invoke(style_prompt, model_config)
+                # Use multi-turn for ToT and Self-Consistency, single-call for others
+                if style == "tot":
+                    # TRUE multi-turn Tree of Thoughts
+                    response = run_multi_turn_tot(client, model_config, prompt_def.zero_shot)
+                    response["latency_ms"] = 0  # Multi-turn doesn't track latency easily
+                elif style == "self_consistency":
+                    # TRUE multi-turn Self-Consistency
+                    response = run_multi_turn_self_consistency(client, model_config, prompt_def.zero_shot)
+                    response["latency_ms"] = 0
+                else:
+                    # Standard single-call for other styles
+                    response = client.invoke(style_prompt, model_config)
 
                 # Evaluate the response (deterministic)
                 eval_result = evaluate(response["response"], test_case)
@@ -103,6 +264,12 @@ def run_benchmark(
                     "eval_reason": eval_result.reason,
                     "eval_details": eval_result.details,
                 }
+
+                # Add multi-turn metadata if applicable
+                if style in ["tot", "self_consistency"]:
+                    test_results["styles"][style]["multi_turn"] = True
+                    test_results["styles"][style]["num_calls"] = response.get("num_calls", 1)
+                    test_results["styles"][style]["turns"] = response.get("turns", [])
 
                 # Optional LLM Judge evaluation
                 if use_llm_judge:

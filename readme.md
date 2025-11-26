@@ -49,9 +49,11 @@ few_shot           91.5%             302       MOST EFFICIENT: -12% tokens
 gen_knowledge      91.9%             533       Moderate gains, extra tokens
 zero_shot          93.1%             325       Baseline: surprisingly strong
 meta               87.4%             658       Often over-complicates
-tot                89.5%             745       High cost, variable gains
-self_consistency   78.2%             742       WORST: high cost, low value
+tot                80.2%           4,806       TRUE MULTI-TURN: Not worth cost
+self_consistency   81.8%           5,491       TRUE MULTI-TURN: 17x tokens, poor ROI
 ```
+
+> **V3 Update**: ToT and Self-Consistency now use TRUE multi-turn conversations (4 API calls each) instead of single-call simulations. This increased tokens 7-17x but reduced quality scores due to context drift.
 
 ### Winner by Model Tier (V2 with LLM Judge)
 
@@ -149,13 +151,14 @@ Token-sensitive    few_shot             302 avg tokens (lowest)
 Avoid              self_consistency     78.2%, worst ROI
 ```
 
-### Five Takeaways (V2 Results)
+### Six Takeaways (V3 Results with TRUE Multi-Turn)
 
 1. **Zero-shot is better than expected** — 93.1% combined score, works great on modern models
 2. **CoT wins for reasoning** — Especially on budget models (95.9% combined)
-3. **Self-consistency is wasteful** — 78.2% combined, 2x tokens, worst style tested
+3. **TRUE multi-turn ToT/SC is NOT worth it** — V3 tested real 4-turn conversations: tokens increased 7-17x (4,806-5,491 avg) but quality DROPPED due to context drift and repetition
 4. **Schema provides clarity** — Highest clarity scores (0.99) across models
 5. **Few-shot can backfire** — On small models like Mistral 7B, accuracy dropped 12.5%
+6. **Multi-turn hurts small models most** — Mistral 7B accuracy dropped to 75% with TRUE multi-turn ToT/SC (vs 100% single-call)
 
 ---
 
@@ -339,6 +342,58 @@ Nova Micro         Zero-shot         51.6%        89.3%         157
 
 ---
 
+## V3 TRUE Multi-Turn Results
+
+V3 updated Tree of Thoughts (ToT) and Self-Consistency to use **real multi-turn conversations** instead of single-call simulations. Each technique now makes 4 separate API calls with conversation history.
+
+### Multi-Turn Implementation
+
+```
+ToT (Tree of Thoughts) - 4 Turns:
+  Turn 1: "Solve using Path A (direct approach)"
+  Turn 2: "Now solve using Path B (alternative method)"
+  Turn 3: "Now solve using Path C (verification/estimation)"
+  Turn 4: "Evaluate all paths and give FINAL ANSWER"
+
+Self-Consistency - 4 Turns:
+  Turn 1: "Solve using Method 1 (standard calculation)"
+  Turn 2: "Solve using Method 2 (alternative approach)"
+  Turn 3: "Solve using Method 3 (verification/cross-check)"
+  Turn 4: "Compare all methods and reconcile to FINAL ANSWER"
+```
+
+### Multi-Turn Results by Model
+
+```
+Model              ToT Tokens   ToT Score   SC Tokens   SC Score   Accuracy
+─────────────────────────────────────────────────────────────────────────────
+Nova Micro           5,376       82.7%        5,576       81.6%      100%
+Claude Haiku 4.5     4,756       86.2%        6,202       87.0%      100%
+GPT-4o-mini          4,705       83.4%        5,152       84.6%      100%
+Gemini 2.0 Flash     4,725       80.6%        5,810       82.3%      100%
+Mistral Large        3,855       72.4%        4,407       80.9%      100%
+Claude Sonnet 4.5    5,533       88.7%        6,963       88.9%      100%
+Mistral 7B           3,693       67.2%        4,329       69.4%       75%   ⚠️
+```
+
+### Why Multi-Turn Underperforms
+
+1. **Context Drift**: Models lose focus across turns, repeating earlier reasoning instead of building on it
+2. **Token Explosion**: 7-17x more tokens than single-call approaches for similar accuracy
+3. **Clarity Degradation**: Clarity scores dropped to 0.50-0.87 (vs 0.98+ for single-call styles)
+4. **Small Model Failure**: Mistral 7B accuracy dropped from 100% (single-call) to 75% (multi-turn)
+
+### Recommendation
+
+**Avoid TRUE multi-turn ToT/Self-Consistency for most use cases.** Single-call CoT (93.7% combined, 532 tokens) outperforms multi-turn ToT (80.2% combined, 4,806 tokens) at 1/9th the cost.
+
+Use multi-turn only when:
+- You need explicit exploration of multiple solution paths for auditing
+- Token cost is not a concern
+- Using premium models (Claude Sonnet 4.5 maintained 88.9% quality)
+
+---
+
 ## Agentic Techniques
 
 Techniques requiring tool execution or multi-turn orchestration:
@@ -383,17 +438,17 @@ PAL            ████████░░░░░░░░░░░░   40
 
 ### Prompting Techniques Tested
 
-| Technique | Description | Token Overhead |
-|-----------|-------------|----------------|
-| **zero_shot** | Plain natural language | Baseline |
-| **few_shot** | 1-2 examples before task | -25% to +30% |
-| **cot** | Step-by-step reasoning | +15% to +68% |
-| **schema** | Structured ACT/OBJ/TAGS | +4% to +86% |
-| **meta** | LLM designs approach first | +46% to +123% |
-| **gen_knowledge** | Generate facts, then answer | +5% to +75% |
-| **directional** | Hints/keywords to guide | -10% to +27% |
-| **tot** | Multiple solution paths | +80% to +166% |
-| **self_consistency** | Multiple approaches, reconcile | +44% to +211% |
+| Technique | Description | Token Overhead | API Calls |
+|-----------|-------------|----------------|-----------|
+| **zero_shot** | Plain natural language | Baseline | 1 |
+| **few_shot** | 1-2 examples before task | -25% to +30% | 1 |
+| **cot** | Step-by-step reasoning | +15% to +68% | 1 |
+| **schema** | Structured ACT/OBJ/TAGS | +4% to +86% | 1 |
+| **meta** | LLM designs approach first | +46% to +123% | 1 |
+| **gen_knowledge** | Generate facts, then answer | +5% to +75% | 1 |
+| **directional** | Hints/keywords to guide | -10% to +27% | 1 |
+| **tot** | TRUE multi-turn: 3 paths + synthesis | +1,100% to +1,700% | 4 |
+| **self_consistency** | TRUE multi-turn: 3 methods + reconcile | +1,200% to +2,000% | 4 |
 
 ### How Each Technique Was Tested
 
@@ -408,8 +463,8 @@ Every technique was tested with the **same task** presented in different formats
 | **Meta** | "First, decide how to solve this. Then execute." |
 | **Gen-Knowledge** | "Recall: Discount formula is... Now apply to: 7 apples..." |
 | **Directional** | "Calculate price. HINTS: Total=$14, discount=20%" |
-| **ToT** | "Try 3 approaches: A) Direct calc B) Unit price C) Ratio" |
-| **Self-Consistency** | "Solve 3 ways, compare answers, give final result" |
+| **ToT** | 4 turns: Path A → Path B → Path C → Synthesis (TRUE multi-turn) |
+| **Self-Consistency** | 4 turns: Method 1 → Method 2 → Method 3 → Reconcile (TRUE multi-turn) |
 
 ### Evaluation Criteria (V2)
 
@@ -427,13 +482,17 @@ EVAL TYPES
 ```
 
 **2. LLM-as-Judge (40% weight) - Opus 4.5**
-```
-DIMENSIONS (each 0.0 to 1.0)
-├── Correctness   - Is the answer factually correct?
-├── Completeness  - Does it fully address the task?
-├── Clarity       - Is it well-organized and clear?
-└── Relevance     - Does it stay on topic?
-```
+
+| Dimension | Question Asked | What It Measures |
+|-----------|----------------|------------------|
+| **Correctness** | Is the answer factually correct? | Did the model arrive at the right answer? For math, is the number right? For logic, is the conclusion valid? |
+| **Completeness** | Does it fully address the task? | Are all parts of the question answered? Nothing missing or skipped? |
+| **Clarity** | Is it well-organized and clear? | Easy to follow? Good structure? No rambling or disjointed reasoning? |
+| **Relevance** | Does it stay on topic? | No tangents, unnecessary content, or off-topic information? |
+
+Each dimension scored 0.0 to 1.0. The combined LLM judge score averages all four.
+
+> **Why multi-turn hurt clarity**: Multi-turn ToT/SC responses scored 0.50-0.70 on clarity because the final synthesis often referenced "Path A" without restating conclusions, repeated earlier reasoning, or produced disjointed summaries assuming context from prior turns. Single-call techniques kept everything in one coherent response, scoring 0.95-1.0.
 
 ### Test Suite (V2)
 
@@ -452,7 +511,7 @@ DIMENSIONS (each 0.0 to 1.0)
 ### Limitations
 
 1. **Sample Size**: 8 test cases per comprehensive run
-2. **Single-call Simulation**: ToT and Self-Consistency simulated in single prompt
+2. **Multi-Turn Context Drift**: TRUE multi-turn ToT/SC suffer from context drift, which may partially explain quality degradation
 3. **Model Versions**: Results may vary with model updates
 4. **LLM Judge Bias**: Opus 4.5 may favor certain styles (mitigated by 60/40 weighting)
 
@@ -578,4 +637,4 @@ MIT License — Use this research freely.
 
 ---
 
-*Empirical prompting research with LLM-as-Judge evaluation, November 2025*
+*V3: Empirical prompting research with TRUE multi-turn and LLM-as-Judge evaluation, November 2025*

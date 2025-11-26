@@ -294,6 +294,44 @@ class MultiProviderClient:
         result["latency_ms"] = (time.time() - start_time) * 1000
         return result
 
+    def invoke_multi_turn(
+        self,
+        messages: list[dict],
+        model_config: ModelConfig,
+        temperature: float = 0.7,
+        max_tokens: Optional[int] = None
+    ) -> dict:
+        """
+        Invoke a model with multi-turn conversation history.
+
+        Args:
+            messages: List of {"role": "user"|"assistant", "content": str}
+            model_config: Model configuration
+            temperature: Sampling temperature
+            max_tokens: Max output tokens
+
+        Returns dict with:
+        - response: The model's text response
+        - input_tokens: Number of input tokens
+        - output_tokens: Number of output tokens
+        - model: Model ID used
+        - latency_ms: Response time in milliseconds
+        """
+        max_tokens = max_tokens or model_config.max_tokens
+        start_time = time.time()
+
+        if model_config.provider == "bedrock":
+            result = self._invoke_bedrock_multi(messages, model_config, temperature, max_tokens)
+        elif model_config.provider == "openai":
+            result = self._invoke_openai_multi(messages, model_config, temperature, max_tokens)
+        elif model_config.provider == "gemini":
+            result = self._invoke_gemini_multi(messages, model_config, temperature, max_tokens)
+        else:
+            raise ValueError(f"Unknown provider: {model_config.provider}")
+
+        result["latency_ms"] = (time.time() - start_time) * 1000
+        return result
+
     def _invoke_bedrock(self, prompt: str, model_config: ModelConfig, temperature: float, max_tokens: int) -> dict:
         """Invoke AWS Bedrock model."""
         client = self._get_bedrock_client()
@@ -304,6 +342,38 @@ class MultiProviderClient:
         response = client.converse(
             modelId=model_config.model_id,
             messages=messages,
+            inferenceConfig=inference_config
+        )
+
+        output_message = response.get("output", {}).get("message", {})
+        content = output_message.get("content", [])
+        response_text = content[0].get("text", "") if content else ""
+        usage = response.get("usage", {})
+
+        return {
+            "response": response_text,
+            "input_tokens": usage.get("inputTokens", 0),
+            "output_tokens": usage.get("outputTokens", 0),
+            "model": model_config.model_id,
+        }
+
+    def _invoke_bedrock_multi(self, messages: list[dict], model_config: ModelConfig, temperature: float, max_tokens: int) -> dict:
+        """Invoke AWS Bedrock model with multi-turn conversation."""
+        client = self._get_bedrock_client()
+
+        # Convert to Bedrock format
+        bedrock_messages = []
+        for msg in messages:
+            bedrock_messages.append({
+                "role": msg["role"],
+                "content": [{"text": msg["content"]}]
+            })
+
+        inference_config = {"temperature": temperature, "maxTokens": max_tokens}
+
+        response = client.converse(
+            modelId=model_config.model_id,
+            messages=bedrock_messages,
             inferenceConfig=inference_config
         )
 
@@ -334,6 +404,32 @@ class MultiProviderClient:
             response = client.chat.completions.create(
                 model=model_config.model_id,
                 messages=[{"role": "user", "content": prompt}],
+                temperature=temperature,
+                max_tokens=max_tokens,
+            )
+
+        return {
+            "response": response.choices[0].message.content or "",
+            "input_tokens": response.usage.prompt_tokens if response.usage else 0,
+            "output_tokens": response.usage.completion_tokens if response.usage else 0,
+            "model": model_config.model_id,
+        }
+
+    def _invoke_openai_multi(self, messages: list[dict], model_config: ModelConfig, temperature: float, max_tokens: int) -> dict:
+        """Invoke OpenAI model with multi-turn conversation."""
+        client = self._get_openai_client()
+
+        # OpenAI already uses the same format
+        if model_config.model_id.startswith("o1"):
+            response = client.chat.completions.create(
+                model=model_config.model_id,
+                messages=messages,
+                max_completion_tokens=max_tokens,
+            )
+        else:
+            response = client.chat.completions.create(
+                model=model_config.model_id,
+                messages=messages,
                 temperature=temperature,
                 max_tokens=max_tokens,
             )
@@ -382,6 +478,58 @@ class MultiProviderClient:
                 if "rate" in error_msg or "quota" in error_msg or "429" in error_msg:
                     if attempt < max_retries - 1:
                         time.sleep(retry_delay * (attempt + 1))  # Exponential backoff
+                        continue
+                raise e
+
+        raise Exception("Max retries exceeded for Gemini API")
+
+    def _invoke_gemini_multi(self, messages: list[dict], model_config: ModelConfig, temperature: float, max_tokens: int) -> dict:
+        """Invoke Google Gemini model with multi-turn conversation."""
+        self._configure_gemini()
+
+        model = genai.GenerativeModel(model_config.model_id)
+
+        generation_config = genai.types.GenerationConfig(
+            temperature=temperature,
+            max_output_tokens=max_tokens,
+        )
+
+        # Convert messages to Gemini format (user/model roles)
+        gemini_history = []
+        for msg in messages[:-1]:  # All but last message
+            role = "model" if msg["role"] == "assistant" else "user"
+            gemini_history.append({"role": role, "parts": [msg["content"]]})
+
+        # Start chat with history
+        chat = model.start_chat(history=gemini_history)
+
+        # Send the last message
+        last_msg = messages[-1]["content"]
+
+        max_retries = 3
+        retry_delay = 5
+
+        for attempt in range(max_retries):
+            try:
+                response = chat.send_message(last_msg, generation_config=generation_config)
+
+                input_tokens = 0
+                output_tokens = 0
+                if hasattr(response, 'usage_metadata'):
+                    input_tokens = getattr(response.usage_metadata, 'prompt_token_count', 0)
+                    output_tokens = getattr(response.usage_metadata, 'candidates_token_count', 0)
+
+                return {
+                    "response": response.text if response.text else "",
+                    "input_tokens": input_tokens,
+                    "output_tokens": output_tokens,
+                    "model": model_config.model_id,
+                }
+            except Exception as e:
+                error_msg = str(e).lower()
+                if "rate" in error_msg or "quota" in error_msg or "429" in error_msg:
+                    if attempt < max_retries - 1:
+                        time.sleep(retry_delay * (attempt + 1))
                         continue
                 raise e
 
