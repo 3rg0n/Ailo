@@ -27,3 +27,5 @@ Thumbs.db
 
 # Project specific
 research/.env
+nul
+research/results/nul

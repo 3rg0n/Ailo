@@ -4,7 +4,7 @@
     "model_name": "GPT-4o Mini",
     "provider": "openai",
     "tier": "budget",
-    "timestamp": "20251126_093902",
+    "timestamp": "20251126_130146",
     "styles_tested": [
       "zero_shot",
       "few_shot",
@@ -15,13 +15,16 @@
       "directional",
       "tot",
       "self_consistency"
-    ]
+    ],
+    "version": "v2_improved_eval",
+    "llm_judge_enabled": true
   },
   "results": [
     {
-      "test_id": "reason-math-01",
+      "test_id": "math-discount-01",
       "test_name": "Discount Calculation",
-      "category": "reasoning",
+      "category": "math",
+      "eval_type": "numeric",
       "styles": {
         "zero_shot": {
           "error": "Connection error."
@@ -53,9 +56,45 @@
       }
     },
     {
-      "test_id": "reason-logic-01",
+      "test_id": "math-percent-01",
+      "test_name": "Percentage Calculation",
+      "category": "math",
+      "eval_type": "numeric",
+      "styles": {
+        "zero_shot": {
+          "error": "Connection error."
+        },
+        "few_shot": {
+          "error": "Connection error."
+        },
+        "cot": {
+          "error": "Connection error."
+        },
+        "schema": {
+          "error": "Connection error."
+        },
+        "meta": {
+          "error": "Connection error."
+        },
+        "gen_knowledge": {
+          "error": "Connection error."
+        },
+        "directional": {
+          "error": "Connection error."
+        },
+        "tot": {
+          "error": "Connection error."
+        },
+        "self_consistency": {
+          "error": "Connection error."
+        }
+      }
+    },
+    {
+      "test_id": "logic-pets-01",
       "test_name": "Pet Logic Puzzle",
-      "category": "reasoning",
+      "category": "logic",
+      "eval_type": "keywords",
       "styles": {
         "zero_shot": {
           "error": "Connection error."
@@ -87,9 +126,10 @@
       }
     },
     {
-      "test_id": "write-exec-01",
+      "test_id": "writing-exec-01",
       "test_name": "Executive Summary",
       "category": "writing",
+      "eval_type": "keywords",
       "styles": {
         "zero_shot": {
           "error": "Connection error."
@@ -124,6 +164,7 @@
       "test_id": "analysis-compare-01",
       "test_name": "Framework Comparison",
       "category": "analysis",
+      "eval_type": "keywords",
       "styles": {
         "zero_shot": {
           "error": "Connection error."
@@ -158,6 +199,7 @@
       "test_id": "tech-explain-01",
       "test_name": "Code Explanation",
       "category": "technical",
+      "eval_type": "keywords",
       "styles": {
         "zero_shot": {
           "error": "Connection error."
@@ -192,74 +234,7 @@
       "test_id": "creative-story-01",
       "test_name": "Story Ideas",
       "category": "creative",
-      "styles": {
-        "zero_shot": {
-          "error": "Connection error."
-        },
-        "few_shot": {
-          "error": "Connection error."
-        },
-        "cot": {
-          "error": "Connection error."
-        },
-        "schema": {
-          "error": "Connection error."
-        },
-        "meta": {
-          "error": "Connection error."
-        },
-        "gen_knowledge": {
-          "error": "Connection error."
-        },
-        "directional": {
-          "error": "Connection error."
-        },
-        "tot": {
-          "error": "Connection error."
-        },
-        "self_consistency": {
-          "error": "Connection error."
-        }
-      }
-    },
-    {
-      "test_id": "reason-percent-01",
-      "test_name": "Percentage Calculation",
-      "category": "reasoning",
-      "styles": {
-        "zero_shot": {
-          "error": "Connection error."
-        },
-        "few_shot": {
-          "error": "Connection error."
-        },
-        "cot": {
-          "error": "Connection error."
-        },
-        "schema": {
-          "error": "Connection error."
-        },
-        "meta": {
-          "error": "Connection error."
-        },
-        "gen_knowledge": {
-          "error": "Connection error."
-        },
-        "directional": {
-          "error": "Connection error."
-        },
-        "tot": {
-          "error": "Connection error."
-        },
-        "self_consistency": {
-          "error": "Connection error."
-        }
-      }
-    },
-    {
-      "test_id": "write-persona-01",
-      "test_name": "Persona Adherence",
-      "category": "writing",
+      "eval_type": "keywords",
       "styles": {
         "zero_shot": {
           "error": "Connection error."
@@ -294,6 +269,7 @@
       "test_id": "analysis-proscons-01",
       "test_name": "Pros and Cons",
       "category": "analysis",
+      "eval_type": "keywords",
       "styles": {
         "zero_shot": {
           "error": "Connection error."

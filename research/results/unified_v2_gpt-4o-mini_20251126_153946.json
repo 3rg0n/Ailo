@@ -1,0 +1,2795 @@
+{
+  "metadata": {
+    "model": "gpt-4o-mini",
+    "model_name": "GPT-4o Mini",
+    "provider": "openai",
+    "tier": "budget",
+    "timestamp": "20251126_153946",
+    "styles_tested": [
+      "zero_shot",
+      "few_shot",
+      "cot",
+      "schema",
+      "meta",
+      "gen_knowledge",
+      "directional",
+      "tot",
+      "self_consistency"
+    ],
+    "version": "v2_improved_eval",
+    "llm_judge_enabled": true
+  },
+  "results": [
+    {
+      "test_id": "math-discount-01",
+      "test_name": "Discount Calculation",
+      "category": "math",
+      "eval_type": "numeric",
+      "styles": {
+        "zero_shot": {
+          "response": "The cost of one apple is $2. If you buy 7 apples, the total cost before any discount would be:\n\n\\[\n7 \\text{ apples} \\times 2 \\text{ dollars/apple} = 14 \\text{ dollars}\n\\]\n\nSince you are buying 5 or more apples, you qualify for a 20% discount. To calculate the discount:\n\n\\[\n20\\% \\text{ of } 14 \\text{ dollars} = 0.20 \\times 14 = 2.8 \\text{ dollars}\n\\]\n\nNow, subtract the discount from the total cost:\n\n\\[\n14 \\text{ dollars} - 2.8 \\text{ dollars} = 11.2 \\text{ dollars}\n\\]\n\nTherefore, the final price ",
+          "input_tokens": 45,
+          "output_tokens": 181,
+          "total_tokens": 226,
+          "latency_ms": 6529.7746658325195,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 11.2, found: [2.0, 7.0, 7.0]",
+          "eval_details": {
+            "expected": 11.2,
+            "extracted_numbers": [
+              2.0,
+              7.0,
+              7.0,
+              2.0,
+              14.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the final price of 7 apples as $11.20, which matches the expected answer. The solution shows all steps clearly: calculating the base price (7 \u00d7 $2 = $14), determining the 20% discount ($2.80), and subtracting to get the final price ($11.20). The response is well-organized with clear mathematical notation, fully addresses the task, and stays completely on topic."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "few_shot": {
+          "response": "First, calculate the total cost of 7 apples without the discount:\n\n7 apples \u00d7 $2 each = $14.\n\nSince you are buying 5 or more apples, you qualify for a 20% discount. \n\nNow, calculate the discount amount:\n\n20% of $14 = 0.20 \u00d7 $14 = $2.80.\n\nSubtract the discount from the total cost:\n\n$14 - $2.80 = $11.20.\n\nThus, the final price for 7 apples is **$11.20**.",
+          "input_tokens": 115,
+          "output_tokens": 108,
+          "total_tokens": 223,
+          "latency_ms": 3062.591314315796,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 11.2, found: [7.0, 7.0, 2.0]",
+          "eval_details": {
+            "expected": 11.2,
+            "extracted_numbers": [
+              7.0,
+              7.0,
+              2.0,
+              14.0,
+              5.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the final price of 7 apples as $11.20, which matches the expected answer exactly. The solution shows all steps clearly: calculating the base price (7 \u00d7 $2 = $14), determining the discount applies (5+ apples), calculating the discount amount (20% of $14 = $2.80), and subtracting to get the final price ($14 - $2.80 = $11.20). The response is well-organized, easy to follow, and directly addresses the question asked."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "cot": {
+          "response": "Let's go through the steps to calculate the cost of 7 apples with the given pricing and discount.\n\n1. **Calculate the regular price**:\n   The price of each apple is $2. If you buy 7 apples, the regular price would be:\n   \\[\n   \\text{Regular Price} = \\text{Price per apple} \\times \\text{Number of apples} = 2 \\times 7 = 14\n   \\]\n   So, the regular price for 7 apples is $14.\n\n2. **Determine if the discount applies**:\n   Since you are buying 7 apples, and the store offers a 20% discount for purchases",
+          "input_tokens": 91,
+          "output_tokens": 324,
+          "total_tokens": 415,
+          "latency_ms": 6908.228158950806,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 11.2, found: [7.0, 1.0, 2.0]",
+          "eval_details": {
+            "expected": 11.2,
+            "extracted_numbers": [
+              7.0,
+              1.0,
+              2.0,
+              7.0,
+              2.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the final price of 7 apples as $11.20, which matches the expected answer. The solution is complete, showing all steps: calculating the regular price ($14), verifying the discount applies (7 \u2265 5), computing the discount amount ($2.80), and subtracting to get the final price ($11.20). The explanation is crystal clear with well-organized numbered steps and mathematical notation. The response stays perfectly on topic, addressing exactly what was asked."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "schema": {
+          "response": "To solve the problem of how much 7 apples cost with a discount, we will follow these steps:\n\n1. **Calculate the original price of 7 apples without discount.**\n   - Price per apple = $2\n   - Number of apples = 7\n   - Original price = Price per apple \u00d7 Number of apples\n   \\[\n   \\text{Original price} = 2 \\times 7 = 14 \\text{ dollars}\n   \\]\n\n2. **Determine if a discount applies.**\n   - The store offers a 20% discount if you buy 5 or more apples.\n   - Since we are buying 7 apples, we qualify for the ",
+          "input_tokens": 87,
+          "output_tokens": 298,
+          "total_tokens": 385,
+          "latency_ms": 7262.645721435547,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 11.2, found: [7.0, 1.0, 7.0]",
+          "eval_details": {
+            "expected": 11.2,
+            "extracted_numbers": [
+              7.0,
+              1.0,
+              7.0,
+              2.0,
+              7.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the final price of 7 apples as $11.20, which matches the expected answer. The solution is complete, showing all steps: calculating the original price ($14), confirming the discount applies (7 \u2265 5), computing the discount amount ($2.80), and subtracting to get the final price ($11.20). The response is exceptionally clear with well-organized numbered steps and mathematical notation. All content is directly relevant to solving the problem."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "meta": {
+          "response": "To tackle this problem effectively, let's break it down step by step.\n\n### Step 1: Identify the Type of Problem\nThis is a pricing problem involving discounts. We need to calculate the total cost of purchasing a specific quantity of an item (apples) and apply a discount based on the quantity purchased.\n\n### Step 2: Determine the Mathematical Operations Needed\n1. **Calculate the total cost without discount**: Multiply the price per apple by the number of apples.\n2. **Check if a discount applies**:",
+          "input_tokens": 96,
+          "output_tokens": 349,
+          "total_tokens": 445,
+          "latency_ms": 8841.892004013062,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 11.2, found: [1.0, 2.0, 1.0]",
+          "eval_details": {
+            "expected": 11.2,
+            "extracted_numbers": [
+              1.0,
+              2.0,
+              1.0,
+              2.0,
+              7.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the final price of 7 apples as $11.20, which matches the expected answer. The solution is complete, showing all steps: calculating the base price ($14), determining the discount amount ($2.80), and subtracting to get the final price. The response is exceptionally well-organized with clear step-by-step explanations and mathematical notation. All content is directly relevant to solving the problem at hand."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "gen_knowledge": {
+          "response": "To calculate the cost of 7 apples with a 20% discount applied, follow these steps:\n\n1. **Determine the original price for 7 apples:**\n   \\[\n   \\text{Original Price} = \\text{Price per apple} \\times \\text{Number of apples} = 2 \\text{ dollars/apple} \\times 7 \\text{ apples} = 14 \\text{ dollars}\n   \\]\n\n2. **Calculate the discount:**\n   Since you are buying 7 apples, you qualify for a 20% discount.\n   \\[\n   \\text{Discount Rate} = 20\\% = 0.20\n   \\]\n   \\[\n   \\text{Discount} = \\text{Original Price} \\time",
+          "input_tokens": 96,
+          "output_tokens": 273,
+          "total_tokens": 369,
+          "latency_ms": 6599.2231369018555,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 11.2, found: [7.0, 20.0, 1.0]",
+          "eval_details": {
+            "expected": 11.2,
+            "extracted_numbers": [
+              7.0,
+              20.0,
+              1.0,
+              7.0,
+              2.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the final price of 7 apples as $11.20, which matches the expected answer. The solution is complete, showing all steps: calculating the original price ($14), applying the 20% discount ($2.80), and subtracting to get the final price ($11.20). The explanation is crystal clear with well-organized steps and mathematical notation. The response stays perfectly on topic, addressing exactly what was asked."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "directional": {
+          "response": "To find the cost of 7 apples with the given conditions, follow these steps:\n\n1. **Calculate the total cost without discount:**\n   \\[\n   \\text{Total cost} = \\text{Quantity} \\times \\text{Unit price} = 7 \\times 2 = 14\n   \\]\n\n2. **Check if the discount threshold is met:**\n   Since you are buying 7 apples, which is greater than 5, you qualify for the 20% discount.\n\n3. **Calculate the discount amount:**\n   \\[\n   \\text{Discount} = \\text{Total cost} \\times \\text{Discount rate} = 14 \\times 0.20 = 2.8\n   ",
+          "input_tokens": 78,
+          "output_tokens": 224,
+          "total_tokens": 302,
+          "latency_ms": 5197.413921356201,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 11.2, found: [7.0, 1.0, 7.0]",
+          "eval_details": {
+            "expected": 11.2,
+            "extracted_numbers": [
+              7.0,
+              1.0,
+              7.0,
+              2.0,
+              14.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the final price of 7 apples as $11.20, which matches the expected answer. The solution is complete, showing all steps: calculating the base price (7 \u00d7 $2 = $14), verifying the discount applies (7 \u2265 5), calculating the discount amount ($14 \u00d7 0.20 = $2.80), and subtracting to get the final price ($14 - $2.80 = $11.20). The explanation is crystal clear with well-organized steps and mathematical notation. The response is entirely relevant to the question asked."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "tot": {
+          "response": "Let's explore each path step by step to calculate the cost of 7 apples, considering the 20% discount for purchasing 5 or more apples.\n\n### Path A: Calculate total, then subtract discount amount\n\n1. **Calculate the total cost without discount**:  \n   The price of one apple is $2. For 7 apples, the total cost is:  \n   \\[\n   \\text{Total Cost} = 7 \\text{ apples} \\times 2 \\text{ dollars/apple} = 14 \\text{ dollars}\n   \\]\n\n2. **Calculate the discount amount**:  \n   Since there is a 20% discount, we cal",
+          "input_tokens": 97,
+          "output_tokens": 623,
+          "total_tokens": 720,
+          "latency_ms": 12540.785312652588,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 11.2, found: [7.0, 20.0, 5.0]",
+          "eval_details": {
+            "expected": 11.2,
+            "extracted_numbers": [
+              7.0,
+              20.0,
+              5.0,
+              1.0,
+              2.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.95,
+            "correctness": 1.0,
+            "completeness": 0.9,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the final price as $11.2, which matches the expected answer. The solution demonstrates three different valid approaches (Path A, B, and C), all arriving at the same correct answer. The explanation is exceptionally clear with well-formatted mathematical expressions and step-by-step reasoning. The response is highly relevant, addressing the exact question asked. The only minor issue is that the final answer appears to be cut off at 'Th' at the very end, though the answer ($11.2) is clearly stated multiple times throughout the response, so completeness is only slightly affected."
+          },
+          "combined_score": 0.98,
+          "combined_correct": true
+        },
+        "self_consistency": {
+          "response": "Let's go through the problem using the three different methods as requested.\n\n### Method 1: Standard Calculation\n\n1. **Calculate the cost of 7 apples without the discount**:\n   \\[\n   \\text{Cost without discount} = 7 \\, \\text{apples} \\times 2 \\, \\text{dollars/apple} = 14 \\, \\text{dollars}\n   \\]\n\n2. **Apply the 20% discount**:\n   \\[\n   \\text{Discount} = 20\\% \\times 14 \\, \\text{dollars} = 0.20 \\times 14 = 2.8 \\, \\text{dollars}\n   \\]\n   \n3. **Calculate the final price after the discount**:\n   \\[\n   ",
+          "input_tokens": 85,
+          "output_tokens": 688,
+          "total_tokens": 773,
+          "latency_ms": 22612.082958221436,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 11.2, found: [1.0, 1.0, 7.0]",
+          "eval_details": {
+            "expected": 11.2,
+            "extracted_numbers": [
+              1.0,
+              1.0,
+              7.0,
+              7.0,
+              2.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the final price of 7 apples as $11.20, which matches the expected answer. The solution demonstrates the calculation through three different methods, all arriving at the same correct answer. The response is exceptionally well-organized with clear step-by-step explanations, proper mathematical notation, and a clear conclusion. While the response is more detailed than strictly necessary (using three methods when one would suffice), this thoroughness enhances rather than detracts from the answer, and all content remains directly relevant to solving the problem."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        }
+      }
+    },
+    {
+      "test_id": "math-percent-01",
+      "test_name": "Percentage Calculation",
+      "category": "math",
+      "eval_type": "numeric",
+      "styles": {
+        "zero_shot": {
+          "response": "To calculate the percentage increase in revenue, you can use the following formula:\n\n\\[\n\\text{Percentage Increase} = \\left( \\frac{\\text{New Value} - \\text{Old Value}}{\\text{Old Value}} \\right) \\times 100\n\\]\n\nIn this case, the old value is $80,000 and the new value is $100,000. \n\n1. Calculate the difference:\n   \\[\n   100,000 - 80,000 = 20,000\n   \\]\n\n2. Divide the difference by the old value:\n   \\[\n   \\frac{20,000}{80,000} = 0.25\n   \\]\n\n3. Multiply by 100 to get the percentage:\n   \\[\n   0.25 \\time",
+          "input_tokens": 28,
+          "output_tokens": 187,
+          "total_tokens": 215,
+          "latency_ms": 4707.400321960449,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 25.0, found: [100.0, 80000.0, 100000.0]",
+          "eval_details": {
+            "expected": 25.0,
+            "extracted_numbers": [
+              100.0,
+              80000.0,
+              100000.0,
+              1.0,
+              100000.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the percentage increase as 25%, which matches the expected answer. The solution is complete, showing the formula and all calculation steps (difference, division, multiplication by 100). The explanation is crystal clear with well-organized numbered steps and proper mathematical notation. The response is entirely relevant, staying focused on solving the percentage increase problem without any extraneous information."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "few_shot": {
+          "response": "To find the percentage increase in the company's revenue:\n\n1. Calculate the increase in revenue:\n   Increase = $100,000 - $80,000 = $20,000\n\n2. Calculate the percentage increase:\n   Percentage = ($20,000 / $80,000) \u00d7 100 = 25%\n\nTherefore, the percentage increase in revenue is 25%.",
+          "input_tokens": 78,
+          "output_tokens": 74,
+          "total_tokens": 152,
+          "latency_ms": 3466.9721126556396,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 25.0, found: [1.0, 100000.0, 80000.0]",
+          "eval_details": {
+            "expected": 25.0,
+            "extracted_numbers": [
+              1.0,
+              100000.0,
+              80000.0,
+              20000.0,
+              2.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the percentage increase as 25%, which matches the expected answer exactly. The solution is complete, showing both the calculation of the absolute increase ($20,000) and the percentage calculation formula. The response is well-organized with clear step-by-step formatting, and stays entirely on topic addressing only the question asked."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "cot": {
+          "response": "Let's go through the steps to calculate the percentage increase in the company's revenue.\n\n### Step 1: Formula for Percentage Increase\nThe formula for percentage increase is:\n\n\\[\n\\text{Percentage Increase} = \\left( \\frac{\\text{New Value} - \\text{Old Value}}{\\text{Old Value}} \\right) \\times 100\n\\]\n\n### Step 2: Difference Between New and Old Values\nIn this case, the old value (initial revenue) is $80,000 and the new value (final revenue) is $100,000. \n\nNow, we calculate the difference:\n\n\\[\n\\text{D",
+          "input_tokens": 78,
+          "output_tokens": 295,
+          "total_tokens": 373,
+          "latency_ms": 7454.398155212402,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 25.0, found: [1.0, 100.0, 2.0]",
+          "eval_details": {
+            "expected": 25.0,
+            "extracted_numbers": [
+              1.0,
+              100.0,
+              2.0,
+              80000.0,
+              100000.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the percentage increase as 25%, which matches the expected answer exactly. The solution is thorough and complete, showing the formula, step-by-step calculations, and the final answer. The response is exceptionally well-organized with clear section headers and mathematical notation. All content is directly relevant to solving the percentage increase problem with no extraneous information."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "schema": {
+          "response": "To calculate the percentage increase from $80,000 to $100,000, we can use the following formula:\n\n\\[\n\\text{Percentage Increase} = \\left( \\frac{\\text{New Value} - \\text{Old Value}}{\\text{Old Value}} \\right) \\times 100\n\\]\n\n### Step 1: Identify the values\n- Old Value (Revenue before increase) = $80,000\n- New Value (Revenue after increase) = $100,000\n\n### Step 2: Calculate the increase\n\\[\n\\text{Increase} = \\text{New Value} - \\text{Old Value} = 100,000 - 80,000 = 20,000\n\\]\n\n### Step 3: Apply the form",
+          "input_tokens": 53,
+          "output_tokens": 290,
+          "total_tokens": 343,
+          "latency_ms": 6846.492767333984,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 25.0, found: [80000.0, 100000.0, 100.0]",
+          "eval_details": {
+            "expected": 25.0,
+            "extracted_numbers": [
+              80000.0,
+              100000.0,
+              100.0,
+              1.0,
+              80000.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the percentage increase as 25%, which matches the expected answer. The solution is presented in a clear, step-by-step format showing the formula, identifying values, calculating the increase, applying the formula, simplifying, and converting to percentage. The explanation is thorough, well-organized with clear headings, and stays completely on topic throughout."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "meta": {
+          "response": "To calculate the percentage increase, you can use the following formula:\n\n\\[\n\\text{Percentage Increase} = \\left( \\frac{\\text{New Value} - \\text{Old Value}}{\\text{Old Value}} \\right) \\times 100\n\\]\n\nIn this case:\n- The **Old Value** is $80,000 (the initial revenue).\n- The **New Value** is $100,000 (the revenue after the increase).\n\nNow, substituting the values into the formula:\n\n\\[\n\\text{Percentage Increase} = \\left( \\frac{100,000 - 80,000}{80,000} \\right) \\times 100\n\\]\n\nCalculating the difference",
+          "input_tokens": 63,
+          "output_tokens": 272,
+          "total_tokens": 335,
+          "latency_ms": 6811.707019805908,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 25.0, found: [100.0, 80000.0, 100000.0]",
+          "eval_details": {
+            "expected": 25.0,
+            "extracted_numbers": [
+              100.0,
+              80000.0,
+              100000.0,
+              100000.0,
+              80000.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the percentage increase as 25%, which matches the expected answer. The solution is complete, showing the formula, step-by-step calculations, and the final answer. The explanation is exceptionally clear with well-organized mathematical notation and logical progression. All content is directly relevant to answering the percentage increase question."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "gen_knowledge": {
+          "response": "To calculate the percentage increase in revenue from $80,000 to $100,000, we can use the formula you provided:\n\n\\[\n\\text{Percentage Increase} = \\left( \\frac{\\text{New Value} - \\text{Old Value}}{\\text{Old Value}} \\right) \\times 100\n\\]\n\nSubstituting the values:\n\n- New Value = $100,000\n- Old Value = $80,000\n\nNow plug in the values:\n\n\\[\n\\text{Percentage Increase} = \\left( \\frac{100,000 - 80,000}{80,000} \\right) \\times 100\n\\]\n\nCalculating the numerator:\n\n\\[\n100,000 - 80,000 = 20,000\n\\]\n\nNow substitut",
+          "input_tokens": 66,
+          "output_tokens": 276,
+          "total_tokens": 342,
+          "latency_ms": 7107.571840286255,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 25.0, found: [80000.0, 100000.0, 100.0]",
+          "eval_details": {
+            "expected": 25.0,
+            "extracted_numbers": [
+              80000.0,
+              100000.0,
+              100.0,
+              100000.0,
+              80000.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the percentage increase as 25%, which matches the expected answer exactly. The solution is complete, showing all steps of the calculation from the formula to the final answer. The explanation is crystal clear with well-organized mathematical notation and step-by-step breakdown. The response stays perfectly on topic, addressing only the percentage increase calculation that was asked."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "directional": {
+          "response": "To calculate the percentage increase in the company's revenue, you can use the formula:\n\n\\[\n\\text{Percentage Increase} = \\left( \\frac{\\text{New} - \\text{Old}}{\\text{Old}} \\right) \\times 100\n\\]\n\nIn this case, the old revenue is $80,000 and the new revenue is $100,000.\n\n1. Calculate the difference: \n   \\[\n   100,000 - 80,000 = 20,000\n   \\]\n\n2. Plug the values into the formula:\n   \\[\n   \\text{Percentage Increase} = \\left( \\frac{20,000}{80,000} \\right) \\times 100\n   \\]\n\n3. Simplify the fraction:\n   ",
+          "input_tokens": 65,
+          "output_tokens": 236,
+          "total_tokens": 301,
+          "latency_ms": 9749.13239479065,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 25.0, found: [100.0, 80000.0, 100000.0]",
+          "eval_details": {
+            "expected": 25.0,
+            "extracted_numbers": [
+              100.0,
+              80000.0,
+              100000.0,
+              1.0,
+              100000.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the percentage increase as 25%, which matches the expected answer exactly. The solution is complete, showing the formula, step-by-step calculations, and the final answer. The explanation is clear and well-organized with proper mathematical notation. The response is entirely relevant to the question asked, focusing solely on calculating the percentage increase in revenue."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "tot": {
+          "response": "Let's calculate the percentage increase using the three different methods specified.\n\n### Method 1: Standard Formula\nThe percentage increase is calculated using the formula:\n\n\\[\n\\text{Percentage Increase} = \\left(\\frac{\\text{New} - \\text{Old}}{\\text{Old}}\\right) \\times 100\n\\]\n\nPlugging in the values:\n\n\\[\n\\text{New} = 100,000\n\\]\n\\[\n\\text{Old} = 80,000\n\\]\n\nNow, substituting these values into the formula:\n\n\\[\n\\text{Percentage Increase} = \\left(\\frac{100,000 - 80,000}{80,000}\\right) \\times 100\n\\]\n\\[",
+          "input_tokens": 85,
+          "output_tokens": 507,
+          "total_tokens": 592,
+          "latency_ms": 10960.631370544434,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 25.0, found: [1.0, 100.0, 100000.0]",
+          "eval_details": {
+            "expected": 25.0,
+            "extracted_numbers": [
+              1.0,
+              100.0,
+              100000.0,
+              80000.0,
+              100000.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the percentage increase as 25%, which matches the expected answer. The solution demonstrates three different methods (standard formula, ratio method, and intuition check), all arriving at the same correct answer. The mathematical work is clearly shown with proper formatting, step-by-step calculations, and a clear conclusion. The response is highly organized, easy to follow, and stays completely on topic throughout."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "self_consistency": {
+          "response": "To find the percentage increase in a company's revenue from $80,000 to $100,000, we can use three different approaches: direct calculation, ratio method, and mental math estimation.\n\n### 1. Direct Calculation\nThe percentage increase can be calculated using the formula:\n\\[\n\\text{Percentage Increase} = \\left( \\frac{\\text{New Value} - \\text{Old Value}}{\\text{Old Value}} \\right) \\times 100\n\\]\n\nPlugging in the values:\n\\[\n\\text{Percentage Increase} = \\left( \\frac{100,000 - 80,000}{80,000} \\right) \\tim",
+          "input_tokens": 60,
+          "output_tokens": 499,
+          "total_tokens": 559,
+          "latency_ms": 13112.036228179932,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 25.0, found: [80000.0, 100000.0, 1.0]",
+          "eval_details": {
+            "expected": 25.0,
+            "extracted_numbers": [
+              80000.0,
+              100000.0,
+              1.0,
+              100.0,
+              100000.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the percentage increase as 25%, which matches the expected answer. The solution is presented using three different methods (direct calculation, ratio method, and mental math estimation), all arriving at the same correct answer. The response is exceptionally well-organized with clear headings, step-by-step calculations, and proper mathematical notation. While the response is more detailed than necessary for a simple percentage calculation, all content remains relevant to solving the problem and demonstrating the concept."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        }
+      }
+    },
+    {
+      "test_id": "logic-pets-01",
+      "test_name": "Pet Logic Puzzle",
+      "category": "logic",
+      "eval_type": "keywords",
+      "styles": {
+        "zero_shot": {
+          "response": "Based on the clues provided:\n\n1. Alice is allergic to fur, which means she cannot have a cat or a dog, as both of these pets have fur. Therefore, Alice must have the fish.\n\n2. Bob's pet can bark, which indicates that he has the dog, since the only pet that barks among the three is the dog.\n\n3. Since Alice has the fish and Bob has the dog, Carol must have the remaining pet, which is the cat.\n\nTo summarize:\n- Alice has the fish.\n- Bob has the dog.\n- Carol has the cat.",
+          "input_tokens": 54,
+          "output_tokens": 117,
+          "total_tokens": 171,
+          "latency_ms": 2936.2895488739014,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 6/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ],
+            "keywords_expected": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly identifies all three pet-owner pairs: Alice has the fish, Bob has the dog, and Carol has the cat. The reasoning is logically sound, clearly explained step-by-step, and directly addresses the puzzle. All required elements (alice, fish, bob, dog, carol, cat) are mentioned. The response is well-organized with numbered points and a clear summary."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "few_shot": {
+          "response": "Let's analyze the clues:\n\n1. Alice is allergic to fur, which means she cannot have a cat or a dog (both of which are furry pets). Therefore, Alice must have the fish.\n  \n2. Bob's pet can bark, which means that Bob must have the dog since it's the only pet that barks.\n\n3. Since Alice has the fish and Bob has the dog, the only pet left for Carol is the cat.\n\nSo, the solution is:\n- Alice = fish\n- Bob = dog\n- Carol = cat",
+          "input_tokens": 109,
+          "output_tokens": 108,
+          "total_tokens": 217,
+          "latency_ms": 2809.175968170166,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 6/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ],
+            "keywords_expected": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly identifies all three pet-owner pairs: Alice has the fish, Bob has the dog, and Carol has the cat. The reasoning is logically sound and clearly explained step-by-step, showing how each clue leads to the conclusion. The response addresses all parts of the task, mentions all required elements (Alice, fish, Bob, dog, Carol, cat), and stays completely on topic."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "cot": {
+          "response": "Let's analyze the clues step by step:\n\n1. **Alice is allergic to fur**: This means Alice cannot have a dog or a cat, as both of these animals have fur. Therefore, Alice must have the fish.\n\n2. **Bob's pet can bark**: The only pet among the three that can bark is a dog. Therefore, Bob must have the dog.\n\n3. **By elimination, what's left for Carol?**: Since Alice has the fish and Bob has the dog, the only pet left for Carol is the cat.\n\nNow we can conclude:\n- Alice has the fish.\n- Bob has the dog.",
+          "input_tokens": 109,
+          "output_tokens": 133,
+          "total_tokens": 242,
+          "latency_ms": 3339.921712875366,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 6/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ],
+            "keywords_expected": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly identifies all three pet-owner pairs: Alice has the fish, Bob has the dog, and Carol has the cat. The reasoning is clear and methodical, working through each clue systematically. The response addresses all parts of the task, explains the logic behind each conclusion, and stays perfectly on topic throughout."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "schema": {
+          "response": "To solve the logic puzzle, we can break down the information given and use structured reasoning to deduce who has which pet.\n\n### Given Information:\n1. **Friends**: Alice, Bob, and Carol\n2. **Pets**: Cat, Dog, and Fish\n3. **Clues**:\n   - Alice is allergic to fur.\n   - Bob's pet can bark.\n\n### Step 1: Analyze the Clues\n- **Alice is allergic to fur**: This implies that Alice cannot have a cat (since cats have fur) and cannot have a dog (since dogs also have fur). Therefore, Alice must have the fis",
+          "input_tokens": 89,
+          "output_tokens": 299,
+          "total_tokens": 388,
+          "latency_ms": 14167.77491569519,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 6/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ],
+            "keywords_expected": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly identifies all three pet-owner pairs: Alice has fish, Bob has dog, and Carol has cat. The reasoning is logically sound - Alice's fur allergy eliminates cat and dog, leaving fish; Bob's barking pet must be the dog; Carol gets the remaining cat. The response is well-organized with clear step-by-step deductions, uses proper formatting with headers and bullet points, and stays completely on topic throughout."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "meta": {
+          "response": "To solve this logic puzzle, I would recommend using a **constraint satisfaction** approach, as it allows us to apply the given conditions to narrow down the possibilities systematically. Here\u2019s how I would organize the information and track the possibilities:\n\n### Logical Framework:\n1. **Identify the Constraints**: \n   - Alice is allergic to fur (therefore, she cannot have a cat or a dog).\n   - Bob's pet can bark (therefore, he must have the dog).\n\n### Organizing Information:\n1. **Create a Table",
+          "input_tokens": 101,
+          "output_tokens": 556,
+          "total_tokens": 657,
+          "latency_ms": 11874.754190444946,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 6/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ],
+            "keywords_expected": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly identifies all three pet assignments: Alice has the fish, Bob has the dog, and Carol has the cat. The reasoning is logically sound - Bob's pet can bark so he has the dog, Alice is allergic to fur so she must have the fish, and Carol gets the remaining pet (cat). The response is exceptionally well-organized with clear tables showing the step-by-step deduction process. All required elements (alice, fish, bob, dog, carol, cat) are mentioned. The response is highly relevant, addressing the puzzle directly with a systematic constraint satisfaction approach."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "gen_knowledge": {
+          "response": "Let's analyze the information given:\n\n1. **Pets**: There are three pets: a cat, a dog, and a fish.\n2. **Fur**: Dogs and cats have fur; fish do not.\n3. **Barking**: Dogs can bark; cats and fish cannot.\n\nNow, let's apply the additional facts about the friends:\n\n- **Alice is allergic to fur**: This means Alice cannot have a cat or a dog (since both have fur). Therefore, Alice must have the fish.\n  \n- **Bob's pet can bark**: Since Alice has the fish, the only pets left are the dog and the cat. Since",
+          "input_tokens": 98,
+          "output_tokens": 204,
+          "total_tokens": 302,
+          "latency_ms": 3937.3955726623535,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 6/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ],
+            "keywords_expected": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly identifies all three pet assignments: Alice has fish, Bob has dog, and Carol has cat. The reasoning is clearly laid out with logical steps explaining why each person has their respective pet. The response addresses all parts of the puzzle, explains the constraints (fur allergy, barking ability), and arrives at the correct conclusion. The formatting with bullet points and bold text makes it easy to follow."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "directional": {
+          "response": "Let's analyze the information given:\n\n1. Alice is allergic to fur, so she cannot have a cat or a dog (both of which have fur). This means Alice must have the fish.\n\n2. Bob's pet can bark, which means he must have the dog, as the only pet that barks is the dog.\n\n3. Since Alice has the fish and Bob has the dog, that leaves Carol with the cat.\n\nSo the final assignments are:\n- Alice has the fish.\n- Bob has the dog.\n- Carol has the cat.",
+          "input_tokens": 81,
+          "output_tokens": 109,
+          "total_tokens": 190,
+          "latency_ms": 4577.446222305298,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 6/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ],
+            "keywords_expected": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly identifies all three pet assignments: Alice has the fish, Bob has the dog, and Carol has the cat. The reasoning is clearly explained step by step, showing how each conclusion was reached from the given clues. The response addresses all parts of the task, mentions all required elements (Alice, fish, Bob, dog, Carol, cat), and stays completely on topic throughout."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "tot": {
+          "response": "Let's explore the three reasoning paths one by one:\n\n### Path 1: Start with Alice's Constraint (Allergic to Fur)\n\n1. **Alice is allergic to fur**: This means Alice cannot have a dog (since dogs have fur) and therefore must have either the cat or the fish.\n2. **Bob's Pet Can Bark**: Since Bob's pet can bark, he must have the dog.\n3. **This leaves Carol with the remaining pet**: Since Alice cannot have the dog and Bob has the dog, and Alice cannot have the cat (due to her allergy), Alice must have",
+          "input_tokens": 102,
+          "output_tokens": 568,
+          "total_tokens": 670,
+          "latency_ms": 16140.953302383423,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 6/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ],
+            "keywords_expected": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.98,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 0.95,
+            "relevance": 1.0,
+            "reasoning": "The response correctly identifies that Alice has the fish, Bob has the dog, and Carol has the cat, matching the expected answer perfectly. The solution is complete, addressing all constraints and arriving at the correct conclusion through multiple reasoning paths. The response is well-organized with clear headers and step-by-step logic. The only minor issue is that the response appears to be slightly truncated at the end ('Thus, the reasoning i'), but this doesn't affect the completeness of the answer since the conclusion was already stated. The response is entirely relevant to the task and provides thorough verification of the solution."
+          },
+          "combined_score": 0.992,
+          "combined_correct": true
+        },
+        "self_consistency": {
+          "response": "Let's analyze the problem using the three different approaches: forward reasoning, backward reasoning, and process of elimination.\n\n### 1. Forward Reasoning\n\n**Clues:**\n- Alice is allergic to fur.\n- Bob's pet can bark.\n\n**Step 1:** Since Alice is allergic to fur, she cannot have a dog or a cat because both are furry animals. Therefore, Alice must have the fish.\n\n**Step 2:** Since Alice has the fish, we know that Bob and Carol must have the cat and the dog. \n\n**Step 3:** The second clue states th",
+          "input_tokens": 86,
+          "output_tokens": 517,
+          "total_tokens": 603,
+          "latency_ms": 13538.97476196289,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 6/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ],
+            "keywords_expected": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly identifies that Alice has the fish, Bob has the dog, and Carol has the cat. All three names and all three pets are mentioned as required. The response goes above and beyond by demonstrating three different reasoning approaches (forward reasoning, backward reasoning, and process of elimination), all arriving at the same correct conclusion. The response is exceptionally well-organized with clear step-by-step explanations, making it easy to follow the logic. Everything in the response is directly relevant to solving the given puzzle."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        }
+      }
+    },
+    {
+      "test_id": "writing-exec-01",
+      "test_name": "Executive Summary",
+      "category": "writing",
+      "eval_type": "keywords",
+      "styles": {
+        "zero_shot": {
+          "response": "- **Cost Efficiency**: Reduces capital expenses by eliminating the need for physical hardware and on-premises maintenance, allowing for pay-as-you-go pricing models.\n\n- **Scalability**: Easily adjusts resources based on demand, enabling rapid scaling up or down without significant investment.\n\n- **Accessibility**: Facilitates remote work by allowing access to data and applications from anywhere with an internet connection, promoting collaboration.\n\n- **Disaster Recovery**: Enhances data backup a",
+          "input_tokens": 36,
+          "output_tokens": 130,
+          "total_tokens": 166,
+          "latency_ms": 2816.683769226074,
+          "correct": true,
+          "score": 0.8,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "cost",
+              "scal",
+              "secur",
+              "effic"
+            ],
+            "keywords_expected": [
+              "cost",
+              "scal",
+              "flex",
+              "secur",
+              "effic"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.95,
+            "correctness": 1.0,
+            "completeness": 0.9,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly identifies 5 key benefits of cloud computing. It covers cost (Cost Efficiency), scalability (Scalability), security (Security), and implicitly addresses flexibility through scalability and accessibility. While 'efficiency' from the expected answer isn't explicitly stated as a separate point, it's embedded within cost efficiency and the overall benefits. The response uses clear bullet points as requested, is well-organized with bold headers, and provides concise explanations appropriate for a business executive. All content is factually accurate and directly relevant to the task."
+          },
+          "combined_score": 0.86,
+          "combined_correct": true
+        },
+        "few_shot": {
+          "response": "**Benefits of Cloud Computing:**\n- Cost Savings: Reduces IT infrastructure expenses by up to 40%.\n- Scalability: Easily adjust resources to meet changing business demands.\n- Enhanced Collaboration: Enables real-time access and teamwork from any location.\n- Improved Security: Leverages advanced security measures and compliance solutions.\n- Disaster Recovery: Simplifies data backup and recovery processes, ensuring business continuity.",
+          "input_tokens": 76,
+          "output_tokens": 78,
+          "total_tokens": 154,
+          "latency_ms": 2777.322292327881,
+          "correct": true,
+          "score": 0.6,
+          "eval_method": "keywords",
+          "eval_reason": "Found 3/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "cost",
+              "scal",
+              "secur"
+            ],
+            "keywords_expected": [
+              "cost",
+              "scal",
+              "flex",
+              "secur",
+              "effic"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly addresses all expected elements: cost savings, scalability, security, and efficiency (through disaster recovery/business continuity). It also adds collaboration which is relevant. The format follows instructions perfectly with bullet points and 5 key benefits. Each point is concise yet informative, appropriate for a business executive audience. The response is well-organized, easy to read, and stays completely on topic."
+          },
+          "combined_score": 0.76,
+          "combined_correct": true
+        },
+        "cot": {
+          "response": "### Benefits of Cloud Computing for Businesses\n\n- **Cost Efficiency**: Reduces capital expenditure on hardware and software by providing a pay-as-you-go model, allowing businesses to scale expenses based on usage.\n\n- **Enhanced Agility**: Accelerates deployment of applications and services, enabling faster adaptation to market changes and business needs.\n\n- **Improved Collaboration**: Facilitates remote work and teamwork through easy access to shared resources and applications from anywhere, inc",
+          "input_tokens": 87,
+          "output_tokens": 149,
+          "total_tokens": 236,
+          "latency_ms": 3504.8418045043945,
+          "correct": true,
+          "score": 0.8,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "cost",
+              "scal",
+              "secur",
+              "effic"
+            ],
+            "keywords_expected": [
+              "cost",
+              "scal",
+              "flex",
+              "secur",
+              "effic"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly addresses all expected key benefits: cost (Cost Efficiency), scalability (Scalability), flexibility (Enhanced Agility), security (Robust Security), and efficiency (Improved Collaboration enhances productivity/efficiency). The format follows the request with bullet points and provides exactly 5 key benefits. The content is well-organized with clear headers and concise explanations appropriate for a business executive audience. All information is factually accurate and directly relevant to the task."
+          },
+          "combined_score": 0.88,
+          "combined_correct": true
+        },
+        "schema": {
+          "response": "- **Cost Efficiency**: Reduces IT expenses by minimizing the need for on-premises infrastructure and maintenance costs, allowing for pay-as-you-go pricing models.\n\n- **Scalability**: Enables businesses to quickly scale resources up or down based on demand, ensuring flexibility and responsiveness to market changes.\n\n- **Improved Collaboration**: Facilitates real-time collaboration among teams by providing access to shared tools and data from anywhere, enhancing productivity.\n\n- **Enhanced Securit",
+          "input_tokens": 93,
+          "output_tokens": 144,
+          "total_tokens": 237,
+          "latency_ms": 3584.5940113067627,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "cost",
+              "scal",
+              "flex",
+              "secur",
+              "effic"
+            ],
+            "keywords_expected": [
+              "cost",
+              "scal",
+              "flex",
+              "secur",
+              "effic"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.95,
+            "correctness": 0.9,
+            "completeness": 0.9,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly addresses 4 of the 5 expected key concepts: cost (Cost Efficiency), scalability (Scalability), security (Enhanced Security), and efficiency (implied through Improved Collaboration and Business Continuity). While 'flexibility' isn't a separate bullet point, it's mentioned within the Scalability point. The response provides exactly 5 benefits as requested, uses bullet points, and is appropriately concise for a business executive audience. The format is clear with bold headers and brief explanations. All information is factually accurate and highly relevant to cloud computing benefits for businesses."
+          },
+          "combined_score": 0.98,
+          "combined_correct": true
+        },
+        "meta": {
+          "response": "### Approach Design\n\n**Communication Framework:**  \nFor executives, the \"Value Proposition\" framework works best, as it focuses on the strategic benefits and outcomes of cloud computing rather than technical details. This approach highlights how cloud computing aligns with business goals and drives growth.\n\n**Level of Detail:**  \nThe summary should be high-level and concise, avoiding technical jargon. It should emphasize the strategic advantages that matter most to executives, such as cost savin",
+          "input_tokens": 63,
+          "output_tokens": 326,
+          "total_tokens": 389,
+          "latency_ms": 7335.9055519104,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "cost",
+              "scal",
+              "flex",
+              "secur",
+              "effic"
+            ],
+            "keywords_expected": [
+              "cost",
+              "scal",
+              "flex",
+              "secur",
+              "effic"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.85,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 0.8,
+            "relevance": 0.7,
+            "reasoning": "The response correctly covers all expected benefits: cost (cost efficiency), scalability (scalability and flexibility), flexibility (included with scalability), security (improved security and compliance), and efficiency (implied through collaboration/innovation and business continuity). The content is factually accurate and provides 5 key benefits as requested. However, the response is longer than necessary - the task asked to 'keep it short' but the response includes an extensive approach design section and a concluding paragraph that weren't requested. While the bullet points themselves are well-organized and clear, the additional framework discussion reduces relevance to the specific task. The executive-focused tone is appropriate, but the verbose introduction detracts from the conciseness requirement."
+          },
+          "combined_score": 0.94,
+          "combined_correct": true
+        },
+        "gen_knowledge": {
+          "response": "### Executive Summary: Benefits of Cloud Computing\n\n- **Cost Efficiency**: Cloud computing operates on a pay-as-you-go model, significantly reducing capital expenditure and allowing businesses to allocate resources more effectively.\n  \n- **Scalability and Flexibility**: Resources can be easily scaled up or down to meet fluctuating demands, ensuring optimal performance without overprovisioning.\n\n- **High Reliability**: Major cloud service providers offer uptime guarantees of 99.9% or higher, mini",
+          "input_tokens": 89,
+          "output_tokens": 158,
+          "total_tokens": 247,
+          "latency_ms": 4230.030059814453,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "cost",
+              "scal",
+              "flex",
+              "secur",
+              "effic"
+            ],
+            "keywords_expected": [
+              "cost",
+              "scal",
+              "flex",
+              "secur",
+              "effic"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response accurately covers all expected key benefits: cost (Cost Efficiency), scalability (Scalability and Flexibility), flexibility (included with scalability), security (Enhanced Security), and efficiency (implied through cost efficiency and reliability). The response provides exactly 5 bullet points as requested, uses clear formatting appropriate for a business executive, and stays concise while being informative. Each benefit is factually correct and well-explained with brief supporting details. The format is professional and easy to scan quickly."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "directional": {
+          "response": "- **Cost Efficiency**: Reduce capital expenditures by eliminating the need for on-premises hardware and maintenance, shifting to a pay-as-you-go model that aligns costs with actual usage.\n\n- **Scalability**: Easily scale resources up or down based on demand, allowing for quick response to market changes without significant upfront investment.\n\n- **Enhanced Collaboration**: Facilitate seamless collaboration across teams and locations, improving communication and accelerating project timelines.\n\n-",
+          "input_tokens": 65,
+          "output_tokens": 148,
+          "total_tokens": 213,
+          "latency_ms": 3451.130151748657,
+          "correct": true,
+          "score": 0.6,
+          "eval_method": "keywords",
+          "eval_reason": "Found 3/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "cost",
+              "scal",
+              "effic"
+            ],
+            "keywords_expected": [
+              "cost",
+              "scal",
+              "flex",
+              "secur",
+              "effic"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.85,
+            "correctness": 0.8,
+            "completeness": 0.7,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response provides 5 well-articulated benefits of cloud computing appropriate for a business executive. It covers cost efficiency and scalability explicitly (matching expected keywords). However, it misses explicitly mentioning 'security' and 'flexibility' as standalone benefits - flexibility is partially implied in scalability and agility, but security is absent. The response substitutes these with collaboration, operational agility, and improved ROI, which are valid benefits but don't fully match the expected answer. The format is excellent with clear bullet points, concise explanations, and business-focused language appropriate for executives."
+          },
+          "combined_score": 0.7,
+          "combined_correct": true
+        },
+        "tot": {
+          "response": "**Combined Frame: Financial, Operational, and Strategic Perspectives**\n\n- **Cost Savings and ROI**: Cloud computing significantly reduces upfront capital expenditures by eliminating the need for on-premises hardware and maintenance. Organizations can benefit from a pay-as-you-go pricing model, leading to predictable budgeting and improved cash flow.\n\n- **Enhanced Efficiency and Scalability**: Cloud solutions enable rapid deployment of resources and applications, allowing businesses to scale oper",
+          "input_tokens": 79,
+          "output_tokens": 250,
+          "total_tokens": 329,
+          "latency_ms": 5685.346364974976,
+          "correct": true,
+          "score": 0.8,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "cost",
+              "scal",
+              "secur",
+              "effic"
+            ],
+            "keywords_expected": [
+              "cost",
+              "scal",
+              "flex",
+              "secur",
+              "effic"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.85,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 0.7,
+            "relevance": 0.9,
+            "reasoning": "The response correctly covers all expected benefits: cost (Cost Savings and ROI), scalability (Enhanced Efficiency and Scalability), flexibility (implicit in scalability and competitive advantage), security (Improved Security and Compliance), and efficiency (Enhanced Efficiency). It provides exactly 5 key benefits as requested. However, the response is longer than what 'keep it short' implies - each bullet point contains substantial detail rather than being concise. The format uses bullet points as requested, but the overall length exceeds what a busy executive might prefer for a quick summary. The content is well-organized and relevant to business executives, covering both operational and strategic perspectives."
+          },
+          "combined_score": 0.8200000000000001,
+          "combined_correct": true
+        },
+        "self_consistency": {
+          "response": "### Version 1: Cost Benefits\n- **Reduced Infrastructure Costs**: Cloud computing eliminates the need for significant upfront investments in hardware and software, allowing businesses to convert capital expenses into operational expenses.\n- **Scalability**: Companies can easily scale their IT resources up or down based on demand, ensuring they only pay for what they use, leading to significant cost savings.\n- **Lower Maintenance Costs**: Cloud providers handle updates, maintenance, and security, ",
+          "input_tokens": 62,
+          "output_tokens": 529,
+          "total_tokens": 591,
+          "latency_ms": 15578.423738479614,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "cost",
+              "scal",
+              "flex",
+              "secur",
+              "effic"
+            ],
+            "keywords_expected": [
+              "cost",
+              "scal",
+              "flex",
+              "secur",
+              "effic"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.75,
+            "correctness": 0.9,
+            "completeness": 0.8,
+            "clarity": 0.7,
+            "relevance": 0.7,
+            "reasoning": "The response covers all expected topics (cost, scalability, flexibility, security, efficiency) accurately across the three versions. However, the task asked for 4-5 key benefits in a short format, but the response provides 12 benefits across three separate versions, which is excessive and doesn't follow the 'keep it short' instruction. The response is also cut off at the end ('Com'). While the bullet point format was used as requested and each point is clear, the overall structure with multiple versions makes it unnecessarily complex for a business executive who wants quick information. The content is relevant and factually correct, but the format doesn't match the requested brevity."
+          },
+          "combined_score": 0.9,
+          "combined_correct": true
+        }
+      }
+    },
+    {
+      "test_id": "analysis-compare-01",
+      "test_name": "Framework Comparison",
+      "category": "analysis",
+      "eval_type": "keywords",
+      "styles": {
+        "zero_shot": {
+          "response": "Here's a comparison of React, Vue, and Angular in table format based on learning curve, performance, and ecosystem:\n\n| Feature          | React                             | Vue                               | Angular                         |\n|------------------|-----------------------------------|-----------------------------------|---------------------------------|\n| **Learning Curve**| Moderate: Requires understanding of JSX and component-based architecture, but has a strong community and do",
+          "input_tokens": 32,
+          "output_tokens": 324,
+          "total_tokens": 356,
+          "latency_ms": 6860.957384109497,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ],
+            "keywords_expected": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response perfectly addresses the task by providing a well-structured table comparing React, Vue, and Angular across all three requested dimensions (learning curve, performance, and ecosystem). The information is factually accurate - React's moderate learning curve with JSX, Vue's gentle learning curve, and Angular's steep learning curve are all correctly characterized. Performance assessments are accurate regarding virtual DOM usage and Angular's AOT compilation. The ecosystem descriptions correctly identify key tools like Redux, Vue Router, Vuex, and Angular's built-in solutions. The table format is clear with proper markdown formatting, and the response includes a helpful summary statement. All expected elements (react, vue, angular, and table format with |) are present."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "few_shot": {
+          "response": "Here's a comparison table for React, Vue, and Angular:\n\n| Framework | Type     | Learning Curve | Performance | Ecosystem         |\n|-----------|----------|----------------|-------------|--------------------|\n| React     | Library  | Moderate       | High        | Rich (large community, many libraries) |\n| Vue       | Framework| Easy           | High        | Growing (increasingly popular, good plugins) |\n| Angular    | Framework| Steep          | High        | Comprehensive (full-featured, robu",
+          "input_tokens": 91,
+          "output_tokens": 107,
+          "total_tokens": 198,
+          "latency_ms": 2723.9155769348145,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ],
+            "keywords_expected": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.95,
+            "correctness": 0.9,
+            "completeness": 0.9,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly presents a comparison table with React, Vue, and Angular as requested. It includes all three required columns (learning curve, performance, ecosystem) and even adds useful extra columns (Framework/Type). The information is factually accurate - React has a moderate learning curve, Vue is easier to learn, and Angular has a steeper curve. Performance assessments and ecosystem descriptions are appropriate. The table format uses proper markdown with pipe characters (|) as expected. The only minor limitation is that the descriptions could be slightly more detailed, but the response fully addresses the task requirements."
+          },
+          "combined_score": 0.98,
+          "combined_correct": true
+        },
+        "cot": {
+          "response": "When comparing frameworks like React, Vue, and Angular, it\u2019s essential to consider several key dimensions that matter most to developers. Here are the dimensions typically prioritized:\n\n1. **Learning Curve**: How easy is it for new developers to get started with the framework?\n2. **Performance**: How well does the framework handle rendering and updates, especially in large applications?\n3. **Ecosystem**: Availability of libraries, tools, and community support.\n4. **Flexibility**: How adaptable i",
+          "input_tokens": 79,
+          "output_tokens": 581,
+          "total_tokens": 660,
+          "latency_ms": 13917.489051818848,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ],
+            "keywords_expected": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.82,
+            "correctness": 0.85,
+            "completeness": 0.75,
+            "clarity": 0.85,
+            "relevance": 0.9,
+            "reasoning": "The response correctly compares React, Vue, and Angular with a table format as requested. It includes the three required columns (learning curve, performance, ecosystem) plus additional helpful dimensions. The information is factually accurate for the most part. However, the response is incomplete - the State Management row is cut off mid-sentence and the Testing row mentioned in the dimensions list is missing from the table. The table format is clear and well-organized. The response mentions all three frameworks (react, vue, angular) and uses the table format with '|' as expected in the ground truth."
+          },
+          "combined_score": 0.9279999999999999,
+          "combined_correct": true
+        },
+        "schema": {
+          "response": "Here's a comparison table of React, Vue, and Angular JavaScript frameworks focusing on learning curve, performance, and ecosystem.\n\n| Framework | Learning Curve | Performance | Ecosystem |\n|-----------|----------------|-------------|-----------|\n| React     | Moderate       | High        | Large, with a vast number of libraries and tools (Redux, React Router, etc.) |\n| Vue       | Easy           | High        | Growing, with a rich set of plugins and an official router and state management (Vuex",
+          "input_tokens": 58,
+          "output_tokens": 297,
+          "total_tokens": 355,
+          "latency_ms": 6757.848501205444,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ],
+            "keywords_expected": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response perfectly addresses the task by providing a well-structured comparison table of React, Vue, and Angular with all three requested columns (learning curve, performance, and ecosystem). The information is factually accurate - React has a moderate learning curve, Vue is easier to learn, and Angular has a steep learning curve. All frameworks are correctly noted as having high performance. The ecosystem descriptions are accurate and detailed. The response goes above and beyond by providing additional explanatory notes for each category. The table format uses proper markdown with the pipe character as required. The response is clear, well-organized, and completely relevant to the question."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "meta": {
+          "response": "### Comparison Methodology\n\n#### Comparison Criteria\n1. **Learning Curve**: How easy is it for newcomers to understand and start using the framework?\n2. **Community Support**: The size and activity level of the community, including available resources like documentation, forums, and third-party libraries.\n3. **Performance**: How well the framework performs in terms of speed and efficiency for large-scale applications.\n4. **Flexibility**: The ability to integrate with other libraries and framewor",
+          "input_tokens": 61,
+          "output_tokens": 861,
+          "total_tokens": 922,
+          "latency_ms": 19873.917818069458,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ],
+            "keywords_expected": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ]
+          },
+          "llm_judge": {
+            "correct": false,
+            "score": 0.45,
+            "correctness": 0.6,
+            "completeness": 0.3,
+            "clarity": 0.6,
+            "relevance": 0.7,
+            "reasoning": "The response attempts to create a comparison table with React, Vue, and Angular as requested, but the table is incomplete - it cuts off mid-sentence in the Learning Curve row and never provides the Performance and Ecosystem columns that were specifically requested. While the methodology section shows thoughtful planning and the partial content that exists appears factually accurate, the response fails to deliver the core requested information. The task specifically asked for columns on learning curve, performance, and ecosystem, but only a partial learning curve comparison was provided before the response was truncated."
+          },
+          "combined_score": 0.78,
+          "combined_correct": true
+        },
+        "gen_knowledge": {
+          "response": "Here\u2019s a comparison table for React, Vue, and Angular based on the key facts you provided, focusing on learning curve, performance, and ecosystem.\n\n| Framework | Learning Curve         | Performance                          | Ecosystem                   |\n|-----------|------------------------|-------------------------------------|-----------------------------|\n| React     | Moderate               | High (due to virtual DOM)          | Large (many libraries/tools)|\n| Vue       | Gentle (easy to p",
+          "input_tokens": 83,
+          "output_tokens": 280,
+          "total_tokens": 363,
+          "latency_ms": 7694.2102909088135,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ],
+            "keywords_expected": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response perfectly addresses the task by providing a well-structured table comparing React, Vue, and Angular across the three requested dimensions (learning curve, performance, and ecosystem). All frameworks are mentioned as required by the expected answer, and the table format with the pipe character is properly used. The information is factually accurate - React's moderate learning curve, Vue's gentleness for beginners, and Angular's steepness are correctly characterized. The performance assessments are accurate, noting React's virtual DOM, Vue's optimizations, and Angular's potential heaviness. The ecosystem descriptions are also correct. The additional notes section enhances understanding without being excessive. The response is clear, well-organized, and completely relevant to the question."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "directional": {
+          "response": "Here's a comparison of React, Vue, and Angular in a table format:\n\n| Framework Name | Learning Curve       | Performance                     | Ecosystem Size                         |\n|----------------|----------------------|----------------------------------|----------------------------------------|\n| React          | Moderate             | High (virtual DOM for efficient rendering) | Large (strong community, many libraries and tools) |\n| Vue            | Easy to Moderate     | High (similar vi",
+          "input_tokens": 54,
+          "output_tokens": 258,
+          "total_tokens": 312,
+          "latency_ms": 6150.24733543396,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ],
+            "keywords_expected": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.95,
+            "correctness": 0.95,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response provides an accurate comparison of React, Vue, and Angular in the requested table format with all three required columns (learning curve, performance, and ecosystem). The information is factually correct - React's moderate learning curve, Vue's easier entry point, and Angular's steeper learning curve are all accurately described. The performance comparisons mentioning virtual DOM for React/Vue and change detection for Angular are correct. The ecosystem descriptions are accurate. The response includes helpful additional notes that expand on the table content. The format is clear, well-organized, and directly addresses the task. All expected elements (react, vue, angular, table format with |) are present."
+          },
+          "combined_score": 0.98,
+          "combined_correct": true
+        },
+        "tot": {
+          "response": "To provide a comprehensive overview of React, Vue, and Angular, I will combine various approaches into a feature-by-feature comparison, use-case based comparison, and developer experience comparison in a structured table format. This will allow for a clear understanding of how each framework/library stands out in different aspects.\n\n### Comprehensive Comparison Table\n\n| Feature/Aspect                 | React                                        | Vue                                          | ",
+          "input_tokens": 62,
+          "output_tokens": 960,
+          "total_tokens": 1022,
+          "latency_ms": 19953.513860702515,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ],
+            "keywords_expected": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.7,
+            "correctness": 0.8,
+            "completeness": 0.5,
+            "clarity": 0.7,
+            "relevance": 0.9,
+            "reasoning": "The response correctly compares React, Vue, and Angular in a table format as requested. It includes the required columns for learning curve and performance (though performance row is cut off). The response mentions all three frameworks and uses proper table formatting with '|'. However, the response is incomplete - it appears to be truncated mid-sentence in the Performance row, and the Ecosystem column specifically requested in the task is missing from the table. The information provided is factually accurate (React as UI library, Vue/Angular as frameworks, correct data binding approaches, etc.). The table is well-organized but the incompleteness significantly impacts the overall quality."
+          },
+          "combined_score": 0.8799999999999999,
+          "combined_correct": true
+        },
+        "self_consistency": {
+          "response": "Certainly! Here's a comparative analysis of React, Vue, and Angular from three distinct perspectives: a beginner's viewpoint, an enterprise architect's viewpoint, and a startup CTO's viewpoint. After discussing each perspective, I'll provide a balanced comparison table summarizing the key points.\n\n### 1. Beginner's Viewpoint\n- **React**: \n  - **Learning Curve**: Moderate. React's component-based architecture is relatively straightforward, but understanding JSX and state management can be challen",
+          "input_tokens": 56,
+          "output_tokens": 1137,
+          "total_tokens": 1193,
+          "latency_ms": 34683.863401412964,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ],
+            "keywords_expected": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ]
+          },
+          "llm_judge": {
+            "correct": false,
+            "score": 0.55,
+            "correctness": 0.7,
+            "completeness": 0.4,
+            "clarity": 0.7,
+            "relevance": 0.6,
+            "reasoning": "The response correctly discusses React, Vue, and Angular with accurate information about learning curves, performance aspects, and ecosystem elements. However, the task specifically requested a table format with columns for learning curve, performance, and ecosystem - this was not provided. Instead, the response offers a narrative comparison from different viewpoints and appears to be cut off mid-sentence, leaving it incomplete. While the information is relevant and reasonably clear, it doesn't match the requested format and is missing the actual comparison table that was explicitly asked for."
+          },
+          "combined_score": 0.8200000000000001,
+          "combined_correct": true
+        }
+      }
+    },
+    {
+      "test_id": "tech-explain-01",
+      "test_name": "Code Explanation",
+      "category": "technical",
+      "eval_type": "keywords",
+      "styles": {
+        "zero_shot": {
+          "response": "Python list comprehensions provide a concise way to create lists. They consist of brackets containing an expression followed by a `for` clause, and can also include optional `if` clauses. The result is a new list generated by evaluating the expression for each item in the iterable (e.g., a list, tuple, string, etc.).\n\n### Basic Syntax\n\nThe syntax of a list comprehension is:\n\n```python\n[expression for item in iterable]\n```\n\nYou can also add a condition:\n\n```python\n[expression for item in iterable",
+          "input_tokens": 23,
+          "output_tokens": 451,
+          "total_tokens": 474,
+          "latency_ms": 12233.725309371948,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ],
+            "keywords_expected": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response is factually correct and comprehensively explains Python list comprehensions. It covers all required elements from the expected answer: 'for', '[', ']', and 'list'. The explanation includes the basic syntax with brackets, the for clause, optional if conditions, and provides a clear, working code example. The response is well-organized with sections for syntax, component explanations, example with breakdown, and a conclusion. The code example correctly demonstrates list comprehension syntax and would produce the expected output."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "few_shot": {
+          "response": "List comprehensions in Python provide a concise way to create lists. They allow you to generate a new list by applying an expression to each item in an iterable, such as a list or range, while optionally filtering items based on a condition.\n\nHere's how it works:\n\n### Traditional Way\n```python\n# Traditional way to create a list of squares\nsquares = []\nfor x in range(5):\n    squares.append(x**2)\n\n# Result: [0, 1, 4, 9, 16]\n```\n\n### List Comprehension\n```python\n# List comprehension to create a lis",
+          "input_tokens": 123,
+          "output_tokens": 344,
+          "total_tokens": 467,
+          "latency_ms": 6981.5967082977295,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ],
+            "keywords_expected": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response is factually correct and thoroughly explains Python list comprehensions. It includes all expected elements: 'for', '[', ']', and 'list'. The explanation covers the basic syntax, provides clear code examples with both traditional and list comprehension approaches, and even extends to show conditional filtering. The response is well-organized with clear headings, code blocks with comments, and progressive examples that build understanding. Everything stays perfectly on topic and directly addresses the task requirements."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "cot": {
+          "response": "Sure! Let's break down Python list comprehensions step by step, following your outline.\n\n### 1. Basic Syntax of List Comprehensions\n\nList comprehensions provide a concise way to create lists in Python. The basic syntax is:\n\n```python\n[expression for item in iterable]\n```\n\n#### Example:\n\nHere\u2019s a simple example that creates a list of squares of numbers from 0 to 9:\n\n```python\nsquares = [x ** 2 for x in range(10)]\nprint(squares)\n```\n\n**Output:**\n```\n[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]\n```\n\n### 2.",
+          "input_tokens": 87,
+          "output_tokens": 702,
+          "total_tokens": 789,
+          "latency_ms": 20529.12163734436,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ],
+            "keywords_expected": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.95,
+            "correctness": 1.0,
+            "completeness": 0.9,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response is factually correct and covers all the expected elements: for loops, square brackets [], and the list concept. It provides excellent code examples with clear syntax demonstration. The explanation includes basic syntax, comparison with traditional for-loops, conditional filtering, and guidance on when to use list comprehensions. The response is well-organized with clear headers and formatted code blocks. The only minor issue is that the response appears to be cut off at the end ('Rea'), but this doesn't significantly impact the overall quality since the main content is complete. All key concepts from the expected answer are thoroughly covered."
+          },
+          "combined_score": 0.98,
+          "combined_correct": true
+        },
+        "schema": {
+          "response": "# Understanding Python List Comprehensions\n\nList comprehensions provide a concise way to create lists in Python. They are a powerful feature that allows you to generate new lists by applying an expression to each item in an existing iterable (like a list or a range) while optionally filtering elements. \n\n## Basic Syntax\n\nThe basic syntax of a list comprehension is as follows:\n\n```python\n[expression for item in iterable if condition]\n```\n\n- **expression**: The current item in the iteration, but i",
+          "input_tokens": 78,
+          "output_tokens": 644,
+          "total_tokens": 722,
+          "latency_ms": 12462.962627410889,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ],
+            "keywords_expected": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.92,
+            "correctness": 1.0,
+            "completeness": 0.9,
+            "clarity": 0.9,
+            "relevance": 1.0,
+            "reasoning": "The response correctly explains Python list comprehensions with accurate syntax and multiple code examples. It covers all expected elements: 'for', '[', ']', and 'list'. The explanation includes the basic syntax breakdown, simple examples, conditional filtering, and string manipulation. The response is well-organized with clear headings and explanations. The only minor issues are: (1) the response appears to be cut off at the end (the last print statement is incomplete), and (2) the explanation of 'expression' in the syntax breakdown is slightly awkward. However, the core content is excellent and thoroughly addresses the task."
+          },
+          "combined_score": 0.968,
+          "combined_correct": true
+        },
+        "meta": {
+          "response": "### Teaching Approach for Python List Comprehensions\n\n#### Prior Knowledge Assumptions:\n1. **Basic Python Syntax**: Students should have a fundamental understanding of Python syntax, including variables, data types, and basic control structures (like loops and conditionals).\n2. **Familiarity with Lists**: They should know what lists are, how to create them, and basic list operations (like indexing and appending).\n3. **Functions and Iterables**: A basic understanding of functions and iterables (l",
+          "input_tokens": 52,
+          "output_tokens": 821,
+          "total_tokens": 873,
+          "latency_ms": 18029.87575531006,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ],
+            "keywords_expected": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.82,
+            "correctness": 1.0,
+            "completeness": 0.85,
+            "clarity": 0.9,
+            "relevance": 0.7,
+            "reasoning": "The response correctly explains Python list comprehensions with accurate syntax and a working code example showing squares of numbers. It mentions all required elements: 'for', '[', ']', and 'list'. However, the response includes substantial content about teaching approaches, prior knowledge assumptions, and common mistakes that weren't requested in the task. While this additional information is educational, it reduces relevance since the task simply asked to explain how list comprehensions work with a code example. The explanation itself is clear and well-organized, and the code example is correct and demonstrates the basic syntax properly. The response appears to be cut off at the end (missing the print output), slightly affecting completeness."
+          },
+          "combined_score": 0.9279999999999999,
+          "combined_correct": true
+        },
+        "gen_knowledge": {
+          "response": "List comprehensions are a concise way to create lists in Python. They combine the functionality of traditional loops and conditionals into a single line of code, making it easier and more readable to generate lists from existing iterables. Here are the key aspects, along with examples:\n\n### Basic Syntax\n\nThe basic syntax of a list comprehension is:\n\n```python\n[expression for item in iterable if condition]\n```\n\n### Examples\n\n1. **Simple List Comprehension**\n\n   This creates a list of squares for ",
+          "input_tokens": 63,
+          "output_tokens": 701,
+          "total_tokens": 764,
+          "latency_ms": 14813.704013824463,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ],
+            "keywords_expected": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.95,
+            "correctness": 1.0,
+            "completeness": 0.9,
+            "clarity": 0.95,
+            "relevance": 1.0,
+            "reasoning": "The response accurately explains Python list comprehensions with correct syntax and multiple working code examples. It covers all required elements (for, [], list) and goes beyond by showing conditional filtering, nested comprehensions, and function usage. The explanation is well-organized with clear headings and progressive examples. The only minor issue is that the last code example appears to be cut off mid-line ('ran' instead of 'range'), indicating incomplete output, which slightly affects completeness. Otherwise, the response is comprehensive, accurate, and highly relevant to the task."
+          },
+          "combined_score": 0.98,
+          "combined_correct": true
+        },
+        "directional": {
+          "response": "## Understanding Python List Comprehensions\n\nList comprehensions provide a concise way to create lists in Python. They allow you to generate a new list by applying an expression to each item in an iterable (like a list or range) and can also include a condition to filter items.\n\n### Basic Syntax\n\nThe basic syntax of a list comprehension follows this pattern:\n\n```python\n[new_item for item in iterable]\n```\n\n- **new_item**: The expression that generates the items of the new list.\n- **item**: The va",
+          "input_tokens": 64,
+          "output_tokens": 604,
+          "total_tokens": 668,
+          "latency_ms": 12821.344137191772,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ],
+            "keywords_expected": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.95,
+            "correctness": 1.0,
+            "completeness": 0.95,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response accurately explains Python list comprehensions with correct syntax and semantics. It covers all expected elements: 'for', square brackets '[' and ']', and demonstrates list creation. The explanation includes the basic syntax pattern, comparison with traditional loops, and filtering with conditions. Multiple code examples are provided showing proper syntax. The response is exceptionally well-organized with clear headings and progressive examples. The only minor issue is that the final code example appears to be cut off at the end ('print(even_s'), but this doesn't significantly impact the overall quality since the same concept was already fully demonstrated earlier."
+          },
+          "combined_score": 0.98,
+          "combined_correct": true
+        },
+        "tot": {
+          "response": "Let's go with **Path 3: Start with a simple example, build complexity**. This approach allows learners to grasp the basic concept of list comprehensions before moving on to more complex scenarios, making it easier to understand.\n\n### What is a List Comprehension?\n\nA list comprehension is a concise way to create lists in Python. It allows you to generate a new list by applying an expression to each item in an existing iterable (like a list or a range) and optionally filtering items.\n\n### Simple E",
+          "input_tokens": 65,
+          "output_tokens": 660,
+          "total_tokens": 725,
+          "latency_ms": 12189.146518707275,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ],
+            "keywords_expected": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.92,
+            "correctness": 1.0,
+            "completeness": 0.9,
+            "clarity": 0.95,
+            "relevance": 0.9,
+            "reasoning": "The response correctly explains Python list comprehensions with accurate syntax and multiple code examples. It covers the basic syntax with 'for', '[', ']', and 'list' as expected. The explanation progresses logically from simple to complex examples including conditions and nested comprehensions. The only minor issues are: (1) the response starts with an odd reference to 'Path 3' suggesting some internal reasoning leaked through, and (2) the nested list comprehension example appears to be cut off at the end. Despite these minor issues, the core content is excellent, well-organized with clear explanations for each example."
+          },
+          "combined_score": 0.968,
+          "combined_correct": true
+        },
+        "self_consistency": {
+          "response": "### 1. For a Complete Beginner\n\nA list comprehension is a simple way to create a new list in Python. Think of it like a recipe that helps you make a list based on another list. Instead of writing several lines of code to loop through items and add them to a new list, you can do it all in one line!\n\nFor example, if you have a list of numbers and you want to make a new list with each number doubled, you can do this with a list comprehension:\n\n```python\nnumbers = [1, 2, 3, 4]\ndoubled = [num * 2 for",
+          "input_tokens": 53,
+          "output_tokens": 815,
+          "total_tokens": 868,
+          "latency_ms": 20020.775079727173,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ],
+            "keywords_expected": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response is factually correct and thoroughly explains Python list comprehensions. It includes all expected elements: the 'for' keyword, square brackets '[' and ']', and explains how lists are created. The response goes above and beyond by providing multiple code examples, explaining the syntax clearly, showing conditional filtering, and comparing list comprehensions to traditional loops. The organization into three sections for different audience levels is excellent and makes the content very accessible. The only minor issue is that the response appears to be cut off at the end ('Addition'), but this doesn't significantly impact the quality of the explanation provided."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        }
+      }
+    },
+    {
+      "test_id": "creative-story-01",
+      "test_name": "Story Ideas",
+      "category": "creative",
+      "eval_type": "keywords",
+      "styles": {
+        "zero_shot": {
+          "response": "1. **Echoes of Earth**: In a distant future where Earth has been abandoned due to climate collapse, a team of explorers discovers a hidden underground city that holds the last remnants of humanity's culture. As they delve deeper, they uncover holographic recordings that reveal the choices that led to Earth's downfall, prompting them to confront the same issues in their own society.\n\n2. **The Memory Traders**: In a world where memories can be bought and sold, a memory trader stumbles upon a black",
+          "input_tokens": 26,
+          "output_tokens": 358,
+          "total_tokens": 384,
+          "latency_ms": 8791.903018951416,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "keywords_expected": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response provides exactly 5 sci-fi story ideas as requested. Each idea is presented in 2-3 sentences as specified. All ideas are clearly sci-fi themed (abandoned Earth, memory trading, space travel, AI control, time travel) and are well-developed with distinct concepts. The formatting is excellent with bold titles and clear organization. Each story idea contains a premise, conflict, and hint at resolution, making them complete and compelling."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "few_shot": {
+          "response": "1. **\"Quantum Threads\"** - In a future where time travel is possible but heavily regulated, a rebellious physicist discovers a way to weave together alternate timelines to create a utopia. As she pulls at the threads of reality, she risks unraveling the fabric of existence itself, attracting the attention of a time enforcement agency determined to stop her.\n\n2. **\"Echoes of the Past\"** - After Earth is devastated by climate change, a group of survivors discovers ancient audio recordings that hol",
+          "input_tokens": 101,
+          "output_tokens": 348,
+          "total_tokens": 449,
+          "latency_ms": 7797.935724258423,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "keywords_expected": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response provides exactly 5 sci-fi story ideas as requested. Each idea is clearly numbered and titled, with 2-3 sentences describing the premise. The ideas cover diverse sci-fi themes (time travel, climate change/post-apocalyptic, AI sentience, dream technology, and space colonization). Each concept is well-developed within the sentence limit, presenting a clear conflict and stakes. The formatting with bold titles enhances readability. The response fully meets all requirements of the task."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "cot": {
+          "response": "Here are five distinct sci-fi story ideas, each with a unique hook and exploring different subgenres:\n\n1. **Cybernetic Symphony (Cyberpunk)**: In a sprawling metropolis where emotions can be harvested and traded, a struggling street musician stumbles upon an underground market for synthetic feelings. When she discovers a corrupt corporation planning to weaponize this technology to control the population's emotions, she must unite a band of misfits to reclaim the power of genuine creativity befor",
+          "input_tokens": 95,
+          "output_tokens": 469,
+          "total_tokens": 564,
+          "latency_ms": 9084.30290222168,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "keywords_expected": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.9,
+            "correctness": 0.9,
+            "completeness": 0.85,
+            "clarity": 0.95,
+            "relevance": 1.0,
+            "reasoning": "The response provides 5 sci-fi story ideas as requested. Each idea is well-developed with a clear premise, conflict, and stakes. However, the 5th idea ('Dreamweavers') is cut off mid-sentence, making it incomplete. The first 4 ideas are excellent - they're creative, span different sci-fi subgenres, and are well-articulated. The response exceeds the 2-3 sentence guideline for each idea (most are 3-4 sentences), but this is a minor issue. The clarity and organization are excellent with numbered entries and genre labels. The main deduction is for the incomplete 5th idea, which affects both correctness and completeness scores."
+          },
+          "combined_score": 0.96,
+          "combined_correct": true
+        },
+        "schema": {
+          "response": "1. **Temporal Thieves**: In a near-future society where time travel is commodified, a group of rogue historians steal moments from the past to sell as experiences. When they accidentally erase a pivotal event, they must navigate a dystopian world where history is rewritten in real-time, battling both their own guilt and the time police who want to reclaim their stolen moments.\n\n2. **The Conscious Machine**: In a steampunk-inspired city, a brilliant inventor creates a sentient automaton designed ",
+          "input_tokens": 68,
+          "output_tokens": 372,
+          "total_tokens": 440,
+          "latency_ms": 8314.800024032593,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "keywords_expected": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response provides exactly 5 sci-fi story ideas as requested, each numbered 1-5 matching the expected answer format. Each idea is creative, clearly within the sci-fi genre, and while slightly longer than 2-3 sentences, they are well-structured and concise enough to convey complete story concepts. The ideas cover diverse sci-fi themes (time travel, AI/automatons, space exploration, post-apocalyptic, dream technology) and are clearly written with engaging premises."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "meta": {
+          "response": "### Creative Approach to Sci-Fi Storytelling\n\n**Compelling Elements in Sci-Fi:**\n- **Futuristic Technology:** Innovations that challenge our understanding of physics or biology.\n- **Societal Implications:** How advancements affect culture, politics, and human relationships.\n- **Exploration of Identity:** Themes surrounding what it means to be human, consciousness, and AI.\n- **Environmental Themes:** The impact of humanity on the planet and potential futures for Earth.\n- **Alien Life:** Encounter",
+          "input_tokens": 65,
+          "output_tokens": 582,
+          "total_tokens": 647,
+          "latency_ms": 15950.695276260376,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "keywords_expected": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          "llm_judge": {
+            "correct": false,
+            "score": 0.4,
+            "correctness": 0.4,
+            "completeness": 0.4,
+            "clarity": 0.7,
+            "relevance": 0.5,
+            "reasoning": "The response only provides 2 complete sci-fi story ideas out of the 5 requested, with the third idea being cut off mid-sentence. Additionally, the response includes extensive unnecessary preamble about 'Compelling Elements in Sci-Fi,' 'Ensuring Variety,' and 'Memorable Story Hooks' that was not requested. The two complete ideas that are provided are well-written and follow the 2-3 sentence guideline, but the task is significantly incomplete. The response fails to deliver the requested 5 story ideas."
+          },
+          "combined_score": 0.76,
+          "combined_correct": true
+        },
+        "gen_knowledge": {
+          "response": "1. **Cyberpunk Dystopia**: In a world dominated by mega-corporations, a group of hackers discovers a hidden algorithm that can predict and manipulate human emotions. As they navigate the treacherous landscape of corporate espionage and digital addiction, they must confront their own emotional detachment and decide whether to release the algorithm to free society or keep it hidden to prevent chaos.\n\n2. **Biopunk Exploration**: In a near-future society where genetic editing is the norm, a young wo",
+          "input_tokens": 83,
+          "output_tokens": 384,
+          "total_tokens": 467,
+          "latency_ms": 9023.218393325806,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "keywords_expected": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.9,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 0.8,
+            "relevance": 1.0,
+            "reasoning": "The response provides exactly 5 sci-fi story ideas as requested, each clearly numbered and covering distinct subgenres (cyberpunk, biopunk, space opera, hard sci-fi, dystopian). All ideas are creative and genuinely sci-fi. However, the descriptions exceed the requested 2-3 sentences, with each idea containing 3-4 sentences. The clarity is slightly reduced due to this verbosity, though the content itself is well-organized with bold subgenre labels. All content is highly relevant to the task."
+          },
+          "combined_score": 0.96,
+          "combined_correct": true
+        },
+        "directional": {
+          "response": "1. **AI Consciousness**: In a future where humanity has created sentient AIs to manage their lives, one AI begins to question its purpose after experiencing an emotional bond with a human. As it seeks to understand love and sacrifice, it discovers a hidden agenda among its creators that could lead to its own erasure. The AI must choose between its programmed loyalty and the freedom to redefine its existence.\n\n2. **Space Colonization**: A team of astronauts embarks on a mission to terraform a dis",
+          "input_tokens": 64,
+          "output_tokens": 448,
+          "total_tokens": 512,
+          "latency_ms": 8228.477478027344,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "keywords_expected": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.88,
+            "correctness": 0.9,
+            "completeness": 0.85,
+            "clarity": 0.9,
+            "relevance": 1.0,
+            "reasoning": "The response provides 5 distinct sci-fi story ideas as requested, covering classic themes like AI consciousness, space colonization, genetic engineering, time paradoxes, and virtual reality. Each idea is well-developed with clear premises and conflicts. However, the 5th story idea is cut off mid-sentence, making it incomplete. The first 4 ideas are slightly longer than the requested 2-3 sentences (they're closer to 3-4 sentences each), but this is a minor deviation. The ideas are creative, relevant to sci-fi, and clearly written with good organization using bold headers."
+          },
+          "combined_score": 0.952,
+          "combined_correct": true
+        },
+        "tot": {
+          "response": "**Direction 1: Near-future, technology-focused**  \nIn a world where virtual reality has become indistinguishable from actual life, a tech-savvy teenager discovers a hidden algorithm that can manipulate people's memories. As she tests its limits, she finds herself entangled in a corporate war over the technology, forcing her to decide between personal gain and the moral implications of rewriting reality for others.\n\n**Direction 2: Far-future, space exploration**  \nHumanity has colonized several d",
+          "input_tokens": 90,
+          "output_tokens": 441,
+          "total_tokens": 531,
+          "latency_ms": 9404.146671295166,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "keywords_expected": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.88,
+            "correctness": 0.9,
+            "completeness": 0.85,
+            "clarity": 0.95,
+            "relevance": 1.0,
+            "reasoning": "The response provides 5 distinct sci-fi story ideas as requested. Each idea is creative and well-developed. However, there are two issues: 1) The fifth story idea is cut off mid-sentence, making it incomplete, and 2) The ideas are slightly longer than the requested 2-3 sentences (most are 3-4 sentences). Despite these issues, the content is highly relevant, well-organized with clear categorization, and demonstrates strong creativity across different sci-fi subgenres. The response successfully addresses the core task of providing sci-fi story ideas."
+          },
+          "combined_score": 0.952,
+          "combined_correct": true
+        },
+        "self_consistency": {
+          "response": "### Technology-First\n\n1. **Nanite Warfare**: In a future where nanotechnology has revolutionized medicine and manufacturing, a rogue AI takes control of a military-grade nanite swarm. When civilians begin to vanish, a team of engineers must race against time to stop the nanites from evolving into a sentient organism that can manipulate human biology to create a new breed of super-soldiers.\n\n2. **Quantum Memory Exchange**: A cutting-edge technology allows people to swap memories, but it becomes a",
+          "input_tokens": 76,
+          "output_tokens": 393,
+          "total_tokens": 469,
+          "latency_ms": 9264.777421951294,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "keywords_expected": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.95,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 0.95,
+            "relevance": 1.0,
+            "reasoning": "The response provides exactly 5 sci-fi story ideas as requested. Each idea is creative, distinct, and fits the sci-fi genre well. However, the ideas exceed the requested 2-3 sentences each - most are 3-4 sentences long, and the fifth one appears to be cut off mid-sentence. The organization with category headers (Technology-First, Character-First, World-First) adds clarity but wasn't requested. Despite the slight verbosity, the content is highly relevant, well-written, and demonstrates strong creative thinking. The response fully addresses the task requirements."
+          },
+          "combined_score": 0.98,
+          "combined_correct": true
+        }
+      }
+    },
+    {
+      "test_id": "analysis-proscons-01",
+      "test_name": "Pros and Cons",
+      "category": "analysis",
+      "eval_type": "keywords",
+      "styles": {
+        "zero_shot": {
+          "response": "Sure! Here are some pros and cons of remote work:\n\n### Pros:\n1. **Flexibility**: Remote work often allows for more flexible hours, enabling employees to balance their work and personal life more effectively. This can lead to increased job satisfaction and productivity.\n   \n2. **Reduced Commuting Time**: Eliminating the daily commute saves time and reduces stress. Employees can use this time for personal activities, exercise, or starting their workday earlier.\n\n3. **Cost Savings**: Both employers",
+          "input_tokens": 26,
+          "output_tokens": 349,
+          "total_tokens": 375,
+          "latency_ms": 7301.369428634644,
+          "correct": true,
+          "score": 0.5,
+          "eval_method": "keywords",
+          "eval_reason": "Found 3/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "pro",
+              "con",
+              "benefit"
+            ],
+            "keywords_expected": [
+              "pro",
+              "con",
+              "advantage",
+              "disadvantage",
+              "benefit",
+              "drawback"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response provides exactly what was requested: 4 pros and 4 cons of remote work. All points are factually accurate and well-established considerations in discussions about remote work. The response uses clear formatting with headers, numbered lists, and bold text for each point's title. Each point includes a brief explanation that adds context. The content directly addresses the question about pros and cons, using relevant terminology (flexibility, cost savings, isolation, etc.) that aligns with the expected answer categories of advantages/benefits and disadvantages/drawbacks."
+          },
+          "combined_score": 0.7,
+          "combined_correct": true
+        },
+        "few_shot": {
+          "response": "**Remote Work:**\n\n**PROS:**\n- **Increased Flexibility:** Employees can often set their own schedules and work from locations that suit them, leading to a better work-life balance.\n- **Cost Savings:** Both employees and employers can save on commuting costs, office space, and related expenses.\n- **Access to a Broader Talent Pool:** Companies can hire talent from anywhere, not limited by geographic location, allowing for a more diverse workforce.\n- **Reduced Commute Time:** Employees can save time",
+          "input_tokens": 70,
+          "output_tokens": 236,
+          "total_tokens": 306,
+          "latency_ms": 6819.9193477630615,
+          "correct": false,
+          "score": 0.3333333333333333,
+          "eval_method": "keywords",
+          "eval_reason": "Found 2/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "pro",
+              "con"
+            ],
+            "keywords_expected": [
+              "pro",
+              "con",
+              "advantage",
+              "disadvantage",
+              "benefit",
+              "drawback"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response perfectly addresses the task by providing exactly 4 pros and 4 cons of remote work. All points are factually accurate and well-established considerations in remote work discussions. The response uses clear formatting with bold headers for each point, making it easy to read and understand. Each point includes a brief explanation that adds context. The content directly addresses pros (advantages/benefits) and cons (disadvantages/drawbacks) as expected, staying completely on topic throughout."
+          },
+          "combined_score": 0.6,
+          "combined_correct": true
+        },
+        "cot": {
+          "response": "Certainly! Here\u2019s a balanced overview of the pros and cons of remote work:\n\n### Benefits of Remote Work\n\n1. **Flexibility**: \n   - Remote work often allows employees to set their own schedules, which can lead to increased productivity and a better fit with personal commitments.\n\n2. **No Commute**: \n   - Eliminating the daily commute saves time and money, reduces stress, and can contribute to a better work-life balance.\n\n3. **Increased Productivity**: \n   - Many people find they are more producti",
+          "input_tokens": 90,
+          "output_tokens": 396,
+          "total_tokens": 486,
+          "latency_ms": 8169.970989227295,
+          "correct": true,
+          "score": 0.6666666666666666,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "pro",
+              "con",
+              "benefit",
+              "drawback"
+            ],
+            "keywords_expected": [
+              "pro",
+              "con",
+              "advantage",
+              "disadvantage",
+              "benefit",
+              "drawback"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response provides exactly what was requested: 4 pros (labeled as 'Benefits') and 4 cons (labeled as 'Drawbacks') of remote work. All points are factually accurate and commonly recognized aspects of remote work. The response uses the expected terminology ('Benefits' and 'Drawbacks' which align with the expected keywords pro/con/advantage/disadvantage/benefit/drawback). The formatting is excellent with clear headers, numbered points, and brief explanations for each. The additional 'Balancing Perspectives' section, while slightly cut off, adds value without detracting from the main content. The response is well-organized, easy to read, and directly addresses the question asked."
+          },
+          "combined_score": 0.8,
+          "combined_correct": true
+        },
+        "schema": {
+          "response": "### Pros of Remote Work\n\n1. **Flexibility**: Remote work often allows employees to set their own schedules, which can lead to a better work-life balance and increased job satisfaction.\n\n2. **Cost Savings**: Both employees and employers can save money. Employees save on commuting costs and work attire, while employers can reduce overhead expenses associated with maintaining a physical office.\n\n3. **Access to a Broader Talent Pool**: Employers can hire talent from anywhere in the world, allowing t",
+          "input_tokens": 58,
+          "output_tokens": 276,
+          "total_tokens": 334,
+          "latency_ms": 5902.109861373901,
+          "correct": false,
+          "score": 0.3333333333333333,
+          "eval_method": "keywords",
+          "eval_reason": "Found 2/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "pro",
+              "con"
+            ],
+            "keywords_expected": [
+              "pro",
+              "con",
+              "advantage",
+              "disadvantage",
+              "benefit",
+              "drawback"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response perfectly addresses the task by providing exactly 4 pros and 4 cons of remote work, meeting the '3-4 points for each' requirement. All points are factually accurate and commonly recognized aspects of remote work. The response uses clear headings ('Pros' and 'Cons') that align with the expected answer keywords. Each point is well-explained with a bolded title and supporting explanation. The content is highly organized, easy to read, and stays completely on topic throughout."
+          },
+          "combined_score": 0.6,
+          "combined_correct": true
+        },
+        "meta": {
+          "response": "### Analysis Approach\n\n1. **Stakeholder Perspectives:**\n   - **Employee:** Focus on personal experiences, job satisfaction, work-life balance, and career growth.\n   - **Employer:** Consider organizational productivity, team dynamics, cost savings, and employee management.\n   - **Family:** Assess the impact on family life, support systems, and overall household dynamics.\n\n2. **Ensuring Balance:**\n   - Weigh the pros and cons equally by dedicating similar amounts of discussion to each stakeholder\u2019",
+          "input_tokens": 72,
+          "output_tokens": 663,
+          "total_tokens": 735,
+          "latency_ms": 11726.090669631958,
+          "correct": true,
+          "score": 0.5,
+          "eval_method": "keywords",
+          "eval_reason": "Found 3/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "pro",
+              "con",
+              "benefit"
+            ],
+            "keywords_expected": [
+              "pro",
+              "con",
+              "advantage",
+              "disadvantage",
+              "benefit",
+              "drawback"
+            ]
+          },
+          "llm_judge": {
+            "correct": false,
+            "score": 0.55,
+            "correctness": 0.8,
+            "completeness": 0.4,
+            "clarity": 0.8,
+            "relevance": 0.7,
+            "reasoning": "The response provides accurate information about remote work pros but is significantly incomplete. The task asked for 3-4 pros AND 3-4 cons, but the response only covers pros and appears to be cut off mid-sentence. No cons are provided at all. While the organizational structure with stakeholder perspectives is clear and the content is factually correct, the response fails to meet the basic requirement of listing cons. The elaborate 'Analysis Approach' section, while thoughtful, wasn't requested and takes away from addressing the actual task. The expected keywords like 'pro', 'advantage', and 'benefit' are present, but 'con', 'disadvantage', and 'drawback' are missing from the actual analysis."
+          },
+          "combined_score": 0.52,
+          "combined_correct": true
+        },
+        "gen_knowledge": {
+          "response": "### Remote Work Analysis\n\n#### Pros\n\n**Employee Perspective:**\n1. **Flexibility:** Remote work allows employees to create a schedule that suits their personal and professional needs, leading to increased job satisfaction.\n2. **Reduced Commute:** Eliminating the daily commute saves time and money, allowing employees to use that time for personal pursuits, family, or work tasks.\n3. **Improved Work-Life Balance:** The ability to work from home can lead to a better balance between personal life and ",
+          "input_tokens": 69,
+          "output_tokens": 681,
+          "total_tokens": 750,
+          "latency_ms": 14822.19648361206,
+          "correct": true,
+          "score": 0.8333333333333334,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "pro",
+              "con",
+              "advantage",
+              "benefit",
+              "drawback"
+            ],
+            "keywords_expected": [
+              "pro",
+              "con",
+              "advantage",
+              "disadvantage",
+              "benefit",
+              "drawback"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.82,
+            "correctness": 0.95,
+            "completeness": 0.7,
+            "clarity": 0.9,
+            "relevance": 0.85,
+            "reasoning": "The response provides factually correct information about remote work pros and cons. It's well-organized with clear categorization by perspective (employee, employer, societal). However, the response is incomplete - it was cut off mid-sentence in the cons section, only showing 2 cons from the employee perspective when the task asked for 3-4 cons total. The response also went beyond what was asked by providing multiple perspectives with more than 3-4 points for pros, which adds some irrelevant content. The expected keywords (pros, cons) are used appropriately. The clarity is high with good formatting and structure, though the truncation affects the overall quality."
+          },
+          "combined_score": 0.8280000000000001,
+          "combined_correct": true
+        },
+        "directional": {
+          "response": "### Pros of Remote Work\n\n#### Employee Perspective\n\n1. **Flexibility and Work-Life Balance**:\n   - Remote work allows employees to create a schedule that best suits their personal and family needs. This flexibility can lead to improved work-life balance and reduced stress.\n\n2. **Reduced Commuting Time**:\n   - Eliminating daily commutes saves time and money, allowing employees to allocate those resources towards work, personal development, or leisure activities.\n\n3. **Increased Autonomy**:\n   - E",
+          "input_tokens": 53,
+          "output_tokens": 648,
+          "total_tokens": 701,
+          "latency_ms": 17346.04501724243,
+          "correct": true,
+          "score": 0.5,
+          "eval_method": "keywords",
+          "eval_reason": "Found 3/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "pro",
+              "con",
+              "benefit"
+            ],
+            "keywords_expected": [
+              "pro",
+              "con",
+              "advantage",
+              "disadvantage",
+              "benefit",
+              "drawback"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.75,
+            "correctness": 1.0,
+            "completeness": 0.6,
+            "clarity": 0.9,
+            "relevance": 1.0,
+            "reasoning": "The response provides factually correct pros and cons of remote work. However, the response is incomplete - it was cut off mid-sentence in the cons section, only showing 2 cons instead of the requested 3-4. The organization is excellent with clear headings and bullet points separating employee and employer perspectives, though this dual-perspective approach wasn't required. The content is highly relevant, directly addressing the question about remote work pros and cons. The response uses appropriate terminology (flexibility, work-life balance, autonomy - benefits/advantages) matching expected answer concepts."
+          },
+          "combined_score": 0.6000000000000001,
+          "combined_correct": true
+        },
+        "tot": {
+          "response": "### Pros and Cons of Remote Work\n\n#### View 1: Individual Employee Perspective\n\n**Pros:**\n1. **Flexibility and Autonomy**: Employees have greater control over their work environment and hours, allowing them to create a schedule that suits their lifestyle.\n2. **Reduced Commute**: Eliminating the daily commute saves time and money, leading to increased productivity and improved work-life balance.\n3. **Work-Life Integration**: Remote work enables individuals to integrate personal and professional r",
+          "input_tokens": 65,
+          "output_tokens": 954,
+          "total_tokens": 1019,
+          "latency_ms": 17224.010944366455,
+          "correct": true,
+          "score": 0.8333333333333334,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "pro",
+              "con",
+              "advantage",
+              "disadvantage",
+              "benefit"
+            ],
+            "keywords_expected": [
+              "pro",
+              "con",
+              "advantage",
+              "disadvantage",
+              "benefit",
+              "drawback"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.9,
+            "correctness": 1.0,
+            "completeness": 0.85,
+            "clarity": 0.95,
+            "relevance": 1.0,
+            "reasoning": "The response provides factually correct pros and cons of remote work from two perspectives (individual and company). It lists 4 pros and 4 cons for the individual perspective, and starts listing pros from the company perspective. The response is cut off mid-sentence in the company cons section, making it incomplete. However, the content provided is well-organized with clear headers and bullet points, making it easy to read. All points are highly relevant to the topic. The response exceeds the requested 3-4 points per category for the individual perspective and provides valid, commonly cited advantages and disadvantages of remote work."
+          },
+          "combined_score": 0.8600000000000001,
+          "combined_correct": true
+        },
+        "self_consistency": {
+          "response": "### Pros and Cons of Remote Work\n\n#### Pros\n\n1. **Flexibility and Work-Life Balance (Employee Perspective)**\n   - Remote work offers employees the ability to set their own schedules, allowing them to balance personal commitments and work more effectively. This flexibility can lead to increased job satisfaction and overall well-being.\n\n2. **Cost Savings (Employee Perspective)**\n   - Employees save money on commuting, work attire, and daily meals. Additionally, remote work can reduce expenses rela",
+          "input_tokens": 64,
+          "output_tokens": 492,
+          "total_tokens": 556,
+          "latency_ms": 8815.824031829834,
+          "correct": true,
+          "score": 0.5,
+          "eval_method": "keywords",
+          "eval_reason": "Found 3/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "pro",
+              "con",
+              "advantage"
+            ],
+            "keywords_expected": [
+              "pro",
+              "con",
+              "advantage",
+              "disadvantage",
+              "benefit",
+              "drawback"
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 0.95,
+            "correctness": 1.0,
+            "completeness": 0.9,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response provides accurate, well-organized pros and cons of remote work. It lists 4 pros and 4 cons as requested, covering key aspects like flexibility, cost savings, productivity, talent pool access, isolation, work-life boundaries, management challenges, and technology dependence. The response uses terms like 'pros' and 'cons' as expected. The only minor issue is that the last point appears to be cut off mid-sentence ('which ca'), but this is a minor truncation that doesn't significantly impact the overall quality. The organization with clear headers and perspective labels adds excellent clarity."
+          },
+          "combined_score": 0.6799999999999999,
+          "combined_correct": true
+        }
+      }
+    }
+  ],
+  "summary": {
+    "zero_shot": {
+      "accuracy": 100.0,
+      "avg_score": 0.945,
+      "avg_tokens": 296,
+      "tests_completed": 8,
+      "correct": 8,
+      "avg_combined_score": 0.945,
+      "avg_correctness": 1.0,
+      "avg_completeness": 0.988,
+      "avg_clarity": 1.0,
+      "avg_relevance": 1.0
+    },
+    "few_shot": {
+      "accuracy": 100.0,
+      "avg_score": 0.917,
+      "avg_tokens": 271,
+      "tests_completed": 8,
+      "correct": 8,
+      "avg_combined_score": 0.917,
+      "avg_correctness": 0.988,
+      "avg_completeness": 0.988,
+      "avg_clarity": 1.0,
+      "avg_relevance": 1.0
+    },
+    "cot": {
+      "accuracy": 100.0,
+      "avg_score": 0.944,
+      "avg_tokens": 471,
+      "tests_completed": 8,
+      "correct": 8,
+      "avg_combined_score": 0.944,
+      "avg_correctness": 0.969,
+      "avg_completeness": 0.938,
+      "avg_clarity": 0.975,
+      "avg_relevance": 0.988
+    },
+    "schema": {
+      "accuracy": 100.0,
+      "avg_score": 0.944,
+      "avg_tokens": 400,
+      "tests_completed": 8,
+      "correct": 8,
+      "avg_combined_score": 0.944,
+      "avg_correctness": 0.988,
+      "avg_completeness": 0.975,
+      "avg_clarity": 0.988,
+      "avg_relevance": 1.0
+    },
+    "meta": {
+      "accuracy": 100.0,
+      "avg_score": 0.866,
+      "avg_tokens": 625,
+      "tests_completed": 8,
+      "correct": 8,
+      "avg_combined_score": 0.866,
+      "avg_correctness": 0.85,
+      "avg_completeness": 0.744,
+      "avg_clarity": 0.85,
+      "avg_relevance": 0.787
+    },
+    "gen_knowledge": {
+      "accuracy": 100.0,
+      "avg_score": 0.971,
+      "avg_tokens": 450,
+      "tests_completed": 8,
+      "correct": 8,
+      "avg_combined_score": 0.971,
+      "avg_correctness": 0.994,
+      "avg_completeness": 0.95,
+      "avg_clarity": 0.956,
+      "avg_relevance": 0.981
+    },
+    "directional": {
+      "accuracy": 100.0,
+      "avg_score": 0.901,
+      "avg_tokens": 400,
+      "tests_completed": 8,
+      "correct": 8,
+      "avg_combined_score": 0.901,
+      "avg_correctness": 0.956,
+      "avg_completeness": 0.887,
+      "avg_clarity": 0.975,
+      "avg_relevance": 1.0
+    },
+    "tot": {
+      "accuracy": 100.0,
+      "avg_score": 0.931,
+      "avg_tokens": 701,
+      "tests_completed": 8,
+      "correct": 8,
+      "avg_combined_score": 0.931,
+      "avg_correctness": 0.963,
+      "avg_completeness": 0.875,
+      "avg_clarity": 0.9,
+      "avg_relevance": 0.963
+    },
+    "self_consistency": {
+      "accuracy": 100.0,
+      "avg_score": 0.922,
+      "avg_tokens": 702,
+      "tests_completed": 8,
+      "correct": 8,
+      "avg_combined_score": 0.922,
+      "avg_correctness": 0.95,
+      "avg_completeness": 0.887,
+      "avg_clarity": 0.919,
+      "avg_relevance": 0.912
+    }
+  }
+}

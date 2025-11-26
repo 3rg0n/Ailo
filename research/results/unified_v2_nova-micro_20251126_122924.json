@@ -1,0 +1,115 @@
+{
+  "metadata": {
+    "model": "nova-micro",
+    "model_name": "Amazon Nova Micro",
+    "provider": "bedrock",
+    "tier": "budget",
+    "timestamp": "20251126_122924",
+    "styles_tested": [
+      "zero_shot",
+      "few_shot"
+    ],
+    "version": "v2_improved_eval",
+    "llm_judge_enabled": true
+  },
+  "results": [
+    {
+      "test_id": "math-discount-01",
+      "test_name": "Discount Calculation",
+      "category": "math",
+      "eval_type": "numeric",
+      "styles": {
+        "zero_shot": {
+          "response": "To determine the cost of 7 apples with the given discount, we can follow these steps:\n\n1. Calculate the regular price for 7 apples without any discount:\n   \\[\n   7 \\text{ apples} \\times \\$2 \\text{ per apple} = \\$14\n   \\]\n\n2. Since you are buying 7 apples, which is more than 5, you qualify for a 20% discount. Calculate the discount amount:\n   \\[\n   20\\% \\text{ of } \\$14 = 0.20 \\times \\$14 = \\$2.80\n   \\]\n\n3. Subtract the discount from the regular price to find the final price:\n   \\[\n   \\$14 - \\$2.",
+          "input_tokens": 39,
+          "output_tokens": 190,
+          "total_tokens": 229,
+          "latency_ms": 1241.999864578247,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 11.2, found: [7.0, 1.0, 7.0]",
+          "eval_details": {
+            "expected": 11.2,
+            "extracted_numbers": [
+              7.0,
+              1.0,
+              7.0,
+              7.0,
+              2.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the final price of 7 apples as $11.20, which matches the expected answer. The solution is complete, showing all three steps: calculating the regular price ($14), determining the 20% discount ($2.80), and subtracting to get the final price ($11.20). The explanation is clear and well-organized with proper mathematical notation. The response stays completely on topic and directly addresses the question asked."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        },
+        "few_shot": {
+          "response": "To determine the cost of 7 apples with the discount, we need to follow these steps:\n\n1. Calculate the total cost of 7 apples without any discount.\n2. Determine if the discount applies and calculate the discount amount.\n3. Subtract the discount amount from the total cost to get the final price.\n\nLet's go through each step in detail:\n\n1. **Calculate the total cost of 7 apples without any discount:**\n   The price of one apple is $2. Therefore, the cost for 7 apples is:\n   \\[\n   7 \\times 2 = 14 \\tex",
+          "input_tokens": 116,
+          "output_tokens": 294,
+          "total_tokens": 410,
+          "latency_ms": 824.9380588531494,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 11.2, found: [7.0, 1.0, 7.0]",
+          "eval_details": {
+            "expected": 11.2,
+            "extracted_numbers": [
+              7.0,
+              1.0,
+              7.0,
+              2.0,
+              3.0
+            ]
+          },
+          "llm_judge": {
+            "correct": true,
+            "score": 1.0,
+            "correctness": 1.0,
+            "completeness": 1.0,
+            "clarity": 1.0,
+            "relevance": 1.0,
+            "reasoning": "The response correctly calculates the final price of 7 apples as $11.20, which matches the expected answer. The solution is methodical, showing all three steps: calculating the base price ($14), determining the 20% discount ($2.80), and subtracting to get the final price ($11.20). The explanation is clear, well-organized, and directly addresses the question asked."
+          },
+          "combined_score": 1.0,
+          "combined_correct": true
+        }
+      }
+    }
+  ],
+  "summary": {
+    "zero_shot": {
+      "accuracy": 100.0,
+      "avg_score": 1.0,
+      "avg_tokens": 229,
+      "tests_completed": 1,
+      "correct": 1,
+      "avg_combined_score": 1.0,
+      "avg_correctness": 1.0,
+      "avg_completeness": 1.0,
+      "avg_clarity": 1.0,
+      "avg_relevance": 1.0
+    },
+    "few_shot": {
+      "accuracy": 100.0,
+      "avg_score": 1.0,
+      "avg_tokens": 410,
+      "tests_completed": 1,
+      "correct": 1,
+      "avg_combined_score": 1.0,
+      "avg_correctness": 1.0,
+      "avg_completeness": 1.0,
+      "avg_clarity": 1.0,
+      "avg_relevance": 1.0
+    }
+  }
+}
