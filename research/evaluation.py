@@ -690,7 +690,7 @@ def llm_judge_evaluate(
     prompt = LLM_JUDGE_PROMPT.format(
         task=task,
         expected=expected,
-        response=response[:2000],  # Truncate very long responses
+        response=response,  # Full response - Opus 4.5 has 200K context
     )
 
     try:

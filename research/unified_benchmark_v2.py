@@ -91,7 +91,7 @@ def run_benchmark(
                     time.sleep(1)
 
                 test_results["styles"][style] = {
-                    "response": response["response"][:500],
+                    "response": response["response"],  # Store full response
                     "input_tokens": response["input_tokens"],
                     "output_tokens": response["output_tokens"],
                     "total_tokens": response["input_tokens"] + response["output_tokens"],

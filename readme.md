@@ -455,7 +455,6 @@ DIMENSIONS (each 0.0 to 1.0)
 2. **Single-call Simulation**: ToT and Self-Consistency simulated in single prompt
 3. **Model Versions**: Results may vary with model updates
 4. **LLM Judge Bias**: Opus 4.5 may favor certain styles (mitigated by 60/40 weighting)
-5. **Response Truncation**: Some responses cut off at 500 chars for storage
 
 ---
 
