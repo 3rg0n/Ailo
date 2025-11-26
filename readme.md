@@ -82,18 +82,70 @@ schema           93.3%       0.99        0.99       522      Format precision
 tot              88.9%       0.94        0.93       745      Overkill for these models
 ```
 
-### Recommendations by Use Case
+### Prompt Style by Use Case
+
+| Use Case | Recommended Style | Why | Token Impact |
+|----------|-------------------|-----|--------------|
+| **Code Generation** | `few_shot` | Examples demonstrate structure/style | -8% tokens |
+| **Documentation** | `schema` | Highest clarity (0.99), format control | +28% tokens |
+| **Math/Logic** | `cot` | Step-by-step reasoning, 95.9% combined | +63% tokens |
+| **Agents/Agentic** | `zero_shot` + tools | Let tools handle complexity | Baseline |
+| **Data Analysis** | `cot` or `gen_knowledge` | Reasoning + domain context | +52-63% |
+| **Creative Writing** | `directional` | Hints guide without constraining | +35% tokens |
+| **API/Integration** | `schema` | Structured output, predictable format | +28% tokens |
+| **Quick Prototyping** | `zero_shot` | Fast iteration, 93.1% baseline | Baseline |
+
+### Detailed Use Case Guide
+
+**Code Generation**
+```
+Best:  few_shot (show 1-2 examples of desired code style)
+Why:   Models learn naming conventions and structure from examples
+Avoid: self_consistency (adds tokens, no accuracy gain)
+```
+
+**Documentation Writing**
+```
+Best:  schema (ACT=Write OBJ=Documentation TAGS=[Format:Markdown])
+Why:   Explicit format constraints ensure consistent output
+Alt:   directional (provide outline hints)
+```
+
+**Math & Logic Problems**
+```
+Best:  cot (Chain-of-Thought)
+Why:   Step-by-step reasoning catches errors, 95.9% combined
+Alt:   gen_knowledge (recall formulas first, then solve)
+```
+
+**Agentic Workflows**
+```
+Best:  zero_shot + tool descriptions
+Why:   Let tools handle complexity; prompts should be simple triggers
+Note:  Complex prompting often interferes with tool selection
+```
+
+**Data Analysis**
+```
+Best:  cot (for reasoning through data)
+Alt:   gen_knowledge (recall statistical concepts first)
+Why:   Explicit reasoning prevents calculation errors
+```
+
+### Quick Reference
 
 ```
 USE CASE           RECOMMENDED          WHY
 ─────────────────────────────────────────────────────────────────────────
-Math/Logic         cot                  95.9% combined, best reasoning quality
-Format-critical    schema               94.3% with highest clarity (0.99)
-General tasks      zero_shot            93.1% baseline, minimal overhead
+Code generation    few_shot             Examples > explanations
+Documentation      schema               Format control, high clarity
+Math/Logic         cot                  95.9% combined, best reasoning
+Agents/Agentic     zero_shot            Keep prompts simple, let tools work
+Data analysis      cot / gen_knowledge  Reasoning prevents errors
+Creative           directional          Hints without constraints
 Budget models      cot > schema         Step-by-step helps smaller models
 Premium models     zero_shot            Already excellent, save tokens
 Token-sensitive    few_shot             302 avg tokens (lowest)
-Needs structure    directional          92.5%, good hints without bloat
 Avoid              self_consistency     78.2%, worst ROI
 ```
 
