@@ -18,10 +18,9 @@ The hypothesis was that structured schema prompts would consistently outperform 
 
 ```
 ailo/
-├── readme.md                 # Main doc with pivot narrative and key findings
+├── readme.md                 # Complete documentation (findings + methodology + results)
 ├── .gitignore               # Root gitignore
 ├── research/
-│   ├── FINDINGS.md          # Detailed findings with ASCII charts
 │   ├── context.md           # THIS FILE - session context
 │   ├── bedrock_client.py    # AWS Bedrock API client
 │   ├── multi_provider_client.py  # Unified client (Bedrock, OpenAI, Gemini)
@@ -110,15 +109,12 @@ python multi_provider_client.py list
 
 ### Update Documentation
 
-After new benchmarks, update:
-- `readme.md` - Add new model results to tables
-- `FINDINGS.md` - Add detailed results with ASCII charts
+After new benchmarks, update `readme.md` with new model results and ASCII charts.
 
 ## Git Status
 
 - Branch: main
-- 5 commits ahead of origin/main
-- Last commit: "Pivot Ailo to prompting styles research project"
+- 7 commits ahead of origin/main
 - Ready to push: `git push`
 
 ## Reference: TOON Visual Style
@@ -131,7 +127,7 @@ directional    ██████████████████░░   +2
 zero_shot      ████████████████░░░░   Baseline
 ```
 
-## Reference: Ailo Schema (for "What Happened to Ailo" section)
+## Reference: Ailo Schema
 
 ```
 CONTEXT = [Background / why you need this]
