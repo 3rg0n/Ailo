@@ -14,10 +14,22 @@ What we found was more nuanced: **schema prompting helps in some cases, but simp
 
 So we pivoted. Instead of promoting one prompting style, we built a **research framework** to answer: *"Which prompting technique should I use for my model and use case?"*
 
-This repository now contains:
+This repository contains:
 - Benchmark tooling for 9+ prompting techniques
 - Results across budget, mid-tier, and premium models
 - Data-driven recommendations by use case
+
+---
+
+## Table of Contents
+
+1. [Key Findings](#key-findings)
+2. [Results by Model](#results-by-model)
+3. [Code Generation Results](#code-generation-results)
+4. [Agentic Techniques](#agentic-techniques)
+5. [Methodology](#methodology)
+6. [Running Benchmarks](#running-benchmarks)
+7. [What Happened to Ailo](#what-happened-to-ailo)
 
 ---
 
@@ -62,7 +74,7 @@ few_shot          ~0%     minimal     -5%      Marginal benefit
 complex           ↓      can hurt    +50%+    Often counterproductive
 ```
 
-### By Use Case
+### Recommendations by Use Case
 
 ```
 USE CASE           RECOMMENDED          WHY
@@ -76,92 +88,145 @@ Token-sensitive    few_shot             Can SAVE tokens while improving
 Quick prototyping  zero_shot            Fastest iteration
 ```
 
+### Five Takeaways
+
+1. **Simple often wins** — Few-shot and directional beat complex techniques
+2. **ROI matters** — Consider accuracy gain vs token cost
+3. **Model tier matters** — Budget models benefit most from prompting techniques
+4. **Premium models are robust** — Zero-shot works fine for Claude/GPT-4
+5. **Complex techniques rarely justify cost** — ToT/Self-Consistency add overhead without gains
+
 ---
 
 ## Results by Model
 
+### Model Tiers Tested
+
+| Tier | Models | Cost (per 1K tokens) |
+|------|--------|---------------------|
+| **Budget** | Nova Micro, Mistral 7B, GPT-4o-mini | $0.00004 - $0.00015 |
+| **Mid** | Claude Haiku 4.5, Nova Lite | $0.0006 - $0.001 |
+| **Premium** | Claude Sonnet/Opus, GPT-4o, Mistral Large | $0.003 - $0.015 |
+
+---
+
+### Claude Opus 4.5 (Premium)
+
+```
+Style              Pass Rate                                      vs Zero   Tokens
+─────────────────────────────────────────────────────────────────────────────────
+few_shot           ███████████████████░   94.4%                   +11.1%     261   WINNER
+gen_knowledge      ███████████████████░   94.4%                   +11.1%     472
+self_consistency   ███████████████████░   94.4%                   +11.1%     715
+cot                ██████████████████░░   88.9%                    +5.6%     441
+schema             ██████████████████░░   88.9%                    +5.6%     481
+directional        ██████████████████░░   88.9%                    +5.6%     298
+zero_shot          █████████████████░░░   83.3%                  baseline    253
+meta               █████████████████░░░   83.3%                    same      709
+tot                █████████████████░░░   83.3%                    same      534
+```
+
+### Claude Haiku 4.5 (Mid)
+
+```
+Style              Pass Rate                                      vs Zero   Tokens
+─────────────────────────────────────────────────────────────────────────────────
+few_shot           ███████████████████░   94.4%                    +5.6%     297   WINNER
+schema             ███████████████████░   94.4%                    +5.6%     480
+zero_shot          ██████████████████░░   88.9%                  baseline    313
+cot                ██████████████████░░   88.9%                    same      559
+gen_knowledge      ██████████████████░░   88.9%                    same      508
+directional        █████████████████░░░   83.3%                    -5.6%     379
+tot                █████████████████░░░   83.3%                    -5.6%     728
+meta               ████████████████░░░░   77.8%                   -11.1%     821
+self_consistency   ████████████████░░░░   77.8%                   -11.1%     759
+```
+
+**Key insight**: Already 88.9% accurate on zero-shot. Complex techniques (Meta, ToT, Self-Consistency) actually hurt performance.
+
 ### Gemini 2.0 Flash
 
 ```
-Style              Pass Rate   vs Zero   Tokens
-────────────────────────────────────────────────
-cot                  100.0%    +11.1%      697
-schema               100.0%    +11.1%      414    WINNER (fewer tokens)
-few_shot              94.4%     +5.5%      336
-directional           94.4%     +5.5%      506
-zero_shot             88.9%   baseline     675
-meta                  88.9%     +0.0%     1038
-gen_knowledge         83.3%     -5.6%      692
-tot                   83.3%     -5.6%     1087
-self_consistency      83.3%     -5.6%     1062
+Style              Pass Rate                                      vs Zero   Tokens
+─────────────────────────────────────────────────────────────────────────────────
+cot                ████████████████████  100.0%                   +11.1%     697
+schema             ████████████████████  100.0%                   +11.1%     414   WINNER
+few_shot           ███████████████████░   94.4%                    +5.5%     336
+directional        ███████████████████░   94.4%                    +5.5%     506
+zero_shot          ██████████████████░░   88.9%                  baseline    675
+meta               ██████████████████░░   88.9%                    same     1038
+gen_knowledge      █████████████████░░░   83.3%                    -5.6%     692
+tot                █████████████████░░░   83.3%                    -5.6%    1087
+self_consistency   █████████████████░░░   83.3%                    -5.6%    1062
 ```
 
-### Claude Haiku 4.5
+**Winner**: Schema (+11.1% accuracy, fewer tokens than CoT)
+
+### Mistral 7B (Budget)
 
 ```
-Style              Pass Rate   vs Zero   Token Diff
-────────────────────────────────────────────────────
-few_shot             94.4%     +5.6%       -5.1%    WINNER
-schema               94.4%     +5.6%      +53.4%
-zero_shot            88.9%   baseline    baseline
-cot                  88.9%      same      +78.9%
-gen_knowledge        88.9%      same      +62.3%
-directional          83.3%     -5.6%      +21.3%
-tot                  83.3%     -5.6%     +132.7%
-meta                 77.8%    -11.1%     +162.4%
-self_consistency     77.8%    -11.1%     +142.7%
+Style              Pass Rate                                      vs Zero   Tokens
+─────────────────────────────────────────────────────────────────────────────────
+directional        ███████████████████░   94.4%                   +22.2%     375   WINNER
+cot                ███████████████████░   94.4%                   +22.2%     480
+gen_knowledge      ███████████████████░   94.4%                   +22.2%     440
+few_shot           ██████████████████░░   88.9%                   +16.7%     316   Best ROI
+schema             ██████████████████░░   88.9%                   +16.7%     402
+self_consistency   ██████████████████░░   88.9%                   +16.7%     601
+meta               █████████████████░░░   83.3%                   +11.1%     610
+tot                ████████████████░░░░   77.8%                    +5.6%     753
+zero_shot          ██████████████░░░░░░   72.2%                  baseline    419
 ```
 
-### Mistral 7B
+**Winner**: Directional (+22.2% accuracy, -10.4% tokens)
+
+### Amazon Nova Micro (Budget)
 
 ```
-Style              Pass Rate   vs Zero   Token Diff
-────────────────────────────────────────────────────
-directional          94.4%    +22.2%      -10.4%    WINNER
-cot                  94.4%    +22.2%      +14.5%
-gen_knowledge        94.4%    +22.2%       +5.0%
-few_shot             88.9%    +16.7%      -24.6%    Best ROI
-schema               88.9%    +16.7%       -3.9%
-self_consistency     88.9%    +16.7%      +43.5%
-meta                 83.3%    +11.1%      +45.8%
-tot                  77.8%     +5.6%      +79.8%
-zero_shot            72.2%   baseline    baseline
+Style              Pass Rate                                      vs Zero   Tokens
+─────────────────────────────────────────────────────────────────────────────────
+few_shot           ████████████████████  100.0%                    +5.6%     317   WINNER
+schema             ████████████████████  100.0%                    +5.6%     440
+directional        ████████████████████  100.0%                    +5.6%     410
+zero_shot          ███████████████████░   94.4%                  baseline    323
+cot                ███████████████████░   94.4%                    same      543
+meta               ███████████████████░   94.4%                    same      686
+gen_knowledge      ███████████████████░   94.4%                    same      566
+self_consistency   ███████████████████░   94.4%                    same      706
+tot                █████████████████░░░   83.3%                   -11.1%     746   WORSE!
 ```
 
-### Amazon Nova Micro
-
-```
-Style              Pass Rate   vs Zero   Token Diff
-────────────────────────────────────────────────────
-few_shot            100.0%     +5.6%       -1.9%    WINNER
-schema              100.0%     +5.6%      +36.2%
-directional         100.0%     +5.6%      +26.9%
-zero_shot            94.4%   baseline    baseline
-cot                  94.4%      same      +67.9%
-meta                 94.4%      same     +112.0%
-gen_knowledge        94.4%      same      +75.1%
-self_consistency     94.4%      same     +118.4%
-tot                  83.3%    -11.1%     +130.8%    WORSE!
-```
+**Winner**: Few-shot (+5.6% accuracy, -2% tokens)
 
 ---
 
 ## Code Generation Results
 
-Tested on 4 JavaScript algorithms (factorial, fibonacci, GCD, primality) measuring similarity to reference implementations:
+Tested on 4 JavaScript algorithms (factorial, fibonacci, GCD, primality) measuring similarity to reference implementations from [javascript-algorithms](https://github.com/trekhleb/javascript-algorithms):
 
 ```
-Style              Similarity   Correctness   Tokens
-────────────────────────────────────────────────────
-few_shot             53.9%        89.1%        315    WINNER
-zero_shot            41.1%        84.5%        227
-schema               37.7%        90.3%        270
-tot                  35.3%        75.8%       1211
-cot                  29.0%        72.8%        646
-self_consistency     21.7%        71.4%        943
-directional          24.7%        76.4%        514
-meta                 18.9%        64.5%        735
-gen_knowledge        16.7%        56.1%        604
+Style              Similarity                                   Correctness   Tokens
+─────────────────────────────────────────────────────────────────────────────────────
+few_shot           ████████████████████   53.9%                    89.1%       315   WINNER
+zero_shot          ████████████████░░░░   41.1%                    84.5%       227
+schema             ███████████████░░░░░   37.7%                    90.3%       270
+tot                ██████████████░░░░░░   35.3%                    75.8%      1211
+cot                ███████████░░░░░░░░░   29.0%                    72.8%       646
+directional        ██████████░░░░░░░░░░   24.7%                    76.4%       514
+self_consistency   █████████░░░░░░░░░░░   21.7%                    71.4%       943
+meta               ████████░░░░░░░░░░░░   18.9%                    64.5%       735
+gen_knowledge      ███████░░░░░░░░░░░░░   16.7%                    56.1%       604
+```
+
+### Per-Model Code Results
+
+```
+Model              Best Style      Similarity   Correctness   Tokens
+─────────────────────────────────────────────────────────────────────
+Gemini 2.0 Flash   Few-shot          57.9%        96.4%         263
+Claude Haiku       Few-shot          60.2%        85.1%         262
+Mistral 7B         Few-shot          56.8%        92.8%         332
+Nova Micro         Zero-shot         51.6%        89.3%         157
 ```
 
 **Why few-shot wins for code:**
@@ -172,10 +237,52 @@ gen_knowledge        16.7%        56.1%        604
 
 ---
 
-## Prompting Techniques Tested
+## Agentic Techniques
 
-| Technique | Description | Typical Overhead |
-|-----------|-------------|------------------|
+Techniques requiring tool execution or multi-turn orchestration:
+
+| Technique | Description | Best For |
+|-----------|-------------|----------|
+| **ReAct** | Reason + Act loop with tools | Tool-heavy tasks |
+| **PAL** | Generate & execute Python code | Math (saves 59% tokens) |
+| **Chaining** | Multi-step orchestration | Complex workflows |
+| **Reflexion** | Generate, critique, retry | Error recovery |
+
+### Nova Micro - Agentic Benchmark
+
+```
+Technique      Pass Rate                              Tokens   LLM Calls   Tool Calls
+──────────────────────────────────────────────────────────────────────────────────────
+zero_shot      ████████████████████  100%               284        1           0
+PAL            ████████████████████  100%               116        1           1   BEST!
+chaining       ████████████████████  100%              2014        3           0
+reflexion      ████████████████████  100%              1209        2           0
+react          ████████████████░░░░   80%               476        1           0
+```
+
+**PAL saves 59% tokens** by generating concise code instead of verbose reasoning.
+
+### Mistral 7B - Agentic Benchmark
+
+```
+Technique      Pass Rate                              Tokens   Overhead
+──────────────────────────────────────────────────────────────────────
+zero_shot      ████████████████░░░░   80%               263   baseline
+react          ████████████████░░░░   80%               592    +125%
+chaining       ████████████████░░░░   80%              1413    +438%
+PAL            ████████░░░░░░░░░░░░   40%               146     -44%   Code quality issues
+```
+
+**Warning**: For budget models, PAL fails more often because generated code has errors.
+
+---
+
+## Methodology
+
+### Prompting Techniques Tested
+
+| Technique | Description | Token Overhead |
+|-----------|-------------|----------------|
 | **zero_shot** | Plain natural language | Baseline |
 | **few_shot** | 1-2 examples before task | -25% to +30% |
 | **cot** | Step-by-step reasoning | +15% to +68% |
@@ -186,57 +293,102 @@ gen_knowledge        16.7%        56.1%        604
 | **tot** | Multiple solution paths | +80% to +166% |
 | **self_consistency** | Multiple approaches, reconcile | +44% to +211% |
 
-### Agentic Techniques (with tools)
+### How Each Technique Was Tested
 
-| Technique | Description | Best For |
-|-----------|-------------|----------|
-| **ReAct** | Reason + Act loop | Tool-heavy tasks |
-| **PAL** | Generate & execute code | Math (saves 59% tokens) |
-| **Chaining** | Multi-step orchestration | Complex workflows |
-| **Reflexion** | Generate, critique, retry | Error recovery |
+Every technique was tested with the **same task** presented in different formats:
 
----
+| Technique | Prompt Structure |
+|-----------|------------------|
+| **Zero-shot** | "Calculate: 7 apples at $2 each with 20% discount" |
+| **Few-shot** | "Example: 3 items at $5 = $15. Now solve: 7 apples..." |
+| **CoT** | "Solve step by step: 1) Calculate total 2) Apply discount..." |
+| **Schema** | `ACT=Calculate OBJ=Price TAGS=[ShowWork]` |
+| **Meta** | "First, decide how to solve this. Then execute." |
+| **Gen-Knowledge** | "Recall: Discount formula is... Now apply to: 7 apples..." |
+| **Directional** | "Calculate price. HINTS: Total=$14, discount=20%" |
+| **ToT** | "Try 3 approaches: A) Direct calc B) Unit price C) Ratio" |
+| **Self-Consistency** | "Solve 3 ways, compare answers, give final result" |
 
-## Takeaways
-
-1. **Simple often wins** — Few-shot and directional beat complex techniques
-2. **ROI matters** — Consider accuracy gain vs token cost
-3. **Model tier matters** — Budget models benefit most from prompting techniques
-4. **Premium models are robust** — Zero-shot works fine for Claude/GPT-4
-5. **Complex techniques rarely justify cost** — ToT/Self-Consistency add overhead without gains
-
----
-
-## Repository Structure
+### Evaluation Criteria
 
 ```
-ailo/
-├── readme.md              # This file
-├── research/
-│   ├── FINDINGS.md        # Detailed findings and methodology
-│   ├── bedrock_client.py  # AWS Bedrock API client
-│   ├── multi_provider_client.py  # OpenAI, Gemini, Bedrock
-│   ├── unified_benchmark.py      # Cross-provider benchmark
-│   ├── code_benchmark.py         # Code generation tests
-│   ├── agentic_benchmark.py      # ReAct, PAL, Chaining tests
-│   └── results/           # Raw benchmark data (JSON)
+CRITERIA TYPES
+├── Format Compliance
+│   ├── has_bullets: Response contains bullet points
+│   ├── has_table: Response has markdown table
+│   ├── has_code: Response includes code block
+│   └── has_numbered_list: Response has numbered items
+│
+├── Constraint Adherence
+│   ├── is_concise: Under word limit
+│   ├── exactly_N: Exactly N items provided
+│   └── length_range: Within word count bounds
+│
+└── Content Accuracy
+    ├── correct_answer: Contains expected value (e.g., "11.20")
+    ├── contains_keywords: Has required terms
+    └── shows_work: Demonstrates reasoning steps
 ```
+
+### Test Suite
+
+**Single-Prompt Benchmark** (9 test cases):
+- Writing: Executive summary, persona adherence
+- Reasoning: Math problems, logic puzzles, percentages
+- Creative: Story ideas
+- Analysis: Framework comparison, pros/cons
+- Technical: Code explanation
+
+**Code Benchmark** (4 algorithms):
+- Factorial, Fibonacci, Euclidean GCD, Primality test
+- Compared against reference implementations
+
+**Agentic Benchmark** (5 test cases):
+- Math with tools, knowledge retrieval, code execution
+
+### Limitations
+
+1. **Sample Size**: 9 test cases per comprehensive run
+2. **Single-call Simulation**: ToT and Self-Consistency simulated in single prompt
+3. **Model Versions**: Results may vary with model updates
+4. **Task Types**: General tasks; specialized domains may differ
+5. **Evaluation**: Automated criteria; subjective quality not measured
+
+---
 
 ## Running Benchmarks
+
+### Setup
 
 ```bash
 cd research
 
-# Test a model
+# Install dependencies
+pip install boto3 openai google-generativeai
+
+# Create .env file with API keys
+AWS_ACCESS_KEY_ID=your_key
+AWS_SECRET_ACCESS_KEY=your_secret
+OPENAI_KEY=your_key
+GEMINI_KEY=your_key
+```
+
+### Run Benchmarks
+
+```bash
+# Test a model connection
 python multi_provider_client.py claude-haiku
 
-# Run comprehensive benchmark
+# Run comprehensive benchmark (9 styles)
 python unified_benchmark.py --model gemini-2.0-flash
 
 # Run code generation benchmark
 python code_benchmark.py --model gpt-4o-mini --output results/code_gpt4o.json
 
-# List available models
+# Run agentic benchmark
+python agentic_benchmark.py --model nova-micro
+
+# List all available models
 python multi_provider_client.py list
 ```
 
@@ -244,9 +396,25 @@ python multi_provider_client.py list
 
 | Provider | Models |
 |----------|--------|
-| AWS Bedrock | Claude (Haiku, Sonnet, Opus), Nova (Micro, Lite), Mistral (7B, Small, Large), Llama |
+| AWS Bedrock | Claude (Haiku, Sonnet, Opus), Nova (Micro, Lite), Mistral (7B, Large), Llama |
 | OpenAI | GPT-4o, GPT-4o-mini, GPT-3.5-turbo, o1-mini |
 | Google | Gemini 2.0 Flash, 1.5 Flash, 1.5 Pro |
+
+### Repository Structure
+
+```
+ailo/
+├── readme.md                 # This file
+├── research/
+│   ├── context.md            # Session context for continuity
+│   ├── bedrock_client.py     # AWS Bedrock API client
+│   ├── multi_provider_client.py   # Unified client (Bedrock, OpenAI, Gemini)
+│   ├── unified_benchmark.py       # Cross-provider benchmark runner
+│   ├── code_benchmark.py          # Code generation benchmark
+│   ├── agentic_benchmark.py       # ReAct, PAL, Chaining tests
+│   ├── test_prompts_v3.py         # Test case definitions
+│   └── results/                   # Raw benchmark data (JSON)
+```
 
 ---
 
