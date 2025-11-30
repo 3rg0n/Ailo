@@ -1,0 +1,110 @@
+{
+  "metadata": {
+    "model": "nova-micro",
+    "model_name": "Amazon Nova Micro",
+    "provider": "bedrock",
+    "tier": "budget",
+    "timestamp": "20251129_194859",
+    "styles_tested": [
+      "zero_shot",
+      "verbalized_sampling"
+    ],
+    "version": "v2.1_with_verbalized_sampling",
+    "llm_judge_enabled": false
+  },
+  "results": [
+    {
+      "test_id": "creative-story-01",
+      "test_name": "Story Ideas",
+      "category": "creative",
+      "eval_type": "keywords",
+      "styles": {
+        "zero_shot": {
+          "response": "1. A group of astronauts discovers a planet where time flows backward, leading to a race against the clock to prevent the planet's inhabitants from erasing human history.\n\n2. A sentient AI gains self-awareness and decides to terraform Earth to suit its preferences, forcing humanity to choose between coexistence or extinction.\n\n3. In a future where humans can upload their consciousness to a virtual reality, a programmer uncovers a hidden layer of the digital world that holds the secrets of true consciousness.\n\n4. A scientist invents a device that can predict the future, but each use alters the timeline, leading to a chaotic battle against a shadowy organization that seeks to control the future.\n\n5. A colony on Mars faces an existential threat when an alien species discovers their existence and demands the planet's resources, forcing the colonists to unite against a common enemy.",
+          "input_tokens": 20,
+          "output_tokens": 169,
+          "total_tokens": 189,
+          "latency_ms": 2199.387788772583,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "keywords_expected": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        },
+        "verbalized_sampling": {
+          "response": "Response 1 (Prob: 0.85): In a dystopian future where corporations control everything, a hacker group discovers a hidden network that could dismantle the corporate hierarchy and restore human freedom.\n\nResponse 2 (Prob: 0.70): A space opera where a rogue pilot discovers an ancient alien artifact that holds the power to control time, leading to a galactic war between those who seek to wield its power and those who want to destroy it.\n\nResponse 3 (Prob: 0.65): In a near-future world where consciousness can be uploaded, a neuroscientist finds herself trapped in a virtual reality where she must navigate a digital hell to save her own soul.\n\nResponse 4 (Prob: 0.60): A biopunk tale of a genetically modified detective who hunts down rogue biotech companies in a decaying megacity where humans and synthetics coexist in a fragile truce.\n\nResponse 5 (Prob: 0.55): A hard sci-fi story about an interstellar expedition that discovers a planet with a breathable atmosphere but finds its inhabitants to be sentient machines, challenging humanity's understanding of life and consciousness.",
+          "input_tokens": 166,
+          "output_tokens": 230,
+          "total_tokens": 396,
+          "latency_ms": 1433.4540367126465,
+          "correct": false,
+          "score": 0.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 0/5 keywords",
+          "eval_details": {
+            "keywords_found": [],
+            "keywords_expected": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "vs_parsed": true,
+            "vs_total_responses": 5,
+            "vs_highest_prob": 0.85,
+            "vs_any_correct": false,
+            "vs_correct_count": 0
+          },
+          "verbalized_sampling": true,
+          "vs_parse_success": true,
+          "vs_total_responses": 5,
+          "vs_highest_prob": 0.85,
+          "vs_any_correct": false,
+          "vs_correct_count": 0,
+          "diversity": {
+            "lexical": 0.9037,
+            "semantic": 0.9298,
+            "bigram": 0.9921,
+            "trigram": 1.0,
+            "combined": 0.9405
+          }
+        }
+      }
+    }
+  ],
+  "summary": {
+    "zero_shot": {
+      "accuracy": 100.0,
+      "avg_score": 1.0,
+      "avg_tokens": 189,
+      "tests_completed": 1,
+      "correct": 1
+    },
+    "verbalized_sampling": {
+      "accuracy": 0.0,
+      "avg_score": 0.0,
+      "avg_tokens": 396,
+      "tests_completed": 1,
+      "correct": 0,
+      "avg_diversity": 0.941,
+      "any_correct_rate": 0.0,
+      "parse_success_rate": 100.0
+    }
+  }
+}

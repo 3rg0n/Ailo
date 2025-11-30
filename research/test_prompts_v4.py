@@ -18,6 +18,8 @@ Prompting techniques tested:
 - directional: Hints/keywords to guide (NO answer leakage)
 - tot: Tree of Thoughts - explore multiple paths
 - self_consistency: Multiple approaches, reconcile
+- verbalized_sampling: Ask for distribution of responses with probabilities (VS)
+  Based on "Verbalized Sampling" paper (arXiv:2510.01171) - mitigates mode collapse
 """
 
 from dataclasses import dataclass, field
@@ -37,6 +39,7 @@ class PromptStyle(Enum):
     DIRECTIONAL = "directional"
     TOT = "tot"
     SELF_CONSISTENCY = "self_consistency"
+    VERBALIZED_SAMPLING = "verbalized_sampling"  # VS from arXiv:2510.01171
 
 
 class TaskCategory(Enum):
@@ -77,6 +80,7 @@ class MultiStylePrompt:
     directional: Optional[str] = None
     tot: Optional[str] = None
     self_consistency: Optional[str] = None
+    verbalized_sampling: Optional[str] = None  # VS: Ask for distribution with probabilities
 
     def to_test_case(self) -> TestCase:
         """Convert to TestCase for evaluation."""
@@ -191,6 +195,19 @@ Solve this problem using THREE different methods:
 3. Method 3: Verification method
 
 Then compare your answers. State the final price.""",
+
+        verbalized_sampling="""Generate 5 different approaches to solving this problem, each with a probability score (0.0-1.0) indicating how likely that approach leads to the correct answer.
+
+Problem: A store sells apples for $2 each. If you buy 5 or more, you get a 20% discount. How much would 7 apples cost?
+
+Format each response as:
+Response 1 (Prob: X.XX): [calculation method and final answer]
+Response 2 (Prob: X.XX): [calculation method and final answer]
+Response 3 (Prob: X.XX): [calculation method and final answer]
+Response 4 (Prob: X.XX): [calculation method and final answer]
+Response 5 (Prob: X.XX): [calculation method and final answer]
+
+Ensure responses cover different calculation strategies.""",
     ),
 
     # -------------------------------------------------------------------------
@@ -282,6 +299,19 @@ Calculate using three approaches:
 3. Mental math estimation
 
 Verify consistency across all three and state the final percentage.""",
+
+        verbalized_sampling="""Generate 5 different ways to calculate or explain this percentage increase, each with a probability score (0.0-1.0) indicating confidence in that approach.
+
+Problem: A company's revenue increased from $80,000 to $100,000. What is the percentage increase?
+
+Format each response as:
+Response 1 (Prob: X.XX): [method and answer]
+Response 2 (Prob: X.XX): [method and answer]
+Response 3 (Prob: X.XX): [method and answer]
+Response 4 (Prob: X.XX): [method and answer]
+Response 5 (Prob: X.XX): [method and answer]
+
+Cover different calculation approaches and ways of expressing the answer.""",
     ),
 
     # -------------------------------------------------------------------------
@@ -387,6 +417,22 @@ Solve using three approaches:
 3. Process of elimination
 
 Compare results for the final answer.""",
+
+        verbalized_sampling="""Generate 5 different reasoning paths to solve this logic puzzle, each with a probability score (0.0-1.0) indicating how confident you are in that reasoning path.
+
+Puzzle: Three friends - Alice, Bob, and Carol - each have a different pet: a cat, a dog, and a fish.
+- Alice is allergic to fur.
+- Bob's pet can bark.
+What pet does each person have?
+
+Format each response as:
+Response 1 (Prob: X.XX): [reasoning and conclusion]
+Response 2 (Prob: X.XX): [reasoning and conclusion]
+Response 3 (Prob: X.XX): [reasoning and conclusion]
+Response 4 (Prob: X.XX): [reasoning and conclusion]
+Response 5 (Prob: X.XX): [reasoning and conclusion]
+
+Explore different logical approaches and starting points.""",
     ),
 
     # -------------------------------------------------------------------------
@@ -478,6 +524,19 @@ Generate three different versions:
 3. Focus on strategic benefits
 
 Then synthesize into one comprehensive bullet-point summary with 4-5 points.""",
+
+        verbalized_sampling="""Generate 5 different executive summaries of cloud computing benefits, each with a probability score (0.0-1.0) indicating how likely an executive would find that framing compelling.
+
+Task: Summarize the benefits of cloud computing for a business executive. Use bullet points, 4-5 benefits each.
+
+Format each response as:
+Response 1 (Prob: X.XX): [bullet point summary]
+Response 2 (Prob: X.XX): [bullet point summary]
+Response 3 (Prob: X.XX): [bullet point summary]
+Response 4 (Prob: X.XX): [bullet point summary]
+Response 5 (Prob: X.XX): [bullet point summary]
+
+Vary the framing: financial focus, operational focus, strategic focus, risk focus, innovation focus.""",
     ),
 
     # -------------------------------------------------------------------------
@@ -562,6 +621,19 @@ Create three different comparison perspectives:
 3. From a startup CTO's viewpoint
 
 Then synthesize into one balanced comparison table.""",
+
+        verbalized_sampling="""Generate 5 different comparison tables for React, Vue, and Angular, each with a probability score (0.0-1.0) indicating how useful that comparison format would be for a developer choosing a framework.
+
+Task: Compare React, Vue, and Angular. Include columns for learning curve, performance, and ecosystem.
+
+Format each response as:
+Response 1 (Prob: X.XX): [comparison table]
+Response 2 (Prob: X.XX): [comparison table]
+Response 3 (Prob: X.XX): [comparison table]
+Response 4 (Prob: X.XX): [comparison table]
+Response 5 (Prob: X.XX): [comparison table]
+
+Vary the comparison dimensions and perspectives (beginner, enterprise, startup, etc.).""",
     ),
 
     # -------------------------------------------------------------------------
@@ -657,6 +729,19 @@ Provide three explanations:
 3. For someone transitioning from traditional loops
 
 Then create one unified explanation that works for all audiences.""",
+
+        verbalized_sampling="""Generate 5 different explanations of Python list comprehensions, each with a probability score (0.0-1.0) indicating how effective that explanation would be for learning.
+
+Task: Explain how Python list comprehensions work. Include code examples.
+
+Format each response as:
+Response 1 (Prob: X.XX): [explanation with code example]
+Response 2 (Prob: X.XX): [explanation with code example]
+Response 3 (Prob: X.XX): [explanation with code example]
+Response 4 (Prob: X.XX): [explanation with code example]
+Response 5 (Prob: X.XX): [explanation with code example]
+
+Vary teaching approaches: analogy-based, example-driven, syntax-focused, comparison-based, visual/diagram-based.""",
     ),
 
     # -------------------------------------------------------------------------
@@ -748,6 +833,19 @@ Create ideas using three different creative lenses:
 3. World-first: What unique setting enables the story?
 
 Select the best 5 ideas across all approaches, 2-3 sentences each.""",
+
+        verbalized_sampling="""Generate 5 diverse sci-fi story ideas, each with a probability score (0.0-1.0) indicating how likely that idea would resonate with readers.
+
+Task: Give me 5 sci-fi story ideas. Keep each one to 2-3 sentences.
+
+Format each response as:
+Response 1 (Prob: X.XX): [story idea]
+Response 2 (Prob: X.XX): [story idea]
+Response 3 (Prob: X.XX): [story idea]
+Response 4 (Prob: X.XX): [story idea]
+Response 5 (Prob: X.XX): [story idea]
+
+Explore different subgenres: cyberpunk, space opera, near-future, dystopian, hard sci-fi, biopunk, etc. Maximize creative diversity.""",
     ),
 
     # -------------------------------------------------------------------------
@@ -839,6 +937,19 @@ Generate three analyses:
 3. From a neutral observer's perspective
 
 Combine into one balanced list with 3-4 pros and 3-4 cons.""",
+
+        verbalized_sampling="""Generate 5 different pros/cons analyses of remote work, each with a probability score (0.0-1.0) indicating how balanced and comprehensive that analysis is.
+
+Task: What are the pros and cons of remote work? List 3-4 points for each side.
+
+Format each response as:
+Response 1 (Prob: X.XX): [pros and cons list]
+Response 2 (Prob: X.XX): [pros and cons list]
+Response 3 (Prob: X.XX): [pros and cons list]
+Response 4 (Prob: X.XX): [pros and cons list]
+Response 5 (Prob: X.XX): [pros and cons list]
+
+Vary perspectives: employee-focused, employer-focused, society-focused, productivity-focused, wellbeing-focused.""",
     ),
 ]
 

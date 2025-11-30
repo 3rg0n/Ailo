@@ -1,5 +1,5 @@
 """
-Unified Benchmark v2 - With Improved Evaluation
+Unified Benchmark v2.1 - With Improved Evaluation + Verbalized Sampling
 
 Uses the new evaluation module with:
 - Fuzzy matching for text answers
@@ -7,11 +7,15 @@ Uses the new evaluation module with:
 - F1 scoring for partial credit
 - Keywords matching for subjective tasks
 - TRUE multi-turn conversations for ToT and Self-Consistency
+- Verbalized Sampling (VS) from arXiv:2510.01171 with diversity metrics
 
 Usage:
     python unified_benchmark_v2.py --model gpt-4o-mini
     python unified_benchmark_v2.py --model gemini-2.0-flash
     python unified_benchmark_v2.py --model claude-haiku
+
+    # Test only specific styles including new VS
+    python unified_benchmark_v2.py --model claude-haiku --styles zero_shot cot verbalized_sampling
 """
 
 import argparse
@@ -22,7 +26,10 @@ from pathlib import Path
 
 from multi_provider_client import MultiProviderClient, MODELS, ModelConfig
 from test_prompts_v4 import MULTI_STYLE_PROMPTS, PromptStyle, MultiStylePrompt
-from evaluation import evaluate, EvalResult, evaluate_with_llm_judge
+from evaluation import (
+    evaluate, EvalResult, evaluate_with_llm_judge,
+    evaluate_vs_response, evaluate_vs_diversity, parse_verbalized_sampling
+)
 
 
 # =============================================================================
@@ -244,8 +251,16 @@ def run_benchmark(
                     # Standard single-call for other styles
                     response = client.invoke(style_prompt, model_config)
 
-                # Evaluate the response (deterministic)
-                eval_result = evaluate(response["response"], test_case)
+                # Special evaluation for Verbalized Sampling
+                if style == "verbalized_sampling":
+                    eval_result, vs_result = evaluate_vs_response(response["response"], test_case)
+                    # Also calculate diversity metrics for VS outputs
+                    diversity_result = evaluate_vs_diversity(vs_result)
+                else:
+                    # Standard evaluation for other styles
+                    eval_result = evaluate(response["response"], test_case)
+                    vs_result = None
+                    diversity_result = None
 
                 # Add rate limiting for Gemini
                 if model_config.provider == "gemini":
@@ -270,6 +285,24 @@ def run_benchmark(
                     test_results["styles"][style]["multi_turn"] = True
                     test_results["styles"][style]["num_calls"] = response.get("num_calls", 1)
                     test_results["styles"][style]["turns"] = response.get("turns", [])
+
+                # Add Verbalized Sampling metadata if applicable
+                if style == "verbalized_sampling" and vs_result and diversity_result:
+                    test_results["styles"][style]["verbalized_sampling"] = True
+                    test_results["styles"][style]["vs_parse_success"] = vs_result.parse_success
+                    test_results["styles"][style]["vs_total_responses"] = vs_result.total_responses
+                    test_results["styles"][style]["vs_highest_prob"] = vs_result.highest_prob
+                    test_results["styles"][style]["vs_any_correct"] = eval_result.details.get("vs_any_correct", False)
+                    test_results["styles"][style]["vs_correct_count"] = eval_result.details.get("vs_correct_count", 0)
+                    # Diversity metrics (now includes embedding-based from OpenAI)
+                    test_results["styles"][style]["diversity"] = {
+                        "lexical": diversity_result.lexical_diversity,
+                        "semantic": diversity_result.semantic_diversity,
+                        "embedding": diversity_result.embedding_diversity,  # OpenAI embeddings (paper methodology)
+                        "bigram": diversity_result.bigram_diversity,
+                        "trigram": diversity_result.trigram_diversity,
+                        "combined": diversity_result.combined_diversity,
+                    }
 
                 # Optional LLM Judge evaluation
                 if use_llm_judge:
@@ -319,7 +352,7 @@ def run_benchmark(
             "tier": model_config.tier,
             "timestamp": timestamp,
             "styles_tested": styles_to_test,
-            "version": "v2_improved_eval",
+            "version": "v2.1_with_verbalized_sampling",
             "llm_judge_enabled": use_llm_judge,
         },
         "results": results,
@@ -348,6 +381,12 @@ def calculate_summary(results: list, styles: list, use_llm_judge: bool = False) 
         judge_scores = {"correctness": [], "completeness": [], "clarity": [], "relevance": []}
         combined_scores = []
 
+        # Verbalized Sampling specific metrics
+        vs_diversity_scores = []
+        vs_embedding_diversity_scores = []
+        vs_any_correct_count = 0
+        vs_parse_success_count = 0
+
         for test in results:
             if style in test["styles"] and "error" not in test["styles"][style]:
                 style_data = test["styles"][style]
@@ -370,6 +409,17 @@ def calculate_summary(results: list, styles: list, use_llm_judge: bool = False) 
                 tokens_total += style_data.get("total_tokens", 0)
                 count += 1
 
+                # Collect Verbalized Sampling metrics
+                if style == "verbalized_sampling":
+                    if style_data.get("vs_any_correct", False):
+                        vs_any_correct_count += 1
+                    if style_data.get("vs_parse_success", False):
+                        vs_parse_success_count += 1
+                    if "diversity" in style_data:
+                        vs_diversity_scores.append(style_data["diversity"]["combined"])
+                        if style_data["diversity"].get("embedding") is not None:
+                            vs_embedding_diversity_scores.append(style_data["diversity"]["embedding"])
+
         if count > 0:
             summary[style] = {
                 "accuracy": round(correct_count / count * 100, 1),
@@ -385,6 +435,14 @@ def calculate_summary(results: list, styles: list, use_llm_judge: bool = False) 
                 for dim, scores in judge_scores.items():
                     if scores:
                         summary[style][f"avg_{dim}"] = round(sum(scores) / len(scores), 3)
+
+            # Add Verbalized Sampling specific metrics
+            if style == "verbalized_sampling" and vs_diversity_scores:
+                summary[style]["avg_diversity"] = round(sum(vs_diversity_scores) / len(vs_diversity_scores), 3)
+                summary[style]["any_correct_rate"] = round(vs_any_correct_count / count * 100, 1)
+                summary[style]["parse_success_rate"] = round(vs_parse_success_count / count * 100, 1)
+                if vs_embedding_diversity_scores:
+                    summary[style]["avg_embedding_diversity"] = round(sum(vs_embedding_diversity_scores) / len(vs_embedding_diversity_scores), 3)
 
     return summary
 
@@ -437,6 +495,19 @@ def print_summary(summary: dict, model_config: ModelConfig, use_llm_judge: bool 
             clar = data.get("avg_clarity", 0)
             rel = data.get("avg_relevance", 0)
             print(f"{style:<20} {corr:>11.2f} {comp:>12.2f} {clar:>12.2f} {rel:>12.2f}")
+
+    # Print Verbalized Sampling metrics if available
+    vs_data = summary.get("verbalized_sampling", {})
+    if "avg_diversity" in vs_data:
+        print(f"\n{'='*80}")
+        print("Verbalized Sampling (VS) Metrics - arXiv:2510.01171")
+        print("-" * 60)
+        if "avg_embedding_diversity" in vs_data:
+            print(f"  Embedding Diversity: {vs_data.get('avg_embedding_diversity', 0):.3f}  (OpenAI text-embedding-3-small)")
+        print(f"  Combined Diversity:  {vs_data.get('avg_diversity', 0):.3f}  (0=identical, 1=max diverse)")
+        print(f"  Parse Success Rate:  {vs_data.get('parse_success_rate', 0):.1f}%")
+        print(f"  Any Correct Rate:    {vs_data.get('any_correct_rate', 0):.1f}%  (at least 1 of 5 correct)")
+        print(f"  Top-1 Accuracy:      {vs_data.get('accuracy', 0):.1f}%  (highest prob answer)")
 
     # ROI analysis
     print(f"\n{'='*80}")

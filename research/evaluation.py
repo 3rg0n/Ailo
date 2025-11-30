@@ -18,11 +18,19 @@ import string
 import subprocess
 import tempfile
 import json
+import os
 from dataclasses import dataclass, field
 from typing import Callable, Optional, Union
 from collections import Counter
 from enum import Enum
 from pathlib import Path
+
+# Optional OpenAI import for embeddings
+try:
+    from openai import OpenAI
+    OPENAI_AVAILABLE = True
+except ImportError:
+    OPENAI_AVAILABLE = False
 
 
 class EvalType(Enum):
@@ -802,6 +810,418 @@ def evaluate_with_llm_judge(
 
 
 # =============================================================================
+# Verbalized Sampling (VS) Parsing
+# Based on arXiv:2510.01171 "Verbalized Sampling: How to Mitigate Mode Collapse"
+# =============================================================================
+
+@dataclass
+class VSResponse:
+    """A single response from Verbalized Sampling output."""
+    text: str
+    probability: float
+    index: int
+
+
+@dataclass
+class VSResult:
+    """Parsed result from Verbalized Sampling."""
+    responses: list[VSResponse]
+    highest_prob_response: str
+    highest_prob: float
+    total_responses: int
+    parse_success: bool
+    raw_output: str
+
+
+def parse_verbalized_sampling(response: str) -> VSResult:
+    """
+    Parse a Verbalized Sampling response that contains multiple responses with probabilities.
+
+    Expected format:
+    Response 1 (Prob: 0.25): [text]
+    Response 2 (Prob: 0.20): [text]
+    ...
+
+    Returns VSResult with parsed responses and the highest-probability answer.
+    """
+    responses = []
+
+    # Pattern to match "Response N (Prob: X.XX): text" format
+    # Also handles variations like "Response 1 (Probability: 0.25):"
+    patterns = [
+        r'Response\s*(\d+)\s*\(Prob(?:ability)?:\s*([\d.]+)\):\s*(.+?)(?=Response\s*\d+\s*\(|$)',
+        r'(\d+)\.\s*\(Prob(?:ability)?:\s*([\d.]+)\):\s*(.+?)(?=\d+\.\s*\(|$)',
+        r'Option\s*(\d+)\s*\(Prob(?:ability)?:\s*([\d.]+)\):\s*(.+?)(?=Option\s*\d+\s*\(|$)',
+    ]
+
+    for pattern in patterns:
+        matches = re.findall(pattern, response, re.DOTALL | re.IGNORECASE)
+        if matches:
+            for match in matches:
+                idx = int(match[0])
+                prob = float(match[1])
+                text = match[2].strip()
+                responses.append(VSResponse(text=text, probability=prob, index=idx))
+            break
+
+    # If no structured format found, try to extract any probabilities mentioned
+    if not responses:
+        # Fallback: look for any "X.XX" probability patterns with surrounding text
+        prob_pattern = r'(?:^|\n)(.+?)(?:\(|\[)?(?:prob(?:ability)?[:\s]*)?(\d+\.?\d*)\)?(?:\]|\))?'
+        matches = re.findall(prob_pattern, response, re.IGNORECASE)
+        for i, (text, prob_str) in enumerate(matches[:5]):  # Max 5 responses
+            try:
+                prob = float(prob_str)
+                if 0 <= prob <= 1:
+                    responses.append(VSResponse(text=text.strip(), probability=prob, index=i+1))
+            except ValueError:
+                continue
+
+    # Sort by probability (highest first)
+    responses.sort(key=lambda r: r.probability, reverse=True)
+
+    if responses:
+        return VSResult(
+            responses=responses,
+            highest_prob_response=responses[0].text,
+            highest_prob=responses[0].probability,
+            total_responses=len(responses),
+            parse_success=True,
+            raw_output=response
+        )
+    else:
+        # Parse failed - return whole response as single item
+        return VSResult(
+            responses=[VSResponse(text=response, probability=1.0, index=1)],
+            highest_prob_response=response,
+            highest_prob=1.0,
+            total_responses=1,
+            parse_success=False,
+            raw_output=response
+        )
+
+
+def evaluate_vs_response(response: str, test_case: 'TestCase') -> tuple[EvalResult, VSResult]:
+    """
+    Evaluate a Verbalized Sampling response.
+
+    Returns tuple of (EvalResult for highest-prob answer, VSResult with all parsed responses).
+    """
+    vs_result = parse_verbalized_sampling(response)
+
+    # Evaluate the highest probability response
+    eval_result = evaluate(vs_result.highest_prob_response, test_case)
+
+    # Add VS-specific details
+    eval_result.details["vs_parsed"] = vs_result.parse_success
+    eval_result.details["vs_total_responses"] = vs_result.total_responses
+    eval_result.details["vs_highest_prob"] = vs_result.highest_prob
+
+    # Also check if ANY response is correct (for diversity bonus)
+    any_correct = False
+    correct_count = 0
+    for vs_resp in vs_result.responses:
+        resp_eval = evaluate(vs_resp.text, test_case)
+        if resp_eval.correct:
+            any_correct = True
+            correct_count += 1
+
+    eval_result.details["vs_any_correct"] = any_correct
+    eval_result.details["vs_correct_count"] = correct_count
+
+    return eval_result, vs_result
+
+
+# =============================================================================
+# Diversity Metrics
+# Based on arXiv:2510.01171 methodology for measuring output diversity
+# =============================================================================
+
+def calculate_lexical_diversity_rouge(texts: list[str]) -> float:
+    """
+    Calculate lexical diversity using ROUGE-L overlap.
+    Lower ROUGE-L = higher diversity (less overlap between texts).
+
+    Returns diversity score 0-1 where 1 = maximum diversity.
+    """
+    if len(texts) < 2:
+        return 1.0
+
+    def lcs_length(s1: list[str], s2: list[str]) -> int:
+        """Longest Common Subsequence length."""
+        m, n = len(s1), len(s2)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if s1[i-1] == s2[j-1]:
+                    dp[i][j] = dp[i-1][j-1] + 1
+                else:
+                    dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+        return dp[m][n]
+
+    def rouge_l(text1: str, text2: str) -> float:
+        """Calculate ROUGE-L F1 score between two texts."""
+        tokens1 = normalize(text1).split()
+        tokens2 = normalize(text2).split()
+
+        if not tokens1 or not tokens2:
+            return 0.0
+
+        lcs = lcs_length(tokens1, tokens2)
+
+        precision = lcs / len(tokens1) if tokens1 else 0
+        recall = lcs / len(tokens2) if tokens2 else 0
+
+        if precision + recall == 0:
+            return 0.0
+
+        f1 = 2 * precision * recall / (precision + recall)
+        return f1
+
+    # Calculate mean pairwise ROUGE-L
+    total_rouge = 0.0
+    pairs = 0
+
+    for i in range(len(texts)):
+        for j in range(i + 1, len(texts)):
+            total_rouge += rouge_l(texts[i], texts[j])
+            pairs += 1
+
+    if pairs == 0:
+        return 1.0
+
+    mean_rouge = total_rouge / pairs
+
+    # Convert to diversity: 1 - ROUGE-L (lower overlap = higher diversity)
+    return 1.0 - mean_rouge
+
+
+def calculate_semantic_diversity_simple(texts: list[str]) -> float:
+    """
+    Calculate semantic diversity using token-level Jaccard similarity.
+    This is a simpler alternative when embeddings aren't available.
+
+    Returns diversity score 0-1 where 1 = maximum diversity.
+    """
+    if len(texts) < 2:
+        return 1.0
+
+    def jaccard_similarity(text1: str, text2: str) -> float:
+        """Calculate Jaccard similarity between tokenized texts."""
+        tokens1 = set(normalize(text1).split())
+        tokens2 = set(normalize(text2).split())
+
+        if not tokens1 and not tokens2:
+            return 1.0
+
+        intersection = len(tokens1 & tokens2)
+        union = len(tokens1 | tokens2)
+
+        return intersection / union if union > 0 else 0.0
+
+    # Calculate mean pairwise Jaccard similarity
+    total_sim = 0.0
+    pairs = 0
+
+    for i in range(len(texts)):
+        for j in range(i + 1, len(texts)):
+            total_sim += jaccard_similarity(texts[i], texts[j])
+            pairs += 1
+
+    if pairs == 0:
+        return 1.0
+
+    mean_sim = total_sim / pairs
+
+    # Convert to diversity: 1 - similarity
+    return 1.0 - mean_sim
+
+
+def calculate_ngram_diversity(texts: list[str], n: int = 2) -> float:
+    """
+    Calculate n-gram diversity (distinct-n metric).
+
+    Returns the ratio of unique n-grams to total n-grams across all texts.
+    Higher ratio = more diverse vocabulary usage.
+    """
+    if not texts:
+        return 0.0
+
+    all_ngrams = []
+
+    for text in texts:
+        tokens = normalize(text).split()
+        for i in range(len(tokens) - n + 1):
+            ngram = tuple(tokens[i:i+n])
+            all_ngrams.append(ngram)
+
+    if not all_ngrams:
+        return 1.0
+
+    unique_ngrams = len(set(all_ngrams))
+    total_ngrams = len(all_ngrams)
+
+    return unique_ngrams / total_ngrams
+
+
+def calculate_embedding_diversity(texts: list[str], api_key: str = None) -> Optional[float]:
+    """
+    Calculate semantic diversity using OpenAI embeddings (text-embedding-3-small).
+    This matches the methodology from the VS paper (arXiv:2510.01171).
+
+    Returns diversity score 0-1 where 1 = maximum diversity, or None if unavailable.
+    """
+    if not OPENAI_AVAILABLE:
+        return None
+
+    if len(texts) < 2:
+        return 1.0
+
+    # Get API key from parameter, environment, or .env file
+    if not api_key:
+        api_key = os.environ.get("OPENAI_KEY") or os.environ.get("OPENAI_API_KEY")
+
+    # Try loading from .env file if not in environment
+    if not api_key:
+        env_path = Path(__file__).parent / ".env"
+        if env_path.exists():
+            with open(env_path) as f:
+                for line in f:
+                    if line.startswith("OPENAI_KEY="):
+                        api_key = line.split("=", 1)[1].strip()
+                        break
+
+    if not api_key:
+        return None
+
+    try:
+        client = OpenAI(api_key=api_key)
+
+        # Get embeddings for all texts
+        response = client.embeddings.create(
+            model="text-embedding-3-small",
+            input=texts
+        )
+
+        embeddings = [item.embedding for item in response.data]
+
+        # Calculate mean pairwise cosine similarity
+        def cosine_similarity(v1: list[float], v2: list[float]) -> float:
+            dot_product = sum(a * b for a, b in zip(v1, v2))
+            norm1 = sum(a * a for a in v1) ** 0.5
+            norm2 = sum(b * b for b in v2) ** 0.5
+            if norm1 == 0 or norm2 == 0:
+                return 0.0
+            return dot_product / (norm1 * norm2)
+
+        total_sim = 0.0
+        pairs = 0
+
+        for i in range(len(embeddings)):
+            for j in range(i + 1, len(embeddings)):
+                sim = cosine_similarity(embeddings[i], embeddings[j])
+                # Clip negative similarities to 0 (as per paper methodology)
+                total_sim += max(0, sim)
+                pairs += 1
+
+        if pairs == 0:
+            return 1.0
+
+        mean_sim = total_sim / pairs
+
+        # Convert to diversity: 1 - similarity
+        return 1.0 - mean_sim
+
+    except Exception as e:
+        print(f"Warning: Embedding diversity calculation failed: {e}")
+        return None
+
+
+@dataclass
+class DiversityResult:
+    """Result of diversity evaluation."""
+    lexical_diversity: float      # Based on ROUGE-L (0-1, higher = more diverse)
+    semantic_diversity: float     # Based on Jaccard similarity (0-1)
+    embedding_diversity: Optional[float]  # Based on OpenAI embeddings (0-1) - paper methodology
+    bigram_diversity: float       # Distinct-2 metric (0-1)
+    trigram_diversity: float      # Distinct-3 metric (0-1)
+    combined_diversity: float     # Weighted average
+    num_responses: int
+    details: dict
+
+
+def evaluate_diversity(texts: list[str], use_embeddings: bool = True) -> DiversityResult:
+    """
+    Comprehensive diversity evaluation for a set of texts.
+
+    Args:
+        texts: List of text responses to evaluate for diversity
+        use_embeddings: Whether to use OpenAI embeddings (adds API cost but more accurate)
+
+    Returns:
+        DiversityResult with multiple diversity metrics
+    """
+    if not texts:
+        return DiversityResult(
+            lexical_diversity=0.0,
+            semantic_diversity=0.0,
+            embedding_diversity=None,
+            bigram_diversity=0.0,
+            trigram_diversity=0.0,
+            combined_diversity=0.0,
+            num_responses=0,
+            details={}
+        )
+
+    lexical = calculate_lexical_diversity_rouge(texts)
+    semantic = calculate_semantic_diversity_simple(texts)
+    bigram = calculate_ngram_diversity(texts, n=2)
+    trigram = calculate_ngram_diversity(texts, n=3)
+
+    # Try to get embedding-based diversity (paper methodology)
+    embedding = None
+    if use_embeddings:
+        embedding = calculate_embedding_diversity(texts)
+
+    # Combined score: prefer embedding if available, otherwise use lexical+semantic
+    if embedding is not None:
+        # Paper methodology: embedding-based semantic diversity is primary
+        combined = (embedding * 0.50 + lexical * 0.20 + bigram * 0.15 + trigram * 0.15)
+    else:
+        # Fallback: weight lexical and Jaccard semantic
+        combined = (lexical * 0.35 + semantic * 0.35 + bigram * 0.15 + trigram * 0.15)
+
+    return DiversityResult(
+        lexical_diversity=round(lexical, 4),
+        semantic_diversity=round(semantic, 4),
+        embedding_diversity=round(embedding, 4) if embedding is not None else None,
+        bigram_diversity=round(bigram, 4),
+        trigram_diversity=round(trigram, 4),
+        combined_diversity=round(combined, 4),
+        num_responses=len(texts),
+        details={
+            "texts_evaluated": len(texts),
+            "avg_text_length": sum(len(t.split()) for t in texts) / len(texts) if texts else 0,
+            "embedding_used": embedding is not None
+        }
+    )
+
+
+def evaluate_vs_diversity(vs_result: VSResult) -> DiversityResult:
+    """
+    Evaluate diversity of responses from Verbalized Sampling.
+
+    Args:
+        vs_result: Parsed VSResult from parse_verbalized_sampling()
+
+    Returns:
+        DiversityResult measuring how diverse the VS outputs are
+    """
+    texts = [r.text for r in vs_result.responses]
+    return evaluate_diversity(texts)
+
+
+# =============================================================================
 # Batch Evaluation Helpers
 # =============================================================================
 
@@ -892,4 +1312,45 @@ def factorial(n):
     print(f"   Response: '{response[:50]}...'")
     print(f"   Result: correct={result.correct}, score={result.score:.2f}, reason='{result.reason}'")
 
-    print("\n All tests completed!")
+    # Test Verbalized Sampling parsing
+    print("\n9. Verbalized Sampling Parsing:")
+    vs_response = """Response 1 (Prob: 0.35): Calculate 7 × $2 = $14, then 20% off = $14 - $2.80 = $11.20
+Response 2 (Prob: 0.25): 7 apples at $2 = $14. Discounted price = $14 × 0.80 = $11.20
+Response 3 (Prob: 0.20): Unit price after discount = $2 × 0.80 = $1.60. Total = 7 × $1.60 = $11.20
+Response 4 (Prob: 0.12): Total = $14. Discount = $14 × 0.20 = $2.80. Final = $11.20
+Response 5 (Prob: 0.08): Using 80% of full price: $14 × 80/100 = $11.20"""
+    vs_result = parse_verbalized_sampling(vs_response)
+    print(f"   Parsed {vs_result.total_responses} responses, parse_success={vs_result.parse_success}")
+    print(f"   Highest prob ({vs_result.highest_prob:.2f}): '{vs_result.highest_prob_response[:50]}...'")
+
+    # Test VS evaluation
+    eval_result, _ = evaluate_vs_response(vs_response, tc)
+    print(f"   VS Eval: correct={eval_result.correct}, any_correct={eval_result.details.get('vs_any_correct')}")
+
+    # Test diversity metrics
+    print("\n10. Diversity Metrics:")
+    diverse_texts = [
+        "The bear walked through the forest, searching for honey.",
+        "A spacecraft landed on Mars, its crew stepping into red dust.",
+        "The chef prepared a delicate soufflé in the quiet kitchen.",
+        "Quantum computers revolutionized cryptography overnight.",
+        "The ancient library held secrets from civilizations long forgotten."
+    ]
+    div_result = evaluate_diversity(diverse_texts)
+    print(f"   Lexical diversity: {div_result.lexical_diversity:.3f}")
+    print(f"   Semantic diversity: {div_result.semantic_diversity:.3f}")
+    print(f"   Bigram diversity: {div_result.bigram_diversity:.3f}")
+    print(f"   Combined diversity: {div_result.combined_diversity:.3f}")
+
+    similar_texts = [
+        "The bear walked through the forest looking for food.",
+        "The bear walked through the woods searching for food.",
+        "The bear walked through the forest seeking food.",
+        "A bear was walking through the forest looking for food.",
+        "The bear wandered through the forest looking for food."
+    ]
+    div_result_sim = evaluate_diversity(similar_texts)
+    print(f"\n   Similar texts:")
+    print(f"   Combined diversity: {div_result_sim.combined_diversity:.3f} (lower = more similar)")
+
+    print("\n[OK] All tests completed!")

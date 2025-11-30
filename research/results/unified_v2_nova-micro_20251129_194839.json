@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "model": "nova-micro",
+    "model_name": "Amazon Nova Micro",
+    "provider": "bedrock",
+    "tier": "budget",
+    "timestamp": "20251129_194839",
+    "styles_tested": [
+      "zero_shot",
+      "verbalized_sampling"
+    ],
+    "version": "v2.1_with_verbalized_sampling",
+    "llm_judge_enabled": false
+  },
+  "results": [
+    {
+      "test_id": "math-discount-01",
+      "test_name": "Discount Calculation",
+      "category": "math",
+      "eval_type": "numeric",
+      "styles": {
+        "zero_shot": {
+          "response": "To determine the cost of 7 apples with the given discount, we can follow these steps:\n\n1. Calculate the total cost without any discount:\n   \\[\n   \\text{Cost per apple} = \\$2\n   \\]\n   \\[\n   \\text{Number of apples} = 7\n   \\]\n   \\[\n   \\text{Total cost without discount} = 7 \\times 2 = \\$14\n   \\]\n\n2. Since you are buying 7 apples, which is more than 5, you qualify for a 20% discount.\n\n3. Calculate the discount amount:\n   \\[\n   \\text{Discount rate} = 20\\% = 0.20\n   \\]\n   \\[\n   \\text{Discount amount} = 0.20 \\times 14 = \\$2.80\n   \\]\n\n4. Subtract the discount from the total cost to find the final price:\n   \\[\n   \\text{Final price} = 14 - 2.80 = \\$11.20\n   \\]\n\nTherefore, the cost of 7 apples with the discount applied is \\(\\boxed{11.20}\\).",
+          "input_tokens": 39,
+          "output_tokens": 253,
+          "total_tokens": 292,
+          "latency_ms": 2070.9025859832764,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 11.2, found: [7.0, 1.0, 2.0]",
+          "eval_details": {
+            "expected": 11.2,
+            "extracted_numbers": [
+              7.0,
+              1.0,
+              2.0,
+              7.0,
+              7.0
+            ]
+          }
+        },
+        "verbalized_sampling": {
+          "response": "Response 1 (Prob: 0.95): \n[Calculation Method: First, calculate the total cost without the discount. Since each apple costs $2, 7 apples cost 7 * $2 = $14. Since 7 apples are more than 5, apply the 20% discount. The discount amount is $14 * 0.20 = $2.80. Subtract the discount from the total cost: $14 - $2.80 = $11.20. Final Answer: $11.20]\n\nResponse 2 (Prob: 0.90): \n[Calculation Method: Calculate the cost per apple with the discount applied. Since 7 apples qualify for a 20% discount, the price per apple becomes $2 * (1 - 0.20) = $1.60. Multiply the discounted price per apple by the number of apples: 7 * $1.60 = $11.20. Final Answer: $11.20]\n\nResponse 3 (Prob: 0.85): \n[Calculation Method: Calculate the total cost without any discount first, then apply the discount. Total cost without discount for 7 apples is 7 * $2 = $14. Since 7 apples qualify for a 20% discount, calculate the discount amount: $14 * 0.20 = $2.80. Subtract the discount from the total cost: $14 - $2.80 = $11.20. Final Answer: $11.20]\n\nResponse 4 (Prob: 0.75): \n[Calculation Method: Calculate the cost for 5 apples without discount and then add the cost of the remaining 2 apples separately. Cost for 5 apples at a 20% discount: 5 * $2 * 0.80 = $8.00. Cost for the remaining 2 apples: 2 * $2 = $4.00. Add the two amounts: $8.00 + $4.00 = $12.00. Final Answer: $12.00 (Incorrect approach, but shows a different strategy)]\n\nResponse 5 (Prob: 0.60): \n[Calculation Method: Calculate the total cost without discount first, then mistakenly apply the discount to the entire amount instead of just the discounted portion. Total cost without discount for 7 apples is 7 * $2 = $14. Apply the 20% discount to the entire $14: $14 * 0.20 = $2.80. Subtract the incorrect discount from the total cost: $14 - $2.80 = $11.20. Final Answer: $11.20 (Correct answer but incorrect logic)]",
+          "input_tokens": 173,
+          "output_tokens": 612,
+          "total_tokens": 785,
+          "latency_ms": 1993.237018585205,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 11.2, found: [2.0, 7.0, 7.0]",
+          "eval_details": {
+            "expected": 11.2,
+            "extracted_numbers": [
+              2.0,
+              7.0,
+              7.0,
+              2.0,
+              14.0
+            ],
+            "vs_parsed": true,
+            "vs_total_responses": 5,
+            "vs_highest_prob": 0.95,
+            "vs_any_correct": true,
+            "vs_correct_count": 4
+          },
+          "verbalized_sampling": true,
+          "vs_parse_success": true,
+          "vs_total_responses": 5,
+          "vs_highest_prob": 0.95,
+          "vs_any_correct": true,
+          "vs_correct_count": 4,
+          "diversity": {
+            "lexical": 0.5729,
+            "semantic": 0.6076,
+            "bigram": 0.6144,
+            "trigram": 0.7359,
+            "combined": 0.6157
+          }
+        }
+      }
+    }
+  ],
+  "summary": {
+    "zero_shot": {
+      "accuracy": 100.0,
+      "avg_score": 1.0,
+      "avg_tokens": 292,
+      "tests_completed": 1,
+      "correct": 1
+    },
+    "verbalized_sampling": {
+      "accuracy": 100.0,
+      "avg_score": 1.0,
+      "avg_tokens": 785,
+      "tests_completed": 1,
+      "correct": 1,
+      "avg_diversity": 0.616,
+      "any_correct_rate": 100.0,
+      "parse_success_rate": 100.0
+    }
+  }
+}

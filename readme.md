@@ -15,7 +15,7 @@ What we found was more nuanced: **schema prompting helps in some cases, but simp
 So we pivoted. Instead of promoting one prompting style, we built a **research framework** to answer: *"Which prompting technique should I use for my model and use case?"*
 
 This repository contains:
-- Benchmark tooling for 9+ prompting techniques
+- Benchmark tooling for 10 prompting techniques (including Verbalized Sampling)
 - Results across budget, mid-tier, and premium models
 - Data-driven recommendations by use case
 
@@ -26,10 +26,12 @@ This repository contains:
 1. [Key Findings](#key-findings)
 2. [Results by Model](#results-by-model)
 3. [Code Generation Results](#code-generation-results)
-4. [Agentic Techniques](#agentic-techniques)
-5. [Methodology](#methodology)
-6. [Running Benchmarks](#running-benchmarks)
-7. [What Happened to Ailo](#what-happened-to-ailo)
+4. [V3 TRUE Multi-Turn Results](#v3-true-multi-turn-results)
+5. [Verbalized Sampling (VS)](#verbalized-sampling-vs--a-cautionary-tale)
+6. [Agentic Techniques](#agentic-techniques)
+7. [Methodology](#methodology)
+8. [Running Benchmarks](#running-benchmarks)
+9. [What Happened to Ailo](#what-happened-to-ailo)
 
 ---
 
@@ -51,6 +53,7 @@ zero_shot          93.1%             325       Baseline: surprisingly strong
 meta               87.4%             658       Often over-complicates
 tot                80.2%           4,806       TRUE MULTI-TURN: Not worth cost
 self_consistency   81.8%           5,491       TRUE MULTI-TURN: 17x tokens, poor ROI
+verbalized_samp.   62.5%             689       CREATIVE ONLY: -37% accuracy on empirical tasks
 ```
 
 > **V3 Update**: ToT and Self-Consistency now use TRUE multi-turn conversations (4 API calls each) instead of single-call simulations. This increased tokens 7-17x but reduced quality scores due to context drift.
@@ -94,6 +97,7 @@ tot              88.9%       0.94        0.93       745      Overkill for these 
 | **Agents/Agentic** | `zero_shot` + tools | Let tools handle complexity | Baseline |
 | **Data Analysis** | `cot` or `gen_knowledge` | Reasoning + domain context | +52-63% |
 | **Creative Writing** | `directional` | Hints guide without constraining | +35% tokens |
+| **Creative Diversity** | `verbalized_sampling` | When you WANT multiple varied outputs | +132% tokens |
 | **API/Integration** | `schema` | Structured output, predictable format | +28% tokens |
 | **Quick Prototyping** | `zero_shot` | Fast iteration, 93.1% baseline | Baseline |
 
@@ -145,13 +149,15 @@ Math/Logic         cot                  95.9% combined, best reasoning
 Agents/Agentic     zero_shot            Keep prompts simple, let tools work
 Data analysis      cot / gen_knowledge  Reasoning prevents errors
 Creative           directional          Hints without constraints
+Creative diversity verbalized_sampling  When you need 5 varied options
 Budget models      cot > schema         Step-by-step helps smaller models
 Premium models     zero_shot            Already excellent, save tokens
 Token-sensitive    few_shot             302 avg tokens (lowest)
-Avoid              self_consistency     78.2%, worst ROI
+Avoid (accuracy)   verbalized_sampling  62.5% accuracy, worst for correctness
+Avoid (cost)       self_consistency     78.2%, 17x tokens, worst ROI
 ```
 
-### Six Takeaways (V3 Results with TRUE Multi-Turn)
+### Seven Takeaways (V3 Results with TRUE Multi-Turn + VS)
 
 1. **Zero-shot is better than expected** — 93.1% combined score, works great on modern models
 2. **CoT wins for reasoning** — Especially on budget models (95.9% combined)
@@ -159,6 +165,7 @@ Avoid              self_consistency     78.2%, worst ROI
 4. **Schema provides clarity** — Highest clarity scores (0.99) across models
 5. **Few-shot can backfire** — On small models like Mistral 7B, accuracy dropped 12.5%
 6. **Multi-turn hurts small models most** — Mistral 7B accuracy dropped to 75% with TRUE multi-turn ToT/SC (vs 100% single-call)
+7. **Verbalized Sampling is for creativity, not correctness** — VS dropped accuracy by 37% on empirical tasks; only use when you explicitly want diverse outputs
 
 ---
 
@@ -394,6 +401,96 @@ Use multi-turn only when:
 
 ---
 
+## Verbalized Sampling (VS) — A Cautionary Tale
+
+After reading the Stanford paper ["Verbalized Sampling: How to Mitigate Mode Collapse and Unlock LLM Diversity"](https://arxiv.org/abs/2510.01171), I implemented VS as a 10th prompting style to test its claims. The paper argues that VS can recover diverse outputs lost to RLHF alignment by asking models to generate distributions of responses with probabilities.
+
+**I knew going in that VS was designed for creative diversity, not correctness.** But I wanted to see how this prompting technique would fare alongside others in empirical, correctness-focused scenarios.
+
+### VS Implementation
+
+```
+Generate 5 different solutions to this problem, each with a probability score (0.0-1.0).
+
+Format:
+Response 1 (Prob: X.XX): [solution]
+Response 2 (Prob: X.XX): [solution]
+...
+```
+
+### VS Results (Head-to-Head vs ToT)
+
+| Model | Style | Accuracy | Tokens | Diversity | ROI |
+|-------|-------|----------|--------|-----------|-----|
+| **Claude Haiku** | zero_shot | 87.5% | 314 | — | baseline |
+| | tot | 87.5% | 5,072 | — | +0.00% per 100 tokens |
+| | verbalized_sampling | 62.5% | 971 | 0.50 | -3.81% per 100 tokens |
+| **GPT-4o-mini** | zero_shot | 100.0% | 297 | — | baseline |
+| | tot | 100.0% | 4,710 | — | +0.00% per 100 tokens |
+| | verbalized_sampling | 62.5% | 689 | 0.27 | -9.57% per 100 tokens |
+| **Gemini 2.0 Flash** | zero_shot | 87.5% | 434 | — | baseline |
+| | tot | 87.5% | 5,166 | — | +0.00% per 100 tokens |
+| | verbalized_sampling | 62.5% | 848 | 0.30 | -6.04% per 100 tokens |
+
+> **Diversity** measured using OpenAI `text-embedding-3-small` cosine similarity (paper methodology). Score = 1 - mean pairwise similarity. Higher = more diverse.
+
+### Full Benchmark (GPT-4o-mini, All 10 Styles)
+
+```
+Style                  Accuracy    vs Zero    Tokens    ROI
+──────────────────────────────────────────────────────────────────────────
+zero_shot                100.0%   baseline       297    baseline
+cot                      100.0%      +0.0%       477    +0.00%
+meta                     100.0%      +0.0%       650    +0.00%
+gen_knowledge            100.0%      +0.0%       408    +0.00%
+directional              100.0%      +0.0%       394    +0.00%
+tot                      100.0%      +0.0%     4,710    +0.00%
+few_shot                  87.5%     -12.5%       278    EFFICIENT
+schema                    87.5%     -12.5%       440    -8.74%
+self_consistency          87.5%     -12.5%     5,083    -0.26%
+verbalized_sampling       62.5%     -37.5%       689    -9.57%   WORST
+```
+
+### VS-Specific Metrics
+
+```
+Embedding Diversity:  0.273  (using OpenAI text-embedding-3-small)
+Combined Diversity:   0.520  (lexical + semantic + n-gram)
+Parse Success Rate:   100%   (VS format reliably parsed)
+Any Correct Rate:     75%    (at least 1 of 5 answers correct)
+Top-1 Accuracy:       62.5%  (highest-probability answer correct)
+```
+
+### Key Findings
+
+1. **VS is NOT a cheaper ToT** — ToT maintains 100% accuracy at 4,710 tokens; VS drops to 62.5% at 689 tokens
+2. **VS hurts accuracy by 25-37%** — Across all models tested, VS consistently underperformed
+3. **VS's probability ranking is unreliable** — 75% of tests had a correct answer among the 5, but VS only selected it 62.5% of the time
+4. **Diversity is moderate, not revolutionary** — 0.27-0.50 embedding diversity, not the 1.6-2.1x improvement claimed in the paper
+5. **The paper tested creative tasks** — Poems, jokes, stories have no "correct" answer; VS excels where diversity IS the goal
+
+### Why VS Failed on Our Tests
+
+The paper's methodology evaluated **creative writing** where:
+- Multiple outputs are valid (any joke about coffee is acceptable)
+- Diversity IS the success metric
+- Human judges rated "interestingness" not correctness
+
+Our benchmark tests **correctness-focused tasks** where:
+- There's ONE right answer ($11.20, not $14.00)
+- VS's "distribution thinking" dilutes focus on the correct solution
+- Asking for 5 alternatives spreads cognitive effort across wrong paths
+
+### The Verdict
+
+**VS is a real technique, but it's a creative diversity tool—NOT a general prompting improvement.**
+
+I will continue to include VS in the benchmark for completeness, but **I won't use it for anything except creative tasks** where I explicitly want diverse outputs (story brainstorming, UI variation generation, etc.).
+
+For correctness-focused work: stick with zero_shot, cot, or schema.
+
+---
+
 ## Agentic Techniques
 
 Techniques requiring tool execution or multi-turn orchestration:
@@ -449,6 +546,7 @@ PAL            ████████░░░░░░░░░░░░   40
 | **directional** | Hints/keywords to guide | -10% to +27% | 1 |
 | **tot** | TRUE multi-turn: 3 paths + synthesis | +1,100% to +1,700% | 4 |
 | **self_consistency** | TRUE multi-turn: 3 methods + reconcile | +1,200% to +2,000% | 4 |
+| **verbalized_sampling** | Generate 5 responses with probabilities | +95% to +170% | 1 |
 
 ### How Each Technique Was Tested
 
@@ -465,6 +563,7 @@ Every technique was tested with the **same task** presented in different formats
 | **Directional** | "Calculate price. HINTS: Total=$14, discount=20%" |
 | **ToT** | 4 turns: Path A → Path B → Path C → Synthesis (TRUE multi-turn) |
 | **Self-Consistency** | 4 turns: Method 1 → Method 2 → Method 3 → Reconcile (TRUE multi-turn) |
+| **Verbalized Sampling** | "Generate 5 approaches with probabilities: Response 1 (Prob: 0.35)..." |
 
 ### Evaluation Criteria (V2)
 
@@ -496,7 +595,7 @@ Each dimension scored 0.0 to 1.0. The combined LLM judge score averages all four
 
 ### Test Suite (V2)
 
-**Unified Benchmark** (8 test cases × 9 styles = 72 per model):
+**Unified Benchmark** (8 test cases × 10 styles = 80 per model):
 - Math: Discount calculation, percentage calculation
 - Logic: Pet logic puzzle
 - Writing: Executive summary
@@ -637,4 +736,4 @@ MIT License — Use this research freely.
 
 ---
 
-*V3: Empirical prompting research with TRUE multi-turn and LLM-as-Judge evaluation, November 2025*
+*V3.1: Empirical prompting research with TRUE multi-turn, Verbalized Sampling, and LLM-as-Judge evaluation, November 2025*

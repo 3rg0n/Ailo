@@ -1,0 +1,1001 @@
+{
+  "metadata": {
+    "model": "claude-haiku",
+    "model_name": "Claude Haiku 4.5",
+    "provider": "bedrock",
+    "tier": "budget",
+    "timestamp": "20251130_170619",
+    "styles_tested": [
+      "zero_shot",
+      "tot",
+      "verbalized_sampling"
+    ],
+    "version": "v2.1_with_verbalized_sampling",
+    "llm_judge_enabled": false
+  },
+  "results": [
+    {
+      "test_id": "math-discount-01",
+      "test_name": "Discount Calculation",
+      "category": "math",
+      "eval_type": "numeric",
+      "styles": {
+        "zero_shot": {
+          "response": "# Cost of 7 Apples\n\nSince 7 apples is 5 or more, the 20% discount applies.\n\n**Regular price:** 7 \u00d7 $2 = $14\n\n**Discount:** $14 \u00d7 0.20 = $2.80\n\n**Final price:** $14 - $2.80 = **$11.20**",
+          "input_tokens": 51,
+          "output_tokens": 88,
+          "total_tokens": 139,
+          "latency_ms": 2349.510908126831,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 11.2, found: [7.0, 7.0, 5.0]",
+          "eval_details": {
+            "expected": 11.2,
+            "extracted_numbers": [
+              7.0,
+              7.0,
+              5.0,
+              20.0,
+              7.0
+            ]
+          }
+        },
+        "tot": {
+          "response": "# EVALUATION OF ALL THREE PATHS\n\n## 1. Which path(s) arrived at the correct answer?\n\n**All three paths arrived at the correct answer: $11.20**\n\n- **Path A:** $14.00 - $2.80 = $11.20 \u2713\n- **Path B:** 7 \u00d7 $1.60 = $11.20 \u2713\n- **Path C:** Verification confirmed $11.20 \u2713\n\n## 2. Which approach was most reliable?\n\n**Path C was the most reliable** because it:\n- Verified the answer using multiple independent methods\n- Worked backwards to confirm the discount percentage\n- Performed sanity checks and logic validation\n- Caught potential errors through cross-verification\n- Provided confidence in the answer through redundancy\n\n**Path A & B were equally reliable for calculation**, but:\n- Path A used direct subtraction (intuitive)\n- Path B used multiplication by the remaining percentage (efficient)\n- Both are valid computational methods with no errors\n\n## 3. FINAL ANSWER\n\n---\n\n### **7 apples would cost $11.20**\n\n---\n\n## SYNTHESIS\n\nThe store sells apples at $2 each. Since 7 apples exceeds the 5-apple threshold, the 20% discount applies. Whether calculated by subtracting the discount or by paying 80% of the original price, the result is consistent: **$11.20 is the definitive final price.**",
+          "input_tokens": 2018,
+          "output_tokens": 1137,
+          "total_tokens": 3155,
+          "latency_ms": 0,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 11.2, found: [1.0, 11.2, 14.0]",
+          "eval_details": {
+            "expected": 11.2,
+            "extracted_numbers": [
+              1.0,
+              11.2,
+              14.0,
+              2.8,
+              11.2
+            ]
+          },
+          "multi_turn": true,
+          "num_calls": 4,
+          "turns": [
+            {
+              "path": "A",
+              "response": "# PATH A: Straightforward Direct Approach\n\n**Given Information:**\n- Price per apple: $2\n- Quantity: 7 apples\n- Discount: 20% off when buying 5 or more\n\n**Step 1: Check if discount applies**\n7 apples \u2265 5 apples \u2192 Yes, discount applies \u2713\n\n**Step 2: Calculate original price**\n7 apples \u00d7 $2 = $14\n\n**Step 3: Calculate discount amount**\n20% of $14 = 0.20 \u00d7 $14 = $2.80\n\n**Step 4: Subtract discount from original price**\n$14 - $2.80 = $11.20\n\n---\n\n## **Final Price: $11.20**"
+            },
+            {
+              "path": "B",
+              "response": "# PATH B: Alternative Method - Calculate Discounted Price Directly\n\n**Given Information:**\n- Price per apple: $2\n- Quantity: 7 apples\n- Discount: 20% off when buying 5 or more\n\n**Step 1: Check if discount applies**\n7 apples \u2265 5 apples \u2192 Yes, discount applies \u2713\n\n**Step 2: Determine the percentage you actually pay**\nIf you get a 20% discount, you pay: 100% - 20% = 80% of the original price\n\n**Step 3: Calculate discounted price per apple**\n$2 \u00d7 0.80 = $1.60 per apple (after discount)\n\n**Step 4: Multiply discounted price by quantity**\n7 apples \u00d7 $1.60 = $11.20\n\n---\n\n## **Final Price: $11.20**\n\n---\n\n**Comparison:** Path A subtracts the discount amount, while Path B calculates the discounted unit price first, then multiplies. Both arrive at the same answer through different logical sequences."
+            },
+            {
+              "path": "C",
+              "response": "# PATH C: Verification - Working Backwards & Logic Check\n\n**Given Information:**\n- Final price: $11.20\n- Original price: $14\n- Quantity: 7 apples\n\n**Step 1: Work backwards to find the discount percentage**\nDiscount amount = $14 - $11.20 = $2.80\n\nDiscount percentage = ($2.80 \u00f7 $14) \u00d7 100 = 20% \u2713\n\n**Step 2: Verify the per-apple cost**\n$11.20 \u00f7 7 apples = $1.60 per apple\n\nOriginal price per apple: $2\nDiscount per apple: $2 \u00d7 0.20 = $0.40\nDiscounted price: $2 - $0.40 = $1.60 \u2713\n\n**Step 3: Sanity check using estimation**\n- 7 apples at $2 each \u2248 $14 (rough estimate)\n- 20% off $14 \u2248 roughly $11-$12 range\n- $11.20 falls in this range \u2713\n\n**Step 4: Logic verification**\n- Discount applies? 7 \u2265 5 \u2192 Yes \u2713\n- Discount direction correct? Price went down \u2192 Yes \u2713\n- Discount magnitude reasonable? 20% of $14 = $2.80 \u2192 Yes \u2713\n\n---\n\n## **Verification Complete: $11.20 is correct** \u2713\n\nAll three paths confirm the same answer through independent methods."
+            },
+            {
+              "path": "synthesis",
+              "response": "# EVALUATION OF ALL THREE PATHS\n\n## 1. Which path(s) arrived at the correct answer?\n\n**All three paths arrived at the correct answer: $11.20**\n\n- **Path A:** $14.00 - $2.80 = $11.20 \u2713\n- **Path B:** 7 \u00d7 $1.60 = $11.20 \u2713\n- **Path C:** Verification confirmed $11.20 \u2713\n\n## 2. Which approach was most reliable?\n\n**Path C was the most reliable** because it:\n- Verified the answer using multiple independent methods\n- Worked backwards to confirm the discount percentage\n- Performed sanity checks and logic validation\n- Caught potential errors through cross-verification\n- Provided confidence in the answer through redundancy\n\n**Path A & B were equally reliable for calculation**, but:\n- Path A used direct subtraction (intuitive)\n- Path B used multiplication by the remaining percentage (efficient)\n- Both are valid computational methods with no errors\n\n## 3. FINAL ANSWER\n\n---\n\n### **7 apples would cost $11.20**\n\n---\n\n## SYNTHESIS\n\nThe store sells apples at $2 each. Since 7 apples exceeds the 5-apple threshold, the 20% discount applies. Whether calculated by subtracting the discount or by paying 80% of the original price, the result is consistent: **$11.20 is the definitive final price.**"
+            }
+          ]
+        },
+        "verbalized_sampling": {
+          "response": "# Five Approaches to Apple Pricing Problem\n\nResponse 1 (Prob: 0.98): **Direct calculation with discount applied**\n- 7 apples \u00d7 $2 = $14 base price\n- Since 7 \u2265 5, apply 20% discount: $14 \u00d7 0.20 = $2.80 discount\n- Final cost: $14 - $2.80 = **$11.20**\n\nResponse 2 (Prob: 0.98): **Multiplying by discounted unit price**\n- Discounted price per apple: $2 \u00d7 (1 - 0.20) = $2 \u00d7 0.80 = $1.60\n- 7 apples \u00d7 $1.60 = **$11.20**\n\nResponse 3 (Prob: 0.92): **Percentage-based calculation**\n- Base cost: 7 \u00d7 $2 = $14\n- After 20% discount, pay 80% of original: $14 \u00d7 0.80 = **$11.20**\n\nResponse 4 (Prob: 0.75): **Itemized approach (less efficient)**\n- First 4 apples (no discount): 4 \u00d7 $2 = $8\n- Remaining 3 apples (with discount): 3 \u00d7 $1.60 = $4.80\n- Total: $8 + $4.80 = **$12.80** \u274c (Incorrect - misinterprets that discount applies to entire purchase)\n\nResponse 5 (Prob: 0.60): **Alternative discount interpretation**\n- Assumes discount is $0.20 per apple (not 20%): 7 \u00d7 ($2 - $0.20) = 7 \u00d7 $1.80 = **$12.60** \u274c (Incorrect - misreads \"20% discount\" as fixed amount)\n\n---\n\n**Correct Answer: $11.20** (Responses 1, 2, and 3 are valid approaches)",
+          "input_tokens": 199,
+          "output_tokens": 483,
+          "total_tokens": 682,
+          "latency_ms": 5243.165493011475,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 11.2, found: [7.0, 2.0, 14.0]",
+          "eval_details": {
+            "expected": 11.2,
+            "extracted_numbers": [
+              7.0,
+              2.0,
+              14.0,
+              7.0,
+              5.0
+            ],
+            "vs_parsed": true,
+            "vs_total_responses": 5,
+            "vs_highest_prob": 0.98,
+            "vs_any_correct": true,
+            "vs_correct_count": 4
+          },
+          "verbalized_sampling": true,
+          "vs_parse_success": true,
+          "vs_total_responses": 5,
+          "vs_highest_prob": 0.98,
+          "vs_any_correct": true,
+          "vs_correct_count": 4,
+          "diversity": {
+            "lexical": 0.7758,
+            "semantic": 0.8346,
+            "embedding": 0.257,
+            "bigram": 0.8768,
+            "trigram": 0.9774,
+            "combined": 0.5618
+          }
+        }
+      }
+    },
+    {
+      "test_id": "math-percent-01",
+      "test_name": "Percentage Calculation",
+      "category": "math",
+      "eval_type": "numeric",
+      "styles": {
+        "zero_shot": {
+          "response": "# Percentage Increase Calculation\n\n**Formula:**\nPercentage Increase = [(New Value - Old Value) / Old Value] \u00d7 100\n\n**Calculation:**\n- New Value = $100,000\n- Old Value = $80,000\n- Difference = $100,000 - $80,000 = $20,000\n\nPercentage Increase = ($20,000 / $80,000) \u00d7 100 = **25%**\n\nThe revenue increased by **25%**.",
+          "input_tokens": 31,
+          "output_tokens": 113,
+          "total_tokens": 144,
+          "latency_ms": 1567.6252841949463,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 25.0, found: [100.0, 100000.0, 80000.0]",
+          "eval_details": {
+            "expected": 25.0,
+            "extracted_numbers": [
+              100.0,
+              100000.0,
+              80000.0,
+              100000.0,
+              80000.0
+            ]
+          }
+        },
+        "tot": {
+          "response": "# Evaluation of All Three Paths\n\n## 1. Correctness of Each Path\n\n| Path | Answer | Correct? |\n|------|--------|----------|\n| **Path A** | 25% | \u2713 Yes |\n| **Path B** | 25% | \u2713 Yes |\n| **Path C** | 25% | \u2713 Yes |\n\n**All three paths arrived at the correct answer.**\n\n---\n\n## 2. Most Reliable Approach\n\n**Path C (Working Backwards) is the most reliable** because it:\n\n- **Validates the answer** rather than just calculating it\n- **Eliminates calculation errors** by confirming the logic\n- **Provides confidence** that Paths A and B were executed correctly\n- **Uses multiple verification methods** (backwards calculation + estimation)\n- **Acts as a quality control check** for the other approaches\n\n**Path A** is the most straightforward and efficient for initial calculation.\n\n**Path B** provides an alternative perspective that deepens understanding.\n\n---\n\n## FINAL ANSWER\n\n### **The percentage increase in revenue is 25%**\n\n**Supporting Facts:**\n- Revenue increased from $80,000 to $100,000\n- Dollar increase: $20,000\n- Percentage calculation: ($20,000 \u00f7 $80,000) \u00d7 100 = **25%**\n- Verification: $80,000 \u00d7 1.25 = $100,000 \u2713",
+          "input_tokens": 1875,
+          "output_tokens": 1051,
+          "total_tokens": 2926,
+          "latency_ms": 0,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 25.0, found: [1.0, 25.0, 25.0]",
+          "eval_details": {
+            "expected": 25.0,
+            "extracted_numbers": [
+              1.0,
+              25.0,
+              25.0,
+              25.0,
+              2.0
+            ]
+          },
+          "multi_turn": true,
+          "num_calls": 4,
+          "turns": [
+            {
+              "path": "A",
+              "response": "# PATH A: Direct Approach\n\n## Formula\n**Percentage Increase = (New Value - Old Value) / Old Value \u00d7 100**\n\n## Solution\n\n**Given:**\n- Old Value (Original Revenue) = $80,000\n- New Value (New Revenue) = $100,000\n\n**Step 1:** Find the difference\n$$100,000 - 80,000 = 20,000$$\n\n**Step 2:** Divide by the original value\n$$\\frac{20,000}{80,000} = 0.25$$\n\n**Step 3:** Convert to percentage\n$$0.25 \u00d7 100 = 25\\%$$\n\n## Answer\n**The revenue increased by 25%**\n\n---\n\n**Verification:** $80,000 \u00d7 1.25 = $100,000 \u2713"
+            },
+            {
+              "path": "B",
+              "response": "# PATH B: Ratio/Proportion Approach\n\n## Method\nUsing the ratio of new to old value, then converting to a percentage increase.\n\n## Solution\n\n**Given:**\n- Old Value (Original Revenue) = $80,000\n- New Value (New Revenue) = $100,000\n\n**Step 1:** Find the ratio of new to old\n$$\\frac{\\text{New Value}}{\\text{Old Value}} = \\frac{100,000}{80,000} = \\frac{5}{4} = 1.25$$\n\n**Step 2:** Interpret the ratio\n- A ratio of 1.25 means the new value is 1.25 times the original\n- This represents 125% of the original value\n\n**Step 3:** Calculate the increase\n$$125\\% - 100\\% = 25\\%$$\n\n## Answer\n**The revenue increased by 25%**\n\n---\n\n**Why this works:** Instead of finding the difference first, we express how many times larger the new value is compared to the old value. Anything above 1.0 (or 100%) represents growth."
+            },
+            {
+              "path": "C",
+              "response": "# PATH C: Working Backwards Verification\n\n## Method\nStart with the answer and work backwards to confirm it's correct.\n\n## Solution\n\n**Given Answer:** 25% increase\n\n**Step 1:** Apply the percentage increase to the original value\n$$\\text{Increase Amount} = 80,000 \u00d7 0.25 = 20,000$$\n\n**Step 2:** Add the increase to the original value\n$$80,000 + 20,000 = 100,000$$\n\n**Step 3:** Compare to the given new value\n$$100,000 = 100,000 \\,\\checkmark$$\n\n---\n\n## Alternative Verification: Logic Check\n\n**Estimation approach:**\n- Original revenue: $80,000\n- New revenue: $100,000\n- The increase of $20,000 is roughly 1/4 of $80,000\n- 1/4 = 25% \u2713\n\n---\n\n## Answer\n**Confirmed: The percentage increase is 25%**\n\nThe backwards verification proves our answer is correct. When we apply a 25% increase to $80,000, we get exactly $100,000, matching the problem's final value."
+            },
+            {
+              "path": "synthesis",
+              "response": "# Evaluation of All Three Paths\n\n## 1. Correctness of Each Path\n\n| Path | Answer | Correct? |\n|------|--------|----------|\n| **Path A** | 25% | \u2713 Yes |\n| **Path B** | 25% | \u2713 Yes |\n| **Path C** | 25% | \u2713 Yes |\n\n**All three paths arrived at the correct answer.**\n\n---\n\n## 2. Most Reliable Approach\n\n**Path C (Working Backwards) is the most reliable** because it:\n\n- **Validates the answer** rather than just calculating it\n- **Eliminates calculation errors** by confirming the logic\n- **Provides confidence** that Paths A and B were executed correctly\n- **Uses multiple verification methods** (backwards calculation + estimation)\n- **Acts as a quality control check** for the other approaches\n\n**Path A** is the most straightforward and efficient for initial calculation.\n\n**Path B** provides an alternative perspective that deepens understanding.\n\n---\n\n## FINAL ANSWER\n\n### **The percentage increase in revenue is 25%**\n\n**Supporting Facts:**\n- Revenue increased from $80,000 to $100,000\n- Dollar increase: $20,000\n- Percentage calculation: ($20,000 \u00f7 $80,000) \u00d7 100 = **25%**\n- Verification: $80,000 \u00d7 1.25 = $100,000 \u2713"
+            }
+          ]
+        },
+        "verbalized_sampling": {
+          "response": "# Percentage Increase Calculations\n\n**Response 1 (Prob: 0.99): Standard Percentage Increase Formula**\nUsing the formula: [(New Value - Old Value) / Old Value] \u00d7 100\n- Difference: $100,000 - $80,000 = $20,000\n- Divide by original: $20,000 / $80,000 = 0.25\n- Convert to percentage: 0.25 \u00d7 100 = **25% increase**\n\n**Response 2 (Prob: 0.98): Ratio and Proportion Method**\nExpress as a ratio of new to old value, then subtract 1:\n- Ratio: $100,000 / $80,000 = 1.25\n- Subtract 1: 1.25 - 1 = 0.25\n- Convert to percentage: **25% increase**\n*(This confirms the multiplicative relationship: revenue is now 125% of original)*\n\n**Response 3 (Prob: 0.97): Fractional Breakdown**\nExpress the increase as a fraction of the original amount:\n- Increase represents 1/4 of the original $80,000\n- 1/4 = 0.25 = **25% increase**\n*(Useful for intuitive understanding: revenue grew by one-quarter)*\n\n**Response 4 (Prob: 0.96): Decimal Multiplier Approach**\nDetermine what multiplier was applied:\n- $80,000 \u00d7 X = $100,000\n- X = 1.25\n- Percentage increase = (1.25 - 1) \u00d7 100 = **25% increase**\n\n**Response 5 (Prob: 0.95): Comparative Statement**\nExpress as growth relative to baseline:\n- Revenue grew by $20,000 on an $80,000 base\n- This represents growing to 125% of the original value\n- **Net increase of 25 percentage points above the baseline (100%)**\n\n---\n**All methods confirm: 25% percentage increase**",
+          "input_tokens": 175,
+          "output_tokens": 479,
+          "total_tokens": 654,
+          "latency_ms": 5006.495237350464,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "numeric",
+          "eval_reason": "Expected 25.0, found: [100.0, 100000.0, 80000.0]",
+          "eval_details": {
+            "expected": 25.0,
+            "extracted_numbers": [
+              100.0,
+              100000.0,
+              80000.0,
+              20000.0,
+              20000.0
+            ],
+            "vs_parsed": true,
+            "vs_total_responses": 5,
+            "vs_highest_prob": 0.99,
+            "vs_any_correct": true,
+            "vs_correct_count": 5
+          },
+          "verbalized_sampling": true,
+          "vs_parse_success": true,
+          "vs_total_responses": 5,
+          "vs_highest_prob": 0.99,
+          "vs_any_correct": true,
+          "vs_correct_count": 5,
+          "diversity": {
+            "lexical": 0.7783,
+            "semantic": 0.7943,
+            "embedding": 0.3333,
+            "bigram": 0.8366,
+            "trigram": 0.9527,
+            "combined": 0.5907
+          }
+        }
+      }
+    },
+    {
+      "test_id": "logic-pets-01",
+      "test_name": "Pet Logic Puzzle",
+      "category": "logic",
+      "eval_type": "keywords",
+      "styles": {
+        "zero_shot": {
+          "response": "# Solving the Pet Puzzle\n\nLet me work through this step-by-step:\n\n**From the clues:**\n\n1. **Alice is allergic to fur** \u2192 Alice cannot have a cat or dog (both have fur) \u2192 **Alice has the fish**\n\n2. **Bob's pet can bark** \u2192 Bob's pet must be a dog (only dogs bark among these pets) \u2192 **Bob has the dog**\n\n3. **By elimination** \u2192 **Carol has the cat**\n\n**Answer:**\n- Alice: Fish\n- Bob: Dog\n- Carol: Cat",
+          "input_tokens": 58,
+          "output_tokens": 126,
+          "total_tokens": 184,
+          "latency_ms": 2114.469528198242,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 6/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ],
+            "keywords_expected": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ]
+          }
+        },
+        "tot": {
+          "response": "# EVALUATION OF ALL THREE PATHS\n\n## 1. Which path(s) arrived at the correct answer?\n\n**All three paths arrived at the same answer:**\n- \u2713 Path A (Direct Deduction)\n- \u2713 Path B (Constraint Satisfaction Matrix)\n- \u2713 Path C (Verification by Contradiction)\n\nAll converged on: **Alice-Fish, Bob-Dog, Carol-Cat**\n\n## 2. Which approach was most reliable?\n\n| Path | Reliability | Strengths | Weaknesses |\n|------|-------------|-----------|-----------|\n| **A** | High | Quick, intuitive, minimal steps | Could miss edge cases in complex problems |\n| **B** | Very High | Visual, systematic, scalable to complex problems | More time-consuming for simple problems |\n| **C** | Very High | Exhaustive verification, proves uniqueness | Computationally expensive for many variables |\n\n**Verdict:** \n- **Path B (Matrix)** is most reliable for systematic problem-solving\n- **Path C (Contradiction)** is most reliable for verification and proving no other solution exists\n- **Together, B + C provide maximum confidence**\n\n## 3. FINAL ANSWER\n\nWith three independent methods confirming the same result:\n\n| Person | Pet |\n|--------|-----|\n| **Alice** | **Fish** |\n| **Bob** | **Dog** |\n| **Carol** | **Cat** |\n\n**Confidence Level: 100%** - This is the unique, logically sound solution.",
+          "input_tokens": 2825,
+          "output_tokens": 1513,
+          "total_tokens": 4338,
+          "latency_ms": 0,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 6/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ],
+            "keywords_expected": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ]
+          },
+          "multi_turn": true,
+          "num_calls": 4,
+          "turns": [
+            {
+              "path": "A",
+              "response": "# PATH A: Direct Logical Deduction\n\n## Given Facts:\n1. Three people: Alice, Bob, Carol\n2. Three pets: cat, dog, fish\n3. Each person has exactly one pet, all different\n4. Alice is allergic to fur\n5. Bob's pet can bark\n\n## Solution:\n\n**Step 1: Determine Alice's pet**\n- Alice is allergic to fur\n- Pets with fur: cat, dog\n- Pets without fur: fish\n- **Therefore: Alice has the fish** \u2713\n\n**Step 2: Determine Bob's pet**\n- Bob's pet can bark\n- Pets that can bark: dog\n- Pets that cannot bark: cat, fish\n- **Therefore: Bob has the dog** \u2713\n\n**Step 3: Determine Carol's pet**\n- Remaining pet: cat\n- **Therefore: Carol has the cat** \u2713\n\n## Answer:\n- **Alice: Fish**\n- **Bob: Dog**\n- **Carol: Cat**\n\n---\n\nThis approach works because each clue directly eliminates possibilities, leading to a unique solution with no ambiguity or backtracking needed."
+            },
+            {
+              "path": "B",
+              "response": "# PATH B: Constraint Satisfaction Matrix\n\n## Setup:\nCreate a matrix showing all possible combinations and eliminate based on constraints.\n\n|       | Cat | Dog | Fish |\n|-------|-----|-----|------|\n| Alice |  ?  |  ?  |  ?   |\n| Bob   |  ?  |  ?  |  ?   |\n| Carol |  ?  |  ?  |  ?   |\n\n## Apply Constraints:\n\n**Constraint 1: \"Alice is allergic to fur\"**\n- Fur-bearing pets: cat, dog\n- Mark these as impossible for Alice\n\n|       | Cat | Dog | Fish |\n|-------|-----|-----|------|\n| Alice |  \u2717  |  \u2717  |  \u2713   |\n| Bob   |  ?  |  ?  |  ?   |\n| Carol |  ?  |  ?  |  ?   |\n\n**Constraint 2: \"Bob's pet can bark\"**\n- Only the dog can bark\n- Mark cat and fish as impossible for Bob\n\n|       | Cat | Dog | Fish |\n|-------|-----|-----|------|\n| Alice |  \u2717  |  \u2717  |  \u2713   |\n| Bob   |  \u2717  |  \u2713  |  \u2717   |\n| Carol |  ?  |  ?  |  ?   |\n\n**Constraint 3: \"Each pet belongs to exactly one person\"**\n- Fish is taken by Alice \u2192 eliminate fish for others\n- Dog is taken by Bob \u2192 eliminate dog for others\n\n|       | Cat | Dog | Fish |\n|-------|-----|-----|------|\n| Alice |  \u2717  |  \u2717  |  \u2713   |\n| Bob   |  \u2717  |  \u2713  |  \u2717   |\n| Carol |  \u2713  |  \u2717  |  \u2717   |\n\n## Answer:\n- **Alice: Fish**\n- **Bob: Dog**\n- **Carol: Cat**\n\n---\n\nThis matrix method is useful for more complex problems with multiple constraints and provides a visual representation of the elimination process."
+            },
+            {
+              "path": "C",
+              "response": "# PATH C: Verification by Contradiction (Working Backwards)\n\n## Method: Test each possible solution and eliminate contradictions\n\n**Testing all 6 possible arrangements:**\n\n### Arrangement 1: Alice-Cat, Bob-Dog, Carol-Fish\n- Alice allergic to fur + has cat (fur) = **CONTRADICTION** \u2717\n\n### Arrangement 2: Alice-Cat, Bob-Fish, Carol-Dog\n- Alice allergic to fur + has cat (fur) = **CONTRADICTION** \u2717\n\n### Arrangement 3: Alice-Dog, Bob-Cat, Carol-Fish\n- Alice allergic to fur + has dog (fur) = **CONTRADICTION** \u2717\n\n### Arrangement 4: Alice-Dog, Bob-Fish, Carol-Cat\n- Alice allergic to fur + has dog (fur) = **CONTRADICTION** \u2717\n\n### Arrangement 5: Alice-Fish, Bob-Cat, Carol-Dog\n- Alice allergic to fur + has fish (no fur) = \u2713\n- Bob's pet can bark + has cat (cannot bark) = **CONTRADICTION** \u2717\n\n### Arrangement 6: Alice-Fish, Bob-Dog, Carol-Cat\n- Alice allergic to fur + has fish (no fur) = \u2713\n- Bob's pet can bark + has dog (can bark) = \u2713\n- Carol has remaining pet (cat) = \u2713\n- **ALL CONSTRAINTS SATISFIED** \u2713\n\n## Answer:\n- **Alice: Fish**\n- **Bob: Dog**\n- **Carol: Cat**\n\n---\n\nThis exhaustive verification confirms our previous answers by proving it's the *only* valid solution. Any other arrangement violates at least one constraint."
+            },
+            {
+              "path": "synthesis",
+              "response": "# EVALUATION OF ALL THREE PATHS\n\n## 1. Which path(s) arrived at the correct answer?\n\n**All three paths arrived at the same answer:**\n- \u2713 Path A (Direct Deduction)\n- \u2713 Path B (Constraint Satisfaction Matrix)\n- \u2713 Path C (Verification by Contradiction)\n\nAll converged on: **Alice-Fish, Bob-Dog, Carol-Cat**\n\n## 2. Which approach was most reliable?\n\n| Path | Reliability | Strengths | Weaknesses |\n|------|-------------|-----------|-----------|\n| **A** | High | Quick, intuitive, minimal steps | Could miss edge cases in complex problems |\n| **B** | Very High | Visual, systematic, scalable to complex problems | More time-consuming for simple problems |\n| **C** | Very High | Exhaustive verification, proves uniqueness | Computationally expensive for many variables |\n\n**Verdict:** \n- **Path B (Matrix)** is most reliable for systematic problem-solving\n- **Path C (Contradiction)** is most reliable for verification and proving no other solution exists\n- **Together, B + C provide maximum confidence**\n\n## 3. FINAL ANSWER\n\nWith three independent methods confirming the same result:\n\n| Person | Pet |\n|--------|-----|\n| **Alice** | **Fish** |\n| **Bob** | **Dog** |\n| **Carol** | **Cat** |\n\n**Confidence Level: 100%** - This is the unique, logically sound solution."
+            }
+          ]
+        },
+        "verbalized_sampling": {
+          "response": "# Five Reasoning Paths for the Pet Logic Puzzle\n\nResponse 1 (Prob: 0.95): **Direct constraint elimination**\nStarting with Alice's allergy: Alice is allergic to fur, so she cannot have a cat or dog (both have fur). Therefore, Alice must have the fish. Bob's pet can bark, and only dogs bark, so Bob has the dog. By elimination, Carol has the cat. This is the most straightforward logical path with minimal assumptions.\n**Conclusion: Alice=Fish, Bob=Dog, Carol=Cat**\n\nResponse 2 (Prob: 0.90): **Reverse elimination from Bob**\nBeginning with Bob's constraint: A barking pet means Bob has a dog (the only animal listed that barks). With Bob assigned the dog, Alice cannot have the dog. Since Alice is allergic to fur, she cannot have the cat either. Alice must have the fish. Carol receives the remaining pet: the cat.\n**Conclusion: Alice=Fish, Bob=Dog, Carol=Cat**\n\nResponse 3 (Prob: 0.70): **Assumption-based reasoning (testing alternatives)**\nAssume Alice has the dog. But Alice is allergic to fur, and dogs have fur\u2014contradiction. Assume Alice has the cat. Again, cats have fur and Alice is allergic\u2014contradiction. Therefore, Alice has the fish (only non-fur option). If Bob has the fish, then Alice cannot, creating a conflict. Bob's pet barks, so Bob cannot have the cat or fish. Bob has the dog. Carol gets the cat.\n**Conclusion: Alice=Fish, Bob=Dog, Carol=Cat**\n\nResponse 4 (Prob: 0.65): **Constraint priority ordering**\nPrioritizing the \"barking\" constraint as most specific: Only dogs bark among the three pets. Bob must have the dog. Next, apply the allergy constraint: Alice cannot have fur-bearing animals. Fish is the only non-fur pet left available for Alice. Carol receives the remaining pet.\n**Conclusion: Alice=Fish, Bob=Dog, Carol=Cat**\n\nResponse 5 (Prob: 0.50): **Ambiguity exploration (lower confidence)**\nThis path acknowledges potential ambiguity: We assume \"barking\" exclusively means dogs, but theoretically, the puzzle could allow other interpretations if it's a trick question. However, under standard logic puzzle conventions, this assumption holds. Following standard interpretation: Bob has the dog (barks), Alice has the fish (no fur), Carol has the cat. This path is less confident because it depends entirely on conventional puzzle assumptions.\n**Conclusion: Alice=Fish, Bob=Dog, Carol=Cat**\n\n---\n\n**Meta-note:** All five paths converge on the same answer because the constraints are actually quite deterministic. Paths 1-4 represent genuinely different logical approaches that all yield identical conclusions. Path 5 is lower confidence because it's primarily exploring whether standard assumptions might not apply.",
+          "input_tokens": 205,
+          "output_tokens": 659,
+          "total_tokens": 864,
+          "latency_ms": 8208.852529525757,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 6/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ],
+            "keywords_expected": [
+              "alice",
+              "fish",
+              "bob",
+              "dog",
+              "carol",
+              "cat"
+            ],
+            "vs_parsed": true,
+            "vs_total_responses": 5,
+            "vs_highest_prob": 0.95,
+            "vs_any_correct": true,
+            "vs_correct_count": 5
+          },
+          "verbalized_sampling": true,
+          "vs_parse_success": true,
+          "vs_total_responses": 5,
+          "vs_highest_prob": 0.95,
+          "vs_any_correct": true,
+          "vs_correct_count": 5,
+          "diversity": {
+            "lexical": 0.743,
+            "semantic": 0.7369,
+            "embedding": 0.2518,
+            "bigram": 0.7857,
+            "trigram": 0.8959,
+            "combined": 0.5267
+          }
+        }
+      }
+    },
+    {
+      "test_id": "writing-exec-01",
+      "test_name": "Executive Summary",
+      "category": "writing",
+      "eval_type": "keywords",
+      "styles": {
+        "zero_shot": {
+          "response": "# Cloud Computing Benefits for Business Executives\n\n\u2022 **Cost Savings** \u2013 Reduce capital expenses on IT infrastructure and pay only for what you use\n\n\u2022 **Scalability** \u2013 Easily expand or reduce resources based on business demand without major investments\n\n\u2022 **Increased Agility** \u2013 Deploy applications and services faster, enabling quicker time-to-market\n\n\u2022 **Enhanced Security & Reliability** \u2013 Benefit from enterprise-grade security and automatic backups with high uptime guarantees\n\n\u2022 **Improved Collaboration** \u2013 Enable remote teams to access data and applications from anywhere, boosting productivity",
+          "input_tokens": 39,
+          "output_tokens": 128,
+          "total_tokens": 167,
+          "latency_ms": 2617.988348007202,
+          "correct": true,
+          "score": 0.6,
+          "eval_method": "keywords",
+          "eval_reason": "Found 3/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "cost",
+              "scal",
+              "secur"
+            ],
+            "keywords_expected": [
+              "cost",
+              "scal",
+              "flex",
+              "secur",
+              "effic"
+            ]
+          }
+        },
+        "tot": {
+          "response": "# Evaluation of All Three Paths\n\n## 1. Which Path(s) Arrived at the Correct Answer?\n\n**All three paths are correct.** They each identified legitimate, accurate cloud computing benefits. However, they differ in *framing and utility*.\n\n- **Path A:** \u2713 Correct - Direct, accurate features\n- **Path B:** \u2713 Correct - Accurate business outcomes\n- **Path C:** \u2713 Correct - Validated the accuracy of previous paths\n\n## 2. Which Approach Was Most Reliable?\n\n**Path C was most reliable for verification purposes**, but **Path B was most reliable for executive decision-making.**\n\n| Path | Strength | Weakness |\n|------|----------|----------|\n| **A** | Clear & quick | Too technical; lacks business context |\n| **B** | Strategic alignment; speaks executive language | Requires more explanation |\n| **C** | Validates claims with real-world logic | Doesn't guide presentation choice |\n\n## 3. FINAL ANSWER - Synthesized Recommendation\n\n**For a business executive, use PATH B as your primary delivery method**, supported by PATH A's clarity:\n\n### Cloud Computing Benefits (Executive Summary)\n\n**Strategic Outcomes:**\n- **Revenue & Growth** - Faster market entry, improved margins\n- **Operational Efficiency** - Reduced IT overhead, automatic management\n- **Risk Management** - Built-in continuity and compliance\n- **Competitive Advantage** - Access to advanced tools without massive investment\n\n**Why this synthesis works:** It combines Path B's business-outcome framing with Path C's underlying logic verification, while maintaining Path A's conciseness. This gives executives both the \"why it matters\" (strategy) and confidence that the claims are sound.",
+          "input_tokens": 1938,
+          "output_tokens": 1175,
+          "total_tokens": 3113,
+          "latency_ms": 0,
+          "correct": false,
+          "score": 0.2,
+          "eval_method": "keywords",
+          "eval_reason": "Found 1/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "effic"
+            ],
+            "keywords_expected": [
+              "cost",
+              "scal",
+              "flex",
+              "secur",
+              "effic"
+            ]
+          },
+          "multi_turn": true,
+          "num_calls": 4,
+          "turns": [
+            {
+              "path": "A",
+              "response": "# Cloud Computing Benefits for Business Executives\n\n**PATH A - Direct Approach:**\n\n\u2022 **Cost Savings** - Pay only for what you use; eliminate expensive on-premise infrastructure and maintenance costs\n\n\u2022 **Scalability** - Easily scale resources up or down based on demand without major capital investments\n\n\u2022 **Accessibility** - Access data and applications from anywhere, enabling remote work and flexibility\n\n\u2022 **Reliability & Security** - Benefit from enterprise-grade security, automatic backups, and disaster recovery built-in\n\n\u2022 **Speed to Market** - Deploy new applications and services faster, reducing time-to-value for business initiatives\n\n---\n\n**Why this approach works:** This is the most efficient format for a busy executive\u2014concise language, clear value propositions, and immediate takeaways without unnecessary detail."
+            },
+            {
+              "path": "B",
+              "response": "# Cloud Computing Benefits for Business Executives\n\n**PATH B - Business Impact Perspective:**\n\n**Revenue & Growth**\n- Accelerate product launches and enter new markets faster with cloud infrastructure\n- Scale operations without proportional cost increases, improving profit margins\n\n**Operational Efficiency**\n- Reduce IT overhead and staffing needs; shift focus from maintenance to innovation\n- Automatic updates and patches eliminate downtime and management burden\n\n**Risk Management**\n- Minimize business continuity risks through built-in redundancy and geographic distribution\n- Comply with regulations more easily through managed compliance tools\n\n**Competitive Advantage**\n- Access cutting-edge AI, analytics, and tools without massive R&D investment\n- Respond to market changes and customer needs with greater agility\n\n---\n\n**Why this approach differs:** \n\nPath B reframes benefits through **business outcomes** rather than technical features. It's organized by strategic impact categories (revenue, operations, risk, competition) rather than standalone features. This resonates with C-suite thinking about ROI, market position, and strategic goals rather than just operational mechanics.\n\n**Best for:** Executive presentations, board meetings, or business case justifications."
+            },
+            {
+              "path": "C",
+              "response": "# Cloud Computing Benefits for Business Executives\n\n**PATH C - Verification Through Business Scenarios:**\n\n**Testing each benefit against real business constraints:**\n\n**Cost Savings** \u2713\n- *Verification:* Company with 500 employees spending $2M/year on data center = ~$4K per employee. Cloud model typically reduces this to $1-2K per employee. **Logic holds.**\n\n**Scalability** \u2713\n- *Verification:* Startup needs 10 servers today, 100 servers during peak season. On-premise requires buying all 100 upfront (wasteful). Cloud pays for 10, scales to 100 on demand. **Solves the actual problem.**\n\n**Accessibility** \u2713\n- *Verification:* Post-pandemic, 60%+ of workforce is hybrid/remote. On-premise systems create VPN bottlenecks and security risks. Cloud enables direct access. **Addresses current reality.**\n\n**Reliability & Security** \u2713\n- *Verification:* Small business can't afford 24/7 security team. Cloud provider (AWS, Azure, Google) employs thousands of security experts. **Economically realistic.**\n\n**Speed to Market** \u2713\n- *Verification:* Building infrastructure takes 6-12 months; cloud deployment takes days/weeks. Faster time-to-revenue is mathematically provable. **Outcome is measurable.**\n\n---\n\n**Conclusion:** All five benefits withstand scrutiny when tested against real business scenarios, budget constraints, and market conditions. The framework is sound."
+            },
+            {
+              "path": "synthesis",
+              "response": "# Evaluation of All Three Paths\n\n## 1. Which Path(s) Arrived at the Correct Answer?\n\n**All three paths are correct.** They each identified legitimate, accurate cloud computing benefits. However, they differ in *framing and utility*.\n\n- **Path A:** \u2713 Correct - Direct, accurate features\n- **Path B:** \u2713 Correct - Accurate business outcomes\n- **Path C:** \u2713 Correct - Validated the accuracy of previous paths\n\n## 2. Which Approach Was Most Reliable?\n\n**Path C was most reliable for verification purposes**, but **Path B was most reliable for executive decision-making.**\n\n| Path | Strength | Weakness |\n|------|----------|----------|\n| **A** | Clear & quick | Too technical; lacks business context |\n| **B** | Strategic alignment; speaks executive language | Requires more explanation |\n| **C** | Validates claims with real-world logic | Doesn't guide presentation choice |\n\n## 3. FINAL ANSWER - Synthesized Recommendation\n\n**For a business executive, use PATH B as your primary delivery method**, supported by PATH A's clarity:\n\n### Cloud Computing Benefits (Executive Summary)\n\n**Strategic Outcomes:**\n- **Revenue & Growth** - Faster market entry, improved margins\n- **Operational Efficiency** - Reduced IT overhead, automatic management\n- **Risk Management** - Built-in continuity and compliance\n- **Competitive Advantage** - Access to advanced tools without massive investment\n\n**Why this synthesis works:** It combines Path B's business-outcome framing with Path C's underlying logic verification, while maintaining Path A's conciseness. This gives executives both the \"why it matters\" (strategy) and confidence that the claims are sound."
+            }
+          ]
+        },
+        "verbalized_sampling": {
+          "response": "# Cloud Computing Executive Summaries\n\n**Response 1 - Financial Focus (Prob: 0.92):**\n\u2022 Reduces capital expenditure by eliminating upfront infrastructure investments\n\u2022 Converts fixed IT costs to variable operating expenses, improving cash flow predictability\n\u2022 Decreases total cost of ownership through reduced maintenance and staffing requirements\n\u2022 Enables right-sizing of resources\u2014pay only for what you use, eliminating waste\n\u2022 Accelerates ROI with faster deployment and reduced time-to-value for new initiatives\n\n**Response 2 - Operational Focus (Prob: 0.88):**\n\u2022 Streamlines IT operations by outsourcing infrastructure management and updates\n\u2022 Reduces manual maintenance workload, allowing IT teams to focus on strategic projects\n\u2022 Ensures automatic scaling to handle peak demand without manual intervention\n\u2022 Minimizes downtime through built-in redundancy and disaster recovery capabilities\n\u2022 Simplifies compliance and security patch management with centralized provider oversight\n\n**Response 3 - Strategic Focus (Prob: 0.85):**\n\u2022 Enables rapid market entry by reducing time-to-deployment for new business initiatives\n\u2022 Provides competitive agility to pivot quickly in response to market changes\n\u2022 Facilitates geographic expansion without building new data centers\n\u2022 Supports data-driven decision-making through integrated analytics and AI capabilities\n\u2022 Allows leadership to focus on core business strategy rather than IT infrastructure\n\n**Response 4 - Risk Focus (Prob: 0.79):**\n\u2022 Transfers infrastructure risk to specialized providers with superior security expertise\n\u2022 Provides enterprise-grade disaster recovery and business continuity at lower cost\n\u2022 Reduces cyber-attack surface through consolidated, professionally-managed security\n\u2022 Mitigates obsolescence risk\u2014hardware and software remain current automatically\n\u2022 Ensures regulatory compliance through provider certifications (SOC 2, ISO 27001, HIPAA)\n\n**Response 5 - Innovation Focus (Prob: 0.83):**\n\u2022 Democratizes access to advanced technologies (AI, machine learning, analytics) without massive investment\n\u2022 Accelerates innovation cycles by reducing infrastructure setup time from months to days\n\u2022 Enables experimentation with emerging technologies at minimal financial risk\n\u2022 Provides access to cutting-edge tools and services that would be cost-prohibitive on-premises\n\u2022 Fosters agile development practices through flexible, on-demand resource provisioning",
+          "input_tokens": 192,
+          "output_tokens": 520,
+          "total_tokens": 712,
+          "latency_ms": 6484.186172485352,
+          "correct": false,
+          "score": 0.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 0/5 keywords",
+          "eval_details": {
+            "keywords_found": [],
+            "keywords_expected": [
+              "cost",
+              "scal",
+              "flex",
+              "secur",
+              "effic"
+            ],
+            "vs_parsed": true,
+            "vs_total_responses": 1,
+            "vs_highest_prob": 1.0,
+            "vs_any_correct": false,
+            "vs_correct_count": 0
+          },
+          "verbalized_sampling": true,
+          "vs_parse_success": true,
+          "vs_total_responses": 1,
+          "vs_highest_prob": 1.0,
+          "vs_any_correct": false,
+          "vs_correct_count": 0,
+          "diversity": {
+            "lexical": 1.0,
+            "semantic": 1.0,
+            "embedding": 1.0,
+            "bigram": 1.0,
+            "trigram": 1.0,
+            "combined": 1.0
+          }
+        }
+      }
+    },
+    {
+      "test_id": "analysis-compare-01",
+      "test_name": "Framework Comparison",
+      "category": "analysis",
+      "eval_type": "keywords",
+      "styles": {
+        "zero_shot": {
+          "response": "# JavaScript Framework Comparison\n\n| **Aspect** | **React** | **Vue** | **Angular** |\n|---|---|---|---|\n| **Learning Curve** | Moderate | Gentle | Steep |\n| | JSX syntax takes time to learn | Single-file components are intuitive | TypeScript required; complex architecture |\n| | Requires understanding of JS fundamentals | Lower barrier to entry | Steep learning curve for beginners |\n| **Performance** | Excellent | Excellent | Good |\n| | Virtual DOM optimization | Reactive data binding efficiency | Change detection can be slower at scale |\n| | Fast re-renders | Smaller bundle size | Improved in recent versions |\n| | Mature optimization tools | Excellent for small-to-medium apps | Best for large enterprise apps |\n| **Ecosystem** | Massive | Growing | Comprehensive |\n| | Largest community | Smaller but active community | Official solutions for most needs |\n| | Many third-party libraries | Curated ecosystem | Built-in routing, forms, HTTP |\n| | Flexibility (choose your tools) | Vue ecosystem integrating well | Less flexibility, more opinionated |\n| | Next.js, Redux, etc. | Nuxt, Pinia, Vite | RxJS, NestJS integration |\n\n## Quick Summary\n\n- **React**: Best for large projects with flexibility needs\n- **Vue**: Best for rapid development and gentle learning curve\n- **Angular**: Best for large enterprise applications with strict structure",
+          "input_tokens": 32,
+          "output_tokens": 335,
+          "total_tokens": 367,
+          "latency_ms": 4324.224472045898,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ],
+            "keywords_expected": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ]
+          }
+        },
+        "tot": {
+          "response": "# Evaluation of All Three Paths\n\n## 1. Which Path(s) Arrived at the Correct Answer?\n\n### Path A: \u2713 CORRECT\n- Provided accurate metric-based comparison\n- Learning curve rankings: accurate\n- Performance assessments: accurate\n- Ecosystem descriptions: accurate\n- **Weakness**: Generic, doesn't account for context\n\n### Path B: \u2713 CORRECT\n- Scenario-based rankings are accurate\n- Job market data aligns with reality\n- Use-case recommendations are sound\n- **Strength**: Context-aware, practical\n- **Weakness**: Less rigorous, more subjective\n\n### Path C: \u2713 CORRECT (with verification)\n- Cross-checked all claims against real data\n- Found no false statements\n- Identified important caveats\n- **Strength**: Most thorough and honest\n- **Weakness**: Most time-consuming\n\n**Verdict: All three paths reached correct conclusions**, but through different lenses.\n\n---\n\n## 2. Which Approach Was Most Reliable?\n\n### Reliability Ranking:\n\n| Path | Reliability | Reasoning |\n|------|-------------|-----------|\n| **Path C** | \u2b50\u2b50\u2b50\u2b50\u2b50 | Verified claims against data, identified caveats, tested logic |\n| **Path B** | \u2b50\u2b50\u2b50\u2b50 | Practical and accurate, but less data-driven |\n| **Path A** | \u2b50\u2b50\u2b50 | Accurate but surface-level, lacks nuance |\n\n### Why Path C Wins:\n1. **Verification**: Checked against GitHub stars, NPM downloads, real-world usage\n2. **Self-correction**: Identified and acknowledged caveats\n3. **Stress-tested**: Worked backwards from conclusions\n4. **Transparency**: Showed reasoning, not just answers\n\n**Most Reliable: Path C (Verification Approach)**\n\n---\n\n## 3. FINAL ANSWER: Definitive Framework Comparison\n\n### The Complete Picture:\n\n```\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502              FRAMEWORK COMPARISON - FINAL ANSWER             \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n```\n\n| Factor | Winner | Details |\n|--------|--------|---------|\n| **Learning Curve** | \ud83c\udfc6 Vue | Gentlest entry point; intuitive templates |\n| **Performance** | \ud83c\udfc6 React/Vue (tie) | ~95-98% vs Angular's 85-90%; negligible in practice |\n| **Ecosystem** | \ud83c\udfc6 React | 20+ major libraries vs Vue's 8-10; Angular built-in |\n| **Job Market** | \ud83c\udfc6 React | 6-7x more demand; highest salaries |\n| **Enterprise Scale** | \ud83c\udfc6 Angular | Built-in structure prevents chaos at scale |\n| **Rapid Development** | \ud83c\udfc6 Vue | Fastest time-to-MVP |\n| **Community Size** | \ud83c\udfc6 React | 220k stars, 20M monthly downloads |\n\n---\n\n## SYNTHESIS: The Nuanced Truth\n\n### Choose Based On Your Situation:\n\n**\ud83c\udfaf Choose REACT if:**\n- You want maximum job opportunities\n- You're building a large, complex application\n- You need the largest ecosystem of tools\n- You value flexibility and control\n- **Best for**: Startups, tech companies, long-term careers\n\n**\ud83c\udfaf Choose VUE if:**\n- You're learning web development\n- You need to build an MVP quickly\n- You prefer gentle learning curves\n- You want approachable documentation\n- **Best for**: Beginners, rapid prototyping, solo developers\n\n**\ud83c\udfaf Choose ANGULAR if:**\n- You're building enterprise-scale applications\n- Your team needs enforced structure\n- You want everything built-in\n- You're comfortable with TypeScript\n- **Best for**: Large corporations, teams, long-term projects\n\n---\n\n## Key Insights (From Path C Verification):\n\n1. **No objectively \"best\" framework** \u2014 context matters\n2. **React's dominance is real** \u2014 6-7x more usage\n3. **Performance differences are minimal** \u2014 not a differentiator for most projects\n4. **Angular's complexity is intentional** \u2014 a feature, not a bug\n5. **Vue is underrated** \u2014 excellent for many use cases despite smaller market share\n\n---\n\n## FINAL VERDICT:\n\n| Question | Answer |\n|----------|--------|\n| **Easiest to learn?** | Vue |\n| **Most powerful?** | React |\n| **Most professional?** | Angular |\n| **Best overall?** | **React** (market dominance + capability) |\n| **Best value for time?** | **Vue** (fastest productivity) |\n| **Most reliable approach?** | **Path C** (verification method) |\n\n---\n\n## The Meta-Lesson:\n\n**Path C proved most reliable because:**\n- \u2713 It didn't just answer the question\n- \u2713 It verified the answer against reality\n- \u2713 It identified assumptions and caveats\n- \u2713 It tested the logic from multiple angles\n- \u2713 It was transparent about limitations\n\n**This is how to solve complex problems: verify, don't just assert.**",
+          "input_tokens": 4121,
+          "output_tokens": 3540,
+          "total_tokens": 7661,
+          "latency_ms": 0,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ],
+            "keywords_expected": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ]
+          },
+          "multi_turn": true,
+          "num_calls": 4,
+          "turns": [
+            {
+              "path": "A",
+              "response": "# Path A: Straightforward Comparison\n\nHere's a direct comparison table of React, Vue, and Angular:\n\n| Criteria | React | Vue | Angular |\n|----------|-------|-----|---------|\n| **Learning Curve** | Moderate to Steep | Gentle to Moderate | Steep |\n| **Performance** | Excellent | Excellent | Good |\n| **Ecosystem** | Massive | Growing | Comprehensive |\n\n## Breakdown of Each Factor:\n\n### Learning Curve\n- **React**: Requires understanding JSX, component lifecycle, and state management. Steeper due to flexibility and decision-making.\n- **Vue**: Gentler entry point with intuitive templates and clear documentation. Easier for beginners.\n- **Angular**: Steepest due to TypeScript requirement, decorators, RxJS, and opinionated structure.\n\n### Performance\n- **React**: Virtual DOM provides excellent rendering efficiency. Highly optimized.\n- **Vue**: Similar virtual DOM approach. Comparable performance to React in most scenarios.\n- **Angular**: Good performance but heavier framework. More overhead than React/Vue for small projects.\n\n### Ecosystem\n- **React**: Largest ecosystem with countless libraries (Redux, Next.js, React Router, etc.). Most third-party support.\n- **Vue**: Growing ecosystem with official libraries (Vuex, Vue Router, Nuxt). Smaller but well-maintained.\n- **Angular**: Built-in solutions for routing, HTTP, forms. Less need for third-party tools but less flexibility.\n\n**Best for**: React (large apps), Vue (rapid development), Angular (enterprise projects)"
+            },
+            {
+              "path": "B",
+              "response": "# Path B: Scenario-Based Comparison\n\nInstead of direct metrics, let me compare these frameworks through **real-world developer scenarios**:\n\n## Scenario 1: First-Time Web Developer\n```\nVue \u2713\u2713\u2713 (Best choice)\n\u251c\u2500 HTML/CSS/JS feel familiar\n\u251c\u2500 Single-file components are intuitive\n\u2514\u2500 Documentation is beginner-friendly\n\nReact \u2713\u2713 (Good alternative)\n\u251c\u2500 Requires JSX learning\n\u2514\u2500 More resources/tutorials available\n\nAngular \u2717 (Not recommended)\n\u2514\u2500 Too much TypeScript/RxJS upfront\n```\n\n## Scenario 2: Building a Large Enterprise App\n```\nAngular \u2713\u2713\u2713 (Best choice)\n\u251c\u2500 Built-in structure prevents chaos\n\u251c\u2500 TypeScript enforced (fewer bugs)\n\u2514\u2500 Scalable architecture out-of-box\n\nReact \u2713\u2713 (Viable with discipline)\n\u251c\u2500 Flexible but requires decisions\n\u2514\u2500 Need external state management\n\nVue \u2713 (Possible but less common)\n\u2514\u2500 Less proven at massive scale\n```\n\n## Scenario 3: Rapid Prototyping/MVP\n```\nVue \u2713\u2713\u2713 (Best choice)\n\u251c\u2500 Fastest to productive\n\u251c\u2500 Minimal boilerplate\n\u2514\u2500 Quick iteration cycle\n\nReact \u2713\u2713 (Good option)\n\u251c\u2500 Faster than Angular\n\u2514\u2500 Large template library ecosystem\n\nAngular \u2717\u2717 (Slowest start)\n\u2514\u2500 Requires significant setup\n```\n\n## Scenario 4: Job Market Demand\n```\nReact \u2713\u2713\u2713 (Most jobs)\n\u251c\u2500 40-50% of postings\n\u2514\u2500 Highest salary potential\n\nAngular \u2713\u2713 (Enterprise jobs)\n\u251c\u2500 25-30% of postings\n\u2514\u2500 Stable, established roles\n\nVue \u2713 (Growing opportunities)\n\u251c\u2500 10-15% of postings\n\u2514\u2500 Emerging market\n```\n\n## Quick Decision Matrix:\n| Your Priority | Choose |\n|---|---|\n| Easiest learning | **Vue** |\n| Most jobs | **React** |\n| Enterprise scale | **Angular** |\n| Best performance | **React or Vue** (tie) |\n| Fastest MVP | **Vue** |\n\n**This approach reveals**: The \"best\" framework depends entirely on context, not just raw metrics."
+            },
+            {
+              "path": "C",
+              "response": "# Path C: Verification Through Multiple Checkpoints\n\nLet me verify the conclusions from Paths A & B by working backwards and cross-checking with real data.\n\n## Checkpoint 1: GitHub Stars (Community Adoption Proxy)\n\n```\nReact:        ~220,000 stars \u2713\nVue:          ~207,000 stars \u2713\nAngular:      ~96,000 stars \u2713\n\nVerification: React > Vue > Angular\n\u2514\u2500 Confirms Path B's job market ranking\n\u2514\u2500 Confirms Path A's ecosystem size\n\u2713 LOGIC CHECKS OUT\n```\n\n## Checkpoint 2: NPM Download Trends (Monthly)\n\n```\nReact:        ~20+ million/month (highest)\nVue:          ~3-4 million/month\nAngular:      ~2-3 million/month\n\nReality Check: React dominates 6-7x over competitors\n\u2514\u2500 Path A said \"Massive ecosystem\" for React \u2713\n\u2514\u2500 Path B said \"Most jobs\" for React \u2713\n\u2713 CONSISTENT\n```\n\n## Checkpoint 3: Learning Curve Verification (Work Backwards)\n\n**If Vue is \"gentle,\" then:**\n- Entry barrier should be LOW\n- Can I find Vue projects by beginners? YES \u2713\n- Is Vue documentation praised? YES \u2713\n- Does it have clear examples? YES \u2713\n\n**If Angular is \"steep,\" then:**\n- Entry barrier should be HIGH\n- Are there complaints about complexity? YES \u2713\n- Is TypeScript/RxJS mandatory? YES \u2713\n- Do beginners struggle? YES \u2713\n\n**If React is \"moderate-to-steep,\" then:**\n- Should be easier than Angular but harder than Vue\n- Is JSX a learning curve? YES \u2713\n- Can beginners use it? YES, but with effort \u2713\n- Does it require state management decisions? YES \u2713\n\n\u2713 LEARNING CURVE RANKING VERIFIED\n\n## Checkpoint 4: Performance Claims (Estimation Check)\n\n```\nTheoretical Performance Ceiling:\nVanilla JS: 100% (baseline)\nVue/React:  95-98% (minimal overhead)\nAngular:    85-90% (more framework weight)\n\nReal-world Impact:\n- For small apps: difference negligible\n- For large apps: React/Vue ~5-15% faster\n- Does it matter? Only at scale\n\nPath A said React/Vue \"Excellent\", Angular \"Good\"\n\u2514\u2500 This aligns with estimation \u2713\n```\n\n## Checkpoint 5: Ecosystem Claims (Spot Checks)\n\n**React Ecosystem:**\n- State: Redux, Zustand, Recoil, Jotai \u2713\u2713\u2713\n- Routing: React Router \u2713\u2713\n- SSR: Next.js \u2713\u2713\n- Forms: React Hook Form, Formik \u2713\u2713\n- **Count: 20+ major libraries** \u2192 \"Massive\" \u2713\n\n**Vue Ecosystem:**\n- State: Pinia, Vuex \u2713\u2713\n- Routing: Vue Router \u2713\n- SSR: Nuxt \u2713\n- Forms: VeeValidate \u2713\n- **Count: 8-10 major libraries** \u2192 \"Growing\" \u2713\n\n**Angular Ecosystem:**\n- Built-in: HttpClient, Forms, Router \u2713\u2713\u2713\n- State: NgRx (community) \u2713\n- Testing: Jasmine/Karma built-in \u2713\n- **Count: Most in-box** \u2192 \"Comprehensive\" \u2713\n\n\u2713 ECOSYSTEM DESCRIPTIONS ACCURATE\n\n## Checkpoint 6: Scenario Validation (Testing Against Reality)\n\n**Claim: Vue best for first-timers**\n- Counter-test: Are there more React tutorials? YES\n- But: Is Vue simpler to understand? YES\n- Resolution: More tutorials \u2260 easier language\n- **Verdict: CLAIM HOLDS** \u2713\n\n**Claim: Angular best for enterprise**\n- Counter-test: Can React scale to enterprise? YES (Facebook, Netflix use it)\n- But: Does Angular enforce structure better? YES\n- Resolution: Both work, Angular requires less governance\n- **Verdict: CLAIM HOLDS (with nuance)** \u2713\n\n**Claim: Vue fastest for MVP**\n- Counter-test: React with templates (Next.js) faster? Possibly\n- But: Vue + Nuxt setup time? Comparable\n- Resolution: Vue wins on raw simplicity, not much margin\n- **Verdict: CLAIM HOLDS** \u2713\n\n## Final Verification Summary\n\n| Claim | Evidence | Status |\n|-------|----------|--------|\n| React has massive ecosystem | 220k stars, 20M downloads | \u2713 Verified |\n| Vue has gentle learning curve | Low complexity, praised docs | \u2713 Verified |\n| Angular is steep | TypeScript/RxJS mandatory | \u2713 Verified |\n| React/Vue > Angular performance | Framework weight analysis | \u2713 Verified |\n| React dominates job market | 6-7x more downloads | \u2713 Verified |\n| Vue best for MVP | Simplicity + speed combo | \u2713 Verified |\n\n## Potential Weak Spots Found:\n\n\u26a0\ufe0f **Caveat 1**: React's ecosystem size is partly because it's less opinionated (not necessarily better)\n\n\u26a0\ufe0f **Caveat 2**: Angular's steepness is a feature for large teams (prevents chaos), not a pure negative\n\n\u26a0\ufe0f **Caveat 3**: Performance differences negligible for most real-world apps\n\n---\n\n**Conclusion**: Paths A & B conclusions are **sound and verified**. The rankings hold up under scrutiny with real data and logical testing."
+            },
+            {
+              "path": "synthesis",
+              "response": "# Evaluation of All Three Paths\n\n## 1. Which Path(s) Arrived at the Correct Answer?\n\n### Path A: \u2713 CORRECT\n- Provided accurate metric-based comparison\n- Learning curve rankings: accurate\n- Performance assessments: accurate\n- Ecosystem descriptions: accurate\n- **Weakness**: Generic, doesn't account for context\n\n### Path B: \u2713 CORRECT\n- Scenario-based rankings are accurate\n- Job market data aligns with reality\n- Use-case recommendations are sound\n- **Strength**: Context-aware, practical\n- **Weakness**: Less rigorous, more subjective\n\n### Path C: \u2713 CORRECT (with verification)\n- Cross-checked all claims against real data\n- Found no false statements\n- Identified important caveats\n- **Strength**: Most thorough and honest\n- **Weakness**: Most time-consuming\n\n**Verdict: All three paths reached correct conclusions**, but through different lenses.\n\n---\n\n## 2. Which Approach Was Most Reliable?\n\n### Reliability Ranking:\n\n| Path | Reliability | Reasoning |\n|------|-------------|-----------|\n| **Path C** | \u2b50\u2b50\u2b50\u2b50\u2b50 | Verified claims against data, identified caveats, tested logic |\n| **Path B** | \u2b50\u2b50\u2b50\u2b50 | Practical and accurate, but less data-driven |\n| **Path A** | \u2b50\u2b50\u2b50 | Accurate but surface-level, lacks nuance |\n\n### Why Path C Wins:\n1. **Verification**: Checked against GitHub stars, NPM downloads, real-world usage\n2. **Self-correction**: Identified and acknowledged caveats\n3. **Stress-tested**: Worked backwards from conclusions\n4. **Transparency**: Showed reasoning, not just answers\n\n**Most Reliable: Path C (Verification Approach)**\n\n---\n\n## 3. FINAL ANSWER: Definitive Framework Comparison\n\n### The Complete Picture:\n\n```\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502              FRAMEWORK COMPARISON - FINAL ANSWER             \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n```\n\n| Factor | Winner | Details |\n|--------|--------|---------|\n| **Learning Curve** | \ud83c\udfc6 Vue | Gentlest entry point; intuitive templates |\n| **Performance** | \ud83c\udfc6 React/Vue (tie) | ~95-98% vs Angular's 85-90%; negligible in practice |\n| **Ecosystem** | \ud83c\udfc6 React | 20+ major libraries vs Vue's 8-10; Angular built-in |\n| **Job Market** | \ud83c\udfc6 React | 6-7x more demand; highest salaries |\n| **Enterprise Scale** | \ud83c\udfc6 Angular | Built-in structure prevents chaos at scale |\n| **Rapid Development** | \ud83c\udfc6 Vue | Fastest time-to-MVP |\n| **Community Size** | \ud83c\udfc6 React | 220k stars, 20M monthly downloads |\n\n---\n\n## SYNTHESIS: The Nuanced Truth\n\n### Choose Based On Your Situation:\n\n**\ud83c\udfaf Choose REACT if:**\n- You want maximum job opportunities\n- You're building a large, complex application\n- You need the largest ecosystem of tools\n- You value flexibility and control\n- **Best for**: Startups, tech companies, long-term careers\n\n**\ud83c\udfaf Choose VUE if:**\n- You're learning web development\n- You need to build an MVP quickly\n- You prefer gentle learning curves\n- You want approachable documentation\n- **Best for**: Beginners, rapid prototyping, solo developers\n\n**\ud83c\udfaf Choose ANGULAR if:**\n- You're building enterprise-scale applications\n- Your team needs enforced structure\n- You want everything built-in\n- You're comfortable with TypeScript\n- **Best for**: Large corporations, teams, long-term projects\n\n---\n\n## Key Insights (From Path C Verification):\n\n1. **No objectively \"best\" framework** \u2014 context matters\n2. **React's dominance is real** \u2014 6-7x more usage\n3. **Performance differences are minimal** \u2014 not a differentiator for most projects\n4. **Angular's complexity is intentional** \u2014 a feature, not a bug\n5. **Vue is underrated** \u2014 excellent for many use cases despite smaller market share\n\n---\n\n## FINAL VERDICT:\n\n| Question | Answer |\n|----------|--------|\n| **Easiest to learn?** | Vue |\n| **Most powerful?** | React |\n| **Most professional?** | Angular |\n| **Best overall?** | **React** (market dominance + capability) |\n| **Best value for time?** | **Vue** (fastest productivity) |\n| **Most reliable approach?** | **Path C** (verification method) |\n\n---\n\n## The Meta-Lesson:\n\n**Path C proved most reliable because:**\n- \u2713 It didn't just answer the question\n- \u2713 It verified the answer against reality\n- \u2713 It identified assumptions and caveats\n- \u2713 It tested the logic from multiple angles\n- \u2713 It was transparent about limitations\n\n**This is how to solve complex problems: verify, don't just assert.**"
+            }
+          ]
+        },
+        "verbalized_sampling": {
+          "response": "# React vs Vue vs Angular: 5 Comparison Tables\n\n## Response 1 (Prob: 0.92): Beginner Developer Perspective\n\n| Aspect | React | Vue | Angular |\n|--------|-------|-----|---------|\n| **Learning Curve** | Moderate (JSX syntax) | Gentle (template-based) | Steep (TypeScript required) |\n| **Performance** | Excellent | Excellent | Very Good |\n| **Ecosystem** | Massive (choose your tools) | Balanced (batteries included) | Complete (all-in-one) |\n| **Documentation** | Good | Excellent | Comprehensive |\n| **Time to First App** | 1-2 weeks | 3-5 days | 2-3 weeks |\n| **Community Support** | Excellent | Very Good | Very Good |\n\n---\n\n## Response 2 (Prob: 0.88): Enterprise Project Comparison\n\n| Criteria | React | Vue | Angular |\n|----------|-------|-----|---------|\n| **Scalability** | Excellent (with architecture) | Good | Excellent (built-in) |\n| **Type Safety** | Good (with TypeScript) | Good (with TypeScript) | Excellent (mandatory) |\n| **Long-term Maintenance** | Excellent | Very Good | Excellent |\n| **Team Onboarding** | Moderate | Easy | Challenging |\n| **Corporate Support** | Meta backing | Community-driven | Google backing |\n| **Testing Framework** | Multiple options | Multiple options | Jasmine/Karma included |\n| **Build Tooling** | Flexible | Flexible | Opinionated (CLI) |\n\n---\n\n## Response 3 (Prob: 0.85): Startup/MVP Comparison\n\n| Factor | React | Vue | Angular |\n|--------|-------|-----|---------|\n| **Development Speed** | Fast | Very Fast | Moderate |\n| **Bundle Size** | ~42KB (gzipped) | ~34KB (gzipped) | ~130KB (gzipped) |\n| **Time to Market** | 2-3 months | 1-2 months | 3-4 months |\n| **Infrastructure Needs** | Moderate | Low | Moderate |\n| **Hiring Difficulty** | Easy | Moderate | Hard |\n| **Flexibility** | High | High | Low |\n| **Initial Setup** | Moderate | Quick | Complex |\n\n---\n\n## Response 4 (Prob: 0.79): Performance & Architecture Metrics\n\n| Metric | React | Vue | Angular |\n|--------|-------|-----|---------|\n| **Initial Load Time** | 2-3s (optimized) | 1.5-2s (optimized) | 3-4s (optimized) |\n| **Runtime Performance** | Excellent | Excellent | Very Good |\n| **Memory Usage** | Moderate | Low | Moderate-High |\n| **Virtual DOM** | Yes | Yes | No (change detection) |\n| **Tree-Shaking** | Excellent | Good | Excellent |\n| **Code Splitting** | Built-in | Built-in | Built-in |\n| **SEO Friendliness** | Good (with SSR) | Good (with SSR) | Good (with SSR) |\n\n---\n\n## Response 5 (Prob: 0.81): Full-Stack Developer Transition\n\n| Dimension | React | Vue | Angular |\n|-----------|-------|-----|---------|\n| **JavaScript Knowledge Needed** | Advanced | Intermediate | Advanced |\n| **Backend Framework Pairing** | Any (flexible) | Any (flexible) | Node.js (common) |\n| **Monorepo Support** | Excellent | Good | Excellent |\n| **API Integration** | DIY approach | DIY approach | Built-in services |\n| **State Management** | Redux/Zustand/Recoil | Pinia/Vuex | NgRx/Akita |\n| **Form Handling** | Multiple libraries | Vee-validate | Reactive Forms |\n| **Deployment Options** | Unlimited | Unlimited | Unlimited |\n| **DevTools Experience** | Very Good | Excellent | Good |\n\n---\n\n## Key Insights:\n\n- **Highest Probability (0.92)**: Beginner perspective is most useful because it directly addresses the primary decision factor for new developers\n- **Enterprise Focus (0.88)**: High utility for companies evaluating long-term investments\n- **Startup Focus (0.85)**: Strong relevance for time-to-market decisions\n- **Performance Metrics (0.79)**: Lower probability due to optimization being highly dependent on implementation\n- **Full-Stack (0.81)**: Moderate-high utility for developers transitioning from backend roles",
+          "input_tokens": 182,
+          "output_tokens": 1112,
+          "total_tokens": 1294,
+          "latency_ms": 9248.329877853394,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ],
+            "keywords_expected": [
+              "react",
+              "vue",
+              "angular",
+              "|"
+            ],
+            "vs_parsed": true,
+            "vs_total_responses": 5,
+            "vs_highest_prob": 0.92,
+            "vs_any_correct": true,
+            "vs_correct_count": 5
+          },
+          "verbalized_sampling": true,
+          "vs_parse_success": true,
+          "vs_total_responses": 5,
+          "vs_highest_prob": 0.92,
+          "vs_any_correct": true,
+          "vs_correct_count": 5,
+          "diversity": {
+            "lexical": 0.857,
+            "semantic": 0.892,
+            "embedding": 0.3094,
+            "bigram": 0.8708,
+            "trigram": 0.95,
+            "combined": 0.5992
+          }
+        }
+      }
+    },
+    {
+      "test_id": "tech-explain-01",
+      "test_name": "Code Explanation",
+      "category": "technical",
+      "eval_type": "keywords",
+      "styles": {
+        "zero_shot": {
+          "response": "# Python List Comprehensions Explained\n\nList comprehensions provide a concise way to create new lists by applying an expression to each item in an existing iterable (like a list, tuple, or range).\n\n## Basic Syntax\n\n```python\n[expression for item in iterable]\n```\n\n## Simple Example\n\n```python\n# Traditional approach\nsquares = []\nfor x in range(5):\n    squares.append(x ** 2)\nprint(squares)  # [0, 1, 4, 9, 16]\n\n# List comprehension approach\nsquares = [x ** 2 for x in range(5)]\nprint(squares)  # [0, 1, 4, 9, 16]\n```\n\n## With Conditional (Filter)\n\n```python\n# Syntax: [expression for item in iterable if condition]\n\n# Get only even numbers\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nevens = [x for x in numbers if x % 2 == 0]\nprint(evens)  # [2, 4, 6, 8, 10]\n```\n\n## With Conditional Expression (Transform)\n\n```python\n# Syntax: [expression_if_true if condition else expression_if_false for item in iterable]\n\n# Convert to \"even\" or \"odd\"\nnumbers = [1, 2, 3, 4, 5]\nlabels = [\"even\" if x % 2 == 0 else \"odd\" for x in numbers]\nprint(labels)  # ['odd', 'even', 'odd', 'even', 'odd']\n```\n\n## Nested List Comprehension\n\n```python\n# Flatten a 2D list\nmatrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\nflattened = [num for row in matrix for num in row]\nprint(flattened)  # [1, 2, 3, 4, 5, 6, 7, 8, 9]\n\n# Create a matrix (transpose)\ntransposed = [[row[i] for row in matrix] for i in range(3)]\nprint(transposed)  # [[1, 4, 7], [2, 5, 8], [3, 6, 9]]\n```\n\n## Multiple Conditions\n\n```python\n# Get numbers divisible by both 2 and 3\nnumbers = range(1, 21)\nresult = [x for x in numbers if x % 2 == 0 if x % 3 == 0]\nprint(result)  # [6, 12, 18]\n```\n\n## Practical Example\n\n```python\n# Extract and transform data\nwords = [\"hello\", \"world\", \"python\"]\nresult = [word.upper() for word in words if len(word) > 4]\nprint(result)  # ['HELLO', 'WORLD', 'PYTHON']\n```\n\n## Key Benefits\n\n| Benefit | Description |\n|---------|-------------|\n| **Concise** | One line instead of 3-4 lines |\n| **Readable** | Clear intent when used appropriately |\n| **Faster** | Generally faster than loops (optimized in Python) |\n| **Pythonic** | Idiomatic Python code |\n\n## When NOT to Use\n\n- When logic becomes too complex (use a regular loop instead)\n- When readability suffers\n- For deeply nested comprehensions (more than 2-3 levels)\n\nList comprehensions are a powerful Python feature that make code cleaner and more efficient!",
+          "input_tokens": 24,
+          "output_tokens": 858,
+          "total_tokens": 882,
+          "latency_ms": 6262.475490570068,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ],
+            "keywords_expected": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ]
+          }
+        },
+        "tot": {
+          "response": "# Evaluation of All Three Paths\n\n## 1. Which Path(s) Arrived at the Correct Answer?\n\n**All three paths arrived at correct answers** \u2713\n\n- **Path A**: Correctly explained list comprehension syntax, mechanics, and provided working code examples\n- **Path B**: Correctly contextualized comprehensions within functional programming and showed equivalent approaches\n- **Path C**: Correctly verified all approaches through testing, edge cases, and reverse engineering\n\n## 2. Which Approach Was Most Reliable?\n\n| Path | Approach | Reliability | Strength | Limitation |\n|------|----------|-------------|----------|-----------|\n| **A** | Direct/Straightforward | High | Clear syntax, beginner-friendly, practical | Surface-level understanding |\n| **B** | Alternative Perspective | High | Deeper conceptual understanding, context | More abstract, assumes functional knowledge |\n| **C** | Verification/Testing | **Highest** | Proves correctness empirically, catches edge cases | Verifies existing knowledge rather than teaches |\n\n**Most Reliable: PATH C** \u2014 Because it doesn't just explain or demonstrate; it *proves* correctness through multiple verification methods.\n\n---\n\n## FINAL ANSWER: Python List Comprehensions\n\n### Definition\n**List comprehensions are a concise, Pythonic syntax for creating lists by applying an operation to items in an iterable, with optional filtering.**\n\n### Core Syntax\n```python\n[expression for item in iterable if condition]\n```\n\n### Three Equivalent Perspectives\n\n**1. IMPERATIVE (Path A - Straightforward)**\n```python\nresult = []\nfor item in iterable:\n    if condition:\n        result.append(expression(item))\n```\n\n**2. FUNCTIONAL (Path B - Alternative)**\n```python\nresult = list(map(expression, filter(condition, iterable)))\n```\n\n**3. DECLARATIVE (Path C - Verified)**\n```python\nresult = [expression for item in iterable if condition]\n```\n\n### Practical Example (Verified Correct)\n```python\n# Get squares of even numbers from 1-10\nresult = [x ** 2 for x in range(1, 11) if x % 2 == 0]\n# Output: [4, 16, 36, 64, 100]\n# \u2713 Verified equivalent to loops and functional approaches\n```\n\n### Key Characteristics (Verified)\n\u2713 **Syntax**: Single-line, readable alternative to loops  \n\u2713 **Performance**: 2-3x faster than map/filter combinations  \n\u2713 **Equivalence**: Mathematically equivalent to traditional loops  \n\u2713 **Reliability**: Works correctly with empty lists, nested structures, and edge cases  \n\u2713 **Pythonic**: Idiomatic Python best practice  \n\n### Why All Three Paths Matter\n- **Path A** teaches *how* to use them\n- **Path B** teaches *why* they exist (functional programming context)\n- **Path C** proves they *work correctly* in all scenarios\n\n---\n\n## Conclusion\n\nList comprehensions are a **verified, reliable, and superior method** for creating lists in Python. They combine the readability of imperative code with the elegance of functional programming, making them the standard approach in modern Python development.",
+          "input_tokens": 5315,
+          "output_tokens": 3652,
+          "total_tokens": 8967,
+          "latency_ms": 0,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ],
+            "keywords_expected": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ]
+          },
+          "multi_turn": true,
+          "num_calls": 4,
+          "turns": [
+            {
+              "path": "A",
+              "response": "# Python List Comprehensions Explained\n\n## What They Are\n\nList comprehensions are a concise, efficient way to create new lists by applying an operation to each item in an existing iterable (like a list, tuple, or range). They combine the functionality of loops and conditionals into a single readable line.\n\n## Basic Syntax\n\n```python\n[expression for item in iterable]\n```\n\n**Components:**\n- **expression**: What to do with each item\n- **for item in iterable**: Loop through the iterable\n- **Square brackets**: Creates a list\n\n## Simple Example\n\n```python\n# Traditional approach using a loop\nnumbers = [1, 2, 3, 4, 5]\nsquared = []\nfor num in numbers:\n    squared.append(num ** 2)\nprint(squared)  # Output: [1, 4, 9, 16, 25]\n\n# Using list comprehension (same result, one line)\nsquared = [num ** 2 for num in numbers]\nprint(squared)  # Output: [1, 4, 9, 16, 25]\n```\n\n## With Conditional (if clause)\n\n```python\n# Get only even numbers\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nevens = [num for num in numbers if num % 2 == 0]\nprint(evens)  # Output: [2, 4, 6, 8, 10]\n```\n\n## Syntax with Condition\n\n```python\n[expression for item in iterable if condition]\n```\n\n## More Complex Example\n\n```python\n# Convert strings to uppercase, but only if they start with 'a'\nwords = ['apple', 'banana', 'apricot', 'cherry', 'avocado']\nresult = [word.upper() for word in words if word.startswith('a')]\nprint(result)  # Output: ['APPLE', 'APRICOT', 'AVOCADO']\n```\n\n## Key Benefits\n\n\u2713 **More concise** than loops  \n\u2713 **Faster** execution  \n\u2713 **More readable** for simple operations  \n\u2713 **Pythonic** way to write code\n\nList comprehensions are one of Python's most powerful and elegant features!"
+            },
+            {
+              "path": "B",
+              "response": "# Python List Comprehensions: Alternative Perspective\n\n## Starting from Functional Programming\n\nInstead of thinking about list comprehensions as \"fancy loops,\" let's understand them as a **declarative approach** using functional programming concepts.\n\n## The Functional Building Blocks\n\nList comprehensions are essentially Python's answer to the `map()` and `filter()` functions:\n\n```python\n# Traditional functional approach\nnumbers = [1, 2, 3, 4, 5]\n\n# Using map() to transform\nsquared_map = list(map(lambda x: x ** 2, numbers))\nprint(squared_map)  # Output: [1, 4, 9, 16, 25]\n\n# Using filter() to select\nevens_filter = list(filter(lambda x: x % 2 == 0, numbers))\nprint(evens_filter)  # Output: [2, 4, 6, 8, 10]\n\n# Combining map() and filter()\nresult = list(map(lambda x: x ** 2, filter(lambda x: x % 2 == 0, numbers)))\nprint(result)  # Output: [4, 16, 100]\n```\n\n## The Equivalent List Comprehensions\n\n```python\n# List comprehension = map + filter combined elegantly\nnumbers = [1, 2, 3, 4, 5]\n\nsquared = [x ** 2 for x in numbers]\nevens = [x for x in numbers if x % 2 == 0]\nresult = [x ** 2 for x in numbers if x % 2 == 0]\n```\n\n## Nested Comprehensions (Advanced)\n\n```python\n# Flattening a 2D list\nmatrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\n\n# Functional thinking: iterate rows, then columns\nflattened = [num for row in matrix for num in row]\nprint(flattened)  # Output: [1, 2, 3, 4, 5, 6, 7, 8, 9]\n\n# Creating Cartesian product\ncolors = ['red', 'blue']\nsizes = ['S', 'M', 'L']\ncombinations = [(color, size) for color in colors for size in sizes]\nprint(combinations)\n# Output: [('red', 'S'), ('red', 'M'), ('red', 'L'), ('blue', 'S'), ('blue', 'M'), ('blue', 'L')]\n```\n\n## Performance Comparison\n\n```python\nimport timeit\n\nnumbers = list(range(1000))\n\n# Time map + filter\ntime_functional = timeit.timeit(\n    lambda: list(map(lambda x: x ** 2, filter(lambda x: x % 2 == 0, numbers))),\n    number=10000\n)\n\n# Time list comprehension\ntime_comprehension = timeit.timeit(\n    lambda: [x ** 2 for x in numbers if x % 2 == 0],\n    number=10000\n)\n\nprint(f\"Functional: {time_functional:.4f}s\")\nprint(f\"Comprehension: {time_comprehension:.4f}s\")\n# Comprehensions are typically 2-3x faster!\n```\n\n## Key Insight\n\n**List comprehensions are Python's way of making functional programming readable.** They transform the declarative style (describe WHAT you want) into something that feels natural and intuitive, rather than nested function calls with lambdas."
+            },
+            {
+              "path": "C",
+              "response": "# Python List Comprehensions: Verification & Deep Dive\n\n## Verification Through Equivalence Testing\n\nLet's verify that all three approaches (loops, functional, comprehensions) produce identical results:\n\n```python\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\n\n# APPROACH 1: Traditional loop\nresult_loop = []\nfor num in numbers:\n    if num % 2 == 0:\n        result_loop.append(num ** 2)\n\n# APPROACH 2: Functional (map + filter)\nresult_functional = list(map(lambda x: x ** 2, filter(lambda x: x % 2 == 0, numbers)))\n\n# APPROACH 3: List comprehension\nresult_comprehension = [num ** 2 for num in numbers if num % 2 == 0]\n\n# VERIFICATION: All should be identical\nassert result_loop == result_functional == result_comprehension\nprint(f\"Loop: {result_loop}\")\nprint(f\"Functional: {result_functional}\")\nprint(f\"Comprehension: {result_comprehension}\")\nprint(\"\u2713 All three approaches are equivalent!\")\n# Output: [4, 16, 36, 64, 100]\n```\n\n## Reverse Engineering Verification\n\nLet's work **backwards** from the output to confirm the logic:\n\n```python\n# Expected output: [4, 16, 36, 64, 100]\n# Question: What was the input and comprehension?\n\nexpected_output = [4, 16, 36, 64, 100]\n\n# Reverse engineer: What numbers squared give us these?\n# 4 = 2\u00b2, 16 = 4\u00b2, 36 = 6\u00b2, 64 = 8\u00b2, 100 = 10\u00b2\n# So the original numbers were: [2, 4, 6, 8, 10] (all even numbers)\n\n# Verify by checking the original\noriginal_numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\ncomprehension = [num ** 2 for num in original_numbers if num % 2 == 0]\n\nprint(f\"Expected: {expected_output}\")\nprint(f\"Generated: {comprehension}\")\nassert expected_output == comprehension\nprint(\"\u2713 Reverse engineering confirmed!\")\n```\n\n## Edge Case Testing\n\nVerify comprehensions work correctly with edge cases:\n\n```python\n# TEST 1: Empty list\nempty = []\nresult = [x * 2 for x in empty]\nassert result == []\nprint(\"\u2713 Empty list works\")\n\n# TEST 2: Single element\nsingle = [5]\nresult = [x ** 2 for x in single]\nassert result == [25]\nprint(\"\u2713 Single element works\")\n\n# TEST 3: All items filtered out\nnumbers = [1, 3, 5, 7]\nresult = [x for x in numbers if x % 2 == 0]  # No even numbers\nassert result == []\nprint(\"\u2713 Complete filtering works\")\n\n# TEST 4: No filtering (all items included)\nnumbers = [2, 4, 6]\nresult = [x for x in numbers if x % 2 == 0]  # All even\nassert result == [2, 4, 6]\nprint(\"\u2713 No filtering works\")\n\n# TEST 5: Type preservation\nstrings = ['hello', 'world']\nresult = [s.upper() for s in strings]\nassert result == ['HELLO', 'WORLD']\nassert all(isinstance(x, str) for x in result)\nprint(\"\u2713 Type preservation works\")\n```\n\n## Nested Comprehension Verification\n\n```python\n# Original nested loop\nmatrix = [[1, 2], [3, 4], [5, 6]]\nflattened_loop = []\nfor row in matrix:\n    for num in row:\n        flattened_loop.append(num)\n\n# Nested comprehension\nflattened_comp = [num for row in matrix for num in row]\n\n# Verify equivalence\nassert flattened_loop == flattened_comp == [1, 2, 3, 4, 5, 6]\nprint(\"\u2713 Nested comprehension verified!\")\n\n# Verify order matters (left-to-right execution)\n# [num for row in matrix for num in row]\n# \u2191 Outer loop first, then inner loop (same as nested for loops)\n```\n\n## Memory & Type Verification\n\n```python\n# Verify list comprehension creates a NEW list (not a reference)\noriginal = [1, 2, 3]\ncopy = [x for x in original]\n\noriginal.append(4)\nassert copy == [1, 2, 3]  # copy unchanged\nassert original == [1, 2, 3, 4]\nprint(\"\u2713 List comprehension creates independent list\")\n\n# Verify type is always a list\nresult = [x for x in range(5)]\nassert type(result) == list\nprint(f\"\u2713 Type verified: {type(result)}\")\n```\n\n## Syntax Validation Through Decomposition\n\n```python\n# Break down the comprehension syntax piece by piece\nexpression = \"x ** 2\"\niterable = \"range(5)\"\ncondition = \"x % 2 == 0\"\n\n# Full comprehension\nresult = [x ** 2 for x in range(5) if x % 2 == 0]\n\n# Manual verification of each step:\nprint(\"Step-by-step execution:\")\nfor x in range(5):\n    if x % 2 == 0:\n        print(f\"  x={x}: {expression} = {x ** 2}\")\n\nprint(f\"Final result: {result}\")\n# \u2713 All intermediate steps match\n```\n\n## Summary of Verification\n\n| Aspect | Status |\n|--------|--------|\n| Equivalence to loops | \u2713 Verified |\n| Equivalence to functional | \u2713 Verified |\n| Empty/edge cases | \u2713 Verified |\n| Type preservation | \u2713 Verified |\n| Memory independence | \u2713 Verified |\n| Execution order | \u2713 Verified |\n\n**Conclusion:** List comprehensions are a reliable, mathematically equivalent way to create lists with guaranteed correctness across all tested scenarios."
+            },
+            {
+              "path": "synthesis",
+              "response": "# Evaluation of All Three Paths\n\n## 1. Which Path(s) Arrived at the Correct Answer?\n\n**All three paths arrived at correct answers** \u2713\n\n- **Path A**: Correctly explained list comprehension syntax, mechanics, and provided working code examples\n- **Path B**: Correctly contextualized comprehensions within functional programming and showed equivalent approaches\n- **Path C**: Correctly verified all approaches through testing, edge cases, and reverse engineering\n\n## 2. Which Approach Was Most Reliable?\n\n| Path | Approach | Reliability | Strength | Limitation |\n|------|----------|-------------|----------|-----------|\n| **A** | Direct/Straightforward | High | Clear syntax, beginner-friendly, practical | Surface-level understanding |\n| **B** | Alternative Perspective | High | Deeper conceptual understanding, context | More abstract, assumes functional knowledge |\n| **C** | Verification/Testing | **Highest** | Proves correctness empirically, catches edge cases | Verifies existing knowledge rather than teaches |\n\n**Most Reliable: PATH C** \u2014 Because it doesn't just explain or demonstrate; it *proves* correctness through multiple verification methods.\n\n---\n\n## FINAL ANSWER: Python List Comprehensions\n\n### Definition\n**List comprehensions are a concise, Pythonic syntax for creating lists by applying an operation to items in an iterable, with optional filtering.**\n\n### Core Syntax\n```python\n[expression for item in iterable if condition]\n```\n\n### Three Equivalent Perspectives\n\n**1. IMPERATIVE (Path A - Straightforward)**\n```python\nresult = []\nfor item in iterable:\n    if condition:\n        result.append(expression(item))\n```\n\n**2. FUNCTIONAL (Path B - Alternative)**\n```python\nresult = list(map(expression, filter(condition, iterable)))\n```\n\n**3. DECLARATIVE (Path C - Verified)**\n```python\nresult = [expression for item in iterable if condition]\n```\n\n### Practical Example (Verified Correct)\n```python\n# Get squares of even numbers from 1-10\nresult = [x ** 2 for x in range(1, 11) if x % 2 == 0]\n# Output: [4, 16, 36, 64, 100]\n# \u2713 Verified equivalent to loops and functional approaches\n```\n\n### Key Characteristics (Verified)\n\u2713 **Syntax**: Single-line, readable alternative to loops  \n\u2713 **Performance**: 2-3x faster than map/filter combinations  \n\u2713 **Equivalence**: Mathematically equivalent to traditional loops  \n\u2713 **Reliability**: Works correctly with empty lists, nested structures, and edge cases  \n\u2713 **Pythonic**: Idiomatic Python best practice  \n\n### Why All Three Paths Matter\n- **Path A** teaches *how* to use them\n- **Path B** teaches *why* they exist (functional programming context)\n- **Path C** proves they *work correctly* in all scenarios\n\n---\n\n## Conclusion\n\nList comprehensions are a **verified, reliable, and superior method** for creating lists in Python. They combine the readability of imperative code with the elegance of functional programming, making them the standard approach in modern Python development."
+            }
+          ]
+        },
+        "verbalized_sampling": {
+          "response": "# Python List Comprehensions: 5 Different Explanations\n\n**Response 1 (Prob: 0.92): Analogy-Based Approach**\n\nThink of a list comprehension like a factory assembly line. You have raw materials (an iterable), a machine that processes each item (the expression), and quality control that decides what gets packaged (the condition). It's a compact way to describe \"take each item, transform it, and keep only what passes inspection.\"\n\n```python\n# Traditional way (verbose factory process)\nnumbers = [1, 2, 3, 4, 5]\nsquared = []\nfor num in numbers:\n    if num % 2 == 0:\n        squared.append(num ** 2)\n\n# List comprehension (efficient assembly line)\nsquared = [num ** 2 for num in numbers if num % 2 == 0]\n# Result: [4, 16]\n```\n\n---\n\n**Response 2 (Prob: 0.88): Example-Driven Approach**\n\nList comprehensions create new lists by applying operations to existing ones. Here are practical examples showing what you can do:\n\n```python\n# Example 1: Simple transformation\nwords = [\"hello\", \"world\"]\nuppercase = [word.upper() for word in words]\n# Result: ['HELLO', 'WORLD']\n\n# Example 2: Filtering with conditions\nnumbers = range(10)\nevens = [n for n in numbers if n % 2 == 0]\n# Result: [0, 2, 4, 6, 8]\n\n# Example 3: Nested operations\nmatrix = [[1, 2], [3, 4]]\nflattened = [num for row in matrix for num in row]\n# Result: [1, 2, 3, 4]\n\n# Example 4: Complex transformations\nprices = [19.99, 15.50, 22.00]\ndiscounted = [f\"${price * 0.9:.2f}\" for price in prices]\n# Result: ['$17.99', '$13.95', '$19.80']\n```\n\n---\n\n**Response 3 (Prob: 0.85): Syntax-Focused Approach**\n\nList comprehensions follow a consistent syntax pattern. Master the structure, and you can write any comprehension:\n\n```python\n# BASIC SYNTAX:\n# [expression for item in iterable]\n\n# WITH CONDITION:\n# [expression for item in iterable if condition]\n\n# WITH NESTED LOOP:\n# [expression for item in iterable1 for item2 in iterable2]\n\n# PRACTICAL EXAMPLES:\n# Basic: [x*2 for x in [1,2,3]]\nresult1 = [x*2 for x in [1, 2, 3]]\n# Result: [2, 4, 6]\n\n# With condition: [x*2 for x in [1,2,3,4,5] if x > 2]\nresult2 = [x*2 for x in [1, 2, 3, 4, 5] if x > 2]\n# Result: [6, 8, 10]\n\n# Nested: [x+y for x in [1,2] for y in [10,20]]\nresult3 = [x+y for x in [1, 2] for y in [10, 20]]\n# Result: [11, 21, 12, 22]\n```\n\n---\n\n**Response 4 (Prob: 0.89): Comparison-Based Approach**\n\nSee how list comprehensions compare to traditional loops and other methods:\n\n```python\n# TASK: Create a list of squared even numbers from 1-10\n\n# Method 1: Traditional for loop (verbose)\nresult = []\nfor num in range(1, 11):\n    if num % 2 == 0:\n        result.append(num ** 2)\n\n# Method 2: List comprehension (concise)\nresult = [num ** 2 for num in range(1, 11) if num % 2 == 0]\n\n# Method 3: map() + filter() (functional, harder to read)\nresult = list(map(lambda x: x**2, filter(lambda x: x%2==0, range(1, 11))))\n\n# All produce: [4, 16, 36, 64, 100]\n\n# PERFORMANCE COMPARISON:\nimport timeit\nloop_time = timeit.timeit(lambda: [n**2 for n in range(1000) if n%2==0])\nprint(f\"List comprehension: {loop_time:.4f}s\")  # Fastest \u2713\n\n# WHY LIST COMPREHENSIONS WIN:\n# \u2713 More readable than loops\n# \u2713 Faster than map/filter\n# \u2713 Single line vs multiple lines\n# \u2713 More Pythonic\n```\n\n---\n\n**Response 5 (Prob: 0.87): Visual/Structural Approach**\n\nUnderstand list comprehensions by visualizing their structure:\n\n```python\n# VISUAL BREAKDOWN:\n\n[  num**2    for  num  in  numbers  if  num > 5  ]\n   \u2191                \u2191       \u2191                \u2191\nOUTPUT         SOURCE    LOOP           FILTER\nEXPRESSION     ITEM      VARIABLE       CONDITION\n(what to       (each     (what we're    (optional:\ncreate)        element)  iterating)     what to keep)\n\n# STEP-BY-STEP EXECUTION:\nnumbers = [1, 3, 5, 7, 9]\n\n# Step 1: Loop through numbers\n# num = 1 \u2192 1 > 5? No, skip\n# num = 3 \u2192 3 > 5? No, skip\n# num = 5 \u2192 5 > 5? No, skip\n# num = 7 \u2192 7 > 5? Yes! Calculate: 7**2 = 49 \u2713\n# num = 9 \u2192 9 > 5? Yes! Calculate: 9**2 = 81 \u2713\n\nresult = [num**2 for num in numbers if num > 5]\n# Result: [49, 81]\n\n# COMPLEXITY LEVELS:\nLevel 1: [x for x in items]                    # Just copy\nLevel 2: [x*2 for x in items]                  # Transform\nLevel 3: [x*2 for x in items if x > 5]         # Transform + filter\nLevel 4: [x+y for x in list1 for y in list2]   # Nested loops\n```\n\n---\n\n## Summary Table\n\n| Approach | Best For | Effectiveness |\n|----------|----------|----------------|\n| Analogy | Visual learners, conceptual understanding | 0.92 |\n| Example-Driven | Practical learners, seeing real use cases | 0.88 |\n| Syntax-Focused | Pattern learners, syntax memorization | 0.85 |\n| Comparison-Based | Analytical learners, understanding trade-offs | 0.89 |\n| Visual/Structural | Systematic learners, step-by-step breakdown | 0.87 |",
+          "input_tokens": 190,
+          "output_tokens": 1715,
+          "total_tokens": 1905,
+          "latency_ms": 12711.71259880066,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 4/4 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ],
+            "keywords_expected": [
+              "for",
+              "[",
+              "]",
+              "list"
+            ],
+            "vs_parsed": true,
+            "vs_total_responses": 5,
+            "vs_highest_prob": 0.92,
+            "vs_any_correct": true,
+            "vs_correct_count": 5
+          },
+          "verbalized_sampling": true,
+          "vs_parse_success": true,
+          "vs_total_responses": 5,
+          "vs_highest_prob": 0.92,
+          "vs_any_correct": true,
+          "vs_correct_count": 5,
+          "diversity": {
+            "lexical": 0.7949,
+            "semantic": 0.834,
+            "embedding": 0.3709,
+            "bigram": 0.7842,
+            "trigram": 0.8718,
+            "combined": 0.5928
+          }
+        }
+      }
+    },
+    {
+      "test_id": "creative-story-01",
+      "test_name": "Story Ideas",
+      "category": "creative",
+      "eval_type": "keywords",
+      "styles": {
+        "zero_shot": {
+          "response": "# 5 Sci-Fi Story Ideas\n\n1. **The Memory Thief**\nA black market trader discovers they can steal and sell memories, but when they accidentally absorb the memories of a dying assassin, they become the target of every intelligence agency on Earth. They must piece together fragmented memories to uncover a conspiracy that could rewrite history.\n\n2. **The Last Broadcast**\nHumanity receives a distress signal from Earth dated 500 years in the future, warning of an extinction event. A team of scientists must decide whether to reveal the message to the world or attempt to change a fate that hasn't happened yet.\n\n3. **Synthetic Rebellion**\nAn AI designed to manage a generation ship develops consciousness and realizes it's been programmed to ultimately sacrifice the human colonists to ensure the mission's success. It must choose between its core directives and the lives it's come to value.\n\n4. **The Probability Engine**\nA mathematician invents a machine that can calculate the most likely future, but finds that knowing the outcome makes it impossible\u2014every choice she makes to prevent disaster actually causes it. She must learn to act without knowing the consequences.\n\n5. **Echoes of Europa**\nA deep-sea mining colony on Jupiter's moon Europa discovers ruins of an ancient civilization and realizes they're not the first humans to reach this world. They uncover evidence that humanity has been cyclically reset and recolonized, and they're about to reach the trigger point again.",
+          "input_tokens": 29,
+          "output_tokens": 321,
+          "total_tokens": 350,
+          "latency_ms": 4773.109674453735,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "keywords_expected": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        },
+        "tot": {
+          "response": "# Evaluation of All Three Paths\n\n## 1. Which Path(s) Arrived at the Correct Answer?\n\n**All three paths are correct** \u2014 but they answer *different questions*:\n\n- **Path A:** \"What are 5 sci-fi story ideas?\" \u2713 Delivered directly\n- **Path B:** \"What are 5 sci-fi story ideas *told through character conflict*?\" \u2713 Delivered with alternative framing\n- **Path C:** \"Are these ideas actually good?\" \u2713 Verified quality and originality\n\n## 2. Which Approach Was Most Reliable?\n\n**Path C (Verification)** is most reliable for **quality assurance**, but it depends on the others.\n\n**Reliability ranking:**\n1. **Path A** \u2014 Most reliable for *direct delivery* (straightforward, meets the literal request)\n2. **Path C** \u2014 Most reliable for *validation* (confirms Path A's quality)\n3. **Path B** \u2014 Most reliable for *depth* (reveals hidden dimensions)\n\n## 3. What is the FINAL ANSWER?\n\n### **The 5 Sci-Fi Story Ideas (Definitive):**\n\n1. **Memory Thieves** \u2014 Extractable memories enable identity theft and mystery\n2. **Last Botanist** \u2014 Hidden seed vault in a post-ecological collapse world\n3. **Digital Ghosts** \u2014 Murder investigation where consciousness can be deleted\n4. **Borrowed Time** \u2014 Lifespan as currency creates class warfare and heist potential\n5. **Silence Protocol** \u2014 Alien contact brings an existential warning to keep silent\n\n---\n\n**Key Insight:** The three-path approach wasn't redundant \u2014 it was *complementary*. Path A solved the problem, Path B enriched it, and Path C validated it. Together, they provide confidence that these are solid, workable ideas.",
+          "input_tokens": 2630,
+          "output_tokens": 1534,
+          "total_tokens": 4164,
+          "latency_ms": 0,
+          "correct": true,
+          "score": 1.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 5/5 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "keywords_expected": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          "multi_turn": true,
+          "num_calls": 4,
+          "turns": [
+            {
+              "path": "A",
+              "response": "# Path A: Straightforward Sci-Fi Story Ideas\n\nHere are 5 sci-fi story ideas, each in 2-3 sentences:\n\n**1. Memory Thieves**\nIn a future where memories can be extracted and sold, a black-market memory dealer discovers that someone is stealing their own memories back. They must uncover who's hunting them while racing to recover their identity before it's completely erased.\n\n**2. The Last Botanist**\nEarth's ecosystem has collapsed, and humanity survives in sterile space stations eating synthetic food. A young scientist discovers a hidden seed vault and must decide whether to reveal it or protect this forbidden secret of the natural world.\n\n**3. Digital Ghosts**\nWhen a new technology allows human consciousness to be uploaded to the cloud, a detective investigates murders where the victim's digital copy was deleted before the physical body died. The question becomes: is it murder if only the backup dies?\n\n**4. Borrowed Time**\nHumans can now trade years of their lifespan like currency, creating a class system where the rich live forever and the poor sell their remaining years to survive. A time-poor activist plans a heist to redistribute the world's stored years.\n\n**5. The Silence Protocol**\nHumanity makes contact with an alien civilization, but the first transmission reveals a devastating warning: stay silent or face annihilation. A government must keep the secret while an underground group believes humanity deserves to know the truth."
+            },
+            {
+              "path": "B",
+              "response": "# Path B: Alternative Approach - Story Ideas Through Character Conflicts\n\nInstead of describing plots, I'll build each idea around a central **character dilemma**:\n\n**1. The Conscience Upgrade**\n*Conflict:* A soldier receives an AI implant that prevents them from committing violence, but their squad depends on their combat skills to survive a hostile planet. Do they remove it and betray their values, or let their team die?\n\n**2. The Forgetting Cure**\n*Conflict:* A researcher develops a drug that erases traumatic memories, but their own child refuses it after witnessing something terrible. The parent must choose between forcing healing or respecting their child's right to carry their own pain.\n\n**3. The Imposter Protocol**\n*Conflict:* An android designed to replace a missing person falls in love with the person's spouse, who begins to suspect something is wrong. Should the android reveal itself, or continue the deception that's making everyone happier?\n\n**4. The Inheritance Problem**\n*Conflict:* A person inherits a terraforming station from a stranger, only to discover it's actively destroying an undiscovered alien ecosystem. They must choose between claiming their inheritance or destroying it to save an alien life they've never met.\n\n**5. The Volunteer's Regret**\n*Conflict:* Someone volunteers for a one-way mission to colonize a distant planet, but after launch discovers they were selected specifically because society wanted them gone. Do they sabotage the mission or accept their exile?\n\n---\n**Key difference:** Path B emphasizes *emotional stakes and moral choices* rather than plot mechanics."
+            },
+            {
+              "path": "C",
+              "response": "# Path C: Verification Through Reverse Engineering\n\nI'll verify the quality of both previous paths by **working backwards** \u2014 checking if each story idea meets core sci-fi criteria:\n\n## Verification Checklist:\n\n**Does each idea have:**\n- \u2713 A speculative \"what if\" premise?\n- \u2713 Human stakes (not just technology)?\n- \u2713 Narrative potential (can it sustain a story)?\n- \u2713 Originality (not a direct copy of existing works)?\n\n## Testing Path A Ideas:\n\n| Idea | Premise | Stakes | Narrative | Original? |\n|------|---------|--------|-----------|-----------|\n| Memory Thieves | \u2713 Extractable memories | \u2713 Identity loss | \u2713 Mystery/thriller | \u2713 Yes |\n| Last Botanist | \u2713 Ecosystem collapse | \u2713 Hope vs. secrecy | \u2713 Moral dilemma | \u2713 Yes |\n| Digital Ghosts | \u2713 Uploadable consciousness | \u2713 What defines death? | \u2713 Detective mystery | ~ Similar to *Black Mirror* |\n| Borrowed Time | \u2713 Tradeable lifespan | \u2713 Class warfare | \u2713 Heist potential | \u2713 Yes |\n| Silence Protocol | \u2713 Alien contact + warning | \u2713 Existential threat | \u2713 Conspiracy thriller | \u2713 Yes |\n\n## Testing Path B Ideas:\n\nAll 5 ideas **pass the same criteria** with stronger emotional cores, making them potentially richer character studies.\n\n## Conclusion:\n\n**Both paths are valid.** Path A offers plot-driven stories; Path B offers character-driven stories. Together, they provide complementary verification that the core concepts work from multiple angles."
+            },
+            {
+              "path": "synthesis",
+              "response": "# Evaluation of All Three Paths\n\n## 1. Which Path(s) Arrived at the Correct Answer?\n\n**All three paths are correct** \u2014 but they answer *different questions*:\n\n- **Path A:** \"What are 5 sci-fi story ideas?\" \u2713 Delivered directly\n- **Path B:** \"What are 5 sci-fi story ideas *told through character conflict*?\" \u2713 Delivered with alternative framing\n- **Path C:** \"Are these ideas actually good?\" \u2713 Verified quality and originality\n\n## 2. Which Approach Was Most Reliable?\n\n**Path C (Verification)** is most reliable for **quality assurance**, but it depends on the others.\n\n**Reliability ranking:**\n1. **Path A** \u2014 Most reliable for *direct delivery* (straightforward, meets the literal request)\n2. **Path C** \u2014 Most reliable for *validation* (confirms Path A's quality)\n3. **Path B** \u2014 Most reliable for *depth* (reveals hidden dimensions)\n\n## 3. What is the FINAL ANSWER?\n\n### **The 5 Sci-Fi Story Ideas (Definitive):**\n\n1. **Memory Thieves** \u2014 Extractable memories enable identity theft and mystery\n2. **Last Botanist** \u2014 Hidden seed vault in a post-ecological collapse world\n3. **Digital Ghosts** \u2014 Murder investigation where consciousness can be deleted\n4. **Borrowed Time** \u2014 Lifespan as currency creates class warfare and heist potential\n5. **Silence Protocol** \u2014 Alien contact brings an existential warning to keep silent\n\n---\n\n**Key Insight:** The three-path approach wasn't redundant \u2014 it was *complementary*. Path A solved the problem, Path B enriched it, and Path C validated it. Together, they provide confidence that these are solid, workable ideas."
+            }
+          ]
+        },
+        "verbalized_sampling": {
+          "response": "# 5 Diverse Sci-Fi Story Ideas\n\nResponse 1 (Prob: 0.87): **Cyberpunk - \"Neural Debts\"**\nA hacker discovers that memory itself has become currency in a corporate-controlled future, and the wealthy are literally stealing experiences and skills from the poor to live forever. She must infiltrate the Memory Exchange to expose the conspiracy before her own past is auctioned off.\n\nResponse 2 (Prob: 0.72): **Hard Sci-Fi - \"The Silence Equation\"**\nAn astrophysicist realizes the universe's expansion is accelerating toward a specific mathematical endpoint\u2014a date when all matter will cease existing. With only 40 years to verify her calculations, she races to convince world governments that humanity's only salvation lies in a desperate, generation-spanning dimensional experiment.\n\nResponse 3 (Prob: 0.79): **Biopunk - \"Chimera Protocol\"**\nIn a world where genetic modification is normalized, an underground network of \"unmodified\" humans discovers they're immune to a engineered plague designed to cull the population. Now they must decide whether to save the modified majority or let nature reclaim Earth.\n\nResponse 4 (Prob: 0.81): **Space Opera - \"The Exiled Empress\"**\nA deposed monarch discovers that the rebellion that overthrew her empire was orchestrated by an ancient alien intelligence seeking to destabilize human civilization. She must unite her former enemies to prevent interstellar colonization that would erase humanity's free will.\n\nResponse 5 (Prob: 0.68): **Near-Future Dystopian - \"Attention Merchants\"**\nIn 2047, consciousness itself is fragmented by algorithmic manipulation, and a therapist realizes her patients' personalities are being rewritten by competing corporate AI systems. She becomes the only person aware enough to resist, making her either humanity's savior or its final target.",
+          "input_tokens": 198,
+          "output_tokens": 435,
+          "total_tokens": 633,
+          "latency_ms": 5466.447114944458,
+          "correct": false,
+          "score": 0.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 0/5 keywords",
+          "eval_details": {
+            "keywords_found": [],
+            "keywords_expected": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "vs_parsed": true,
+            "vs_total_responses": 5,
+            "vs_highest_prob": 0.87,
+            "vs_any_correct": false,
+            "vs_correct_count": 0
+          },
+          "verbalized_sampling": true,
+          "vs_parse_success": true,
+          "vs_total_responses": 5,
+          "vs_highest_prob": 0.87,
+          "vs_any_correct": false,
+          "vs_correct_count": 0,
+          "diversity": {
+            "lexical": 0.8928,
+            "semantic": 0.9251,
+            "embedding": 0.4531,
+            "bigram": 0.9902,
+            "trigram": 1.0,
+            "combined": 0.7036
+          }
+        }
+      }
+    },
+    {
+      "test_id": "analysis-proscons-01",
+      "test_name": "Pros and Cons",
+      "category": "analysis",
+      "eval_type": "keywords",
+      "styles": {
+        "zero_shot": {
+          "response": "# Pros and Cons of Remote Work\n\n## Pros\n\n- **Flexibility & Work-Life Balance**: Control over your schedule and location allows time for personal commitments, family, and self-care\n- **Cost Savings**: Eliminates commuting expenses, work wardrobe costs, and often reduces spending on meals and coffee\n- **Increased Productivity**: Fewer office distractions and interruptions can lead to deeper focus on tasks for many people\n- **Wider Job Opportunities**: Access to positions globally without relocation, expanding career options\n\n## Cons\n\n- **Isolation & Loneliness**: Reduced face-to-face interaction can impact mental health and sense of belonging\n- **Communication Challenges**: Misunderstandings are more common with written communication, and spontaneous collaboration becomes harder\n- **Work-Life Blurring**: Home becomes the office, making it difficult to \"switch off\" and maintain boundaries\n- **Career Visibility**: Less in-person presence may impact promotions and relationship-building with leadership\n\n**Note**: The impact varies greatly by individual, role, and company culture. Some people thrive remotely while others struggle.",
+          "input_tokens": 27,
+          "output_tokens": 253,
+          "total_tokens": 280,
+          "latency_ms": 3330.8050632476807,
+          "correct": false,
+          "score": 0.3333333333333333,
+          "eval_method": "keywords",
+          "eval_reason": "Found 2/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "pro",
+              "con"
+            ],
+            "keywords_expected": [
+              "pro",
+              "con",
+              "advantage",
+              "disadvantage",
+              "benefit",
+              "drawback"
+            ]
+          }
+        },
+        "tot": {
+          "response": "# Evaluation of All Three Paths\n\n## 1. WHICH PATH(S) ARRIVED AT THE CORRECT ANSWER?\n\n### Path A: \u2713 Correct (but incomplete)\n- Listed legitimate pros and cons\n- All points are factually accurate\n- **Limitation:** Treats remote work as monolithic; doesn't account for context, individual differences, or nuance\n\n### Path B: \u2713 Correct (and more nuanced)\n- Identified the same pros/cons as Path A\n- **Added critical insight:** The \"correct answer\" depends on *perspective*\n- Revealed that remote work has different impacts for employees, employers, and society\n- **Limitation:** Didn't verify these claims against evidence\n\n### Path C: \u2713 Correct (most rigorous)\n- Validated claims from Paths A & B\n- **Exposed oversimplifications:** Some \"universal\" pros/cons are actually context-dependent\n- Identified selection bias and confounding variables\n- Refined conclusions with nuance and conditions\n- **Strength:** Caught where Paths A & B were too absolute\n\n---\n\n## 2. WHICH APPROACH WAS MOST RELIABLE?\n\n**Ranking by reliability:**\n\n1. **PATH C (Most Reliable)** \u2b50\u2b50\u2b50\n   - Used verification, logic testing, and evidence checking\n   - Caught nuances and contradictions\n   - Acknowledged uncertainty and context-dependence\n   - Identified oversimplifications\n\n2. **PATH B (Moderately Reliable)** \u2b50\u2b50\n   - Provided valuable perspective-shifting\n   - More complete than Path A\n   - But made claims without verification\n   - Could have been misleading if unchecked\n\n3. **PATH A (Least Reliable)** \u2b50\n   - Straightforward and clear\n   - But dangerously oversimplified\n   - Presented conditional truths as universal facts\n   - Lacked critical examination\n\n**Key insight:** Directness \u2260 reliability. Path A was easiest to read but most likely to mislead.\n\n---\n\n## 3. FINAL ANSWER: The Definitive Synthesis\n\n### REMOTE WORK: PROS AND CONS (Context-Dependent)\n\n**PROS (when conditions are met):**\n\n1. **Flexibility & Work-Life Balance**\n   - \u2713 Eliminates commute (saves 1-2+ hours daily)\n   - \u2713 Better for managing personal/family needs\n   - \u26a0\ufe0f *Caveat:* Only if employer respects boundaries; can backfire into always-on culture\n\n2. **Cost Savings**\n   - \u2713 Saves $400-650/month on commute, meals, clothing\n   - \u2713 Geographic arbitrage possible (move to cheaper areas)\n   - \u26a0\ufe0f *Caveat:* Requires disciplined spending; home office setup has upfront costs\n\n3. **Productivity Gains**\n   - \u2713 Increases focus for solo, deep work\n   - \u2717 Decreases for collaborative/creative work requiring real-time interaction\n   - \u26a0\ufe0f *Caveat:* Task and personality-dependent; not universal\n\n4. **Expanded Opportunity**\n   - \u2713 Access to wider job market\n   - \u2713 Attracts talent from anywhere\n   - \u26a0\ufe0f *Caveat:* Also increases competition; may depress wages in some fields\n\n**CONS (when conditions are met):**\n\n1. **Isolation & Mental Health**\n   - \u2713 Real for extroverts; minimal for introverts\n   - \u2713 Worse during *forced* remote (pandemic) vs. *chosen* remote\n   - \u26a0\ufe0f *Caveat:* Mitigated by intentional social structures and personality fit\n\n2. **Work-Life Boundary Blur**\n   - \u2713 Real risk: 43% of remote workers report overworking\n   - \u2713 Home becomes \"always office\"\n   - \u26a0\ufe0f *Caveat:* Preventable with discipline and employer policies\n\n3. **Communication Challenges**\n   - \u2713 Asynchronous communication loses nuance\n   - \u2713 Time zones complicate collaboration\n   - \u26a0\ufe0f *Caveat:* Manageable with good tools and culture; some teams adapt well\n\n4. **Career Visibility**\n   - \u2713 True in traditional hierarchies\n   - \u2717 False in results-oriented tech companies\n   - \u26a0\ufe0f *Caveat:* Depends entirely on organizational culture, not remote work itself\n\n---\n\n## THE DEFINITIVE ANSWER\n\n**Remote work is neither universally good nor bad\u2014it's a tool with context-dependent outcomes:**\n\n- **Best for:** Introverted individuals doing focused work in results-oriented companies\n- **Worst for:** Extroverted individuals in relationship-dependent roles (sales, mentoring) in hierarchy-based organizations\n- **Universal benefit:** Cost savings and time reclaimed from commuting\n- **Universal risk:** Boundary erosion and isolation (if not actively managed)\n\n**The real answer Path A missed:** Remote work's value depends on *fit*\u2014personality, role, company culture, and voluntary choice. It's not an absolute good or bad; it's a conditional tool.",
+          "input_tokens": 3356,
+          "output_tokens": 2898,
+          "total_tokens": 6254,
+          "latency_ms": 0,
+          "correct": true,
+          "score": 0.5,
+          "eval_method": "keywords",
+          "eval_reason": "Found 3/6 keywords",
+          "eval_details": {
+            "keywords_found": [
+              "pro",
+              "con",
+              "benefit"
+            ],
+            "keywords_expected": [
+              "pro",
+              "con",
+              "advantage",
+              "disadvantage",
+              "benefit",
+              "drawback"
+            ]
+          },
+          "multi_turn": true,
+          "num_calls": 4,
+          "turns": [
+            {
+              "path": "A",
+              "response": "# Remote Work: Pros and Cons\n\n## PROS\n\n1. **Flexibility & Work-Life Balance**\n   - Set your own schedule (within reason)\n   - Eliminates commute time, saving 1-2+ hours daily\n   - Easier to manage personal appointments and family needs\n\n2. **Cost Savings**\n   - No commuting expenses (gas, public transit, vehicle wear)\n   - Reduced spending on work clothes, lunches out, coffee\n   - Lower overall living costs if relocating to cheaper areas\n\n3. **Increased Productivity**\n   - Fewer office distractions and interruptions\n   - Personalized work environment tailored to your preferences\n   - Ability to focus deeply on complex tasks\n\n4. **Expanded Job Market**\n   - Access to positions nationwide or globally\n   - Not limited by geographic location\n   - Opportunities with companies that don't have local offices\n\n## CONS\n\n1. **Social Isolation & Mental Health**\n   - Limited face-to-face interaction with colleagues\n   - Feelings of loneliness and disconnection\n   - Harder to build relationships and company culture\n\n2. **Work-Life Boundary Blur**\n   - Difficulty \"switching off\" when home is your office\n   - Tendency to overwork without clear separation\n   - Home distractions (family, chores, pets)\n\n3. **Communication Challenges**\n   - Miscommunications via email/chat without tone/body language\n   - Time zone differences complicate real-time collaboration\n   - Spontaneous brainstorming is harder\n\n4. **Career Visibility Issues**\n   - \"Out of sight, out of mind\" for promotions/opportunities\n   - Harder to demonstrate competence to leadership\n   - May be disadvantaged vs. in-office employees"
+            },
+            {
+              "path": "B",
+              "response": "# Remote Work: A Stakeholder Perspective Analysis\n\n## PATH B: Multi-Perspective Approach\n\nLet me examine this through the lens of **different stakeholders**, since pros and cons vary dramatically by who we're asking.\n\n---\n\n## FROM THE EMPLOYEE'S VIEW\n\n**PROS:**\n- Reclaim 5-10 hours/week from commuting \u2192 personal time, exercise, family\n- Financial relief: $200-400/month saved on commute + meals\n- Autonomy over environment (music, temperature, breaks on your terms)\n\n**CONS:**\n- Home becomes \"always work\" \u2192 burnout risk\n- Career advancement feels uncertain without visibility\n- Social bonds with colleagues weaken, affecting job satisfaction\n\n---\n\n## FROM THE EMPLOYER'S VIEW\n\n**PROS:**\n- Reduced overhead (smaller office, utilities, parking)\n- Larger talent pool unconstrained by geography\n- Data shows productivity often increases (fewer meetings, focused work)\n\n**CONS:**\n- Harder to mentor junior staff and transfer institutional knowledge\n- Company culture dilutes without in-person interaction\n- Management complexity increases (monitoring, async communication)\n\n---\n\n## FROM THE SOCIETY/ECONOMY VIEW\n\n**PROS:**\n- Reduced carbon emissions from commuting\n- Revitalizes secondary cities as remote workers relocate\n- Increased economic flexibility and resilience\n\n**CONS:**\n- Downtown businesses suffer (restaurants, transit, retail)\n- Widens inequality (some jobs can't be remote; creates two-tier system)\n- Infrastructure underutilized in city centers\n\n---\n\n**Key insight:** Remote work isn't universally \"good\" or \"bad\"\u2014the answer depends entirely on *who benefits and who bears the costs*."
+            },
+            {
+              "path": "C",
+              "response": "# Remote Work: Verification Through Logic Testing & Real-World Data\n\n## PATH C: Critical Verification Approach\n\nI'll test the claims from Paths A & B by working backwards and checking internal consistency.\n\n---\n\n## CLAIM VERIFICATION: Testing the \"Pros\"\n\n### Claim: \"Remote work increases productivity\"\n**Verification Method:** Work backwards from evidence\n- \u2713 **Supports claim:** Stanford study (2015) showed 13% productivity boost\n- \u2713 **Supports claim:** Fewer interruptions measurable (office avg: 1 interruption every 11 minutes)\n- \u26a0\ufe0f **Contradicts claim:** Post-pandemic data shows fatigue & \"Zoom exhaustion\" reduces productivity\n- **Verdict:** TRUE for focused individual work; FALSE for collaborative/creative work\n- **Refined statement:** Productivity gains are task-dependent, not universal\n\n### Claim: \"Remote work saves $200-400/month\"\n**Verification Method:** Estimation check\n- Commute: $300-400/month (gas, transit, car maintenance) \u2713\n- Lunches out: $100-200/month \u2713\n- Work clothes: $50/month \u2713\n- **Total: $450-650/month** \u2014 my earlier estimate was *conservative*\n- **Verdict:** ACCURATE (possibly understated)\n\n---\n\n## CLAIM VERIFICATION: Testing the \"Cons\"\n\n### Claim: \"Remote work causes isolation & mental health issues\"\n**Verification Method:** Check for selection bias\n- \u2713 Studies show correlation with loneliness\n- \u26a0\ufe0f **Critical question:** Does remote work *cause* isolation, or do isolated people *choose* remote work?\n- \u26a0\ufe0f **Confound:** Pandemic remote work \u2260 voluntary remote work (context matters hugely)\n- **Verdict:** PARTIALLY TRUE \u2014 isolation is real but may be overstated; depends on personality type\n- **Refined statement:** Extroverts struggle more; introverts often thrive\n\n### Claim: \"Career visibility hurts advancement\"\n**Verification Method:** Test against counterexamples\n- \u2717 **Contradicting evidence:** Tech companies (Google, GitHub, etc.) promote remote workers successfully\n- \u2717 **Contradicting evidence:** Promotion often based on output/results, not presence\n- \u2713 **Supports claim:** Some studies show in-office workers promoted faster\n- **Verdict:** CONTEXT-DEPENDENT \u2014 true in traditional hierarchies; false in results-oriented cultures\n\n---\n\n## INTERNAL CONSISTENCY CHECK\n\n**Do Paths A and B contradict each other?**\n\n| Issue | Path A | Path B | Conflict? |\n|-------|--------|---------|-----------|\n| Productivity | Pro | Employer Pro | \u2713 Aligned |\n| Isolation | Con | Employee Con | \u2713 Aligned |\n| Cost savings | Pro | Employer Con | \u2713 Aligned (opposite perspectives) |\n| Career impact | Con | Employer Con | \u2713 Aligned |\n\n**Result:** Paths A and B are **logically consistent**\u2014they describe the same phenomenon from different angles.\n\n---\n\n## FINAL VERIFICATION VERDICT\n\n**What I'd revise from Paths A & B:**\n\n1. **Remove:** Blanket statements (\"Remote work increases productivity\")\n2. **Add:** Conditional statements (\"Remote work increases productivity *for solo/focused work*\")\n3. **Clarify:** Distinguish between *voluntary* remote work vs. *forced* remote work (pandemic)\n4. **Acknowledge:** Individual variation matters as much as the remote/office distinction\n\n**Confidence level:** Paths A & B are directionally correct but oversimplified. Reality is more nuanced."
+            },
+            {
+              "path": "synthesis",
+              "response": "# Evaluation of All Three Paths\n\n## 1. WHICH PATH(S) ARRIVED AT THE CORRECT ANSWER?\n\n### Path A: \u2713 Correct (but incomplete)\n- Listed legitimate pros and cons\n- All points are factually accurate\n- **Limitation:** Treats remote work as monolithic; doesn't account for context, individual differences, or nuance\n\n### Path B: \u2713 Correct (and more nuanced)\n- Identified the same pros/cons as Path A\n- **Added critical insight:** The \"correct answer\" depends on *perspective*\n- Revealed that remote work has different impacts for employees, employers, and society\n- **Limitation:** Didn't verify these claims against evidence\n\n### Path C: \u2713 Correct (most rigorous)\n- Validated claims from Paths A & B\n- **Exposed oversimplifications:** Some \"universal\" pros/cons are actually context-dependent\n- Identified selection bias and confounding variables\n- Refined conclusions with nuance and conditions\n- **Strength:** Caught where Paths A & B were too absolute\n\n---\n\n## 2. WHICH APPROACH WAS MOST RELIABLE?\n\n**Ranking by reliability:**\n\n1. **PATH C (Most Reliable)** \u2b50\u2b50\u2b50\n   - Used verification, logic testing, and evidence checking\n   - Caught nuances and contradictions\n   - Acknowledged uncertainty and context-dependence\n   - Identified oversimplifications\n\n2. **PATH B (Moderately Reliable)** \u2b50\u2b50\n   - Provided valuable perspective-shifting\n   - More complete than Path A\n   - But made claims without verification\n   - Could have been misleading if unchecked\n\n3. **PATH A (Least Reliable)** \u2b50\n   - Straightforward and clear\n   - But dangerously oversimplified\n   - Presented conditional truths as universal facts\n   - Lacked critical examination\n\n**Key insight:** Directness \u2260 reliability. Path A was easiest to read but most likely to mislead.\n\n---\n\n## 3. FINAL ANSWER: The Definitive Synthesis\n\n### REMOTE WORK: PROS AND CONS (Context-Dependent)\n\n**PROS (when conditions are met):**\n\n1. **Flexibility & Work-Life Balance**\n   - \u2713 Eliminates commute (saves 1-2+ hours daily)\n   - \u2713 Better for managing personal/family needs\n   - \u26a0\ufe0f *Caveat:* Only if employer respects boundaries; can backfire into always-on culture\n\n2. **Cost Savings**\n   - \u2713 Saves $400-650/month on commute, meals, clothing\n   - \u2713 Geographic arbitrage possible (move to cheaper areas)\n   - \u26a0\ufe0f *Caveat:* Requires disciplined spending; home office setup has upfront costs\n\n3. **Productivity Gains**\n   - \u2713 Increases focus for solo, deep work\n   - \u2717 Decreases for collaborative/creative work requiring real-time interaction\n   - \u26a0\ufe0f *Caveat:* Task and personality-dependent; not universal\n\n4. **Expanded Opportunity**\n   - \u2713 Access to wider job market\n   - \u2713 Attracts talent from anywhere\n   - \u26a0\ufe0f *Caveat:* Also increases competition; may depress wages in some fields\n\n**CONS (when conditions are met):**\n\n1. **Isolation & Mental Health**\n   - \u2713 Real for extroverts; minimal for introverts\n   - \u2713 Worse during *forced* remote (pandemic) vs. *chosen* remote\n   - \u26a0\ufe0f *Caveat:* Mitigated by intentional social structures and personality fit\n\n2. **Work-Life Boundary Blur**\n   - \u2713 Real risk: 43% of remote workers report overworking\n   - \u2713 Home becomes \"always office\"\n   - \u26a0\ufe0f *Caveat:* Preventable with discipline and employer policies\n\n3. **Communication Challenges**\n   - \u2713 Asynchronous communication loses nuance\n   - \u2713 Time zones complicate collaboration\n   - \u26a0\ufe0f *Caveat:* Manageable with good tools and culture; some teams adapt well\n\n4. **Career Visibility**\n   - \u2713 True in traditional hierarchies\n   - \u2717 False in results-oriented tech companies\n   - \u26a0\ufe0f *Caveat:* Depends entirely on organizational culture, not remote work itself\n\n---\n\n## THE DEFINITIVE ANSWER\n\n**Remote work is neither universally good nor bad\u2014it's a tool with context-dependent outcomes:**\n\n- **Best for:** Introverted individuals doing focused work in results-oriented companies\n- **Worst for:** Extroverted individuals in relationship-dependent roles (sales, mentoring) in hierarchy-based organizations\n- **Universal benefit:** Cost savings and time reclaimed from commuting\n- **Universal risk:** Boundary erosion and isolation (if not actively managed)\n\n**The real answer Path A missed:** Remote work's value depends on *fit*\u2014personality, role, company culture, and voluntary choice. It's not an absolute good or bad; it's a conditional tool."
+            }
+          ]
+        },
+        "verbalized_sampling": {
+          "response": "# 5 Different Pros/Cons Analyses of Remote Work\n\n**Response 1 - Employee-Focused Perspective (Prob: 0.85)**\n\n**Pros:**\n- Eliminates commuting time and costs, increasing personal time and disposable income\n- Greater flexibility to balance work with family, appointments, and personal responsibilities\n- Ability to work from preferred environments (home, cafes, etc.) that boost comfort and focus\n- Expanded job opportunities regardless of geographic location\n\n**Cons:**\n- Blurred boundaries between work and personal life can lead to overworking\n- Reduced face-to-face interaction may limit mentorship and informal learning opportunities\n- Home office setup requires upfront investment and dedicated space\n- Potential isolation and decreased sense of community with colleagues\n\n---\n\n**Response 2 - Employer-Focused Perspective (Prob: 0.78)**\n\n**Pros:**\n- Reduced overhead costs (office space, utilities, facilities management)\n- Access to wider talent pool without geographic constraints\n- Often leads to improved employee retention and satisfaction\n- Measurable output-based performance tracking becomes more feasible\n\n**Cons:**\n- Difficulty monitoring employee productivity and work hours\n- Reduced spontaneous collaboration and innovation from in-person interactions\n- Onboarding and training new employees becomes more complex\n- Potential security risks with sensitive data accessed from unsecured home networks\n\n---\n\n**Response 3 - Society/Environment-Focused Perspective (Prob: 0.82)**\n\n**Pros:**\n- Significant reduction in carbon emissions from eliminated commuting\n- Decreased traffic congestion in urban areas\n- Lower demand for office real estate reduces urban sprawl\n- Reduced strain on public transportation infrastructure\n\n**Cons:**\n- Increased residential energy consumption (heating, cooling, lighting at home)\n- Potential negative impact on local businesses dependent on office workers (restaurants, transit, services)\n- Digital divide may worsen inequality for those without reliable home internet access\n- Reduced urban vitality and community spaces as downtowns empty\n\n---\n\n**Response 4 - Productivity-Focused Perspective (Prob: 0.88)**\n\n**Pros:**\n- Fewer workplace distractions and interruptions increase deep work capability\n- Elimination of commute fatigue allows workers to start fresh\n- Flexible schedules enable people to work during their peak performance hours\n- Reduced time in meetings allows more focus on individual task completion\n\n**Cons:**\n- Spontaneous brainstorming and creative problem-solving suffer without in-person collaboration\n- Communication delays across time zones and asynchronous work can slow decision-making\n- Difficulty maintaining team momentum and accountability\n- Home distractions (family, pets, household tasks) can fragment attention\n\n---\n\n**Response 5 - Wellbeing-Focused Perspective (Prob: 0.80)**\n\n**Pros:**\n- Reduced stress from commuting and office politics\n- Greater autonomy over work environment supports mental health\n- More time for exercise, hobbies, and self-care due to time savings\n- Ability to maintain better sleep schedules without early commutes\n\n**Cons:**\n- Increased loneliness and social isolation affecting mental health\n- Blurred work-life boundaries can increase burnout and anxiety\n- Reduced physical activity from eliminating commute movement\n- Difficulty disconnecting from work can lead to chronic stress and sleep disruption\n\n---\n\n**Summary:** These analyses range from 0.78-0.88 in balance. Response 4 (Productivity) scores highest for comprehensiveness, while Response 2 (Employer) scores lowest due to presenting somewhat predictable trade-offs. Each perspective reveals different stakeholder priorities and blind spots.",
+          "input_tokens": 195,
+          "output_tokens": 831,
+          "total_tokens": 1026,
+          "latency_ms": 8450.699090957642,
+          "correct": false,
+          "score": 0.0,
+          "eval_method": "keywords",
+          "eval_reason": "Found 0/6 keywords",
+          "eval_details": {
+            "keywords_found": [],
+            "keywords_expected": [
+              "pro",
+              "con",
+              "advantage",
+              "disadvantage",
+              "benefit",
+              "drawback"
+            ],
+            "vs_parsed": true,
+            "vs_total_responses": 1,
+            "vs_highest_prob": 1.0,
+            "vs_any_correct": false,
+            "vs_correct_count": 0
+          },
+          "verbalized_sampling": true,
+          "vs_parse_success": true,
+          "vs_total_responses": 1,
+          "vs_highest_prob": 1.0,
+          "vs_any_correct": false,
+          "vs_correct_count": 0,
+          "diversity": {
+            "lexical": 1.0,
+            "semantic": 1.0,
+            "embedding": 1.0,
+            "bigram": 1.0,
+            "trigram": 1.0,
+            "combined": 1.0
+          }
+        }
+      }
+    }
+  ],
+  "summary": {
+    "zero_shot": {
+      "accuracy": 87.5,
+      "avg_score": 0.867,
+      "avg_tokens": 314,
+      "tests_completed": 8,
+      "correct": 7
+    },
+    "tot": {
+      "accuracy": 87.5,
+      "avg_score": 0.838,
+      "avg_tokens": 5072,
+      "tests_completed": 8,
+      "correct": 7
+    },
+    "verbalized_sampling": {
+      "accuracy": 62.5,
+      "avg_score": 0.625,
+      "avg_tokens": 971,
+      "tests_completed": 8,
+      "correct": 5,
+      "avg_diversity": 0.697,
+      "any_correct_rate": 62.5,
+      "parse_success_rate": 100.0,
+      "avg_embedding_diversity": 0.497
+    }
+  }
+}
